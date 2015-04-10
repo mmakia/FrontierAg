@@ -13,5 +13,11 @@ namespace FrontierAg.Checkout
         {
 
         }
+
+        protected void Continue_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
+
     }
 }

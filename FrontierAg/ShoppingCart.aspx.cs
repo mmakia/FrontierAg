@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using System.Collections;
 using System.Web.ModelBinding;
 
-namespace FrontierAg
+namespace FrontierAg 
 {
     public partial class ShoppingCart : System.Web.UI.Page
     {
@@ -30,7 +30,7 @@ namespace FrontierAg
                     lblTotal.Text = "";
                     ShoppingCartTitle.InnerText = "Shopping Cart is Empty";
                     UpdateBtn.Visible = false;
-                    CheckoutImageBtn.Visible = false;
+                    CheckoutBtn.Visible = false;
                 }
             }
         }
@@ -69,6 +69,8 @@ namespace FrontierAg
             }
         }
 
+        
+
         public static IOrderedDictionary GetValues(GridViewRow row)
         {
             IOrderedDictionary values = new OrderedDictionary();
@@ -88,7 +90,7 @@ namespace FrontierAg
             UpdateCartItems();
         }
 
-        protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
+        protected void CheckoutBtn_Click(object sender, EventArgs e)
         {
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
@@ -98,4 +100,4 @@ namespace FrontierAg
         }
 
     }
-}
+} 

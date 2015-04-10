@@ -49,13 +49,7 @@
         <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" />
       </td>
       <td>
-        
-          <asp:ImageButton ID="CheckoutImageBtn" runat="server" 
-                      ImageUrl="http://www.inmotionhosting.com/support/images/stories/icons/ecommerce/checkout-dark.png" 
-                      Width="145" AlternateText="Check out with PayPal" 
-                      OnClick="CheckoutBtn_Click" 
-                      BackColor="Transparent" BorderWidth="0" />
-
+        <asp:Button ID="CheckoutBtn" runat="server" Text="Start Checkout" OnClick="CheckoutBtn_Click" />
       </td>
     </tr>
     </table>

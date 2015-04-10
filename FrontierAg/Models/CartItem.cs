@@ -20,10 +20,6 @@ namespace FrontierAg.Models
         public int ProductId { get; set; }
 
         public virtual Product Product { get; set; }
-
-        //public int PriceId { get; set; }
-
-        //public virtual ICollection<Price> Prices { get; set; }
-
+                
     }
 }
