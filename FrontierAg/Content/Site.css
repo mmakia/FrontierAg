@@ -27,6 +27,7 @@ input[type="select"] {
     max-width: 280px;
 }
 
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
@@ -36,3 +37,43 @@ input[type="select"] {
         padding: 0;
     }
 }
+
+.PleaseWait{
+    height : 32px;
+    width : 500px;    
+    background-repeat: no-repeat;
+    padding-top: 10px;
+    line-height: 32px;
+}
+
+.SCTable{
+    margin-top: 50px; 
+    margin-left: 350px;   
+}
+
+.SCTable td{
+    padding: 5px;
+}
+
+.Attention{
+    border: 4px solid red;
+    padding: 10px 0;
+    width: 100px;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+input.invalid, textarea.invalid{
+			border: 2px solid red;
+		}
+		
+input.valid, textarea.valid{
+			border: 2px solid green;
+		}
+
+/*.error{
+    display: none;
+    margin-left: 10px;
+}*/
+

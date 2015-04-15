@@ -29,7 +29,7 @@
 						    <asp:DynamicControl Mode="Insert" DataField="WebSite" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Comment" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Type" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="DateCreated" runat="server" />
+						    <%--<asp:DynamicControl Mode="Insert" DataField="DateCreated" runat="server" />--%>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-primary" />

@@ -24,7 +24,10 @@
 								<asp:LinkButton Text="PO Number" CommandName="Sort" CommandArgument="PoNumber" runat="Server" />
 							</th>
                             <th>
-								<asp:LinkButton Text="ContactId" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
+								<asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="LName" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
 							</th>
                             <th>&nbsp;</th>
                         </tr>
@@ -51,6 +54,9 @@
 							</td>
 							<td>
 								<%#: Item.Contact != null ? Item.Contact.Company : "" %>
+							</td>
+                             <td>
+								<%#: Item.Contact != null ? Item.Contact.LName : "" %>
 							</td>
                     <td>
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Pos/Details", Item.PoId) %>' Text="Details" /> | 

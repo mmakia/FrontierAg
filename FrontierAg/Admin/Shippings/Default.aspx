@@ -5,6 +5,8 @@
     <p>
         <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
     </p>
+
+
     <div>
         <asp:ListView id="ListView1" runat="server"
             DataKeyNames="ShippingId" 
@@ -17,9 +19,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>
+                            <%--<th>
 								<asp:LinkButton Text="ShippingId" CommandName="Sort" CommandArgument="ShippingId" runat="Server" />
-							</th>
+							</th>--%>
                             <th>
 								<asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
 							</th>
@@ -29,6 +31,7 @@
                             <th>
 								<asp:LinkButton Text="City" CommandName="Sort" CommandArgument="City" runat="Server" />
 							</th>
+
                             <th>
 								<asp:LinkButton Text="State" CommandName="Sort" CommandArgument="State" runat="Server" />
 							</th>
@@ -39,7 +42,10 @@
 								<asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
 							</th>
                             <th>
-								<asp:LinkButton Text="ContactId" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
+								<asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="LName" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
 							</th>
                             <th>&nbsp;</th>
                         </tr>
@@ -58,9 +64,9 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-							<td>
+							<%--<td>
 								<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
-							</td>
+							</td--%>>
 							<td>
 								<asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
 							</td>
@@ -81,6 +87,9 @@
 							</td>
 							<td>
 								<%#: Item.Contact != null ? Item.Contact.Company : "" %>
+							</td>
+                            <td>
+								<%#: Item.Contact != null ? Item.Contact.LName : "" %>
 							</td>
                     <td>
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Details", Item.ShippingId) %>' Text="Details" /> | 

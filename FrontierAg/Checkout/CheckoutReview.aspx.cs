@@ -8,8 +8,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace FrontierAg.Checkout
 {
+    
+
     public partial class CheckoutReview : System.Web.UI.Page
     {
         decimal cartTotal = 0;
@@ -71,7 +74,7 @@ namespace FrontierAg.Checkout
             }
         }
 
-        public List<CartItem> UpdateCartItems2()
+        public List<CartItem> RemoveCartItems()
         {
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
@@ -84,13 +87,12 @@ namespace FrontierAg.Checkout
                     rowValues = GetValues(CheckoutReviewList.Rows[i]);
                     cartUpdates[i].ProductId = Convert.ToInt32(rowValues["ProductID"]);
 
-                    CheckBox cbRemove = new CheckBox();
-                    //cbRemove = (CheckBox)CheckoutReviewList.Rows[i].FindControl("Remove");
+                    CheckBox cbRemove = new CheckBox();                    
                     cartUpdates[i].RemoveItem = true;
 
                     TextBox quantityTextBox = new TextBox();
                     quantityTextBox = (TextBox)CheckoutReviewList.Rows[i].FindControl("PurchaseQuantity");
-                    cartUpdates[i].PurchaseQuantity = 0;//Convert.ToInt16(quantityTextBox.Text.ToString());
+                    cartUpdates[i].PurchaseQuantity = 0;
                 }
                 usersShoppingCart.UpdateShoppingCartDatabase(cartId, cartUpdates);
                 CheckoutReviewList.DataBind();
@@ -140,8 +142,7 @@ namespace FrontierAg.Checkout
                 Response.Redirect("../Default");
             }
         }
-
-        //protected FrontierAg.Models.ProductContext _db2 = new FrontierAg.Models.ProductContext();
+        
 
         public FrontierAg.Models.Shipping GetItem2([FriendlyUrlSegmentsAttribute(0)]int? ShippingIdRaw)
         {
@@ -165,11 +166,17 @@ namespace FrontierAg.Checkout
             {
                 Session["payment_amt"] = usersShoppingCart.GetTotal();/////////////////////
                 AddOrder(TransactionIdBox.Text, TransactionIdDateBox.Text);
-                UpdateCartItems2();
-                //AddOrderDetail(TransactionIdBox.Text, TransactionIdDateBox.Text);
+
+                List<CartItem> x = usersShoppingCart.GetCartItems();
+                AddOrderDetail(x);
+
+                RemoveCartItems();
+                
             }
             Response.Redirect("~/Checkout/CheckoutComplete.aspx");
         }
+
+
 
 
         protected void CancelBtn_Click(object sender, EventArgs e)
@@ -215,32 +222,37 @@ namespace FrontierAg.Checkout
             return true;
         }
 
-        //public bool AddOrderDetail(string TransactionId, string TransactionIdDate)
-        //{
-        //    var myOrderDetail = new OrderDetail();
-
-        //    using (ProductContext _db = new ProductContext())
-        //    {
-        //        myOrderDetail.OrderId = _db.Orders.Last().OrderId;
-        //    }
-           
-        //    myOrderDetail.Total = cartTotal;
-        //    myOrderDetail.HasBeenShipped = false;
-        //    myOrderDetail.ContactId = myContactId;
-        //    myOrderDetail.TransactionId = TransactionId;
-        //    myOrderDetail.TransactionDate = Convert.ToDateTime(TransactionIdDate);
-
-        //    using (ProductContext _db = new ProductContext())
-        //    {
-        //        // Add product to DB.
-        //        _db.Orders.Add(myOrderDetail);
-        //        _db.SaveChanges();
-        //    }
-        //    // Success.
-        //    return true;
-        //}
-
-
         
+        public void AddOrderDetail(List<CartItem> MyCart)
+        {
+            
+
+            using (ProductContext _db = new ProductContext())
+            {
+              try
+               {                                
+                foreach (var cartItem in MyCart)                    
+                {
+                    var myOrderDetail = new OrderDetail();
+
+                    var x = _db.Orders.Where(b => b.ContactId == myContactId).ToList().LastOrDefault();
+                    myOrderDetail.OrderId = x.OrderId;
+                    myOrderDetail.ContactId = myContactId;
+                    myOrderDetail.ProductId = cartItem.ProductId; 
+                    myOrderDetail.Quantity = cartItem.Quantity;
+                    myOrderDetail.UnitPrice = cartItem.Product.Prices.Where(en => en.From <= cartItem.Quantity && en.To >= cartItem.Quantity).FirstOrDefault().PriceNumber;
+                             
+                // Add product to DB.
+                _db.OrderDetails.Add(myOrderDetail);
+                _db.SaveChanges();                           
+                }
+               }
+               catch (Exception exp)
+               {
+                   throw new Exception("ERROR: Unable to Update Cart Database - " + exp.Message.ToString(), exp);
+               }
+            }           
+        }       
+               
     }
 }

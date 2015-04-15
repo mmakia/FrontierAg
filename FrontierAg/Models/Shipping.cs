@@ -8,6 +8,7 @@ namespace FrontierAg.Models
 {
     public class Shipping
     {
+        [ScaffoldColumn(false)]
         public int ShippingId { get; set; }
 
         public string Address1 { get; set; }
@@ -24,6 +25,7 @@ namespace FrontierAg.Models
         [StringLength(40)]
         public string Country { get; set; }
 
+        [Display(Name="Company")]
         public int ContactId { get; set; }
 
         public Contact Contact { get; set; }

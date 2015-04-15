@@ -25,7 +25,7 @@ namespace FrontierAg.Contacts
             using (_db)
             {
                 var item = new FrontierAg.Models.Contact();
-
+                item.DateCreated = DateTime.Now;
                 TryUpdateModel(item);
 
                 if (ModelState.IsValid)

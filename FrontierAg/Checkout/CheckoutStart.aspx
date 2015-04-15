@@ -3,7 +3,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h2>Please select a contact or create new:</h2>
     <p>
-        <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
+        <asp:HyperLink runat="server" NavigateUrl="~/Admin/Contacts/Insert"  Text="Create new" />
     </p>
     <div>
         <asp:ListView id="ListView1" runat="server"
@@ -88,8 +88,8 @@
 							</td>
                     
                     <td>
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Default", Item.ContactId) %>' Text="Details" /> | 
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Default", Item.ContactId) %>' Text="Edit" /> | 
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="Details" /> | 
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" /> | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/SelectShipping.aspx", Item.ContactId) %>' Text="Select Shipping Address" />
                     </td>
                 </tr>

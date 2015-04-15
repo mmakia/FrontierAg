@@ -28,7 +28,7 @@ namespace FrontierAg.Models
         public int ContactId { get; set; }
 
         [Display(Name = "Contact ID")]
-        public int? Contact_Identification { get; set; }
+        public string Contact_Identification { get; set; }
 
         [Required, StringLength(100)]
         public string Company { get; set; }
@@ -65,9 +65,10 @@ namespace FrontierAg.Models
         public PhoneType? SPType { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        public int? Fax { get; set; }
+        public string Fax { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string EMail { get; set; }
 
         [DataType(DataType.Url)]

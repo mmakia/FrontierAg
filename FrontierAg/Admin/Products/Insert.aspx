@@ -13,7 +13,7 @@
 						    <asp:DynamicControl Mode="Insert" DataField="ProductNo" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="ProductName" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Description" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="DateCreated" runat="server" />
+						    <%--<asp:DynamicControl Mode="Insert" DataField="DateCreated" runat="server" />--%>
 							<asp:DynamicControl Mode="Insert" 
 								DataField="CategoryId" 
 								DataTypeName="FrontierAg.Models.Category" 

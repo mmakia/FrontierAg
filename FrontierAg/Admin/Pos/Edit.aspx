@@ -17,7 +17,7 @@
 							<asp:DynamicControl Mode="Edit" 
 								DataField="ContactId" 
 								DataTypeName="FrontierAg.Models.Contact" 
-								DataTextField="Company" 
+								DataTextField="LName" 
 								DataValueField="ContactId" 
 								UIHint="ForeignKey" runat="server" />
                     <div class="form-group">

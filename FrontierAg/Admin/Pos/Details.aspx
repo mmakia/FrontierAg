@@ -31,10 +31,18 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
-									<strong>ContactId</strong>
+									<strong>Company</strong>
 								</div>
 								<div class="col-sm-4">
 									<%#: Item.Contact != null ? Item.Contact.Company : "" %>
+								</div>
+                             </div>
+                             <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>LName</strong>
+								</div>
+                                <div class="col-sm-4">
+									<%#: Item.Contact != null ? Item.Contact.LName : "" %>
 								</div>
 							</div>
                  	<div class="row">

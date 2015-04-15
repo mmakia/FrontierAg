@@ -25,7 +25,7 @@ namespace FrontierAg.Prices
             using (_db)
             {
                 var item = new FrontierAg.Models.Price();
-
+                item.DateCreated = DateTime.Now;
                 TryUpdateModel(item);
 
                 if (ModelState.IsValid)

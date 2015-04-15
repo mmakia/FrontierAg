@@ -25,7 +25,7 @@ namespace FrontierAg.Products
             using (_db)
             {
                 var item = new FrontierAg.Models.Product();
-
+                item.DateCreated = DateTime.Now;
                 TryUpdateModel(item);
 
                 if (ModelState.IsValid)

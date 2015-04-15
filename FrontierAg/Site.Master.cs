@@ -70,9 +70,10 @@ namespace FrontierAg
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User.IsInRole("canEdit"))
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 adminLink.Visible = true;
+                cartCount.Visible = true;                
             }
         }
 

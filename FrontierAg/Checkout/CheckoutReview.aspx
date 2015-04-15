@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="Checkout Review" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CheckoutReview.aspx.cs" Inherits="FrontierAg.Checkout.CheckoutReview" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <asp:UpdatePanel runat="server" ID="UpdatePanel2">
+        <ContentTemplate>
+
     <div id="CheckoutReviewTitle" runat="server" class="ContentHead"><h1>Checkout Review</h1></div>
+
+    <div id="CheckoutReviewWrapper">
+
     <asp:GridView ID="CheckoutReviewList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.CartItem" SelectMethod="GetShoppingCartItems" 
         CssClass="table table-striped table-bordered" >   
@@ -14,17 +21,14 @@
                     runat="server" />
               </ItemTemplate>
             </asp:TemplateField>
-
         <asp:TemplateField   HeaderText="Quantity">            
                 <ItemTemplate>
-                    <asp:Label Text="<%#: (Item.Quantity) *  Item.Product.Prices.Where(en => en.From <= Item.Quantity && en.To >= Item.Quantity).FirstOrDefault().PriceNumber%>"
+                    <asp:Label Text="<%#: (Item.Quantity) %>"
                          runat="server" />
                 </ItemTemplate>        
-        </asp:TemplateField>    
-                  
+        </asp:TemplateField>                     
         </Columns>    
     </asp:GridView>
-
     <asp:FormView runat="server"
             ItemType="FrontierAg.Models.Contact" DataKeyNames="ContactId"
             SelectMethod="GetItem"
@@ -35,14 +39,7 @@
             <ItemTemplate>
                 <fieldset class="form-horizontal">
                     <legend>Contact Details</legend>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Contact ID</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="Contact_Identification" ID="Contact_Identification" Mode="ReadOnly" />
-								</div>
-							</div>
+							
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>Company</strong>
@@ -197,13 +194,10 @@
 							</div>
                  	<div class="row">
 					  &nbsp;
-					</div>
-					
+					</div>					
                 </fieldset>
             </ItemTemplate>
         </asp:FormView>
-
-
     <asp:FormView runat="server"
             ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId"
             SelectMethod="GetItem2"
@@ -213,15 +207,7 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                 <fieldset class="form-horizontal">
-                    <legend>Shipping Details</legend>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>ShippingId</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
-								</div>
-							</div>
+                    <legend>Shipping Details</legend>							
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>Address1</strong>
@@ -277,6 +263,9 @@
 								<div class="col-sm-4">
 									<%#: Item.Contact != null ? Item.Contact.Company : "" %>
 								</div>
+                                <div class="col-sm-4">
+									<%#: Item.Contact != null ? Item.Contact.LName : "" %>
+								</div>
 							</div>
                  	<div class="row">
 					  &nbsp;
@@ -285,7 +274,6 @@
                 </fieldset>
             </ItemTemplate>
         </asp:FormView>
-
     <div>
         <p></p>
         <strong>
@@ -294,25 +282,64 @@
         </strong> 
     </div>
     <br />
-    <asp:Label ID="Label1" runat="server" Text="Transaction ID:"></asp:Label>
-&nbsp;<asp:TextBox ID="TransactionIdBox" runat="server" ></asp:TextBox>
-    <br />
-    <br />
-    <asp:Label ID="Label2" runat="server" Text="Transaction ID Date: "></asp:Label>
-    <asp:TextBox ID="TransactionIdDateBox" runat="server"></asp:TextBox>
+    <table>
+        <tr>
+            <td>
+                <asp:Label ID="Label1" runat="server" Text="Transaction ID:"></asp:Label>
+            </td>
+            <td>
+                &nbsp;<asp:TextBox ID="TransactionIdBox" runat="server" ></asp:TextBox>                
+            </td>
+        </tr>
+        <tr>
+            <td>    
+                <asp:Label ID="Label2" runat="server" Text="Transaction ID Date: "></asp:Label>
+            </td>    
+            <td>
+                &nbsp;<asp:TextBox ID="TransactionIdDateBox" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+    </table>
     <br />
     <br />
 
     <table> 
-    <tr>
-      
+     <tr>      
       <td>
         <asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order" OnClick="PlaceOrderBtn_Click" />
       </td>
-        <td>
-        <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" />
+      <td>
+        &nbsp;<asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" />
       </td>
     </tr>
     </table>
 
+        </div>
+            
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
+        <ProgressTemplate>
+            <div class="PleaseWait">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PleaseWait.gif"/>
+                Processing...
+            </div>
+        </ProgressTemplate>   
+    </asp:UpdateProgress>
+    <script>
+        $(function () {
+            $('form').bind('submit', function ()
+            {
+                if(Page_IsValid)
+                {
+                    $('#CheckoutReviewWrapper').slideUp(3000);
+                }
+            });
+          });
+        function pageLoad()
+        {
+            $('.Attention').animate({ width: '600px' }, 3000).animate({ width: '100px' }, 3000).fadeIn('slow');
+        }
+    </script>
 </asp:Content>

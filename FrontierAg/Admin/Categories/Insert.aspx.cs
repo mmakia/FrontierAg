@@ -25,7 +25,7 @@ namespace FrontierAg.Categories
             using (_db)
             {
                 var item = new FrontierAg.Models.Category();
-
+                item.DateCreated = DateTime.Now;
                 TryUpdateModel(item);
 
                 if (ModelState.IsValid)
