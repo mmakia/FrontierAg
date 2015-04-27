@@ -11,7 +11,7 @@
 				<legend>Insert OrderDetail</legend>
 		        <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
 						    <asp:DynamicControl Mode="Insert" DataField="OrderId" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="ContactId" runat="server" />
+						    
 						    <asp:DynamicControl Mode="Insert" DataField="ProductId" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Quantity" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="UnitPrice" runat="server" />

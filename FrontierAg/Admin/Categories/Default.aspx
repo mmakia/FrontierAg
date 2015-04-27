@@ -54,6 +54,14 @@
                 </tr>
             </ItemTemplate>
         </asp:ListView>
+        <div class="row">
+					  &nbsp;
+					</div>
+					<div class="form-group">
+						<div>
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-default" />
+						</div>
+					</div>
     </div>
 </asp:Content>
 

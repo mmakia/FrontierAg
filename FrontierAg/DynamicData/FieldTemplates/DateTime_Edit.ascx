@@ -1,9 +1,9 @@
-﻿<%@ Control Language="C#" CodeBehind="DateTime_Edit.ascx.cs" Inherits="FrontierAg.DateTime_EditField" %>
+<%@ Control Language="C#" CodeBehind="DateTime_Edit.ascx.cs" Inherits="FrontierAg.DateTime_EditField" %>
 
-<div id="Div1" runat="server" class="form-group">
-    <asp:Label ID="Label1" runat="server" CssClass="col-sm-2 control-label" />
-    <div class="col-sm-3">
-		<asp:TextBox ID="TextBox1" type="DateTime" runat="server" Text='<%# FieldValueEditString %>' CssClass="form-control DDTextBox"></asp:TextBox>
-    </div>
-</div>
+<asp:TextBox ID="TextBox1" runat="server" Text='<%# FieldValueEditString %>' Columns="20"></asp:TextBox>
+
+<asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" Enabled="false" />
+<asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" Enabled="false" />
+<asp:DynamicValidator runat="server" ID="DynamicValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" />
+<asp:CustomValidator runat="server" ID="DateValidator" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" EnableClientScript="false" Enabled="false" OnServerValidate="DateValidator_ServerValidate" />
 

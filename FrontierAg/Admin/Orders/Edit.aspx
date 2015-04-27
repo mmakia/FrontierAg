@@ -15,15 +15,18 @@
 					<asp:ValidationSummary runat="server" CssClass="alert alert-danger"  />                 
 						    <asp:DynamicControl Mode="Edit" DataField="OrderDate" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="Total" runat="server" />
-							<asp:DynamicControl Mode="Edit" 
+                            <asp:DynamicControl Mode="Edit" DataField="ContactId" runat="server" />
+							<%--<asp:DynamicControl Mode="Edit" 
 								DataField="ContactId" 
 								DataTypeName="FrontierAg.Models.Contact" 
 								DataTextField="Contact_Identification" 
 								DataValueField="ContactId" 
-								UIHint="ForeignKey" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="TransactionId" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="TransactionDate" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="HasBeenShipped" runat="server" />
+								UIHint="ForeignKey" runat="server" />--%>
+						    <asp:DynamicControl Mode="Edit" DataField="ShippingId" runat="server" />
+						    <asp:DynamicControl Mode="Edit" DataField="Payment" runat="server" />
+						    <asp:DynamicControl Mode="Edit" DataField="PaymentDate" runat="server" />
+						    <asp:DynamicControl Mode="Edit" DataField="Comment" runat="server" />
+						    <asp:DynamicControl Mode="Edit" DataField="Closed" runat="server" />
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
 							<asp:Button runat="server" ID="UpdateButton" CommandName="Update" Text="Update" CssClass="btn btn-primary" />

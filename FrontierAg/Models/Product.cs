@@ -28,6 +28,8 @@ namespace FrontierAg.Models
         public virtual Category Category { get; set; }        
 
         public virtual ICollection<Price> Prices { get; set; }
+
+        public virtual ICollection<CartItem> CartItems { get; set; }
                 
     }
 }

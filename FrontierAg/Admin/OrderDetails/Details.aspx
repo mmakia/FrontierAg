@@ -29,14 +29,7 @@
 									<asp:DynamicControl runat="server" DataField="OrderId" ID="OrderId" Mode="ReadOnly" />
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>ContactId</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="ContactId" ID="ContactId" Mode="ReadOnly" />
-								</div>
-							</div>
+							
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>ProductId</strong>
@@ -53,6 +46,22 @@
 									<asp:DynamicControl runat="server" DataField="Quantity" ID="Quantity" Mode="ReadOnly" />
 								</div>
 							</div>
+                    <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>QtyShipped</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="QtyShipped" ID="QtyShipped" Mode="Edit" />
+								</div>
+							</div>
+                    <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>QtyCancelled</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="QtyCancelled" ID="QtyCancelled" Mode="Edit" />
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>UnitPrice</strong>
@@ -66,7 +75,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Back" CssClass="btn btn-default" />
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-default" />
 						</div>
 					</div>
                 </fieldset>

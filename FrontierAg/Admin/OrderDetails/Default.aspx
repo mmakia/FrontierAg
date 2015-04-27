@@ -16,18 +16,16 @@
             <LayoutTemplate>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th>
-								<asp:LinkButton Text="OrderDetailId" CommandName="Sort" CommandArgument="OrderDetailId" runat="Server" />
-							</th>
+                        <tr>                            
                             <th>
 								<asp:LinkButton Text="OrderId" CommandName="Sort" CommandArgument="OrderId" runat="Server" />
 							</th>
+                            
                             <th>
-								<asp:LinkButton Text="ContactId" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
+								<asp:LinkButton Text="Product Number" CommandName="Sort" CommandArgument="ProductId" runat="Server" />
 							</th>
                             <th>
-								<asp:LinkButton Text="ProductId" CommandName="Sort" CommandArgument="ProductId" runat="Server" />
+								<asp:LinkButton Text="Product Name" CommandName="Sort" CommandArgument="ProductId" runat="Server" />
 							</th>
                             <th>
 								<asp:LinkButton Text="Quantity" CommandName="Sort" CommandArgument="Quantity" runat="Server" />
@@ -42,7 +40,7 @@
                         <tr runat="server" id="itemPlaceholder" />
                     </tbody>
                 </table>
-				<asp:DataPager PageSize="5"  runat="server">
+				<asp:DataPager PageSize="15"  runat="server">
 					<Fields>
                         <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
                         <asp:NumericPagerField ButtonType="Button"  NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
@@ -51,18 +49,16 @@
 				</asp:DataPager>
             </LayoutTemplate>
             <ItemTemplate>
-                <tr>
-							<td>
-								<asp:DynamicControl runat="server" DataField="OrderDetailId" ID="OrderDetailId" Mode="ReadOnly" />
-							</td>
+                <tr> 							
 							<td>
 								<asp:DynamicControl runat="server" DataField="OrderId" ID="OrderId" Mode="ReadOnly" />
 							</td>
-							<td>
-								<asp:DynamicControl runat="server" DataField="ContactId" ID="ContactId" Mode="ReadOnly" />
+							
+							<td>								
+                                <%#: Item.Product != null ? Item.Product.ProductNo : "" %>
 							</td>
-							<td>
-								<asp:DynamicControl runat="server" DataField="ProductId" ID="ProductId" Mode="ReadOnly" />
+                            <td>
+                                <%#: Item.Product != null ? Item.Product.ProductName : "" %>
 							</td>
 							<td>
 								<asp:DynamicControl runat="server" DataField="Quantity" ID="Quantity" Mode="ReadOnly" />
@@ -71,13 +67,23 @@
 								<asp:DynamicControl runat="server" DataField="UnitPrice" ID="UnitPrice" Mode="ReadOnly" />
 							</td>
                     <td>
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/Details", Item.OrderDetailId) %>' Text="Details" /> | 
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/Edit", Item.OrderDetailId) %>' Text="Edit" /> | 
-                        <%--<asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/OrderDetails/Delete", Item.OrderDetailId) %>' Text="Delete" />--%>
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/Details", Item.OrderDetailId) %>' Text="Details" />  
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/Edit", Item.OrderDetailId) %>' Text="Edit" />
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/Delete", Item.OrderDetailId) %>' Text="Delete" />
                     </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
+
+        <div class="row">
+					  &nbsp;
+					</div>
+					<div class="form-group">
+						<div>
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-default" />
+						</div>
+					</div>
+
     </div>
 </asp:Content>
 

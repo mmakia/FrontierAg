@@ -11,6 +11,7 @@ namespace FrontierAg
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+         //   new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "Test Email", "Test Email body");//("gsilber@cyberdaptive.com", "orders@frontierssi.com", "Test Email", "Test Email body");
             Response.Redirect("ProductList");
         }
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Web.DynamicData;
@@ -21,5 +21,6 @@ namespace FrontierAg {
                 return HyperLink1;
             }
         }
+    
     }
 }

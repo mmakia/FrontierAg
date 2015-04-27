@@ -18,9 +18,11 @@
 								DataTextField="Contact_Identification" 
 								DataValueField="ContactId" 
 								UIHint="ForeignKey" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="TransactionId" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="TransactionDate" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="HasBeenShipped" runat="server" />
+						    <asp:DynamicControl Mode="Insert" DataField="ShippingId" runat="server" />
+						    <asp:DynamicControl Mode="Insert" DataField="Payment" runat="server" />
+						    <asp:DynamicControl Mode="Insert" DataField="PaymentDate" runat="server" />
+						    <asp:DynamicControl Mode="Insert" DataField="Comment" runat="server" />
+						    <asp:DynamicControl Mode="Insert" DataField="Closed" runat="server" />
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-primary" />

@@ -25,6 +25,6 @@ namespace FrontierAg
                 query = query.Where(p => p.CategoryId == categoryId);
             }
             return query;
-        }
+        } 
     }
 }

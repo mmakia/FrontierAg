@@ -47,26 +47,42 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
-									<strong>TransactionId</strong>
+									<strong>ShippingId</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="TransactionId" ID="TransactionId" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
-									<strong>TransactionDate</strong>
+									<strong>Payment</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="TransactionDate" ID="TransactionDate" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="Payment" ID="Payment" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
-									<strong>HasBeenShipped</strong>
+									<strong>PaymentDate</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="HasBeenShipped" ID="HasBeenShipped" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="PaymentDate" ID="PaymentDate" Mode="ReadOnly" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>Comment</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="Comment" ID="Comment" Mode="ReadOnly" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>Closed</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="Closed" ID="Closed" Mode="ReadOnly" />
 								</div>
 							</div>
                  	<div class="row">

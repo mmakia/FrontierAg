@@ -19,7 +19,7 @@
 							<asp:DynamicControl Mode="Insert" 
 								DataField="ContactId" 
 								DataTypeName="FrontierAg.Models.Contact" 
-								DataTextField="Company" 
+								DataTextField="LName" 
 								DataValueField="ContactId" 
 								UIHint="ForeignKey" runat="server" />
                     <div class="form-group">

@@ -14,7 +14,7 @@
                     <legend>Edit OrderDetail</legend>
 					<asp:ValidationSummary runat="server" CssClass="alert alert-danger"  />                 
 						    <asp:DynamicControl Mode="Edit" DataField="OrderId" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="ContactId" runat="server" />
+						    
 						    <asp:DynamicControl Mode="Edit" DataField="ProductId" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="Quantity" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="UnitPrice" runat="server" />

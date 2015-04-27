@@ -67,13 +67,13 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// TransactionIdBox control.
+        /// PaymentBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TransactionIdBox;
+        protected global::System.Web.UI.WebControls.TextBox PaymentBox;
         
         /// <summary>
         /// Label2 control.
@@ -85,22 +85,31 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// TransactionIdDateBox control.
+        /// PaymentDateBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TransactionIdDateBox;
+        protected global::System.Web.UI.WebControls.TextBox PaymentDateBox;
         
         /// <summary>
-        /// PlaceOrderBtn control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PlaceOrderBtn;
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// CommentBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CommentBox;
         
         /// <summary>
         /// Button1 control.
@@ -110,6 +119,15 @@ namespace FrontierAg.Checkout {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// PlaceOrderBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PlaceOrderBtn;
         
         /// <summary>
         /// UpdateProgress1 control.

@@ -25,7 +25,7 @@ namespace FrontierAg.Shippings
             using (_db)
             {
                 var item = new FrontierAg.Models.Shipping();
-
+                item.DateCreated = DateTime.Now;
                 TryUpdateModel(item);
 
                 if (ModelState.IsValid)

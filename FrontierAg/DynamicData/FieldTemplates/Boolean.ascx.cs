@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Web.DynamicData;
@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 
 namespace FrontierAg {
     public partial class BooleanField : System.Web.DynamicData.FieldTemplateUserControl {
-
         protected override void OnDataBinding(EventArgs e) {
             base.OnDataBinding(e);
     

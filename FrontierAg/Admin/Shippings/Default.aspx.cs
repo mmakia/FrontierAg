@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
 using FrontierAg.Models;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 
 namespace FrontierAg.Shippings
 {
@@ -19,9 +20,15 @@ namespace FrontierAg.Shippings
 
         // Model binding method to get List of Shipping entries
         // USAGE: <asp:ListView SelectMethod="GetData">
-        public IQueryable<FrontierAg.Models.Shipping> GetData()
+        public IQueryable<FrontierAg.Models.Shipping> GetData([FriendlyUrlSegmentsAttribute(0)]int? ContactId)
         {
-            return _db.Shippings.Include(m => m.Contact);
+
+            if (ContactId != null)
+            {
+                return _db.Shippings.Where(n => n.ContactId == ContactId).Include(m => m.Contact);
+            }
+
+            else return _db.Shippings.Include(m => m.Contact);
         }
     }
 }

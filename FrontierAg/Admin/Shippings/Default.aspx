@@ -66,7 +66,7 @@
                 <tr>
 							<%--<td>
 								<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
-							</td--%>>
+							</td--%>
 							<td>
 								<asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
 							</td>
@@ -99,6 +99,14 @@
                 </tr>
             </ItemTemplate>
         </asp:ListView>
+        <div class="row">
+					  &nbsp;
+					</div>
+					<div class="form-group">
+						<div>
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-default" />
+						</div>
+					</div>
     </div>
 </asp:Content>
 

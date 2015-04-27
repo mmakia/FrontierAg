@@ -4,7 +4,7 @@
     <asp:UpdatePanel runat="server" ID="UpdatePanel2">
         <ContentTemplate>
 
-    <div id="CheckoutReviewTitle" runat="server" class="ContentHead"><h1>Checkout Review</h1></div>
+    <div id="CheckoutReviewTitle" runat="server" class="ContentHead"><h2>Checkout Review</h2></div>
 
     <div id="CheckoutReviewWrapper">
 
@@ -17,7 +17,7 @@
         
         <asp:TemplateField HeaderText="Price (each)">
               <ItemTemplate>
-                <asp:Label Text="<%#:  Item.Product.Prices.Where(en => en.From <= Item.Quantity && en.To >= Item.Quantity).FirstOrDefault().PriceNumber %>" 
+                <asp:Label Text="<%#:  Item.ItemPrice %>" 
                     runat="server" />
               </ItemTemplate>
             </asp:TemplateField>
@@ -29,6 +29,7 @@
         </asp:TemplateField>                     
         </Columns>    
     </asp:GridView>
+
     <asp:FormView runat="server"
             ItemType="FrontierAg.Models.Contact" DataKeyNames="ContactId"
             SelectMethod="GetItem"
@@ -198,6 +199,7 @@
                 </fieldset>
             </ItemTemplate>
         </asp:FormView>
+
     <asp:FormView runat="server"
             ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId"
             SelectMethod="GetItem2"
@@ -282,13 +284,14 @@
         </strong> 
     </div>
     <br />
+        
     <table>
         <tr>
             <td>
                 <asp:Label ID="Label1" runat="server" Text="Transaction ID:"></asp:Label>
             </td>
             <td>
-                &nbsp;<asp:TextBox ID="TransactionIdBox" runat="server" ></asp:TextBox>                
+                &nbsp;<asp:TextBox ID="PaymentBox" runat="server" ></asp:TextBox>                
             </td>
         </tr>
         <tr>
@@ -296,26 +299,31 @@
                 <asp:Label ID="Label2" runat="server" Text="Transaction ID Date: "></asp:Label>
             </td>    
             <td>
-                &nbsp;<asp:TextBox ID="TransactionIdDateBox" runat="server"></asp:TextBox>
+                &nbsp;<asp:TextBox ID="PaymentDateBox" runat="server"></asp:TextBox>
             </td>
         </tr>
-    </table>
+        <tr>
+            <td>    
+                <asp:Label ID="Label3" runat="server" Text="Comment: "></asp:Label>
+            </td>    
+            <td>
+                &nbsp;<asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine"></asp:TextBox>
+            </td>
+        </tr>
+    </table>   
     <br />
-    <br />
-
     <table> 
      <tr>      
       <td>
-        <asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order" OnClick="PlaceOrderBtn_Click" />
+        <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" CssClass="btn btn-default"/>
       </td>
       <td>
-        &nbsp;<asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" />
+        &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order" OnClick="PlaceOrderBtn_Click" CssClass="btn btn-default"/>
       </td>
     </tr>
     </table>
-
-        </div>
-            
+         <br />
+        </div>            
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -340,6 +348,7 @@
         function pageLoad()
         {
             $('.Attention').animate({ width: '600px' }, 3000).animate({ width: '100px' }, 3000).fadeIn('slow');
+            
         }
     </script>
 </asp:Content>

@@ -23,6 +23,8 @@ namespace FrontierAg.Checkout
         {
             return _db.Contacts;
         }
+
+        
     }
 }
 

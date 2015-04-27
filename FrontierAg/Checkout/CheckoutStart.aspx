@@ -50,7 +50,7 @@
                         <tr runat="server" id="itemPlaceholder" />
                     </tbody>
                 </table>
-				<asp:DataPager PageSize="5"  runat="server">
+				<asp:DataPager PageSize="15"  runat="server">
 					<Fields>
                         <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
                         <asp:NumericPagerField ButtonType="Button"  NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
@@ -88,13 +88,25 @@
 							</td>
                     
                     <td>
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/SelectShipping.aspx", Item.ContactId) %>' Text="Select" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="Details" /> | 
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" /> | 
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/SelectShipping.aspx", Item.ContactId) %>' Text="Select Shipping Address" />
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" /> 
+                        
                     </td>
                 </tr>
+
             </ItemTemplate>
         </asp:ListView>
+
+        <div class="row">
+					  &nbsp;
+					</div>
+					<div class="form-group">
+						<div >
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-default" />
+						</div>
+					</div>
+
     </div>
 </asp:Content>
 
