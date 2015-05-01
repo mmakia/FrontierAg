@@ -4,14 +4,12 @@
 
 <asp:EntityTemplate runat="server" ID="EntityTemplate1">
     <ItemTemplate>
-         <tr class="td">
-             <td class="DDLightHeader">
-                 <asp:Label runat="server" OnInit="Label_Init" OnPreRender="Label_PreRender" />
-             </td>
-             <td>
-                 <asp:DynamicControl runat="server" ID="DynamicControl" Mode="Insert" OnInit="DynamicControl_Init" />
-             </td>
-         </tr>
+           <li class="DDLightHeader" style="list-style-type: none;">
+            <asp:Label ID="Label1" runat="server" OnInit="Label_Init" OnPreRender="Label_PreRender" />
+        </li>
+        <li style="list-style-type: none;">
+            <asp:DynamicControl runat="server" ID="DynamicControl" Mode="Insert" OnInit="DynamicControl_Init" />
+        </li>
     </ItemTemplate>
 </asp:EntityTemplate>
 

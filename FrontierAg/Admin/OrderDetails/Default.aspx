@@ -97,10 +97,9 @@
     </asp:GridView>
     <div>
         <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />
-        <span class="error_msg" style="color: red; margin-left: 10px;" ></span>
+        <asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />   
     </div>
-
-           
+    <div class="error_msg" style="color: red; margin-left: 10px;" />       
             
         
 

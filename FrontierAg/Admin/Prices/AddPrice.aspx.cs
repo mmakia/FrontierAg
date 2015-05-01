@@ -1,7 +1,9 @@
-﻿using System;
+﻿using FrontierAg.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,6 +14,12 @@ namespace FrontierAg.Admin.Prices
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Page_Init()
+        {
+            MetaTable table = MetaTable.GetTable(typeof(Price));
+            addPriceForm.SetMetaTable(table);
         }
 
         public void addPriceForm_InsertItem()
@@ -31,12 +39,8 @@ namespace FrontierAg.Admin.Prices
 
         protected void addPriceForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
-            Response.Redirect("~/Admin/Prices");
+            Response.Redirect("~/Admin/Products");
         }
-
-        protected void CancelBtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Prices");
-        }
+        
     }
 }

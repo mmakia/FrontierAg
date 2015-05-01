@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
@@ -31,6 +32,11 @@ namespace FrontierAg
                 Path = "~/Content/themes/ui-lightness/jquery-ui.css",
                 DebugPath = "~/Content/themes/ui-lightness/jquery-ui.css"
             });
+
+            MetaModel DefaultModel = new MetaModel();
+            DefaultModel.RegisterContext(new Microsoft.AspNet.DynamicData.ModelProviders.EFDataModelProvider(
+                                         () => new ProductContext()),
+                                         new ContextConfiguration { ScaffoldAllTables = false });
         }
 
     }

@@ -25,11 +25,16 @@ namespace FrontierAg.Shippings
 
             if (ContactId != null)
             {
-                return _db.Shippings.Where(n => n.ContactId == ContactId).Include(m => m.Contact);
+                return _db.Shippings.Where(n => n.ContactId == ContactId).Include(m => m.Contact);//////////
             }
 
             else return _db.Shippings.Include(m => m.Contact);
         }
+        protected void Back_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/Contacts");
+        }
+        
     }
 }
 

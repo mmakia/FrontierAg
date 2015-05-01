@@ -1,7 +1,9 @@
-﻿using System;
+﻿using FrontierAg.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,6 +16,12 @@ namespace FrontierAg.Admin.Products
 
         }
 
+        protected void Page_Init()
+        {
+            MetaTable table = MetaTable.GetTable(typeof(Product));
+            addProductForm.SetMetaTable(table);
+        }
+
         public void addProductForm_InsertItem()
         {
             var item = new FrontierAg.Models.Product();
@@ -23,6 +31,7 @@ namespace FrontierAg.Admin.Products
                 // Save changes here
                 using (FrontierAg.Models.ProductContext db = new FrontierAg.Models.ProductContext())
                 {
+                    item.DateCreated = DateTime.Now;
                     db.Products.Add(item);
                     db.SaveChanges();
                 }
@@ -32,11 +41,6 @@ namespace FrontierAg.Admin.Products
         protected void addProductForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
             Response.Redirect("~/Admin/Products");
-        }
-
-        protected void CancelBtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Products");
-        }
+        }        
     }
 }

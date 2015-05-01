@@ -44,26 +44,14 @@ namespace FrontierAg.Contacts
                     item2.Country = item.Country;
                     item2.ContactId = item.ContactId;
 
-                    _db.Shippings.Add(item2);
-
-                    //InsertShipping(item.ContactId);
+                    _db.Shippings.Add(item2);                  
 
                     _db.SaveChanges();
-
                     Response.Redirect("~/Admin/Shippings/Insert");
                 }
             }
         }
-
-        private void InsertShipping(int p)
-        {
-            //ProductContext _db = new ProductContext();
-            
-
-
-            throw new NotImplementedException();
-        }
-
+        
         protected void ItemCommand(object sender, FormViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("Cancel", StringComparison.OrdinalIgnoreCase))

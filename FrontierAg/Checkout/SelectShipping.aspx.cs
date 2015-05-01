@@ -25,7 +25,7 @@ namespace FrontierAg.Checkout
                 return null;
             }
 
-            return _db.Shippings.Where(n => n.ContactId == ContactId);
+            return _db.Shippings.Where(n => n.ContactId == ContactId); 
         }       
 
     }

@@ -10,28 +10,13 @@
                 Cannot find the Shipping with ShippingId <%: Request.QueryString["ShippingId"] %>
             </EmptyDataTemplate>
             <EditItemTemplate>
-                <fieldset class="form-horizontal">
-                    <legend>Edit Shipping</legend>
-					<asp:ValidationSummary runat="server" CssClass="alert alert-danger"  />                 
-						    <asp:DynamicControl Mode="Edit" DataField="Address1" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Address2" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="City" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="State" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="PostalCode" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Country" runat="server" />
-							<asp:DynamicControl Mode="Edit" 
-								DataField="ContactId" 
-								DataTypeName="FrontierAg.Models.Contact" 
-								DataTextField="Company" 
-								DataValueField="ContactId" 
-								UIHint="ForeignKey" runat="server" />
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-							<asp:Button runat="server" ID="UpdateButton" CommandName="Update" Text="Update" CssClass="btn btn-warning" />
-							<asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-warning" />
-						</div>
-					</div>
-                </fieldset>
+                <fieldset>
+            <ol>
+                <asp:DynamicEntity runat="server" Mode="Insert" />
+            </ol>
+            <asp:Button runat="server" Text="Update" CommandName="Update" CssClass="btn btn-warning" />            
+			<asp:button id="backButton" runat="server" text="Cancel" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						
+        </fieldset>
             </EditItemTemplate>
         </asp:FormView>
     </div>

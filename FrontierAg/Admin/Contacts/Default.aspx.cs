@@ -23,6 +23,11 @@ namespace FrontierAg.Contacts
         {
             return _db.Contacts;
         }
+        protected void BackBtn_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/AdminPage");
+        }  
+        
     }
 }
 

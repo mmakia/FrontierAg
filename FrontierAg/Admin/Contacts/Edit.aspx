@@ -2,6 +2,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
 		<p>&nbsp;</p>
+        <asp:ValidationSummary runat="server" ShowModelStateErrors="true" />
         <asp:FormView runat="server"
             ItemType="FrontierAg.Models.Contact" DefaultMode="Edit" DataKeyNames="ContactId"
             UpdateMethod="UpdateItem" SelectMethod="GetItem"
@@ -10,36 +11,13 @@
                 Cannot find the Contact with ContactId <%: Request.QueryString["ContactId"] %>
             </EmptyDataTemplate>
             <EditItemTemplate>
-                <fieldset class="form-horizontal">
-                    <legend>Edit Contact</legend>
-					<asp:ValidationSummary runat="server" CssClass="alert alert-danger"  />                 
-						    <asp:DynamicControl Mode="Edit" DataField="Contact_Identification" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Company" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="LName" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="FName" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Address1" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Address2" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="City" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="State" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="PostalCode" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Country" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="PPhone" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="PPType" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="SPhone" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="SPType" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Fax" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="EMail" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="WebSite" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Comment" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="Type" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="DateCreated" runat="server" />
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-							<asp:Button runat="server" ID="UpdateButton" CommandName="Update" Text="Update" CssClass="btn btn-warning" />
-							<asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-warning" />
-						</div>
-					</div>
-                </fieldset>
+                <fieldset>
+            <ol>
+                <asp:DynamicEntity runat="server" Mode="Insert" />
+            </ol>
+            <asp:Button runat="server" Text="Update" CommandName="Update" CssClass="btn btn-warning" />            
+			<asp:button id="backButton" runat="server" text="Cancel" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						
+        </fieldset>
             </EditItemTemplate>
         </asp:FormView>
     </div>

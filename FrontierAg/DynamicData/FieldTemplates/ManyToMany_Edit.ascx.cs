@@ -1,20 +1,26 @@
 using System;
-using System.Collections.Generic;
+using System.Data;
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
 using System.ComponentModel;
-using System.Data.Entity.Core.Objects;
-using System.Data.Entity.Core.Objects.DataClasses;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Collections;
+using System.Collections.Specialized;
 using System.Linq;
-using System.Web.DynamicData;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EntityDataSource = Microsoft.AspNet.EntityDataSource.EntityDataSource;
-using EntityDataSourceChangingEventArgs = Microsoft.AspNet.EntityDataSource.EntityDataSourceChangingEventArgs;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Xml.Linq;
+using System.Web.DynamicData;
+using System.Collections.Generic;
 
-namespace FrontierAg
-{
-    public partial class ManyToMany_EditField : FieldTemplateUserControl
-    {
-        protected ObjectContext ObjectContext { get; set; }
+namespace FrontierAg {
+    public partial class ManyToMany_EditField : System.Web.DynamicData.FieldTemplateUserControl {
+         protected ObjectContext ObjectContext { get; set; }
 
         public void Page_Load(object sender, EventArgs e)
         {
@@ -117,6 +123,6 @@ namespace FrontierAg
                 return CheckBoxList1;
             }
         }
-
+    
     }
 }

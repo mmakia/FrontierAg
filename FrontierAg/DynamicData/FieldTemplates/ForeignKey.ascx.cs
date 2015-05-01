@@ -47,11 +47,12 @@ namespace FrontierAg {
             }
         }
     
-        public override Control DataControl {
-            get {
-                return HyperLink1;
-            }
-        }
+        //public override Control DataControl {
+        //    get {
+        //        return Label1;
+        //        //return HyperLink1;
+        //    }
+        //}
     
     }
 }

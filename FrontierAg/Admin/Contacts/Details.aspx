@@ -3,9 +3,7 @@
     <div>
 		<p>&nbsp;</p>
       
-        <asp:FormView runat="server"
-            ItemType="FrontierAg.Models.Contact" DataKeyNames="ContactId"
-            SelectMethod="GetItem"
+        <asp:FormView runat="server"  ItemType="FrontierAg.Models.Contact" DataKeyNames="ContactId"     SelectMethod="GetItem" UpdateMethod="Unnamed_UpdateItem" AutoGenerateEditButton="True"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
             <EmptyDataTemplate>
                 Cannot find the Contact with ContactId <%: Request.QueryString["ContactId"] %>
@@ -183,6 +181,7 @@
 					</div>
                 </fieldset>
             </ItemTemplate>
+      
         </asp:FormView>
     </div>
 </asp:Content>

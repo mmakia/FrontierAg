@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FrontierAg.Prices {
+namespace FrontierAg.Admin.Prices {
     
     
     public partial class Default {

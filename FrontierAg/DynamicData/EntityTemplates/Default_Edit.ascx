@@ -2,15 +2,11 @@
 
 <%@ Reference Control="~/DynamicData/EntityTemplates/Default.ascx" %>
 <asp:EntityTemplate runat="server" ID="EntityTemplate1">
-      <ItemTemplate>
-         <tr class="td">
-             <td class="DDLightHeader">
-                 <asp:Label runat="server" OnInit="Label_Init" OnPreRender="Label_PreRender" />
-             </td>
-             <td>
-                 <asp:DynamicControl runat="server" ID="DynamicControl" Mode="Edit" OnInit="DynamicControl_Init" />
-             </td>
-         </tr>
-     </ItemTemplate>
+    <ItemTemplate>
+       <li data-role="fieldcontain" style="list-style-type: none;">
+            <asp:Label ID="Label1" runat="server" OnInit="Label_Init" OnPreRender="Label_PreRender" />
+            <asp:DynamicControl runat="server" ID="DynamicControl" Mode="Edit" OnInit="DynamicControl_Init" />
+        </li>
+    </ItemTemplate>
 </asp:EntityTemplate>
 
