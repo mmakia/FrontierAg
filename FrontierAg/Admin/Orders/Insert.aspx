@@ -12,12 +12,7 @@
 		        <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
 						    <asp:DynamicControl Mode="Insert" DataField="OrderDate" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Total" runat="server" />
-							<asp:DynamicControl Mode="Insert" 
-								DataField="ContactId" 
-								DataTypeName="FrontierAg.Models.Contact" 
-								DataTextField="Contact_Identification" 
-								DataValueField="ContactId" 
-								UIHint="ForeignKey" runat="server" />
+							
 						    <asp:DynamicControl Mode="Insert" DataField="ShippingId" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Payment" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="PaymentDate" runat="server" />
@@ -25,8 +20,8 @@
 						    <asp:DynamicControl Mode="Insert" DataField="Closed" runat="server" />
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-primary" />
-                            <asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
+                            <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-warning" />
+                            <asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-warning" />
                         </div>
 					</div>
                 </fieldset>

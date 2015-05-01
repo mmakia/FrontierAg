@@ -50,7 +50,7 @@ namespace FrontierAg
             return actions.GetCartItems();
         }
 
-        public List<CartItem> UpdateCartItems()///--------------------------------------
+        public List<CartItem> UpdateCartItems()
         {
 
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())

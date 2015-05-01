@@ -15,6 +15,7 @@ namespace FrontierAg.Admin.Orders
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -25,16 +26,16 @@ namespace FrontierAg.Admin.Orders
         //     string sortByExpression
         public IQueryable<Order> OpenOrdersList_GetData()
         {
-            ProductContext db = new ProductContext();            
-            return db.Orders.Where(n => n.Closed == false).Include(m => m.Contact);            
+            ProductContext db = new ProductContext();
+            return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Other || n.Status == Status.Shipped).Include(en => en.Shipping).Include(m => m.Shipping.Contact);
         }
 
         public void OpenOrders_UpdateItem(int OrderId)
         {
-            using(ProductContext db = new ProductContext())
+            using (ProductContext db = new ProductContext())
             {
                 FrontierAg.Models.Order item = db.Orders.Find(OrderId);
-                
+
                 if (item == null)
                 {
                     // The item wasn't found
@@ -56,7 +57,18 @@ namespace FrontierAg.Admin.Orders
             }
         }
 
-        
+        //public IQueryable<OrderDetail> OrderDetailsList_GetData(object sender, EventArgs e)//int? OrderId)
+        //{
+        //    ProductContext db = new ProductContext();
+        //    //return db.OrderDetails;
+        //    if (e != null)
+        //    {
+        //        return null; //db.OrderDetails.Where(m => m.OrderId == e).Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Contact);
+        //    }
+        //    else
+        //     return db.OrderDetails.Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
+            
+        //}
             
         
     }

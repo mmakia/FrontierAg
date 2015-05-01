@@ -1,17 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OpenOrder.aspx.cs" Inherits="FrontierAg.Admin.Orders.OpenOrder" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">    
+
     <div id="OpenOrderTitle" runat="server" class="ContentHead"><h2>Open Orders</h2></div>
     <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" >
-        <Columns>            
-
+        <Columns>                  
         <asp:DynamicField DataField="OrderId" HeaderText="OrderId" ReadOnly="true"/>        
         <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>
         <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>      
                      
         <asp:TemplateField HeaderText="Customer">
             <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="<%#: Item.Contact.Company %>" />
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.Shipping.ContactId) %>' Text="<%#: Item.Shipping.Contact.Company %>" />
             </ItemTemplate>
         </asp:TemplateField>        
 
@@ -24,8 +24,16 @@
             <asp:DynamicField DataField="Payment" HeaderText="Payment" />
             <asp:DynamicField DataField="PaymentDate" HeaderText="Payment Date" />  
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
-            <asp:DynamicField DataField="Closed" HeaderText="Closed?" />                   
+            <asp:DynamicField DataField="Status" HeaderText="Status" />               
+
+            <asp:HyperLinkField Text="Order Details" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default.aspx?OrderId={0}" DataNavigateUrlFields="OrderId" />      
+
+            
         </Columns>        
     </asp:GridView>
+         
+    
+    
+
 </asp:Content>
 

@@ -112,7 +112,7 @@ namespace FrontierAg.Models
             return HttpContext.Current.Session[CartSessionKey].ToString();
         }
 
-        public List<CartItem> GetCartItems()//done ------ default
+        public List<CartItem> GetCartItems()//done ------ default/////////++++++++++++++++++++
         {
             ShoppingCartId = GetCartId();
 
@@ -239,37 +239,7 @@ namespace FrontierAg.Models
 
         
 
-        //public void UpdateItem(string updateCartID, int updateProductID, int quantity)//execute when changing Qty box
-        //{              
-        //    using (var _db = new FrontierAg.Models.ProductContext())
-        //    {
-        //        try
-        //        {
-        //            var myItem = (from c in _db.ShoppingCartItems where c.CartId == updateCartID && c.Product.ProductId == updateProductID select c).FirstOrDefault();
-        //            if (myItem != null)
-        //            {
-        //                if (myItem != null)
-        //                {
-        //                    CartSessionFlag = 0;
-        //                    if (myItem.Quantity != quantity)
-        //                    {
-        //                        myItem.ItemPrice = GetPriceFromPrices(updateProductID, quantity);
-        //                    }                            
-        //                    myItem.Quantity = quantity;
-        //                    _db.SaveChanges();
-        //                }
-        //                else
-        //                {
-        //                    CartSessionFlag = updateProductID;
-        //                }                                                  
-        //            }
-        //        }
-        //        catch (Exception exp)
-        //        {
-        //            throw new Exception("ERROR: Unable to Update Cart Item - " + exp.Message.ToString(), exp);
-        //        }
-        //    }
-        //}
+        
 
         public void EmptyCart()
         {

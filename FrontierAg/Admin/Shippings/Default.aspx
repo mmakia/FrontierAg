@@ -104,7 +104,7 @@
 					</div>
 					<div class="form-group">
 						<div>
-							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-default" />
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
 						</div>
 					</div>
     </div>

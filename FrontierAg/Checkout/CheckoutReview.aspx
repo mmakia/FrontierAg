@@ -288,18 +288,19 @@
     <table>
         <tr>
             <td>
-                <asp:Label ID="Label1" runat="server" Text="Transaction ID:"></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text="Transaction ID:" ></asp:Label>  
             </td>
             <td>
-                &nbsp;<asp:TextBox ID="PaymentBox" runat="server" ></asp:TextBox>                
+                &nbsp;<asp:TextBox ID="PaymentBox" runat="server" CSSClass="form-control"></asp:TextBox>                
             </td>
         </tr>
         <tr>
             <td>    
                 <asp:Label ID="Label2" runat="server" Text="Transaction ID Date: "></asp:Label>
             </td>    
-            <td>
-                &nbsp;<asp:TextBox ID="PaymentDateBox" runat="server"></asp:TextBox>
+            <td>                
+                <juice:Datepicker runat="server" ID="t1" TargetControlID="PaymentDateBox"/>
+                &nbsp;<asp:TextBox ID="PaymentDateBox" runat="server" ClientIDMode="Static" CSSClass="form-control"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -307,7 +308,7 @@
                 <asp:Label ID="Label3" runat="server" Text="Comment: "></asp:Label>
             </td>    
             <td>
-                &nbsp;<asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine"></asp:TextBox>
+                &nbsp;<asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine" CSSClass="form-control"></asp:TextBox>
             </td>
         </tr>
     </table>   
@@ -315,10 +316,10 @@
     <table> 
      <tr>      
       <td>
-        <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" CssClass="btn btn-default"/>
+        <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" CssClass="btn btn-warning"/>
       </td>
       <td>
-        &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order" OnClick="PlaceOrderBtn_Click" CssClass="btn btn-default"/>
+        &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order" OnClick="PlaceOrderBtn_Click" CssClass="btn btn-warning"/>
       </td>
     </tr>
     </table>

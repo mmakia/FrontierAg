@@ -1,4 +1,5 @@
 ﻿using FrontierAg.Models;
+using Juice.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -25,6 +26,12 @@ namespace FrontierAg
             // Create the custom role and user.
             RoleActions roleActions = new RoleActions();
             roleActions.AddUserAndRole();
+            CssManager.CssResourceMapping.AddDefinition("juice-ui", new CssResourceDefinition
+            {
+                Path = "~/Content/themes/ui-lightness/jquery-ui.css",
+                DebugPath = "~/Content/themes/ui-lightness/jquery-ui.css"
+            });
         }
+
     }
 }

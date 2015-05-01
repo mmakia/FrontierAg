@@ -179,7 +179,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="btn btn-danger" />
-							<asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-default" />
+							<asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-warning" />
 						</div>
 					</div>
                 </fieldset>

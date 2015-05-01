@@ -30,7 +30,7 @@ namespace FrontierAg.Orders
 
             using (_db)
             {
-	            return _db.Orders.Where(m => m.OrderId == OrderId).Include(m => m.Contact).FirstOrDefault();
+	            return _db.Orders.Where(m => m.OrderId == OrderId).Include(m => m.Shipping.Contact).FirstOrDefault();
             }
         }
 

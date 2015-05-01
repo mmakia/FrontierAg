@@ -7,6 +7,11 @@ using System.Web;
 
 namespace FrontierAg.Models
 {
+    public enum Status
+    {
+        Processing, Shipped, Closed, Other, Cancelled
+    }
+
     public class Order
     {        
         public int OrderId { get; set; }
@@ -15,19 +20,22 @@ namespace FrontierAg.Models
                        
         public decimal Total { get; set; }
 
-        public int ContactId { get; set; }
+        //public int ContactId { get; set; }
 
         public int? ShippingId { get; set; }
                 
         public string Payment { get; set; }
 
-        public System.DateTime? PaymentDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
+        public DateTime? PaymentDate { get; set; }
         
         public string Comment { get; set; }
-                
-        public bool Closed { get; set; }
 
-        public Contact Contact { get; set; }
+        public Status Status { get; set; }
+                
+        //public bool Closed { get; set; }
+
+        //public Contact Contact { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
 

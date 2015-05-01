@@ -11,7 +11,7 @@
         prm.add_endRequest(function () {
             //$(alert("Price Changed"))
             validate();               
-        });
+        }); 
 
         function validate() {
             var button = document.getElementById("UpdateBtn");
@@ -78,7 +78,7 @@
               </ItemTemplate>
             </asp:TemplateField>           
 
-        <asp:TemplateField   HeaderText="Quantity">            
+        <asp:TemplateField   HeaderText="Quantity">             
                 <ItemTemplate>
                     <asp:TextBox ID="PurchaseQuantity" CSSClass="form-control InputQty" Width="50" runat="server" Text="<%#: Item.Quantity %>" ></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="PurchaseQuantity"></asp:RequiredFieldValidator> 
@@ -112,11 +112,11 @@
     <table> 
     <tr>
       <td >
-        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-default" ClientIDMode="Static" style="display:none"/>
+        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" style="display:none"/>
           
       </td>
       <td >
-        &nbsp;<asp:Button ID="CheckoutBtn" runat="server" Text="Start Checkout" OnClick="CheckoutBtn_Click" CssClass="btn btn-default" />
+        &nbsp;<asp:Button ID="CheckoutBtn" runat="server" Text="Start Checkout" OnClick="CheckoutBtn_Click" CssClass="btn btn-warning" />
       </td>
         <td>
             <span class="error_msg" style="color: red; margin-left: 10px;" ></span>

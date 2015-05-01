@@ -38,7 +38,7 @@ namespace FrontierAg {
                 value = null;
             }
     
-            ExtractForeignKey(dictionary, value);
+            //ExtractForeignKey(dictionary, value);
         }
     
         public override Control DataControl {

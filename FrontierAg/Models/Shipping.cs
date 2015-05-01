@@ -9,7 +9,7 @@ namespace FrontierAg.Models
 {
     public class Shipping
     {
-        [ScaffoldColumn(false)]
+        
         public int ShippingId { get; set; }
 
         public string Address1 { get; set; }
@@ -29,13 +29,13 @@ namespace FrontierAg.Models
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
 
-        [Display(Name="Company")]
+        [Display(Name="Company"), ForeignKey("Contact")]
         public int ContactId { get; set; }
 
         public Contact Contact { get; set; }
         
-        public int? OrderId { get; set; }
+        //public int? OrderId { get; set; }
 
-        //public virtual Order Order { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }//
     }
 }

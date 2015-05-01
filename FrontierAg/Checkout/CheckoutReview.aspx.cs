@@ -187,9 +187,9 @@ namespace FrontierAg.Checkout
 
             myOrder.OrderDate = System.DateTime.Now;
             myOrder.Total = cartTotal;
-            myOrder.Closed = false;
-            myOrder.ContactId = myContactId;
-            myOrder.ShippingId = myShippingId;
+            myOrder.Status = Status.Processing;
+            
+            myOrder.ShippingId = myShippingId; 
             if (Payment == "")
             {
                 myOrder.Payment = "";
@@ -222,8 +222,8 @@ namespace FrontierAg.Checkout
                     myOrderDetail.OrderId = myOrder.OrderId;                    
                     myOrderDetail.ProductId = cartItem.ProductId;
                     myOrderDetail.Quantity = cartItem.Quantity;
-                    myOrderDetail.QtyShipped = cartItem.Quantity;
-                    myOrderDetail.QtyCancelled = cartItem.Quantity;
+                    myOrderDetail.QtyShipped = 0;
+                    myOrderDetail.QtyCancelled = 0;
                     myOrderDetail.DateCreated = myOrder.OrderDate;
                     myOrderDetail.UnitPrice = cartItem.ItemPrice;
 

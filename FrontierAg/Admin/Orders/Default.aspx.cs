@@ -1,28 +1,75 @@
-﻿using System;
+﻿using FrontierAg.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
-using FrontierAg.Models;
 
-namespace FrontierAg.Orders
+namespace FrontierAg.Admin.Orders
 {
     public partial class Default : System.Web.UI.Page
     {
-		protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            
         }
 
-        // Model binding method to get List of Order entries
-        // USAGE: <asp:ListView SelectMethod="GetData">
-        public IQueryable<FrontierAg.Models.Order> GetData()
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IQueryable<Order> OrdersList_GetData() 
         {
-            return _db.Orders.Include(m => m.Contact);
+            ProductContext db = new ProductContext();
+            return db.Orders.Include(m => m.Shipping.Contact);
         }
+
+        public void Orders_UpdateItem(int OrderId)
+        {
+            using(ProductContext db = new ProductContext())
+            {
+                FrontierAg.Models.Order item = db.Orders.Find(OrderId);
+                
+                if (item == null)
+                {
+                    // The item wasn't found
+                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", OrderId));
+                    return;
+                }
+
+                //item.Payment = 
+                //    TextBox priceTextBox = new TextBox();
+                //    priceTextBox = (TextBox)CartList.Rows[i].FindControl("PriceBx");
+                //    cartUpdates[i].PriceBx = Convert.ToDecimal(priceTextBox.Text.ToString());
+
+                TryUpdateModel(item);
+                if (ModelState.IsValid)
+                {
+                    db.SaveChanges();
+
+                }
+            }
+        }
+
+        //public IQueryable<OrderDetail> DetailsList_GetData(object sender, EventArgs e)//int? OrderId)
+        //{
+        //    ProductContext db = new ProductContext();
+        //    //return db.OrderDetails;
+        //    if (e != null)
+        //    {
+        //        return null; //db.OrderDetails.Where(m => m.OrderId == e).Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Contact);
+        //    }
+        //    else
+        //     return db.OrderDetails.Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
+            
+        //}
+            
+        
     }
 }
-
