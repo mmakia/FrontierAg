@@ -112,6 +112,7 @@
     <table> 
     <tr>
       <td >
+
         <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" style="display:none"/>
           
       </td>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="ContactList" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Contacts.Default" %>
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <h2>Contacts List</h2>
+    <h3>Contacts List</h3>
     <p>
         <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
     </p>

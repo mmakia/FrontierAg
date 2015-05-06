@@ -32,13 +32,38 @@
                     input.removeClass("valid").addClass("invalid");
                 }
             });
-
             
             $('.myCheckBox').on('click', function () {
                 button.click();
             });
         }        
-    </script>    
+    </script>        
+            <div id="OpenOrderTitle" runat="server" class="ContentHead"><h2>Open Order</h2></div>
+            <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
+    AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
+        <Columns>                  
+        <asp:DynamicField DataField="OrderId" HeaderText="OrderId" ReadOnly="true"/>        
+        <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>
+        <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>      
+                     
+        <asp:TemplateField HeaderText="Customer">
+            <ItemTemplate>
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.Shipping.ContactId) %>' Text="<%#: Item.Shipping.Contact.Company %>" />
+            </ItemTemplate>
+        </asp:TemplateField>        
+
+        <asp:TemplateField HeaderText="Shipping To">
+            <ItemTemplate>
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Details", Item.ShippingId) %>' Text="<%#: Item.Shipping.City %>" />
+            </ItemTemplate>
+        </asp:TemplateField>
+            <asp:DynamicField DataField="Payment" HeaderText="Payment" />
+            <asp:DynamicField DataField="PaymentDate" HeaderText="Payment Date" />  
+            <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
+            <asp:DynamicField DataField="Status" HeaderText="Status" />                          
+        </Columns>     
+                <EditRowStyle CssClass="GridViewEditRow" />   
+    </asp:GridView>
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate> 
     <div id="OperOrderTitle" runat="server" class="ContentHead"><h2>Order Details</h2></div>
@@ -97,13 +122,12 @@
     </asp:GridView>
     <div>
         <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />
-        <asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />   
-    </div>
-    <div class="error_msg" style="color: red; margin-left: 10px;" />       
-            
-        
+        <asp:button id="backButton" runat="server" text="Back" OnClick="backButton_Click" CssClass="btn btn-warning" />   
+        <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
+    </div>           
+      
 
-  </ContentTemplate>
+        </ContentTemplate>
     </asp:UpdatePanel> 
 
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">

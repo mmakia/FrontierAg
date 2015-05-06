@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
 using FrontierAg.Models;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 
 namespace FrontierAg.Checkout
 {
@@ -24,7 +25,17 @@ namespace FrontierAg.Checkout
             return _db.Contacts;
         }
 
-        
+        public IQueryable<FrontierAg.Models.Shipping> GetData([FriendlyUrlSegmentsAttribute(0)] int? ContactId)
+        {            
+
+            if (ContactId == null)
+            {
+                return null;
+            }
+
+            return _db.Shippings.Where(n => n.ContactId == ContactId);
+        }       
+          
     }
 }
 

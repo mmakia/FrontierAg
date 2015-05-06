@@ -2,9 +2,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
 		<p>&nbsp;</p>
-        <asp:FormView runat="server"
-            ItemType="FrontierAg.Models.Shipping" DefaultMode="Insert"
-            InsertItemPosition="FirstItem" InsertMethod="InsertItem"
+        <asp:FormView runat="server" ItemType="FrontierAg.Models.Shipping" DefaultMode="Insert"    InsertItemPosition="FirstItem" InsertMethod="InsertItem"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
             <InsertItemTemplate>
                 <fieldset class="form-horizontal">

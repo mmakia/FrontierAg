@@ -21,8 +21,49 @@ namespace FrontierAg.Admin.OrderDetails
         {
             
         }
+        /// <summary>
+        /// //////////////////
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<Order> OpenOrdersList_GetData([QueryString]int OrderId)
+        {
+            ProductContext db = new ProductContext();
+            return db.Orders.Where(en => en.OrderId == OrderId).Include(en => en.Shipping).Include(m => m.Shipping.Contact);//.Where(n => n.Status == Status.Processing || n.Status == Status.Other || n.Status == Status.Shipped).Include(en => en.Shipping).Include(m => m.Shipping.Contact);
+        }
 
-        
+        public void OpenOrders_UpdateItem(int OrderId)
+        {
+            using (ProductContext db = new ProductContext())
+            {
+                FrontierAg.Models.Order item = db.Orders.Find(OrderId);
+
+                if (item == null)
+                {
+                    // The item wasn't found
+                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", OrderId));
+                    return;
+                }
+
+                //item.Payment = 
+                //    TextBox priceTextBox = new TextBox();
+                //    priceTextBox = (TextBox)CartList.Rows[i].FindControl("PriceBx");
+                //    cartUpdates[i].PriceBx = Convert.ToDecimal(priceTextBox.Text.ToString());
+
+                TryUpdateModel(item);
+                if (ModelState.IsValid)
+                {
+                    db.SaveChanges();
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="OrderId"></param>
+        /// <returns></returns>
+
 
         public IQueryable<OrderDetail> OpenOrderList_GetData([QueryString] int OrderId) 
         {           
@@ -84,6 +125,11 @@ namespace FrontierAg.Admin.OrderDetails
                 }
             }
             return values;
+        }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/Orders/OpenOrder");
         }
 
                

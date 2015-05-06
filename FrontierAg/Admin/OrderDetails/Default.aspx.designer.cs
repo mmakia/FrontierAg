@@ -13,6 +13,24 @@ namespace FrontierAg.Admin.OrderDetails {
     public partial class Default {
         
         /// <summary>
+        /// OpenOrderTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OpenOrderTitle;
+        
+        /// <summary>
+        /// OpenOrdersList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView OpenOrdersList2;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>

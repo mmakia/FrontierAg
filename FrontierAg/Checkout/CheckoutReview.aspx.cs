@@ -171,6 +171,9 @@ namespace FrontierAg.Checkout
                 RemoveCartItems();
                 
             }
+
+            new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
+
             Response.Redirect("~/Checkout/CheckoutComplete.aspx");
         }
         

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="FrontierAg" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\mmakia\\Documents\\Visual\ Studio\ 2013\\Projects\\FrontierAg\\FrontierAg\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\mmakia\\Documents\\Visual\ Studio\ 2013\\Projects\\FrontierAg\\FrontierAg\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:oq1ml9a8q2.database.windows.net,1433;Initial Catalog=FrontierAg_db;User Id=mmakia2015@oq1ml9a8q2;Password=&amp;FrontierAg" tags="" />
+</parameters>

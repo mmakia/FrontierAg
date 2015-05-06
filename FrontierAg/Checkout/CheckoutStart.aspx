@@ -1,6 +1,76 @@
 ﻿<%@ Page Title="Start Checkout" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="CheckoutStart.aspx.cs" Inherits="FrontierAg.Checkout.CheckoutStart" %>
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
-<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">    
+<div id="modal_dialog" style="display: none" >
+<asp:ListView id="ListView2" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData">
+            <EmptyDataTemplate></EmptyDataTemplate>
+            <LayoutTemplate>
+                <table class="table showing">
+                    <thead>
+                        <tr>
+                            <th>
+								<asp:LinkButton Text="ShippingId" CommandName="Sort" CommandArgument="ShippingId" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Address2" CommandName="Sort" CommandArgument="Address2" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="City" CommandName="Sort" CommandArgument="City" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="State" CommandName="Sort" CommandArgument="State" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="PostalCode" CommandName="Sort" CommandArgument="PostalCode" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
+							</th>                           
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceholder" />
+                    </tbody>
+                </table>				
+            </LayoutTemplate>
+            <ItemTemplate>
+                 <tr>
+							<td>
+								<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
+							</td>
+							<td>
+								<asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
+							</td>
+							<td>
+								<asp:DynamicControl runat="server" DataField="Address2" ID="Address2" Mode="ReadOnly" />
+							</td>
+							<td>
+								<asp:DynamicControl runat="server" DataField="City" ID="City" Mode="ReadOnly" />
+							</td>
+							<td>
+								<asp:DynamicControl runat="server" DataField="State" ID="State" Mode="ReadOnly" />
+							</td>
+							<td>
+								<asp:DynamicControl runat="server" DataField="PostalCode" ID="PostalCode" Mode="ReadOnly" />
+							</td>
+							<td>
+								<asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
+							</td>
+							<td>
+								<%#: Item.Contact != null ? Item.Contact.Company : "" %>
+							</td>
+                    <td>
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutReview.aspx", Item.ContactId , Item.ShippingId) %>' Text="Select" /> | 					     
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
+        </div>
     <h2>Please select a contact or create new:</h2>
     <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Contacts/Insert"  Text="Create new" />
@@ -16,8 +86,7 @@
             <LayoutTemplate>
                 <table class="table">
                     <thead>
-                        <tr>
-                            
+                        <tr>                            
                             <th>
 								<asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="Company" runat="Server" />
 							</th>
@@ -87,17 +156,15 @@
 								<asp:DynamicControl runat="server" DataField="DateCreated" ID="DateCreated" Mode="ReadOnly" />
 							</td>
                     
-                    <td>
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/SelectShipping.aspx", Item.ContactId) %>' Text="Select" /> | 
+                    <td>                    
+                        <asp:HyperLink  runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutStart.aspx", Item.ContactId) %>' Text="Select" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="Details" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" /> 
                         
                     </td>
                 </tr>
-
             </ItemTemplate>
         </asp:ListView>
-
         <div class="row">
 					  &nbsp;
 					</div>
@@ -106,7 +173,21 @@
 							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
 						</div>
 					</div>
-
-    </div>
+    </div>  
+    <script type="text/javascript">        
+        //$("[id*=btnModalPopup]").on("click", function () {
+        if ($(".table.showing").length) {
+            $("#modal_dialog").dialog({
+                modal: true,
+                title: "Select Shipping Address",
+                width: 'auto',
+                buttons: {
+                    Close: function () {
+                        $(this).dialog('close');
+                    }
+                }
+            });            
+        }
+</script>
 </asp:Content>
 

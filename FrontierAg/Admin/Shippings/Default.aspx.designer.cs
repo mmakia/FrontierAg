@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FrontierAg.Shippings {
+namespace FrontierAg.Admin.Shippings {
     
     
     public partial class Default {
         
         /// <summary>
-        /// ListView1 control.
+        /// ShippingsGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.GridView ShippingsGrid;
         
         /// <summary>
         /// backButton control.

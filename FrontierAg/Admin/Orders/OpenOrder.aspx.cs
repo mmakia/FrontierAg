@@ -55,21 +55,7 @@ namespace FrontierAg.Admin.Orders
 
                 }
             }
-        }
-
-        //public IQueryable<OrderDetail> OrderDetailsList_GetData(object sender, EventArgs e)//int? OrderId)
-        //{
-        //    ProductContext db = new ProductContext();
-        //    //return db.OrderDetails;
-        //    if (e != null)
-        //    {
-        //        return null; //db.OrderDetails.Where(m => m.OrderId == e).Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Contact);
-        //    }
-        //    else
-        //     return db.OrderDetails.Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
-            
-        //}
-            
+        }            
         
     }
 }

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Admin.Orders.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">    
 
-    <div id="OrdersTitle" runat="server" class="ContentHead"><h2>Open Orders</h2></div>
+    <div id="OrdersTitle" runat="server" class="ContentHead"><h3>All Orders</h3></div>
     <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OrdersList_GetData" UpdateMethod="Orders_UpdateItem"     
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" >
         <Columns>                  

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Admin.Categories.Default"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">    
 
-    <div id="OpenOrderTitle" runat="server" class="ContentHead"><h2>Categories</h2></div>
+    <div id="OpenOrderTitle" runat="server" class="ContentHead"><h3>Categories</h3></div>
     <asp:HyperLink NavigateUrl="~/Admin/Categories/AddCategory" Text="Add New Category" runat="server" />
     <asp:ValidationSummary ShowModelStateErrors="true" runat="server" />
     <asp:GridView ID="CategoriesList" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Category" DataKeyNames="CategoryId" SelectMethod="CategoriesList_GetData" UpdateMethod="CategoriesList_UpdateData"     

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="ProductList" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Products.Default" %>
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <h2>Products List</h2>
+    <h3>Products List</h3>
     <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Products/AddProduct" Text="Create new" />
     </p>

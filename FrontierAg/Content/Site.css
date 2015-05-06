@@ -78,6 +78,9 @@ input.valid, textarea.valid{
   color:Red;
 }
 
+.mywidth{
+    width: 25%;
+}
 
 
 
