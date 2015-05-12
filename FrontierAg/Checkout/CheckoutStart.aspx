@@ -71,7 +71,7 @@
             </ItemTemplate>
         </asp:ListView>
         </div>
-    <h2>Please select a contact or create new:</h2>
+    <h3>Please select a customer or create new:</h3>
     <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Contacts/Insert"  Text="Create new" />
     </p>
@@ -170,24 +170,26 @@
 					</div>
 					<div class="form-group">
 						<div >
-							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
+							<asp:button id="backButton" runat="server" text="Back" OnClick="backButton_Click" CssClass="btn btn-warning" />
 						</div>
 					</div>
     </div>  
     <script type="text/javascript">        
         //$("[id*=btnModalPopup]").on("click", function () {
-        if ($(".table.showing").length) {
-            $("#modal_dialog").dialog({
-                modal: true,
-                title: "Select Shipping Address",
-                width: 'auto',
-                buttons: {
-                    Close: function () {
-                        $(this).dialog('close');
+        $(function () {
+            if ($(".table.showing").length) {
+                $("#modal_dialog").dialog({
+                    modal: true,
+                    title: "Select Shipping Address",
+                    width: 'auto',
+                    buttons: {
+                        Close: function () {
+                            $(this).dialog('close');
+                        }
                     }
-                }
-            });            
-        }
+                });
+            }
+        });        
 </script>
 </asp:Content>
 

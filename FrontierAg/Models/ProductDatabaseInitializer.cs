@@ -9,7 +9,7 @@ namespace FrontierAg.Models
     public class ProductDatabaseInitializer : DropCreateDatabaseIfModelChanges<ProductContext>
     {
         protected override void Seed(ProductContext context)
-        {
+        { 
             GetCategories().ForEach(c => context.Categories.Add(c));
             GetProducts().ForEach(p => context.Products.Add(p));            
             GetPrice().ForEach(r => context.Prices.Add(r));

@@ -58,6 +58,15 @@ namespace FrontierAg.Admin.OrderDetails {
         protected global::System.Web.UI.WebControls.GridView OrderDetailList;
         
         /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
         /// UpdateBtn control.
         /// </summary>
         /// <remarks>
@@ -65,15 +74,6 @@ namespace FrontierAg.Admin.OrderDetails {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button UpdateBtn;
-        
-        /// <summary>
-        /// backButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button backButton;
         
         /// <summary>
         /// UpdateProgress1 control.

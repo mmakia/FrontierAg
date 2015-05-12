@@ -12,7 +12,9 @@ using FrontierAg.Models;
 namespace FrontierAg.Contacts
 {
     public partial class Details : System.Web.UI.Page
-    {
+    {        
+        
+
 		protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +28,7 @@ namespace FrontierAg.Contacts
             if (ContactId == null)
             {
                 return null;
-            }
+            }            
 
             using (_db)
             {
@@ -42,10 +44,33 @@ namespace FrontierAg.Contacts
             }
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
-         
-                
+        //public IQueryable<Order> OpenOrdersList_GetData(Order order)
+        //{
+        //    if (order != null)
+        //    {
+        //        using (ProductContext db = new ProductContext())
+        //        {
+        //           return db.Orders.Where(en => en.o .Include(m => m.Shipping.Contact);
+        //            //grab original order
+        //            var originalOrder = db.Orders.Find(order.OrderId);
+                    
+        //            originalOrder
 
+        //            originalOrder.OtherCharge = order.OtherCharge;
+        //            originalOrder.Discount = order.Discount;
+
+        //            originalOrder.Total = PreTotal + order.OtherCharge - order.Discount;
+
+        //            originalOrder.Payment = order.Payment;
+        //            originalOrder.PaymentDate = order.PaymentDate;
+        //            originalOrder.Tracking = order.Tracking;
+        //            originalOrder.Comment = order.Comment;
+        //            originalOrder.Status = order.Status;
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //}
+        
     }
 }
 

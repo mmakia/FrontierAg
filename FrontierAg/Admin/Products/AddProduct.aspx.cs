@@ -40,7 +40,7 @@ namespace FrontierAg.Admin.Products
 
         protected void addProductForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
-            Response.Redirect("~/Admin/Products");
+            Response.Redirect("~/Admin/Products/Default");
         }        
     }
 }

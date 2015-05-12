@@ -29,23 +29,23 @@
                     <td runat="server">
                         <table>                            
                             <tr>
-                                <td>
-                                    <a href="ProductDetails.aspx?productID=<%#:Item.ProductId%>">
+                                <td><asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/ProductDetails", Item.ProductId) %>' Text="<%#:Item.ProductName%>"/> 
+                                    <%--<a href="ProductDetails.aspx?productID=<%#:Item.ProductId%>">
                                         <span>
                                             <%#:Item.ProductName%>
                                         </span>
-                                    </a>
+                                    </a>--%>
                                     <br />
                                     <span>
                                         <b>Product#: </b><%#:String.Format("{0:c}", Item.ProductNo)%>
                                     </span>
                                     <br />
-
-                                    <a href="/AddToCart.aspx?productID=<%#:Item.ProductId %>">               
+                                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/AddToCart", Item.ProductId) %>' Text="Add To Cart"/> 
+                                    <%--<a href="AddToCart.aspx?productID=<%#:Item.ProductId %>">                
                                         <span class="ProductListItem">
                                             <b>Add To Cart<b> 
                                         </span>           
-                                    </a>
+                                    </a>--%>
 
                                 </td>
                             </tr>

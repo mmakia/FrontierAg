@@ -12,6 +12,7 @@ namespace FrontierAg.Admin.Orders
 {
     public partial class Default : System.Web.UI.Page
     {
+        Decimal PreTotal;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -30,29 +31,31 @@ namespace FrontierAg.Admin.Orders
             return db.Orders.Include(m => m.Shipping.Contact);
         }
 
-        public void Orders_UpdateItem(int OrderId)
+
+
+        public void OpenOrders_UpdateItem(Order order)
         {
-            using(ProductContext db = new ProductContext())
+            if (order != null)
             {
-                FrontierAg.Models.Order item = db.Orders.Find(OrderId);
-                
-                if (item == null)
+                using (ProductContext db = new ProductContext())
                 {
-                    // The item wasn't found
-                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", OrderId));
-                    return;
-                }
 
-                //item.Payment = 
-                //    TextBox priceTextBox = new TextBox();
-                //    priceTextBox = (TextBox)CartList.Rows[i].FindControl("PriceBx");
-                //    cartUpdates[i].PriceBx = Convert.ToDecimal(priceTextBox.Text.ToString());
+                    //grab original order
+                    var originalOrder = db.Orders.Find(order.OrderId);
+                    //Total fee without  charges
+                    //PreTotal = originalOrder.Total - (originalOrder.OtherCharge - originalOrder.Discount);
 
-                TryUpdateModel(item);
-                if (ModelState.IsValid)
-                {
+                    //originalOrder.OtherCharge = order.OtherCharge;
+                    //originalOrder.Discount = order.Discount;
+
+                    //originalOrder.Total = PreTotal + order.OtherCharge - order.Discount;
+
+                    //originalOrder.Payment = order.Payment;
+                    //originalOrder.PaymentDate = order.PaymentDate;
+                    //originalOrder.Tracking = order.Tracking;
+                    originalOrder.Comment = order.Comment;
+                    originalOrder.Status = order.Status;
                     db.SaveChanges();
-
                 }
             }
         }

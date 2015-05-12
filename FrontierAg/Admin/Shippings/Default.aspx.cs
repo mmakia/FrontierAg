@@ -29,7 +29,7 @@ namespace FrontierAg.Admin.Shippings
         
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/Contacts");
+            Response.Redirect("~/Admin/Contacts/Default");
         }
 
         // The return type can be changed to IEnumerable, however to support

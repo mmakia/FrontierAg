@@ -30,12 +30,10 @@ namespace FrontierAg.Models
         public DateTime DateCreated { get; set; }
 
         [Display(Name="Company")]
-        public int ContactId { get; set; }
+        public int? ContactId { get; set; }
 
-        public Contact Contact { get; set; }
-        
-        //public int? OrderId { get; set; }
+        public Contact Contact { get; set; }        
 
-        public virtual ICollection<Order> Orders { get; set; }//
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

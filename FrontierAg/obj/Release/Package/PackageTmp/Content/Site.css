@@ -47,8 +47,9 @@ input[type="select"] {
 }
 
 .SCTable{
+    
     margin-top: 50px; 
-    margin-left: 350px;   
+    margin-left: 450px;   
 }
 
 .SCTable td{
@@ -72,8 +73,15 @@ input.valid, textarea.valid{
 			border: 2px solid green;
 		}
 
-/*.error{
-    display: none;
-    margin-left: 10px;
-}*/
+.myGridStyle
+{  
+  color:Red;
+}
+
+.mywidth{
+    width: 25%;
+}
+
+
+
 

@@ -38,13 +38,12 @@
             });
         }        
     </script>        
-            <div id="OpenOrderTitle" runat="server" class="ContentHead"><h2>Open Order</h2></div>
+            <div id="OpenOrderTitle" runat="server" class="ContentHead"><h3>Order</h3></div>
             <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
         <Columns>                  
-        <asp:DynamicField DataField="OrderId" HeaderText="OrderId" ReadOnly="true"/>        
-        <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>
-        <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>      
+        <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
+        <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>              
                      
         <asp:TemplateField HeaderText="Customer">
             <ItemTemplate>
@@ -54,11 +53,11 @@
 
         <asp:TemplateField HeaderText="Shipping To">
             <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Details", Item.ShippingId) %>' Text="<%#: Item.Shipping.City %>" />
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.ShippingId) %>' Text="<%#: Item.Shipping.City %>" />
             </ItemTemplate>
         </asp:TemplateField>
-            <asp:DynamicField DataField="Payment" HeaderText="Payment" />
-            <asp:DynamicField DataField="PaymentDate" HeaderText="Payment Date" />  
+            <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping Charges" />
+            <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>             
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
             <asp:DynamicField DataField="Status" HeaderText="Status" />                          
         </Columns>     
@@ -66,7 +65,7 @@
     </asp:GridView>
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate> 
-    <div id="OperOrderTitle" runat="server" class="ContentHead"><h2>Order Details</h2></div>
+    <div id="OperOrderTitle" runat="server" class="ContentHead"><h3>Order Items</h3></div>
     <asp:GridView ID="OrderDetailList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.OrderDetail" SelectMethod="OpenOrderList_GetData" DataKeyNames="OrderDetailId" 
         CssClass="table table-striped table-bordered" EnableModelValidation="true" >
@@ -120,9 +119,9 @@
 
         </Columns>        
     </asp:GridView>
-    <div>
-        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />
-        <asp:button id="backButton" runat="server" text="Back" OnClick="backButton_Click" CssClass="btn btn-warning" />   
+    <div>        
+		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						
+        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
         <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
     </div>           
       

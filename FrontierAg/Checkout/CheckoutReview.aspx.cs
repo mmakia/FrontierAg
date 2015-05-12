@@ -7,7 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Web.Routing;
+using Microsoft.AspNet.FriendlyUrls; 
 
 namespace FrontierAg.Checkout
 {
@@ -16,8 +17,8 @@ namespace FrontierAg.Checkout
     public partial class CheckoutReview : System.Web.UI.Page
     {
         decimal cartTotal = 0;
-
-        static int myContactId, myShippingId;
+        decimal orderTotal = 0;
+        decimal ProcessingFee = 5;        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,10 +26,15 @@ namespace FrontierAg.Checkout
             {
                 
                 cartTotal = usersShoppingCart.GetTotal();
+                orderTotal = cartTotal + ProcessingFee;
                 if (cartTotal > 0)
                 {
+
+                    //ProcessingFeeLbl.Text = "5";
                     // Display Total.
                     lblTotal.Text = String.Format("{0:c}", cartTotal);
+                    ProcessingFeeLbl.Text = String.Format("{0:c}", ProcessingFee);
+                    GTotalValueLbl.Text = String.Format("{0:c}", orderTotal);                    
                 }
                 else
                 {
@@ -67,10 +73,10 @@ namespace FrontierAg.Checkout
                     quantityTextBox = (TextBox)CheckoutReviewList.Rows[i].FindControl("PurchaseQuantity");
                     cartUpdates[i].PurchaseQuantity = Convert.ToInt16(quantityTextBox.Text.ToString());
                 }
-                usersShoppingCart.UpdateShoppingCartDatabase(cartId, cartUpdates);//, "", "");
+                usersShoppingCart.UpdateShoppingCartDatabase(cartId, cartUpdates);
                 CheckoutReviewList.DataBind();
 
-                lblTotal.Text = String.Format("{0:c}", usersShoppingCart.GetTotal());
+                lblTotal.Text = String.Format("{0:c}", usersShoppingCart.GetTotal()); 
                 return usersShoppingCart.GetCartItems();
             }
         }
@@ -117,16 +123,10 @@ namespace FrontierAg.Checkout
         }
 
 
-        public FrontierAg.Models.Contact GetItem([FriendlyUrlSegmentsAttribute(0)]int? ContactId)
-        {
-            if (ContactId == null)
-            {
-                return null;
-            }
+        public FrontierAg.Models.Contact GetItem([FriendlyUrlSegmentsAttribute(0)]int ContactId)
+        {            
             using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
-            {
-
-                myContactId = (int)ContactId;
+            {               
                 return _db.Contacts.Where(m => m.ContactId == ContactId).FirstOrDefault();
             }
         }
@@ -141,15 +141,8 @@ namespace FrontierAg.Checkout
         }
         
 
-        public FrontierAg.Models.Shipping GetItem2([FriendlyUrlSegmentsAttribute(1)]int? ShippingId)
+        public FrontierAg.Models.Shipping GetItem2([FriendlyUrlSegmentsAttribute(1)]int ShippingId)
         {
-            if (ShippingId == null)
-            {
-                return null;
-            }
-
-            myShippingId = (int)ShippingId;
-
             using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
             {
                 return _db.Shippings.Where(m => m.ShippingId == ShippingId).FirstOrDefault();
@@ -161,10 +154,11 @@ namespace FrontierAg.Checkout
         {
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
-                Session["payment_amt"] = usersShoppingCart.GetTotal();/////////////////////
+                Session["payment_amt"] = usersShoppingCart.GetTotal();
                 
                 List<CartItem> MyCart = usersShoppingCart.GetCartItems();
-
+                
+                //Place an order
                 AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart);                
                
 
@@ -182,17 +176,17 @@ namespace FrontierAg.Checkout
             
             Response.Redirect("~/Checkout/CheckoutCancel");
         }
-        
+
         public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)
-        {
-            
+        {            
             var myOrder = new Order();
 
             myOrder.OrderDate = System.DateTime.Now;
-            myOrder.Total = cartTotal;
+            myOrder.Total = orderTotal;
             myOrder.Status = Status.Processing;
-            
-            myOrder.ShippingId = myShippingId; 
+
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            myOrder.ShippingId = int.Parse(segments[1]); 
             if (Payment == "")
             {
                 myOrder.Payment = "";
@@ -221,8 +215,8 @@ namespace FrontierAg.Checkout
                 foreach (var cartItem in MyCart)
                 {
                     var myOrderDetail = new OrderDetail();
-                    
-                    myOrderDetail.OrderId = myOrder.OrderId;                    
+
+                    myOrderDetail.OrderId = myOrder.OrderId;
                     myOrderDetail.ProductId = cartItem.ProductId;
                     myOrderDetail.Quantity = cartItem.Quantity;
                     myOrderDetail.QtyShipped = 0;
@@ -232,13 +226,24 @@ namespace FrontierAg.Checkout
 
                     // Add product to DB.
                     _db.OrderDetails.Add(myOrderDetail);
-
+                
                     //Save Changes
                     _db.SaveChanges();
                 }
             }
             // Success.
             return true;
+        }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IQueryable<FrontierAg.Models.Contact> CustomerGrid_GetData()
+        {
+            return null;
         }
         
        

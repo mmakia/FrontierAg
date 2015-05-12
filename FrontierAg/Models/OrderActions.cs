@@ -12,26 +12,17 @@ using System.Data.Entity;
 namespace FrontierAg.Models
 {
     public class OrderActions : IDisposable
-    {
-        //public int OrderId { get; set; }
+    {        
+        private ProductContext _db = new ProductContext();        
 
-        private ProductContext _db = new ProductContext();
-        //private int? OrderId1;
-
-        //public OrderActions(int? OrderId1)
-        //{
-        //    // TODO: Complete member initialization
-        //    this.OrderId1 = OrderId1;
-        //}
-
-        public IQueryable<OrderDetail> GetOrderItems(int OrderId)///////////
+        public IQueryable<OrderDetail> GetOrderItems(int? OrderId)
         {
-            //if (OrderId != null)
-            //{
+            if (OrderId != null)
+            {
                 return _db.OrderDetails.Where(m => m.OrderId == OrderId).Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
-            //}
+            }
 
-            //else return _db.OrderDetails.Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
+            else return _db.OrderDetails.Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
         }
 
         public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates)
@@ -105,7 +96,7 @@ namespace FrontierAg.Models
                 }
             }
         }
-        public IQueryable<OrderDetail> GetOrderDetailsItems(int OrderId)//done ------ default/////////++++++++++++++++++++
+        public IQueryable<OrderDetail> GetOrderDetailsItems(int OrderId)
         {
             
 

@@ -13,9 +13,13 @@ namespace FrontierAg.Models
 
         public string CartId { get; set; }
 
-        public Decimal ItemPrice { get; set; }        
+        public Decimal ItemPrice { get; set; }
+
+        public Decimal OriginalPrice { get; set; }
 
         public int Quantity { get; set; }
+
+        public Decimal Charge { get; set; }
 
         public System.DateTime DateCreated { get; set; }
         

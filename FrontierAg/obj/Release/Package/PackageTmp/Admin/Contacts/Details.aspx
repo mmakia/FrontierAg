@@ -3,9 +3,7 @@
     <div>
 		<p>&nbsp;</p>
       
-        <asp:FormView runat="server"
-            ItemType="FrontierAg.Models.Contact" DataKeyNames="ContactId"
-            SelectMethod="GetItem"
+        <asp:FormView runat="server"  ItemType="FrontierAg.Models.Contact" DataKeyNames="ContactId"     SelectMethod="GetItem" UpdateMethod="Unnamed_UpdateItem" AutoGenerateEditButton="True"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
             <EmptyDataTemplate>
                 Cannot find the Contact with ContactId <%: Request.QueryString["ContactId"] %>
@@ -176,13 +174,20 @@
                  	<div class="row">
 					  &nbsp;
 					</div>
+
+    
+
+
+
+
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Back" CssClass="btn btn-default" />
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
 						</div>
 					</div>
                 </fieldset>
             </ItemTemplate>
+      
         </asp:FormView>
     </div>
 </asp:Content>

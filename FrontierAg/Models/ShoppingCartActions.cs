@@ -34,7 +34,9 @@ namespace FrontierAg.Models
                         ProductId = id,
                         CartId = ShoppingCartId,
                         Quantity = GetMinQty(id),
-                        ItemPrice = GetPriceforMinQty(id),                        
+                        OriginalPrice = GetPriceforMinQty(id),
+                        ItemPrice = GetPriceforMinQty(id),
+                        Charge = GetChargeFromMinQty(id),
                         Product = _db.Products.SingleOrDefault(p => p.ProductId == id),
                         DateCreated = DateTime.Now
                     };
@@ -45,8 +47,44 @@ namespace FrontierAg.Models
                 {                                    
                     cartItem.Quantity++;                    
                     cartItem.ItemPrice = GetPriceFromPrices(cartItem.ProductId, cartItem.Quantity);
+                    cartItem.Charge = GetChargeFromPackCharges(cartItem.ProductId, cartItem.Quantity);
                 }
                 _db.SaveChanges();            
+        }
+
+        private decimal GetChargeFromPackCharges(int productId, int qty)//done------ ( 2 )
+        {
+
+            var myItem = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
+
+            if (myItem != null)
+            {
+                return myItem.PackChargeAmt;
+            }
+
+            return 0;
+        }
+
+        private decimal GetChargeFromMinQty(int id)
+        {
+            int myInt = GetMinQtyForCharge(id);
+
+            if (_db.PackCharges.Any(m => m.ProductId == id))
+            {
+                return _db.PackCharges.Where(m => m.ProductId == id && m.From == myInt).Select(n => n.PackChargeAmt).SingleOrDefault();
+            }
+
+            return 0;  
+        }
+
+        private int GetMinQtyForCharge(int id)
+        {
+            if (_db.PackCharges.Any(m => m.ProductId == id))
+            {
+                return _db.PackCharges.Where(m => m.ProductId == id).Min(n => n.From);
+            }
+
+            return 0;
         }
 
         protected Decimal GetPriceFromPrices(int productId, int qty)//done------ ( 2 )
@@ -131,7 +169,7 @@ namespace FrontierAg.Models
             }
         }
 
-        public void UpdateShoppingCartDatabase(String cartId, ShoppingCartUpdates[] CartItemUpdates)//, string ProductIdBox, string PriceBox)
+        public void UpdateShoppingCartDatabase(String cartId, ShoppingCartUpdates[] CartItemUpdates)
         {                            
                 try
                 {
@@ -149,8 +187,9 @@ namespace FrontierAg.Models
                                     RemoveItem(cartId, cartItem.ProductId);                                    
                                 }
                                 else
-                                {                                    
-                                        UpdateItem(cartId, cartItem.ProductId, CartItemUpdates[i].PurchaseQuantity, CartItemUpdates[i].PriceBx);                                                                          
+                                {
+                                    UpdateItem(cartId, cartItem.ProductId, CartItemUpdates[i].PurchaseQuantity, CartItemUpdates[i].PriceBx);                                 
+                                    
                                 }
                             }                            
                         }
@@ -193,42 +232,48 @@ namespace FrontierAg.Models
                 
                 total = (decimal?)(from cartItems in _db.ShoppingCartItems
                                    where cartItems.CartId == ShoppingCartId
-                                   select (int?)cartItems.Quantity * cartItems.ItemPrice).Sum();
+                                   select (int?)cartItems.Quantity * cartItems.ItemPrice + cartItems.Charge).Sum();
                 
                 return total ?? decimal.Zero;      
             
         }
 
         
-        public void UpdateItem(string updateCartID, int updateProductID, int quantity, Decimal Price)// execute when changing price box 
+        public void UpdateItem(string updateCartID, int updateProductID, int quantity,  Decimal PriceOverride)// execute when changing price box 
         {
             using (var _db = new FrontierAg.Models.ProductContext())
             {
                 try
                 {
+                    //get item from CartItem Table in DB
                     var myItem = (from c in _db.ShoppingCartItems where c.CartId == updateCartID && c.Product.ProductId == updateProductID select c).FirstOrDefault();
-                    if (myItem != null)
-                    {           
-
-                        if (myItem != null)
+                              
+                 
+                         if (myItem != null)
                         {
-                            if(myItem.Quantity != quantity)
+                            //if QTY changed, get price from table
+                            if (myItem.Quantity != quantity)
                             {
+                                myItem.Quantity = quantity;
                                 myItem.ItemPrice = GetPriceFromPrices(updateProductID, quantity);
+                                myItem.Charge = GetChargeFromPackCharges(updateProductID, quantity);
+                                myItem.OriginalPrice = myItem.ItemPrice;
                             }
+                                
                             else
                             {
-                                myItem.ItemPrice = Price;
+                                //if Price changed, then use new price
+                                myItem.ItemPrice = PriceOverride;
                             }
-                            CartSessionFlag = 0;                            
-                            myItem.Quantity = quantity;
+                                                       
+                            CartSessionFlag = 0;                   
                             _db.SaveChanges();                            
                         }
                         else
                         {
                             CartSessionFlag = updateProductID;
                         }
-                    }
+                    
                 }
                 catch (Exception exp)
                 {
@@ -269,7 +314,7 @@ namespace FrontierAg.Models
         public struct ShoppingCartUpdates
         {
             public int ProductId;
-            public Decimal PriceBx;
+            public Decimal PriceBx;            
             public int PurchaseQuantity;
             public bool RemoveItem;
         }

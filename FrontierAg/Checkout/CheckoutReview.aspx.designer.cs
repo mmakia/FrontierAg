@@ -40,13 +40,13 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.GridView CheckoutReviewList;
         
         /// <summary>
-        /// LabelTotalText control.
+        /// OTotalLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelTotalText;
+        protected global::System.Web.UI.WebControls.Label OTotalLbl;
         
         /// <summary>
         /// lblTotal control.
@@ -58,13 +58,49 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
-        /// Label1 control.
+        /// PFeeLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label PFeeLbl;
+        
+        /// <summary>
+        /// ProcessingFeeLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ProcessingFeeLbl;
+        
+        /// <summary>
+        /// LabelTotalText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTotalText;
+        
+        /// <summary>
+        /// GTotalValueLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label GTotalValueLbl;
+        
+        /// <summary>
+        /// PaymentLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PaymentLbl;
         
         /// <summary>
         /// PaymentBox control.
@@ -76,13 +112,13 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.TextBox PaymentBox;
         
         /// <summary>
-        /// Label2 control.
+        /// PaymentDateLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label PaymentDateLbl;
         
         /// <summary>
         /// t1 control.
@@ -103,13 +139,13 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.TextBox PaymentDateBox;
         
         /// <summary>
-        /// Label3 control.
+        /// CommentLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label CommentLbl;
         
         /// <summary>
         /// CommentBox control.

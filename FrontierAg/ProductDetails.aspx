@@ -14,14 +14,19 @@
                         <br />
                         <b>Product Number: </b>&nbsp;<%#:Item.ProductNo %><br />
                         <br />
-                        <a href="/AddToCart.aspx?productID=<%#:Item.ProductId %>"><span class="ProductListItem"><b>Add To Cart</b></span></a>                       
+                        <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/AddToCart", Item.ProductId) %>' Text="Add To Cart"/>    
+                        <%--<asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/ProductList", Item.CategoryId) %>' Text="<%#: Item.CategoryName %>"/>                                           --%>
                     </td>
                 </tr>
             </table>
         </ItemTemplate>
     </asp:FormView>
     <br />
+    <b>Prices</b>
     <asp:GridView runat="server" ID="PricesGrid" ItemType="FrontierAg.Models.Price" DataKeyNames="PriceId"  SelectMethod="GetPrice" AutoGenerateColumns="false" Width="200" CssClass="table table-bordered">
+        <EmptyDataTemplate>
+                There are no entries found for Prices
+            </EmptyDataTemplate>
         <Columns>
             <asp:DynamicField DataField="From" />
             <asp:DynamicField DataField="To" />
@@ -30,6 +35,17 @@
         </Columns>        
     </asp:GridView>
     <br /> 
+    <b>Packaging Charges</b>
+    <asp:GridView runat="server" ID="PackchargeGrid" ItemType="FrontierAg.Models.PackCharge" DataKeyNames="PackChargeId"  SelectMethod="PackchargeGrid_GetData" AutoGenerateColumns="false" Width="200" CssClass="table table-bordered">
+        <EmptyDataTemplate>
+                There are no entries found for Packaging Charges
+            </EmptyDataTemplate>
+        <Columns>
+            <asp:DynamicField DataField="From" />
+            <asp:DynamicField DataField="To" />
+            <asp:DynamicField DataField="PackChargeAmt" />                             
+        </Columns>        
+    </asp:GridView>
     
     
 

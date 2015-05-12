@@ -60,35 +60,44 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>                          
 
-    <div id="ShoppingCartTitle" runat="server" class="ContentHead"><h2>Shopping Cart</h2></div>
+    <div id="ShoppingCartTitle" runat="server" class="ContentHead"><h3>Shopping Cart</h3></div>
     <asp:GridView ID="CartList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.CartItem" SelectMethod="GetShoppingCartItems" 
         CssClass="table table-striped table-bordered"  >
 
         <Columns>
             
-        <asp:BoundField DataField="ProductID" HeaderText="ID" SortExpression="ProductID" />        
-        <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />           
-        
-            <asp:TemplateField HeaderText="Price (each)">
-              <ItemTemplate>
-                  <asp:TextBox ID="PriceBx" CSSClass="form-control InputPrice" Width="100" runat="server" Text="<%#: Item.ItemPrice %>" ></asp:TextBox>               
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="PriceBx"></asp:RequiredFieldValidator> 
-                    <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Currency" ControlToValidate="PriceBx" />    
-              </ItemTemplate>
-            </asp:TemplateField>           
+        <asp:BoundField DataField="ProductID" HeaderText="ID" />     
+        <asp:TemplateField HeaderText="Product No.">            
+                <ItemTemplate>                    
+                    <%#: Item.Product.ProductNo  %>
+                </ItemTemplate>        
+        </asp:TemplateField>    
+        <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />                      
+        <asp:BoundField DataField="OriginalPrice" HeaderText="Price" />
+              
+        <asp:TemplateField HeaderText="Price Override">
+            <ItemTemplate>
+                <asp:TextBox ID="PriceBx" CSSClass="form-control InputPrice" Width="100" runat="server" Text="<%#: Item.ItemPrice %>" ></asp:TextBox>               
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="PriceBx"></asp:RequiredFieldValidator>               
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Currency" ControlToValidate="PriceBx" />    
+            </ItemTemplate>
+        </asp:TemplateField>            
+             
 
         <asp:TemplateField   HeaderText="Quantity">             
                 <ItemTemplate>
-                    <asp:TextBox ID="PurchaseQuantity" CSSClass="form-control InputQty" Width="50" runat="server" Text="<%#: Item.Quantity %>" ></asp:TextBox>
+                    <asp:TextBox ID="PurchaseQuantity" CSSClass="form-control InputQty" Width="70" runat="server" Text="<%#: Item.Quantity %>" ></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="PurchaseQuantity"></asp:RequiredFieldValidator> 
                     <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PurchaseQuantity" />                     
                 </ItemTemplate>            
         </asp:TemplateField>    
 
+        <asp:BoundField DataField="Charge" HeaderText="Packaging" />
+
         <asp:TemplateField HeaderText="Item Total">            
                 <ItemTemplate>                    
-                    <%#: Item.Quantity *  Item.ItemPrice  %>
+                    <%#: Item.Quantity *  Item.ItemPrice + Item.Charge  %>
                 </ItemTemplate>        
         </asp:TemplateField> 
 
@@ -103,7 +112,7 @@
     <div>
         <p>&nbsp;</p>
         <strong>
-            <asp:Label ID="LabelTotalText" runat="server" Text="Order Total: "></asp:Label>
+            <asp:Label ID="LabelTotalText" runat="server" Text="Total: "></asp:Label>
             <asp:Label ID="lblTotal" runat="server" EnableViewState="false"></asp:Label>
         </strong> 
     </div>

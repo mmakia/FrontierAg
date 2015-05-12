@@ -1,83 +1,140 @@
-﻿<%@ Page Title="OrderDetailList" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.OrderDetails.Default" %>
-<%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
-<asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <h2>OrderDetails List</h2>
-    <%--<p>
-        <asp:HyperLink runat="server" NavigateUrl="~/Admin/OrderDetails/Insert" Text="Create new" />
-    </p>--%>
-    <div>
-        <asp:ListView id="ListView1" runat="server"
-            DataKeyNames="OrderDetailId" 
-			ItemType="FrontierAg.Models.OrderDetail"
-            SelectMethod="GetData">
-            <EmptyDataTemplate>
-                There are no entries found for OrderDetails
-            </EmptyDataTemplate>
-            <LayoutTemplate>
-                <table class="table">
-                    <thead>
-                        <tr>                            
-                            <th>
-								<%--<asp:LinkButton Text="OrderId" CommandName="Sort" CommandArgument="OrderId" runat="Server" />--%>
-							</th>
-                            <th>
-								<asp:LinkButton Text="Last Name" CommandName="Sort" CommandArgument="ContactId" runat="Server" />
-							</th>
-                            <th>
-								<asp:LinkButton Text="Product Number" CommandName="Sort" CommandArgument="ProductId" runat="Server" />
-							</th>
-                            <th>
-								<asp:LinkButton Text="Product Name" CommandName="Sort" CommandArgument="ProductId" runat="Server" />
-							</th>
-                            <th>
-								<asp:LinkButton Text="Quantity" CommandName="Sort" CommandArgument="Quantity" runat="Server" />
-							</th>
-                            <th>
-								<asp:LinkButton Text="UnitPrice" CommandName="Sort" CommandArgument="UnitPrice" runat="Server" />
-							</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr runat="server" id="itemPlaceholder" />
-                    </tbody>
-                </table>
-				<asp:DataPager PageSize="5"  runat="server">
-					<Fields>
-                        <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
-                        <asp:NumericPagerField ButtonType="Button"  NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
-                        <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
-                    </Fields>
-				</asp:DataPager>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr> 							
-							<td>
-								<%--<asp:DynamicControl runat="server" DataField="OrderId" ID="OrderId" Mode="ReadOnly" />--%>
-							</td>
-							<td>								
-                                <%#: Item.Order != null ? Item.Order.Contact.LName : "" %>
-							</td>
-							<td>								
-                                <%#: Item.Product != null ? Item.Product.ProductNo : "" %>
-							</td>
-                            <td>
-                                <%#: Item.Product != null ? Item.Product.ProductName : "" %>
-							</td>
-							<td>
-								<asp:DynamicControl runat="server" DataField="Quantity" ID="Quantity" Mode="ReadOnly" />
-							</td>
-							<td>
-								<asp:DynamicControl runat="server" DataField="UnitPrice" ID="UnitPrice" Mode="ReadOnly" />
-							</td>
-                    <td>
-					    <%--<asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/Details", Item.OrderDetailId) %>' Text="Details" />  
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/Edit", Item.OrderDetailId) %>' Text="Edit" /> 
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/OrderDetails/Delete", Item.OrderDetailId) %>' Text="Delete" />--%>
-                    </td>
-                </tr>
-            </ItemTemplate>
-        </asp:ListView>
-    </div>
-</asp:Content>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Admin.OrderDetails.Default" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+     <script type="text/javascript">
+        $(function () {            
+            validate();            
+        });
+        
+        //JS code to be executed after partial postback due to updatepanel
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
 
+        prm.add_endRequest(function () {
+            //$(alert("Price Changed"))
+            validate();               
+        }); 
+
+        function validate() {
+            var button = document.getElementById("UpdateBtn");
+
+            $('.form-control.InputInt').on('input', function () {
+                var input = $(this);
+                var re = /^-?\d\d*$/;
+                var is_int = re.test(input.val());
+                if (is_int) {
+                    $(".error_msg").html("")
+                    input.removeClass("invalid").addClass("valid")
+                    //$('.form-control.InputInt').on('focusout', function () {
+                    //    button.click();
+                    //});
+                }
+                else {
+                    $(".error_msg").html("Please enter a number")
+                    input.removeClass("valid").addClass("invalid");
+                }
+            });
+            
+            $('.myCheckBox').on('click', function () {
+                button.click();
+            });
+        }        
+    </script>        
+            <div id="OpenOrderTitle" runat="server" class="ContentHead"><h3>Order</h3></div>
+            <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
+    AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
+        <Columns>                  
+        <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
+        <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>              
+                     
+        <asp:TemplateField HeaderText="Customer">
+            <ItemTemplate>
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.Shipping.ContactId) %>' Text="<%#: Item.Shipping.Contact.Company %>" />
+            </ItemTemplate>
+        </asp:TemplateField>        
+
+        <asp:TemplateField HeaderText="Shipping To">
+            <ItemTemplate>
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.ShippingId) %>' Text="<%#: Item.Shipping.City %>" />
+            </ItemTemplate>
+        </asp:TemplateField>
+            <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping Charges" />
+            <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>             
+            <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
+            <asp:DynamicField DataField="Status" HeaderText="Status" />                          
+        </Columns>     
+                <EditRowStyle CssClass="GridViewEditRow" />   
+    </asp:GridView>
+     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate> 
+    <div id="OperOrderTitle" runat="server" class="ContentHead"><h3>Order Items</h3></div>
+    <asp:GridView ID="OrderDetailList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
+        ItemType="FrontierAg.Models.OrderDetail" SelectMethod="OpenOrderList_GetData" DataKeyNames="OrderDetailId" 
+        CssClass="table table-striped table-bordered" EnableModelValidation="true" >
+
+        <Columns>      
+            <asp:BoundField DataField="ProductId" HeaderText="Product ID" />   
+
+        <asp:TemplateField HeaderText="Product Name">
+              <ItemTemplate>
+                <asp:Label id="ProductNo" Text="<%# Item.Product.ProductNo %>" runat="server" />
+              </ItemTemplate>
+        </asp:TemplateField> 
+
+        <asp:TemplateField HeaderText="Product Name">
+              <ItemTemplate>
+                <asp:Label id="ProductName" Text="<%# Item.Product.ProductName %>" runat="server" />
+              </ItemTemplate>
+        </asp:TemplateField> 
+            
+        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="true"/>
+
+        <asp:TemplateField HeaderText="Qty Remaining" ItemStyle-CssClass="myGridStyle">
+              <ItemTemplate >
+                <asp:Label Text="<%# Item.Quantity - Item.QtyShipped - Item.QtyCancelled %>"  runat="server"/>
+              </ItemTemplate>
+        </asp:TemplateField>      
+
+        <asp:TemplateField HeaderText="Qty Shipped">
+              <ItemTemplate>
+                <asp:TextBox id="QtyShippedBx" CSSClass="form-control InputInt" Text="<%# Item.QtyShipped %>" runat="server" width="50"/>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="QtyShippedBx"></asp:RequiredFieldValidator> 
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyShippedBx" />                     
+              </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Qty Cancelled">
+              <ItemTemplate>
+                <asp:TextBox id="QtyCancelledBx" CSSClass="form-control InputInt" Text="<%# Item.QtyCancelled %>" runat="server" width="50"/>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="QtyCancelledBx"></asp:RequiredFieldValidator> 
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyCancelledBx" />                     
+              </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Comment">
+              <ItemTemplate>
+                <asp:TextBox id="CommentBx" Text="<%# Item.Comment %>" runat="server" CSSClass="form-control" />                               
+              </ItemTemplate>
+        </asp:TemplateField>
+            
+        <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" />
+
+        </Columns>        
+    </asp:GridView>
+    <div>        
+		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						
+        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
+        <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
+    </div>           
+      
+
+        </ContentTemplate>
+    </asp:UpdatePanel> 
+
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+        <ProgressTemplate>
+            <div class="PleaseWait">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PleaseWait.gif"/>
+                Please Wait...
+            </div>
+        </ProgressTemplate>   
+    </asp:UpdateProgress>    
+</asp:Content>

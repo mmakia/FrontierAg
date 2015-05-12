@@ -8,6 +8,7 @@ using System.Data.Entity;
 using FrontierAg.Models;
 using System.Web.ModelBinding;
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 
 namespace FrontierAg.Admin.Prices
 {
@@ -18,9 +19,7 @@ namespace FrontierAg.Admin.Prices
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        
+        }        
 
         // The return type can be changed to IEnumerable, however to support
         // paging and sorting, the following parameters must be added:
@@ -28,7 +27,7 @@ namespace FrontierAg.Admin.Prices
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<FrontierAg.Models.Price> PricesGrid_GetData([QueryString] int? ProductId)
+        public IQueryable<FrontierAg.Models.Price> PricesGrid_GetData([FriendlyUrlSegments(0)] int? ProductId)
         {
             if (ProductId != null)
                 return _db.Prices.Where(en => en.ProductId == ProductId).Include(m => m.Product);

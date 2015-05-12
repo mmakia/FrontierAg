@@ -1,8 +1,12 @@
-﻿<%@ Control Language="C#" CodeBehind="Integer_Edit.ascx.cs" Inherits="FrontierAg.Integer_EditField" %>
+<%@ Control Language="C#" CodeBehind="Integer_Edit.ascx.cs" Inherits="FrontierAg.Integer_EditField" %>
 
-<div id="Div1" runat="server" class="form-group">
-    <asp:Label ID="Label1" runat="server" CssClass="col-sm-2 control-label" />
-    <div class="col-sm-3">
-		<asp:TextBox ID="TextBox1" type="Number" runat="server" Text='<%# FieldValueEditString %>' CssClass="form-control DDTextBox"></asp:TextBox>
-    </div>
-</div>
+<asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text='<%# FieldValueEditString %>'  ></asp:TextBox>
+
+<asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" Enabled="false" />
+<asp:CompareValidator runat="server" ID="CompareValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static"
+    Operator="DataTypeCheck" Type="Integer"/>
+<asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" Enabled="false" />
+<asp:RangeValidator runat="server" ID="RangeValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Type="Integer"
+    Enabled="false" EnableClientScript="true" MinimumValue="0" MaximumValue="100" Display="Static" />
+<asp:DynamicValidator runat="server" ID="DynamicValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" />
+

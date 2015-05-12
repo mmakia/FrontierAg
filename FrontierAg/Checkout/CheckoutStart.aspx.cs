@@ -18,12 +18,14 @@ namespace FrontierAg.Checkout
         {
         }
 
+
         // Model binding method to get List of Contact entries
         // USAGE: <asp:ListView SelectMethod="GetData">
         public IQueryable<FrontierAg.Models.Contact> GetContacts()
         {
-            return _db.Contacts;
+            return _db.Contacts.Where(en => en.Type == CType.Customer);
         }
+
 
         public IQueryable<FrontierAg.Models.Shipping> GetData([FriendlyUrlSegmentsAttribute(0)] int? ContactId)
         {            
@@ -34,6 +36,11 @@ namespace FrontierAg.Checkout
             }
 
             return _db.Shippings.Where(n => n.ContactId == ContactId);
+        }
+
+        protected void backButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Checkout/ShoppingCart");
         }       
           
     }

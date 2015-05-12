@@ -9,18 +9,17 @@ namespace FrontierAg.Models
 {
     public enum Status
     {
-        Processing, Shipped, Closed, Other, Cancelled
+        Cancelled, Processing, Shipped, Other, Closed
     }
 
     public class Order
-    {        
+    {
+        [Display(Name = "ID")]
         public int OrderId { get; set; }
 
         public System.DateTime OrderDate { get; set; }
                        
-        public decimal Total { get; set; }
-
-        //public int ContactId { get; set; }
+        public decimal Total { get; set; }        
 
         public int? ShippingId { get; set; }
                 
@@ -32,10 +31,14 @@ namespace FrontierAg.Models
         public string Comment { get; set; }
 
         public Status Status { get; set; }
-                
-        //public bool Closed { get; set; }
 
-        //public Contact Contact { get; set; }
+        public Decimal ShipCharge { get; set; }
+
+        public Decimal OtherCharge { get; set; }
+
+        public Decimal Discount { get; set; }
+
+        public String Tracking { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
 

@@ -1,13 +1,4 @@
-﻿<%@ Control Language="C#" CodeBehind="Boolean_Edit.ascx.cs" Inherits="FrontierAg.Boolean_EditField" %>
+<%@ Control Language="C#" CodeBehind="Boolean_Edit.ascx.cs" Inherits="FrontierAg.Boolean_EditField" %>
 
-<div id="Div1" runat="server" class="form-group">
-    <div class="col-sm-offset-2 col-sm-3">
-      <div class="checkbox">
-        <label>
-          <asp:CheckBox runat="server" ID="CheckBox1" /> <asp:Label ID="Label1" runat="server" />
-        </label>
-      </div>
-    </div>
-</div>
-
+<asp:CheckBox runat="server" ID="CheckBox1" />
 

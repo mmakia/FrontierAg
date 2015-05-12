@@ -15,7 +15,7 @@ namespace FrontierAg.Admin.Prices
         {
 
         }
-
+        //for drop down list
         protected void Page_Init()
         {
             MetaTable table = MetaTable.GetTable(typeof(Price));
@@ -39,7 +39,7 @@ namespace FrontierAg.Admin.Prices
 
         protected void addPriceForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
-            Response.Redirect("~/Admin/Products");
+            Response.Redirect("~/Admin/Products/Default");
         }
         
     }

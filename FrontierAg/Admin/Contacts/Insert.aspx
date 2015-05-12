@@ -16,5 +16,6 @@
         </fieldset>
     </InsertItemTemplate>
         </asp:FormView>
+        <asp:Label ID="Label1" runat="server" Text="Label">For customers, Default Shipping Address will be created automatically</asp:Label>
     </div>
 </asp:Content>

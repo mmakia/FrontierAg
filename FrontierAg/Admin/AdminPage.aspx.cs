@@ -16,27 +16,23 @@ namespace FrontierAg.Admin
 
         protected void ContactsBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/Contacts/");
+            Response.Redirect("~/Admin/Contacts/Default");
         }
         
         protected void CategoriesBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/Categories/");
+            Response.Redirect("~/Admin/Categories/Default");
         }
 
         protected void ProductsBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/Products/");
-        }        
+            Response.Redirect("~/Admin/Products/Default");
+        }       
 
-        protected void OpenOrderBtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/Orders/OpenOrder");
-        }        
-
+        
         protected void AllOrderBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/Orders");
+            Response.Redirect("~/Admin/Orders/Default");
         }
     }
 }

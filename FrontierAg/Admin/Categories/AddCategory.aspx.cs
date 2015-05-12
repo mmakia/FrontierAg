@@ -34,7 +34,7 @@ namespace FrontierAg.Admin.Categories
         
         protected void addCategoryForm_ItemInserted(object sender, FormViewInsertedEventArgs e)  
         {
-            Response.Redirect("~/Admin/Categories");
+            Response.Redirect("~/Admin/Categories/Default");
         }
         
         

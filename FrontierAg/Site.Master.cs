@@ -73,7 +73,8 @@ namespace FrontierAg
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 adminLink.Visible = true;
-                cartCount.Visible = true;                
+                cartCount.Visible = true;
+                OpenOrderLink.Visible = true;
             }
         }
 

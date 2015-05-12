@@ -13,7 +13,11 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>    
 </head>
 <body>
     <form runat="server">
@@ -21,8 +25,7 @@
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="MsAjaxBundle" />                
                 <asp:ScriptReference Name="bootstrap" />
                 <asp:ScriptReference Name="respond" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
@@ -46,12 +49,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Frontier Agricultural Sciences</a>
+                    <a class="navbar-brand" runat="server" href="~/Default">Frontier Agricultural Sciences</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">                        
                         <li><a runat="server" href="~/ProductList">Products</a></li>
-                        <li><a runat="server" href="~/Admin/ShoppingCart" ID="cartCount" visible="false">&nbsp;</a></li>
+                        <li><a runat="server" href="~/Checkout/ShoppingCart" ID="cartCount" visible="false">&nbsp;</a></li>
+                        <li><a runat="server" href="~/Admin/Orders/OpenOrder" id="OpenOrderLink" visible="false" >Open Orders</a></li>
                         <li><a runat="server" href="~/Admin/AdminPage" id="adminLink" visible="false" >Admin</a></li>                        
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
@@ -85,10 +89,8 @@
                 runat="server"
                 SelectMethod="GetCategories" >
                 <ItemTemplate>
-                    <b style="font-size: large; font-style: normal">
-                        <a href="/ProductList.aspx?id=<%#: Item.CategoryId %>">
-                        <%#: Item.CategoryName %>
-                        </a>
+                    <b style="font-size: large; font-style: normal" >
+                        <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/ProductList", Item.CategoryId) %>' Text="<%#: Item.CategoryName %>"/>                        
                     </b>
                 </ItemTemplate>
                 <ItemSeparatorTemplate>  |  </ItemSeparatorTemplate>

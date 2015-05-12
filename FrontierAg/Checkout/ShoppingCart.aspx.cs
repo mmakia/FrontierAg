@@ -72,6 +72,8 @@ namespace FrontierAg
                     priceTextBox = (TextBox)CartList.Rows[i].FindControl("PriceBx");
                     cartUpdates[i].PriceBx = Convert.ToDecimal(priceTextBox.Text.ToString());
 
+                    //cartUpdates[i].ItemPrice = Convert.ToInt32(rowValues["OriginalPrice"]);
+
                     TextBox quantityTextBox = new TextBox();
                     quantityTextBox = (TextBox)CartList.Rows[i].FindControl("PurchaseQuantity");
                     cartUpdates[i].PurchaseQuantity = Convert.ToInt16(quantityTextBox.Text.ToString());

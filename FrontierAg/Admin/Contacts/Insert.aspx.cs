@@ -33,21 +33,24 @@ namespace FrontierAg.Contacts
                     // Save changes
                     _db.Contacts.Add(item);
 
-                    var item2 = new FrontierAg.Models.Shipping();
-                    //FrontierAg.Models.Contact myContact = _db.Contacts.Where(m => m.ContactId == item.ContactId).FirstOrDefault();
-                    item2.Address1 = item.Address1;
-                    item2.Address2 = item.Address2;
-                    item2.City = item.City;
-                    item2.State = item.State;
-                    item2.PostalCode = item.PostalCode;
-                    item2.DateCreated = item.DateCreated;
-                    item2.Country = item.Country;
-                    item2.ContactId = item.ContactId;
+                    if (item.Type == CType.Customer)
+                    {
+                        var item2 = new FrontierAg.Models.Shipping();
+                        //FrontierAg.Models.Contact myContact = _db.Contacts.Where(m => m.ContactId == item.ContactId).FirstOrDefault();
+                        item2.Address1 = item.Address1;
+                        item2.Address2 = item.Address2;
+                        item2.City = item.City;
+                        item2.State = item.State;
+                        item2.PostalCode = item.PostalCode;
+                        item2.DateCreated = item.DateCreated;
+                        item2.Country = item.Country;
+                        item2.ContactId = item.ContactId;
 
-                    _db.Shippings.Add(item2);                  
-
-                    _db.SaveChanges();
-                    Response.Redirect("~/Admin/Shippings/Insert");
+                        _db.Shippings.Add(item2);
+                    }
+                        _db.SaveChanges();
+                        Response.Redirect("~/Admin/Contacts/Default");           
+                    
                 }
             }
         }
@@ -56,7 +59,7 @@ namespace FrontierAg.Contacts
         {
             if (e.CommandName.Equals("Cancel", StringComparison.OrdinalIgnoreCase))
             {
-                Response.Redirect("Default");
+                Response.Redirect("~/Admin/Contacts/Default");
             }
         }
     }

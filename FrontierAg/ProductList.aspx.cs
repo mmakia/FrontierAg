@@ -1,4 +1,5 @@
 ﻿using FrontierAg.Models;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace FrontierAg
 
         }
 
-        public IQueryable<Product> GetProducts([QueryString("id")] int? categoryId)
+        public IQueryable<Product> GetProducts([FriendlyUrlSegmentsAttribute(0)]int? categoryId)
         {
             var _db = new FrontierAg.Models.ProductContext();
             IQueryable<Product> query = _db.Products;
@@ -25,6 +26,8 @@ namespace FrontierAg
                 query = query.Where(p => p.CategoryId == categoryId);
             }
             return query;
-        } 
+        }
+
+        
     }
 }

@@ -9,13 +9,15 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using System.Web.ModelBinding;
 using System.Collections.Specialized;
+using System.Web.Routing;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding; 
 
 
 namespace FrontierAg.Admin.OrderDetails
 {
     public partial class Default : System.Web.UI.Page
     {
-        //private ProductContext _db = new ProductContext();
+        Decimal PreTotal;       
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,35 +27,39 @@ namespace FrontierAg.Admin.OrderDetails
         /// //////////////////
         /// </summary>
         /// <returns></returns>
-        public IQueryable<Order> OpenOrdersList_GetData([QueryString]int OrderId)
+        public IQueryable<Order> OpenOrdersList_GetData([FriendlyUrlSegmentsAttribute(0)]int? OrderId)
         {
-            ProductContext db = new ProductContext();
-            return db.Orders.Where(en => en.OrderId == OrderId).Include(en => en.Shipping).Include(m => m.Shipping.Contact);//.Where(n => n.Status == Status.Processing || n.Status == Status.Other || n.Status == Status.Shipped).Include(en => en.Shipping).Include(m => m.Shipping.Contact);
-        }
-
-        public void OpenOrders_UpdateItem(int OrderId)
-        {
-            using (ProductContext db = new ProductContext())
+            if (OrderId != null)
             {
-                FrontierAg.Models.Order item = db.Orders.Find(OrderId);
+                ProductContext db = new ProductContext();
+                return db.Orders.Where(en => en.OrderId == OrderId).Include(en => en.Shipping).Include(m => m.Shipping.Contact);
+            }
+            else return null;
+            
+        }
+        
 
-                if (item == null)
+        public void OpenOrders_UpdateItem(Order order)
+        {
+            if (order != null)
+            {
+                using (ProductContext db = new ProductContext())
                 {
-                    // The item wasn't found
-                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", OrderId));
-                    return;
-                }
+                    
+                    //grab original order
+                    var originalOrder = db.Orders.Find(order.OrderId);
+                    //Total fee without  charges
+                    PreTotal = originalOrder.Total - originalOrder.ShipCharge ;
+                    
+                    originalOrder.ShipCharge = order.ShipCharge;                  
+                    //originalOrder.OtherCharge = order.OtherCharge;                    
+                    //originalOrder.Discount = order.Discount;
 
-                //item.Payment = 
-                //    TextBox priceTextBox = new TextBox();
-                //    priceTextBox = (TextBox)CartList.Rows[i].FindControl("PriceBx");
-                //    cartUpdates[i].PriceBx = Convert.ToDecimal(priceTextBox.Text.ToString());
+                    originalOrder.Total = PreTotal + order.ShipCharge ;
 
-                TryUpdateModel(item);
-                if (ModelState.IsValid)
-                {
-                    db.SaveChanges();
-
+                    originalOrder.Comment = order.Comment;
+                    originalOrder.Status = order.Status;
+                    db.SaveChanges();                
                 }
             }
         }
@@ -65,10 +71,14 @@ namespace FrontierAg.Admin.OrderDetails
         /// <returns></returns>
 
 
-        public IQueryable<OrderDetail> OpenOrderList_GetData([QueryString] int OrderId) 
-        {           
-            OrderActions actions = new OrderActions();
-            return actions.GetOrderItems(OrderId);            
+        public IQueryable<OrderDetail> OpenOrderList_GetData([FriendlyUrlSegmentsAttribute(0)] int? OrderId) 
+        {
+            if (OrderId != null)
+            {
+                OrderActions actions = new OrderActions();
+                return actions.GetOrderItems(OrderId);
+            }
+            else return null;
         }
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
