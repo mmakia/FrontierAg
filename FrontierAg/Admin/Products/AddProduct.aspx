@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddProduct.aspx.cs" Inherits="FrontierAg.Admin.Products.AddProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <h3>Add Product</h3>
     <asp:ValidationSummary runat="server" ShowModelStateErrors="true" />
 <asp:FormView runat="server" ID="addProductForm"  ItemType="FrontierAg.Models.Product"    InsertMethod="addProductForm_InsertItem" DefaultMode="Insert"
         RenderOuterTable="true" OnItemInserted="addProductForm_ItemInserted" CssClass="table table-striped table-bordered" >

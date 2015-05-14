@@ -18,12 +18,13 @@
             </asp:TemplateField>
             <asp:DynamicField DataField="Quantity" HeaderText="Quantity" />
             <asp:DynamicField DataField="QtyShipped" HeaderText="QtyShipped" /> 
-            <asp:DynamicField DataField="QtyCancelled" HeaderText="QtyCancelled" />
             <asp:TemplateField HeaderText="Qty Remaining" ItemStyle-CssClass="myGridStyle">
               <ItemTemplate >
                 <asp:Label Text="<%# Item.Quantity - Item.QtyShipped - Item.QtyCancelled %>"  runat="server"/>
               </ItemTemplate>
-            </asp:TemplateField>   
+            </asp:TemplateField>  
+            <asp:DynamicField DataField="QtyCancelled" HeaderText="QtyCancelled" />
+             
             <asp:DynamicField DataField="UnitPrice" HeaderText="UnitPrice" />
             <asp:DynamicField DataField="PriceOverride" HeaderText="PriceOverride" />                         
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />

@@ -3,7 +3,7 @@
 
     <div id="OpenOrderTitle" runat="server" class="ContentHead"><h3>Open Orders</h3></div>
     <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
-    AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="18">
+    AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="11">
         <Columns>                  
         <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
         <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            

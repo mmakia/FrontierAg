@@ -10,7 +10,9 @@ using System.Data.Entity;
 using System.Web.ModelBinding;
 using System.Collections.Specialized;
 using System.Web.Routing;
-using Microsoft.AspNet.FriendlyUrls.ModelBinding; 
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using Microsoft.AspNet.FriendlyUrls;
+
 
 
 namespace FrontierAg.Admin.OrderDetails
@@ -46,9 +48,10 @@ namespace FrontierAg.Admin.OrderDetails
                 using (ProductContext db = new ProductContext())
                 {
                     
-                    //grab original order
+                    //grab original order from DB
                     var originalOrder = db.Orders.Find(order.OrderId);
-                    //Total fee without  charges
+
+                    //order total without shipping charges
                     PreTotal = originalOrder.Total - originalOrder.ShipCharge ;
                     
                     originalOrder.ShipCharge = order.ShipCharge;                  
@@ -59,6 +62,27 @@ namespace FrontierAg.Admin.OrderDetails
 
                     originalOrder.Comment = order.Comment;
                     originalOrder.Status = order.Status;
+                    var AllOrderDetails = db.OrderDetails.Where(en => en.OrderId == order.OrderId);
+
+                    var flag = 0;
+                    foreach(var b in AllOrderDetails)
+                    {
+                        if(b.QtyShipped + b.QtyCancelled != b.Quantity)
+                        {
+                            flag = 1;
+                        }
+                    }
+
+                    if(order.Status == Status.Shipped && flag == 0)///////////////////
+                    {
+                        //valuse of cancelled items
+                        Decimal cancelledValue = 0;                         
+                        foreach(var a in AllOrderDetails)
+                        {
+                            cancelledValue = cancelledValue + (a.QtyCancelled * a.UnitPrice);
+                        }
+                        originalOrder.Total = PreTotal + order.ShipCharge - cancelledValue;                        
+                    }
                     db.SaveChanges();                
                 }
             }
@@ -83,9 +107,13 @@ namespace FrontierAg.Admin.OrderDetails
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
-            string rawId = Request.QueryString["OrderId"]; 
+            //string rawId = Request.QueryString["OrderId"];
 
-            UpdateOrderDetail(Convert.ToInt16(rawId));            
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            //x = int.Parse(segments[0]);
+
+
+            UpdateOrderDetail(int.Parse(segments[0]));            
         }
 
         public IQueryable<OrderDetail> UpdateOrderDetail(int OrderId)

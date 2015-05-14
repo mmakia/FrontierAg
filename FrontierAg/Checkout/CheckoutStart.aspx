@@ -2,6 +2,9 @@
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">    
 <div id="modal_dialog" style="display: none" >
+    <p>
+        <asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />
+    </p>
 <asp:ListView id="ListView2" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData">
             <EmptyDataTemplate></EmptyDataTemplate>
             <LayoutTemplate>

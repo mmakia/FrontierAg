@@ -23,9 +23,9 @@
                 if (is_int) {
                     $(".error_msg").html("")
                     input.removeClass("invalid").addClass("valid")
-                    //$('.form-control.InputInt').on('focusout', function () {
-                    //    button.click();
-                    //});
+                    $('.form-control.InputInt').on('focusout', function () {
+                        button.click();
+                    });
                 }
                 else {
                     $(".error_msg").html("Please enter a number")
@@ -33,7 +33,7 @@
                 }
             });
             
-            $('.myCheckBox').on('click', function () {
+            $('.InputCmt').on('focusout', function () {
                 button.click();
             });
         }        
@@ -87,12 +87,6 @@
             
         <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="true"/>
 
-        <asp:TemplateField HeaderText="Qty Remaining" ItemStyle-CssClass="myGridStyle">
-              <ItemTemplate >
-                <asp:Label Text="<%# Item.Quantity - Item.QtyShipped - Item.QtyCancelled %>"  runat="server"/>
-              </ItemTemplate>
-        </asp:TemplateField>      
-
         <asp:TemplateField HeaderText="Qty Shipped">
               <ItemTemplate>
                 <asp:TextBox id="QtyShippedBx" CSSClass="form-control InputInt" Text="<%# Item.QtyShipped %>" runat="server" width="50"/>
@@ -100,6 +94,12 @@
                 <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyShippedBx" />                     
               </ItemTemplate>
         </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Qty Remaining" ItemStyle-CssClass="myGridStyle">
+              <ItemTemplate >
+                <asp:Label Text="<%# Item.Quantity - Item.QtyShipped - Item.QtyCancelled %>"  runat="server"/>
+              </ItemTemplate>
+        </asp:TemplateField>              
 
         <asp:TemplateField HeaderText="Qty Cancelled">
               <ItemTemplate>
@@ -111,7 +111,7 @@
 
         <asp:TemplateField HeaderText="Comment">
               <ItemTemplate>
-                <asp:TextBox id="CommentBx" Text="<%# Item.Comment %>" runat="server" CSSClass="form-control" />                               
+                <asp:TextBox id="CommentBx" Text="<%# Item.Comment %>" runat="server" CSSClass="form-control InputCmt" />                               
               </ItemTemplate>
         </asp:TemplateField>
             
@@ -121,7 +121,7 @@
     </asp:GridView>
     <div>        
 		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						
-        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
+        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" style="display:none"/>         
         <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
     </div>           
       

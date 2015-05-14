@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddCategory.aspx.cs" Inherits="FrontierAg.Admin.Categories.AddCategory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <h3>Add Category</h3>
     <asp:ValidationSummary runat="server" ShowModelStateErrors="true" />
 <asp:FormView runat="server" ID="addCategoryForm"    ItemType="FrontierAg.Models.Category"     InsertMethod="addCategoryForm_InsertItem" DefaultMode="Insert"
         RenderOuterTable="false" OnItemInserted="addCategoryForm_ItemInserted">

@@ -236,7 +236,7 @@
         
         <tr>
             <td>
-                <asp:Label ID="LabelTotalText" runat="server" Text="Order Total: "></asp:Label>            
+                <asp:Label ID="LabelTotalText" runat="server" Text="Sub Total: "></asp:Label>            
             </td>
             <td>
                &nbsp; <asp:Label ID="GTotalValueLbl" runat="server" EnableViewState="false"></asp:Label>

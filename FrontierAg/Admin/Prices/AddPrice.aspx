@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPrice.aspx.cs" Inherits="FrontierAg.Admin.Prices.AddPrice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h3>Add Price</h3>
     <asp:ValidationSummary runat="server" ShowModelStateErrors="true" />
 <asp:FormView runat="server" ID="addPriceForm"
     ItemType="FrontierAg.Models.Price" 

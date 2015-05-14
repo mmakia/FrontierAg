@@ -32,7 +32,8 @@ namespace FrontierAg.Account
                     usersShoppingCart.MigrateCart(cartId, user.Id);
                 }
 
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                IdentityHelper.RedirectToReturnUrl("~/Default", Response);
             }
             else 
             {

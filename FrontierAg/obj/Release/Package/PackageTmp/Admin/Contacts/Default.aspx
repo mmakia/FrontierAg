@@ -17,9 +17,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>
+                            <%--<th>
 								<asp:LinkButton Text="Contact ID" CommandName="Sort" CommandArgument="Contact_Identification" runat="Server" />
-							</th>
+							</th>--%>
                             <th>
 								<asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="Company" runat="Server" />
 							</th>
@@ -65,9 +65,9 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-							<td>
+							<%--<td>
 								<asp:DynamicControl runat="server" DataField="Contact_Identification" ID="Contact_Identification" Mode="ReadOnly" />
-							</td>
+							</td>--%>
 							<td>
 								<asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
 							</td>

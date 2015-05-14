@@ -57,12 +57,31 @@ namespace FrontierAg.Models
 
             var myItem = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
 
+            //found the value
             if (myItem != null)
             {
                 return myItem.PackChargeAmt;
             }
 
-            return 0;
+            //value not found, will pack QTY in multipule boxes
+            Decimal totalCharge = 0;
+
+            //max qty fit in a box 
+            var maxTo = _db.PackCharges.Where(en => en.ProductId == productId).Max(m => m.To);
+
+            //the charge for max qty
+            var maxToItem = _db.PackCharges.Where(en => en.ProductId == productId && en.To == maxTo).FirstOrDefault();
+
+            //counting how many boxes needed
+            while(qty > maxTo){           
+             totalCharge = totalCharge + maxToItem.PackChargeAmt;
+             qty = qty - maxTo;
+            }
+            //getting the charge for the box thats gonna fit the remaining
+            var myItem2 = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
+
+            //calculating total charge
+            return totalCharge + myItem2.PackChargeAmt;
         }
 
         private decimal GetChargeFromMinQty(int id)

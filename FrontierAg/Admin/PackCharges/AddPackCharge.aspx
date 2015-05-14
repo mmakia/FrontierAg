@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPackCharge.aspx.cs" Inherits="FrontierAg.Admin.PackCharges.AddPackCharge" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h3>Add Packaging Charges</h3>
     <asp:ValidationSummary runat="server" ShowModelStateErrors="true" />
 <asp:FormView runat="server" ID="addPackChargeForm"
     ItemType="FrontierAg.Models.PackCharge" 

@@ -44,7 +44,8 @@ namespace FrontierAg.Account
                         String cartId = usersShoppingCart.GetCartId();
                         usersShoppingCart.MigrateCart(cartId, Email.Text);
 
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        IdentityHelper.RedirectToReturnUrl("~/Default", Response);
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

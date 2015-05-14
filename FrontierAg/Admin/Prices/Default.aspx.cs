@@ -74,7 +74,7 @@ namespace FrontierAg.Admin.Prices
         }
         protected void Back_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/Products/");
+            Response.Redirect("~/Admin/Prices/Default");
         }
         
     }

@@ -39,7 +39,7 @@ namespace FrontierAg.Admin.Prices
 
         protected void addPriceForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
-            Response.Redirect("~/Admin/Products/Default");
+            Response.Redirect("~/Admin/Prices/Default");
         }
         
     }
