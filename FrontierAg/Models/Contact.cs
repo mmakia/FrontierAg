@@ -23,8 +23,9 @@ namespace FrontierAg.Models
 
     public class Contact
     {
-        [Key]
-        [ScaffoldColumn(false)]
+        [Key]        
+        [ScaffoldColumn(true)]
+        [Display(Name = "Contact ID")]
         public int ContactId { get; set; }
 
         //[Display(Name = "Contact ID")]

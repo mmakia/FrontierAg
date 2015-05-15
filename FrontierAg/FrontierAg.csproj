@@ -956,6 +956,10 @@
     <Compile Include="Migrations\201505141803257_afterremovingContactIdent.Designer.cs">
       <DependentUpon>201505141803257_afterremovingContactIdent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505151358507_ConnectingOrderContact.cs" />
+    <Compile Include="Migrations\201505151358507_ConnectingOrderContact.Designer.cs">
+      <DependentUpon>201505151358507_ConnectingOrderContact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ExceptionUtility.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.Designer.cs">
@@ -1280,6 +1284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505141803257_afterremovingContactIdent.resx">
       <DependentUpon>201505141803257_afterremovingContactIdent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505151358507_ConnectingOrderContact.resx">
+      <DependentUpon>201505151358507_ConnectingOrderContact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -28,8 +28,7 @@ namespace FrontierAg.Models
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
-
-        [Display(Name="Company")]
+        
         public int? ContactId { get; set; }
 
         public Contact Contact { get; set; }        

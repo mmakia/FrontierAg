@@ -139,9 +139,16 @@ namespace FrontierAg.Checkout
                 Response.Redirect("../Default");
             }
         }
-        
 
-        public FrontierAg.Models.Shipping GetItem2([FriendlyUrlSegmentsAttribute(1)]int ShippingId)
+        public FrontierAg.Models.Contact GetItem2([FriendlyUrlSegmentsAttribute(1)]int ContactId)
+        {
+            using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
+            {
+                return _db.Contacts.Where(m => m.ContactId == ContactId).FirstOrDefault();
+            }
+        }
+
+        public FrontierAg.Models.Shipping GetItem3([FriendlyUrlSegmentsAttribute(2)]int ShippingId)
         {
             using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
             {
@@ -182,7 +189,7 @@ namespace FrontierAg.Checkout
             Response.Redirect("~/Checkout/CheckoutCancel");
         }
 
-        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)
+        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)//
         {            
             var myOrder = new Order();
 
@@ -191,7 +198,7 @@ namespace FrontierAg.Checkout
             myOrder.Status = Status.Processing;
 
             IList<string> segments = Request.GetFriendlyUrlSegments();
-            myOrder.ShippingId = int.Parse(segments[1]); 
+            myOrder.ShippingId = int.Parse(segments[2]); 
             if (Payment == "")
             {
                 myOrder.Payment = "";
@@ -208,6 +215,7 @@ namespace FrontierAg.Checkout
             {
                 myOrder.PaymentDate = Convert.ToDateTime(PaymentDate);
             }
+            myOrder.ContactId = int.Parse(segments[0]); 
             myOrder.Comment = CommentBox;
             
             

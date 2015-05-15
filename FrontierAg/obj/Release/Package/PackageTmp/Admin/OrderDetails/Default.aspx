@@ -45,13 +45,13 @@
         <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
         <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>              
                      
-        <asp:TemplateField HeaderText="Customer">
+        <asp:TemplateField HeaderText="Shipping To">
             <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.Shipping.ContactId) %>' Text="<%#: Item.Shipping.Contact.Company %>" />
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="<%#: Item.Contact.Company %>" />
             </ItemTemplate>
         </asp:TemplateField>        
 
-        <asp:TemplateField HeaderText="Shipping To">
+        <asp:TemplateField HeaderText="Address">
             <ItemTemplate>
                 <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.ShippingId) %>' Text="<%#: Item.Shipping.City %>" />
             </ItemTemplate>

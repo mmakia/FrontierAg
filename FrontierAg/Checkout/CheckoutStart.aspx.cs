@@ -41,6 +41,7 @@ namespace FrontierAg.Checkout
             return _db.Contacts.Where(en => en.Type == CType.Customer);
         }
 
+
         public IQueryable<FrontierAg.Models.Shipping> GetData([FriendlyUrlSegmentsAttribute(1)] int? ContactId)
         {            
 
@@ -59,9 +60,20 @@ namespace FrontierAg.Checkout
 
         protected void Unnamed_Click(object sender, EventArgs e)
         {
+            LinkButton btn = (LinkButton)(sender);
+            string yourValue = btn.CommandArgument;
             IList<string> segments = Request.GetFriendlyUrlSegments();
 
-            Response.Redirect("~/Checkout/CheckoutStart/" + int.Parse(segments[0]) + int.Parse(segments[1]));
+            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/" , int.Parse(segments[0]) , yourValue));
+        }
+
+        protected void Unnamed_Click1(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)(sender);
+            string yourValue = btn.CommandArgument;
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+
+            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutReview/", int.Parse(segments[0]), int.Parse(segments[1]), yourValue));
         }       
           
     }

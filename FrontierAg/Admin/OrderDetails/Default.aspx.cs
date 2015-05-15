@@ -19,7 +19,8 @@ namespace FrontierAg.Admin.OrderDetails
 {
     public partial class Default : System.Web.UI.Page
     {
-        Decimal PreTotal;       
+        //Decimal TotalWOShipping;       
+        Decimal newTotal;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,38 +51,30 @@ namespace FrontierAg.Admin.OrderDetails
                     
                     //grab original order from DB
                     var originalOrder = db.Orders.Find(order.OrderId);
-
-                    //order total without shipping charges
-                    PreTotal = originalOrder.Total - originalOrder.ShipCharge ;
                     
-                    originalOrder.ShipCharge = order.ShipCharge;                  
-                    //originalOrder.OtherCharge = order.OtherCharge;                    
-                    //originalOrder.Discount = order.Discount;
-
-                    originalOrder.Total = PreTotal + order.ShipCharge ;
-
+                    originalOrder.ShipCharge = order.ShipCharge;
                     originalOrder.Comment = order.Comment;
                     originalOrder.Status = order.Status;
-                    var AllOrderDetails = db.OrderDetails.Where(en => en.OrderId == order.OrderId);
-
-                    var flag = 0;
-                    foreach(var b in AllOrderDetails)
+                    
+                    var AllOrderItems = db.OrderDetails.Where(en => en.OrderId == order.OrderId);
+                    var isRemaining = 0;
+                    foreach(var b in AllOrderItems)
                     {
-                        if(b.QtyShipped + b.QtyCancelled != b.Quantity)
+                        if (b.QtyShipped + b.QtyCancelled != b.Quantity)
                         {
-                            flag = 1;
+                            isRemaining = 1;
                         }
                     }
 
-                    if(order.Status == Status.Shipped && flag == 0)///////////////////
+                    if (order.Status == Status.Shipped && isRemaining == 0)///////////////////
                     {
                         //valuse of cancelled items
-                        Decimal cancelledValue = 0;                         
-                        foreach(var a in AllOrderDetails)
+                        Decimal itemsValue = 0;                         
+                        foreach(var a in AllOrderItems)
                         {
-                            cancelledValue = cancelledValue + (a.QtyCancelled * a.UnitPrice);
+                            itemsValue = itemsValue + (a.QtyShipped * a.UnitPrice);
                         }
-                        originalOrder.Total = PreTotal + order.ShipCharge - cancelledValue;                        
+                        originalOrder.Total = itemsValue + originalOrder.OtherCharge - originalOrder.Discount + 5 + order.ShipCharge;                        
                     }
                     db.SaveChanges();                
                 }

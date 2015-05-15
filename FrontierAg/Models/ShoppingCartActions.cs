@@ -54,34 +54,44 @@ namespace FrontierAg.Models
 
         private decimal GetChargeFromPackCharges(int productId, int qty)//done------ ( 2 )
         {
-
-            var myItem = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
-
-            //found the value
-            if (myItem != null)
+            var x = _db.PackCharges.Where(en => en.ProductId == productId).FirstOrDefault();
+            if ( x == null)
             {
-                return myItem.PackChargeAmt;
+                return 0;
             }
+            else
+            {
+                var myItem = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
 
-            //value not found, will pack QTY in multipule boxes
-            Decimal totalCharge = 0;
+                //found the value
+                if (myItem != null)
+                {
+                    return myItem.PackChargeAmt;
+                }
 
-            //max qty fit in a box 
-            var maxTo = _db.PackCharges.Where(en => en.ProductId == productId).Max(m => m.To);
+                //value not found, will pack QTY in multipule boxes
+                Decimal totalCharge = 0;
 
-            //the charge for max qty
-            var maxToItem = _db.PackCharges.Where(en => en.ProductId == productId && en.To == maxTo).FirstOrDefault();
 
-            //counting how many boxes needed
-            while(qty > maxTo){           
-             totalCharge = totalCharge + maxToItem.PackChargeAmt;
-             qty = qty - maxTo;
+
+                //max qty fit in a box 
+                var maxTo = _db.PackCharges.Where(en => en.ProductId == productId).Max(m => m.To);
+
+                //the charge for max qty
+                var maxToItem = _db.PackCharges.Where(en => en.ProductId == productId && en.To == maxTo).FirstOrDefault();
+
+                //counting how many boxes needed
+                while (qty > maxTo)
+                {
+                    totalCharge = totalCharge + maxToItem.PackChargeAmt;
+                    qty = qty - maxTo;
+                }
+                //getting the charge for the box thats gonna fit the remaining
+                var myItem2 = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
+
+                //calculating total charge
+                return totalCharge + myItem2.PackChargeAmt;
             }
-            //getting the charge for the box thats gonna fit the remaining
-            var myItem2 = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
-
-            //calculating total charge
-            return totalCharge + myItem2.PackChargeAmt;
         }
 
         private decimal GetChargeFromMinQty(int id)
@@ -190,8 +200,8 @@ namespace FrontierAg.Models
 
         public void UpdateShoppingCartDatabase(String cartId, ShoppingCartUpdates[] CartItemUpdates)
         {                            
-                try
-                {
+                //try
+                //{
                     int CartItemCount = CartItemUpdates.Count();
                     List<CartItem> myCart = GetCartItems();
                     foreach (var cartItem in myCart)
@@ -213,12 +223,11 @@ namespace FrontierAg.Models
                             }                            
                         }
                     }
-                }
-                catch (Exception exp)
-                {
-                    throw new Exception("ERROR: Unable to Update Cart Database - " + exp.Message.ToString(), exp);  ///error input string was not in correct format                  
-                }
-                
+                //}
+                //catch (Exception exp)
+                //{
+                //    throw new Exception("ERROR: Unable to Update Cart Database - " + exp.Message.ToString(), exp);  ///error input string was not in correct format                  
+                //}      ////////////
            
             
         }
@@ -258,12 +267,12 @@ namespace FrontierAg.Models
         }
 
         
-        public void UpdateItem(string updateCartID, int updateProductID, int quantity,  Decimal PriceOverride)// execute when changing price box 
+        public void UpdateItem(string updateCartID, int updateProductID, int quantity,  Decimal PriceOverride)// execute when changing price box or qty 
         {
             using (var _db = new FrontierAg.Models.ProductContext())
             {
-                try
-                {
+                //try
+                //{
                     //get item from CartItem Table in DB
                     var myItem = (from c in _db.ShoppingCartItems where c.CartId == updateCartID && c.Product.ProductId == updateProductID select c).FirstOrDefault();
                               
@@ -277,8 +286,7 @@ namespace FrontierAg.Models
                                 myItem.ItemPrice = GetPriceFromPrices(updateProductID, quantity);
                                 myItem.Charge = GetChargeFromPackCharges(updateProductID, quantity);
                                 myItem.OriginalPrice = myItem.ItemPrice;
-                            }
-                                
+                            }                                
                             else
                             {
                                 //if Price changed, then use new price
@@ -293,11 +301,11 @@ namespace FrontierAg.Models
                             CartSessionFlag = updateProductID;
                         }
                     
-                }
-                catch (Exception exp)
-                {
-                    throw new Exception("ERROR: Unable to Update Cart Item - " + exp.Message.ToString(), exp);
-                }
+                //}
+                //catch (Exception exp)
+                //{
+                //    throw new Exception("ERROR: Unable to Update Cart Item - " + exp.Message.ToString(), exp);
+                //}
             }
         }   
 

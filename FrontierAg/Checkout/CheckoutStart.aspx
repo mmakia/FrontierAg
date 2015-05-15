@@ -85,7 +85,7 @@
 							</td>
                     
                     <td>                    
-                        <asp:LinkButton runat="server" Onclick="Unnamed_Click" Text="Select" /> | 
+                        <asp:LinkButton runat="server" Onclick="Unnamed_Click" CommandArgument="<%# Item.ContactId %>"  Text="Select" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="Details" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" />                         
                     </td>
@@ -159,7 +159,7 @@
 								<%#: Item.Contact != null ? Item.Contact.Company : "" %>
 							</td>
                     <td>
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutReview", Item.ContactId , Item.ShippingId) %>' Text="Select" /> | 					     
+                        <asp:LinkButton runat="server" Onclick="Unnamed_Click1" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
                     </td>
                 </tr>

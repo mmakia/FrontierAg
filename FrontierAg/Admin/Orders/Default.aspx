@@ -8,7 +8,7 @@
         <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
         <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
                      
-        <asp:TemplateField HeaderText="Customer">
+        <asp:TemplateField HeaderText="Ordered By">
             <ItemTemplate>
                 <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.Shipping.ContactId) %>' Text="<%#: Item.Shipping.Contact.Company %>" />
             </ItemTemplate>

@@ -12,12 +12,12 @@
         SelectMethod="ShippingsGrid_GetData"  CssClass="table table-striped table-bordered" EnableModelValidation="true"
         AutoGenerateColumns="false" >
         <Columns>
-            <%--<asp:TemplateField HeaderText="Contact ID">
+            <asp:TemplateField HeaderText="Contact ID">
               <ItemTemplate>
-                <asp:Label Text="<%# Item.Contact.Contact_Identification %>" 
+                <asp:Label Text="<%# Item.Contact.ContactId %>" 
                     runat="server" />
               </ItemTemplate>
-            </asp:TemplateField>  --%>
+            </asp:TemplateField>  
             <asp:DynamicField DataField="ShippingId" ReadOnly="true" />
             <asp:DynamicField DataField="Address1"  />
             <asp:DynamicField DataField="Address2" />
