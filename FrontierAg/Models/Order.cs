@@ -22,6 +22,8 @@ namespace FrontierAg.Models
         public decimal Total { get; set; }        
 
         public int? ShippingId { get; set; }
+
+        //public int ContactId { get; set; }
                 
         public string Payment { get; set; }
 
@@ -41,6 +43,8 @@ namespace FrontierAg.Models
         public String Tracking { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
+
+        //public virtual Contact Contact { get; set; }
 
         public virtual Shipping Shipping { get; set; }
     }

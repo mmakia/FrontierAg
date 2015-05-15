@@ -101,7 +101,7 @@ namespace FrontierAg.Checkout
                     quantityTextBox = (TextBox)CheckoutReviewList.Rows[i].FindControl("PurchaseQuantity");
                     cartUpdates[i].PurchaseQuantity = 0;
                 }
-                usersShoppingCart.UpdateShoppingCartDatabase(cartId, cartUpdates);//, "", "");
+                usersShoppingCart.UpdateShoppingCartDatabase(cartId, cartUpdates);
                 CheckoutReviewList.DataBind();
                 lblTotal.Text = String.Format("{0:c}", usersShoppingCart.GetTotal());
                 return usersShoppingCart.GetCartItems();
@@ -167,6 +167,11 @@ namespace FrontierAg.Checkout
             }
 
             new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
+            //new Emailer().SendEmail("snacko@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
+            //new Emailer().SendEmail("ugatti@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
+            //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
+            //new Emailer().SendEmail("ddavis@fsiag.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
+            //new Emailer().SendEmail("mvella@fsiag.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
 
             Response.Redirect("~/Checkout/CheckoutComplete.aspx");
         }

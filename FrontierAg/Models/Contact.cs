@@ -27,8 +27,8 @@ namespace FrontierAg.Models
         [ScaffoldColumn(false)]
         public int ContactId { get; set; }
 
-        [Display(Name = "Contact ID")]
-        public string Contact_Identification { get; set; }
+        //[Display(Name = "Contact ID")]
+        //public string Contact_Identification { get; set; }
 
         [Required, StringLength(100)]
         public string Company { get; set; }

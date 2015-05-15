@@ -1,4 +1,5 @@
 <%@ Control Language="C#" CodeBehind="DateTime_Edit.ascx.cs" Inherits="FrontierAg.DateTime_EditField" %>
+
 <juice:Datepicker runat="server" ID="t1" TargetControlID="TextBox1"/>
 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text='<%# FieldValueEditString %>' Columns="20"></asp:TextBox>
 

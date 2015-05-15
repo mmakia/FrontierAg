@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.Entity;
 using FrontierAg.Models;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace FrontierAg.Checkout
 {
@@ -21,13 +22,26 @@ namespace FrontierAg.Checkout
 
         // Model binding method to get List of Contact entries
         // USAGE: <asp:ListView SelectMethod="GetData">
+        public IQueryable<FrontierAg.Models.Contact> GetContacts2([FriendlyUrlSegmentsAttribute(0)] int? ContactId)
+        {
+            if (ContactId == null)
+            {
+                return null;
+            }
+            else
+            {
+                return _db.Contacts.Where(en => en.Type == CType.Customer);
+            }
+        }
+
+        
+
         public IQueryable<FrontierAg.Models.Contact> GetContacts()
         {
             return _db.Contacts.Where(en => en.Type == CType.Customer);
         }
 
-
-        public IQueryable<FrontierAg.Models.Shipping> GetData([FriendlyUrlSegmentsAttribute(0)] int? ContactId)
+        public IQueryable<FrontierAg.Models.Shipping> GetData([FriendlyUrlSegmentsAttribute(1)] int? ContactId)
         {            
 
             if (ContactId == null)
@@ -41,6 +55,13 @@ namespace FrontierAg.Checkout
         protected void backButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Checkout/ShoppingCart");
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+
+            Response.Redirect("~/Checkout/CheckoutStart/" + int.Parse(segments[0]) + int.Parse(segments[1]));
         }       
           
     }

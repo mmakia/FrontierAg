@@ -29,8 +29,8 @@ namespace FrontierAg
             roleActions.AddUserAndRole();
             CssManager.CssResourceMapping.AddDefinition("juice-ui", new CssResourceDefinition
             {
-                Path = "~/Content/themes/ui-lightness/jquery-ui.css",
-                DebugPath = "~/Content/themes/ui-lightness/jquery-ui.css"
+                Path = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css",
+                DebugPath = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css"
             });
 
             MetaModel DefaultModel = new MetaModel();
