@@ -4,6 +4,7 @@
     <h3>Addresses List</h3>
     <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />
+       <%-- <asp:LinkButton runat="server" Onclick="Unnamed_Click" Text="Create new" />        --%>
     </p>
     <div>
         <asp:ValidationSummary ShowModelStateErrors="true" runat="server" />
@@ -19,15 +20,20 @@
               </ItemTemplate>
             </asp:TemplateField>  
             <asp:DynamicField DataField="ShippingId" ReadOnly="true" />
+            <asp:DynamicField DataField="Company"  />
+            <asp:DynamicField DataField="FName"  />
+            <asp:DynamicField DataField="LName"  />
+            <asp:DynamicField DataField="Other1"  />
+            <asp:DynamicField DataField="Other2"  />
             <asp:DynamicField DataField="Address1"  />
             <asp:DynamicField DataField="Address2" />
             <asp:DynamicField DataField="City" />
             <asp:DynamicField DataField="State" />                 
             <asp:DynamicField DataField="PostalCode" />                 
-            <asp:DynamicField DataField="Country" />   
-            
-            <asp:DynamicField DataField="DateCreated" ReadOnly="true"/>     
-               
+            <asp:DynamicField DataField="Country" />  
+            <asp:DynamicField DataField="PPhone"  />   
+            <asp:DynamicField DataField="SType" />          
+            <%--<asp:DynamicField DataField="DateCreated" ReadOnly="true"/> --%>           
         </Columns>
     </asp:GridView>
         <div class="row">

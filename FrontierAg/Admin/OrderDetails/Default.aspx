@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Admin.OrderDetails.Default" %>
+<%@ Import Namespace = "System.Data.Entity" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <script type="text/javascript">
         $(function () {            
@@ -42,30 +43,55 @@
             <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
         <Columns>                  
-        <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
-        <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>              
+            <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
+            <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>              
                      
-        <asp:TemplateField HeaderText="Shipping To">
-            <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="<%#: Item.Contact.Company %>" />
-            </ItemTemplate>
-        </asp:TemplateField>        
-
-        <asp:TemplateField HeaderText="Address">
-            <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.ShippingId) %>' Text="<%#: Item.Shipping.City %>" />
-            </ItemTemplate>
-        </asp:TemplateField>          
+            <asp:TemplateField HeaderText="Shipping To">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server" OnClick="Unnamed_Click" Text="Details" CommandArgument="<%# Item.OrderId %>"/>
+                    <%--<asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Details", Item.OrderShippings.Select(en => en.Shipping).Where(en => en.isShipping == true).Select(en => en.Company)) %>' Text="<%#: Item.OrderShippings.Select(en => en.Shipping).Where(en => en.isShipping == true).Select(m => m.Company) %>" />--%>
+                </ItemTemplate>
+            </asp:TemplateField>
+                
             <asp:DynamicField DataField="Status" HeaderText="Status" />   
+            <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" /> 
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />         
             <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping" /> 
             <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>                      
         </Columns>     
                 <EditRowStyle CssClass="GridViewEditRow" />   
     </asp:GridView>
+    <div id="Div1" runat="server" class="ContentHead"><h4>Shipping To</h4></div>
+    <asp:GridView runat="server" ID="ShippingsGrid"
+        ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId" AutoGenerateEditButton="true" UpdateMethod="ShippingsGrid_UpdateItem" 
+        SelectMethod="ShippingsGrid_GetData"  CssClass="table table-striped table-bordered" EnableModelValidation="true"
+        AutoGenerateColumns="false" >
+        <Columns>
+            <asp:TemplateField HeaderText="Contact ID">
+              <ItemTemplate>
+                <asp:Label Text="<%# Item.Contact.ContactId %>" 
+                    runat="server" />
+              </ItemTemplate>
+            </asp:TemplateField>  
+            <asp:DynamicField DataField="ShippingId" ReadOnly="true" />
+            <asp:DynamicField DataField="Company"  />
+            <asp:DynamicField DataField="FName"  />
+            <asp:DynamicField DataField="LName"  />
+            <asp:DynamicField DataField="Other1"  />
+            <asp:DynamicField DataField="Other2"  />
+            <asp:DynamicField DataField="Address1"  />
+            <asp:DynamicField DataField="Address2" />
+            <asp:DynamicField DataField="City" />
+            <asp:DynamicField DataField="State" />                 
+            <asp:DynamicField DataField="PostalCode" />                 
+            <asp:DynamicField DataField="Country" />  
+            <asp:DynamicField DataField="PPhone"  />                        
+            <%--<asp:DynamicField DataField="DateCreated" ReadOnly="true"/> --%>           
+        </Columns>
+    </asp:GridView>
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate> 
-    <div id="OperOrderTitle" runat="server" class="ContentHead"><h3>Order Items</h3></div>
+    <div id="OperOrderTitle" runat="server" class="ContentHead"><h4>Order Items</h4></div>
     <asp:GridView ID="OrderDetailList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.OrderDetail" SelectMethod="OpenOrderList_GetData" DataKeyNames="OrderDetailId" 
         CssClass="table table-striped table-bordered" EnableModelValidation="true" >

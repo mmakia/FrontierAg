@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Entity;
 
 namespace FrontierAg.Admin.Orders
 {
@@ -20,7 +21,7 @@ namespace FrontierAg.Admin.Orders
             if (ContactId != null)
             {
                 FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();                
-                return _db.Orders.Where(m => m.Shipping.ContactId == ContactId);                                             
+                return _db.Orders.Include(m => m.OrderShippings.Select(en => en.Shipping)).Where(en => en.ContactId == ContactId);                                             
             }
             return null;
         }

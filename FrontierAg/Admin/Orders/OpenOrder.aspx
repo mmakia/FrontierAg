@@ -4,15 +4,22 @@
     <div id="OpenOrderTitle" runat="server" class="ContentHead"><h3>Open Orders</h3></div>
     <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="11">
-        <Columns>                  
-        <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
-        <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
+        <Columns>
+            <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
+            <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
                      
-        <asp:TemplateField HeaderText="Ordered By">
+            <asp:TemplateField HeaderText="Ordered By">
+                <ItemTemplate>
+                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="<%#: Item.Contact.Company  %>" />
+                </ItemTemplate>
+            </asp:TemplateField>    
+
+            <asp:TemplateField HeaderText="Bill To">
             <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.Shipping.ContactId) %>' Text="<%#: Item.Shipping.Contact.Company %>" />
+                <asp:LinkButton runat="server" OnClick="Unnamed_Click1" Text="Details" CommandArgument="<%# Item.OrderId %>"/>
+                <%--<asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.OrderShippings.Select( en => en.Shipping.ShippingId)) %>' Text="<%#: Item.OrderShippings.Select(w => w.Shipping.City) %>" />--%>
             </ItemTemplate>
-        </asp:TemplateField>    
+            </asp:TemplateField>  
 
             <asp:DynamicField DataField="OtherCharge" HeaderText="Other Charges" />  
             <asp:DynamicField DataField="Discount" HeaderText="Discount" /> 
@@ -20,7 +27,7 @@
 
             <asp:DynamicField DataField="Payment" HeaderText="Payment No." />
             <asp:DynamicField DataField="PaymentDate" HeaderText="Payment Date" />  
-            <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" />  
+             
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
             <asp:DynamicField DataField="Status" HeaderText="Status" />                 
 

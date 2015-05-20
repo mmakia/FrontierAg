@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.AspNet.FriendlyUrls; 
+using Microsoft.AspNet.FriendlyUrls;
+using System.Data.Entity;
 
 namespace FrontierAg.Admin.OrderDetails
 {
@@ -31,7 +32,8 @@ namespace FrontierAg.Admin.OrderDetails
             if (ContactId != null)
             {
                 FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
-                return _db.OrderDetails.Where(m => m.Order.Shipping.ContactId == ContactId);
+                //var my = from r in _db.OrderDetails
+                return _db.OrderDetails.Where(mn => mn.Order.ContactId == ContactId);
             }
             return null;
         }

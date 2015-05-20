@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace FrontierAg.Admin.Orders
 {
@@ -29,7 +30,7 @@ namespace FrontierAg.Admin.Orders
         public IQueryable<Order> OpenOrdersList_GetData()
         {
             ProductContext db = new ProductContext();
-            return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Other || n.Status == Status.PartialShipment || n.Status == Status.Shipped).Include(en => en.Shipping).Include(m => m.Shipping.Contact);
+            return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Other || n.Status == Status.PartialShipment || n.Status == Status.Shipped).Include(en => en.OrderShippings.Select( em => em.Shipping.Contact));
         }
 
         
@@ -58,6 +59,21 @@ namespace FrontierAg.Admin.Orders
                     originalOrder.Status = order.Status;
                     db.SaveChanges();
                 }
+            }
+        }
+
+        protected void Unnamed_Click1(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)(sender);
+            string yourValue = btn.CommandArgument;
+
+            int myOrderId = Int32.Parse(yourValue);
+            using (ProductContext db = new ProductContext())
+            {
+                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.Shipping.isShipping == false).Select(en => en.ShippingId).FirstOrDefault();
+
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Default", 0, myShippingId));
+
             }
         }
     }

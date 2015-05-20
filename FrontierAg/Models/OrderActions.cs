@@ -19,10 +19,10 @@ namespace FrontierAg.Models
         {
             if (OrderId != null)
             {
-                return _db.OrderDetails.Where(m => m.OrderId == OrderId).Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
+                return _db.OrderDetails.Where(m => m.OrderId == OrderId);//.Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
             }
 
-            else return _db.OrderDetails.Include(n => n.Order).Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
+            else return _db.OrderDetails.Include(n => n.Order);//.Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
         }
 
         public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates)

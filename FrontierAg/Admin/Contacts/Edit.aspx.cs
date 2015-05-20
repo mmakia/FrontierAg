@@ -39,7 +39,7 @@ namespace FrontierAg.Contacts
                 {
                     // Save changes here
                     _db.SaveChanges();
-                    Response.Redirect("~/Admin/Contacts");
+                    Response.Redirect("~/Admin/Contacts/Default");
                 }
             }
         }

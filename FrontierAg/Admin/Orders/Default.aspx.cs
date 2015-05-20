@@ -28,7 +28,7 @@ namespace FrontierAg.Admin.Orders
         public IQueryable<Order> OrdersList_GetData() 
         {
             ProductContext db = new ProductContext();
-            return db.Orders.Include(m => m.Shipping.Contact);
+            return db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
         }
 
 

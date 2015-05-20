@@ -35,19 +35,43 @@ namespace FrontierAg.Contacts
 
                     if (item.Type == CType.Customer)
                     {
-                        var item2 = new FrontierAg.Models.Shipping();
-                        //FrontierAg.Models.Contact myContact = _db.Contacts.Where(m => m.ContactId == item.ContactId).FirstOrDefault();
+                        var item2 = new FrontierAg.Models.Shipping();                        
+                        item2.Company = item.Company;
+                        item2.FName = item.FName;
+                        item2.LName = item.LName;
+                        item2.Other1 = "";
+                        item2.Other2 = "";
                         item2.Address1 = item.Address1;
                         item2.Address2 = item.Address2;
                         item2.City = item.City;
                         item2.State = item.State;
                         item2.PostalCode = item.PostalCode;
-                        item2.DateCreated = item.DateCreated;
                         item2.Country = item.Country;
+                        item2.PPhone = item.PPhone;
+                        item2.isShipping = true;
+                        item2.DateCreated = item.DateCreated;                        
                         item2.ContactId = item.ContactId;
-
                         _db.Shippings.Add(item2);
+
+                        var item3 = new FrontierAg.Models.Shipping();
+                        item3.Company = item.Company;
+                        item3.FName = item.FName;
+                        item3.LName = item.LName;
+                        item3.Other1 = "";
+                        item3.Other2 = "";
+                        item3.Address1 = item.Address1;
+                        item3.Address2 = item.Address2;
+                        item3.City = item.City;
+                        item3.State = item.State;
+                        item3.PostalCode = item.PostalCode;
+                        item3.Country = item.Country;
+                        item3.PPhone = item.PPhone;
+                        item3.isShipping = false;
+                        item3.DateCreated = item.DateCreated;
+                        item3.ContactId = item.ContactId;
+                        _db.Shippings.Add(item3);
                     }
+
                         _db.SaveChanges();
                         Response.Redirect("~/Admin/Contacts/Default");           
                     

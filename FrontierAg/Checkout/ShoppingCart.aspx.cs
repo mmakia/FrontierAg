@@ -20,12 +20,13 @@ namespace FrontierAg
 
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
-                
-                decimal cartTotal = 0;
+
+                decimal cartTotal, cartTotalQty = 0;
 
                 cartTotal = usersShoppingCart.GetTotal();
+                cartTotalQty = usersShoppingCart.GetTotalQty();
 
-                if (cartTotal > 0)
+                if (cartTotalQty > 0 || cartTotal > 0)
                 {
                     // Display Total.
                     lblTotal.Text = String.Format("{0:c}", cartTotal);                    

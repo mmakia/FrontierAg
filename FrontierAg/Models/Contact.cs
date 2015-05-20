@@ -24,14 +24,10 @@ namespace FrontierAg.Models
     public class Contact
     {
         [Key]        
-        [ScaffoldColumn(true)]
-        [Display(Name = "Contact ID")]
-        public int ContactId { get; set; }
+        [ScaffoldColumn(false)]        
+        public int ContactId { get; set; }        
 
-        //[Display(Name = "Contact ID")]
-        //public string Contact_Identification { get; set; }
-
-        [Required, StringLength(100)]
+        [Required, StringLength(100)]        
         public string Company { get; set; }
         
         public string LName { get; set; }
@@ -47,17 +43,15 @@ namespace FrontierAg.Models
         public State? State { get; set; }
 
         [DataType(DataType.PostalCode)]
-        public int? PostalCode { get; set; }
+        public String PostalCode { get; set; }
 
         [StringLength(40)]
         public string Country { get; set; }
-
-        [Required(ErrorMessage = "Primary Phone Number is required"), Display(Name = "Primary Phone")]
+        
         [DataType(DataType.PhoneNumber)]
         public string PPhone { get; set; }
-
-        [Required(ErrorMessage = "Type of Phone number is required"), Display(Name = "Phone Type")]
-        public PhoneType PPType { get; set; }
+                
+        public PhoneType? PPType { get; set; }
 
         [Display(Name = "Secondary Phone")]
         public string SPhone { get; set; }
@@ -79,13 +73,17 @@ namespace FrontierAg.Models
         public string Comment { get; set; }
 
         [Display(Name = "Contact Type")]
-        public CType Type { get; set; }        
+        public CType Type { get; set; }
+
+        public bool isHistory { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
 
         public virtual ICollection<Shipping> Shippings { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime DateCreated { get; set; }
+        
     }
 }

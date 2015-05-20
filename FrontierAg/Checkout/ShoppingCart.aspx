@@ -89,7 +89,7 @@
                 <ItemTemplate>
                     <asp:TextBox ID="PurchaseQuantity" CSSClass="form-control InputQty" Width="70" runat="server" Text="<%#: Item.Quantity %>" ></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="PurchaseQuantity"></asp:RequiredFieldValidator> 
-                    <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PurchaseQuantity" />                     
+                    <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PurchaseQuantity" />                  
                 </ItemTemplate>            
         </asp:TemplateField>    
 

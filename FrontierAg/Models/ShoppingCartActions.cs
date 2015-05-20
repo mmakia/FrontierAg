@@ -266,6 +266,18 @@ namespace FrontierAg.Models
             
         }
 
+        public decimal GetTotalQty()
+        {
+            ShoppingCartId = GetCartId();
+            decimal? totalQty = decimal.Zero;
+
+            totalQty = (decimal?)(from cartItems in _db.ShoppingCartItems
+                               where cartItems.CartId == ShoppingCartId
+                               select (int?)cartItems.Quantity).Sum();
+
+            return totalQty ?? decimal.Zero;
+
+        }
         
         public void UpdateItem(string updateCartID, int updateProductID, int quantity,  Decimal PriceOverride)// execute when changing price box or qty 
         {

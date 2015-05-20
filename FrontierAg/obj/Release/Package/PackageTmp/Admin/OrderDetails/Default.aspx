@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Admin.OrderDetails.Default" %>
+<%@ Import Namespace = "System.Data.Entity" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <script type="text/javascript">
         $(function () {            
@@ -47,19 +48,20 @@
                      
         <asp:TemplateField HeaderText="Shipping To">
             <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="<%#: Item.Contact.Company %>" />
+                <asp:LinkButton runat="server" OnClick="Unnamed_Click" Text="Details" CommandArgument="<%# Item.OrderId %>"/>
+                <%--<asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Details", Item.OrderShippings.Select(en => en.Shipping).Where(en => en.isShipping == true).Select(en => en.Company)) %>' Text="<%#: Item.OrderShippings.Select(en => en.Shipping).Where(en => en.isShipping == true).Select(m => m.Company) %>" />--%>
             </ItemTemplate>
         </asp:TemplateField>        
 
         <asp:TemplateField HeaderText="Address">
             <ItemTemplate>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.ShippingId) %>' Text="<%#: Item.Shipping.City %>" />
+                <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.OrderShippings.Select( en => en.Shipping.ShippingId)) %>' Text="<%#: Item.OrderShippings.Select(w => w.Shipping.City) %>" />
             </ItemTemplate>
-        </asp:TemplateField>
-            <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping Charges" />
-            <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>             
-            <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
-            <asp:DynamicField DataField="Status" HeaderText="Status" />                          
+        </asp:TemplateField>          
+            <asp:DynamicField DataField="Status" HeaderText="Status" />   
+            <asp:DynamicField DataField="Comment" HeaderText="Comment" />         
+            <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping" /> 
+            <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>                      
         </Columns>     
                 <EditRowStyle CssClass="GridViewEditRow" />   
     </asp:GridView>

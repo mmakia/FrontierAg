@@ -28,10 +28,7 @@
                 <asp:Label Text="<%# Item.Product.ProductName %>" 
                     runat="server" />
               </ItemTemplate>
-            </asp:TemplateField>   
-               
-            <asp:DynamicField DataField="DateCreated" ReadOnly="True"/>     
-            
+            </asp:TemplateField>           
         </Columns>
     </asp:GridView>
         <div class="row">

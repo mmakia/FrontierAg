@@ -149,41 +149,42 @@
             </ItemTemplate>
         </asp:FormView>
 
+
+
         <asp:FormView runat="server"
-            ItemType="FrontierAg.Models.Contact" DataKeyNames="ContactId"
+            ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId"
             SelectMethod="GetItem2"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
             <EmptyDataTemplate>
-                Cannot find the Contact with ContactId <%: Request.QueryString["ContactId"] %>
+                Cannot find the Shipping with ShippingId <%: Request.QueryString["ShippingId"] %>
             </EmptyDataTemplate>
             <ItemTemplate>
                 <fieldset class="form-horizontal">
-                    <legend>ShippingTo Customer</legend>
-							
-							<div class="row">
-								<div class="col-sm-2 text-right">
+                    <legend>Shipping Address</legend>	
+                    <div class="row">
+							<div class="col-sm-2 text-right">
 									<strong>Company</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="Company" ID="DynamicControl2" Mode="ReadOnly" />
 								</div>
 							</div>
-							<div class="row">
+                            <div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>LName</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="LName" ID="DynamicControl1" Mode="ReadOnly" />
 								</div>
-							</div>
-							<div class="row">
+							</div>			
+                            <div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>FName</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="FName" ID="DynamicControl3" Mode="ReadOnly" />
 								</div>
-							</div>
+							</div>			
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>Address1</strong>
@@ -232,45 +233,9 @@
 									<asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Primary Phone</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="PPhone" ID="PPhone" Mode="ReadOnly" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Phone Type</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="PPType" ID="PPType" Mode="ReadOnly" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Secondary Phone</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="SPhone" ID="SPhone" Mode="ReadOnly" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Secondary Phone Type</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="SPType" ID="SPType" Mode="ReadOnly" />
-								</div>
-							</div>
-							
-                 	<div class="row">
-					  &nbsp;
-					</div>					
                 </fieldset>
             </ItemTemplate>
-        </asp:FormView>
+        </asp:FormView>      
 
     <asp:FormView runat="server"
             ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId"
@@ -281,7 +246,31 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                 <fieldset class="form-horizontal">
-                    <legend>Shipping Address</legend>							
+                    <legend>Billing Address</legend>	
+                    <div class="row">
+							<div class="col-sm-2 text-right">
+									<strong>Company</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="Company" ID="DynamicControl2" Mode="ReadOnly" />
+								</div>
+							</div>
+                            <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>LName</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="LName" ID="DynamicControl1" Mode="ReadOnly" />
+								</div>
+							</div>			
+                            <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>FName</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="FName" ID="DynamicControl3" Mode="ReadOnly" />
+								</div>
+							</div>									
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>Address1</strong>

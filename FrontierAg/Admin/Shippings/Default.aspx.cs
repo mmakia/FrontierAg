@@ -9,6 +9,7 @@ using FrontierAg.Models;
 using System.Web.DynamicData;
 using System.Data.Entity.Infrastructure;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace FrontierAg.Admin.Shippings
 {
@@ -38,14 +39,20 @@ namespace FrontierAg.Admin.Shippings
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<FrontierAg.Models.Shipping> ShippingsGrid_GetData([FriendlyUrlSegmentsAttribute(0)]int? ContactId)
+        public IQueryable<FrontierAg.Models.Shipping> ShippingsGrid_GetData([FriendlyUrlSegmentsAttribute(0)]int? ContactId, [FriendlyUrlSegmentsAttribute(1)]int? ShippingId) 
         {
-            if (ContactId != null)
+            if( ContactId == 0 && ShippingId != null)
             {
-                return _db.Shippings.Where(n => n.ContactId == ContactId).Include(m => m.Contact);//////////
+                return _db.Shippings.Where(n => n.ShippingId == ShippingId);//.Include(m => m.Contact);//////////
             }
 
-            else return _db.Shippings.Include(m => m.Contact);
+            if (ContactId == null)
+            {
+                return _db.Shippings.Include(m => m.Contact);
+            }              
+
+
+            else return _db.Shippings.Where(n => n.ContactId == ContactId && n.isHistory == false).Include(m => m.Contact);//////////
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
@@ -85,6 +92,12 @@ namespace FrontierAg.Admin.Shippings
                       String.Format("Item with id {0} no longer exists in the database.", ShippingId));
                 }
             }
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+             Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping2/", int.Parse(segments[0])));            
         }  
         
     }

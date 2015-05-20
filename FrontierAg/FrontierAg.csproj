@@ -210,6 +210,8 @@
     <Content Include="Admin\Prices\AddPrice.aspx" />
     <Content Include="Admin\Products\AddProduct.aspx" />
     <Content Include="Admin\Shippings\AddShipping.aspx" />
+    <Content Include="Admin\Shippings\AddShipping2.aspx" />
+    <Content Include="Admin\Shippings\AddShipping3.aspx" />
     <Content Include="Admin\Shippings\Default.aspx" />
     <Content Include="App_Data\ErrorLog.txt" />
     <Content Include="App_Readme\Elmah.txt" />
@@ -648,6 +650,20 @@
     <Compile Include="Admin\Shippings\AddShipping.aspx.designer.cs">
       <DependentUpon>AddShipping.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Shippings\AddShipping2.aspx.cs">
+      <DependentUpon>AddShipping2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Shippings\AddShipping2.aspx.designer.cs">
+      <DependentUpon>AddShipping2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Shippings\AddShipping3.aspx.cs">
+      <DependentUpon>AddShipping3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Shippings\AddShipping3.aspx.designer.cs">
+      <DependentUpon>AddShipping3.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Shippings\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -960,6 +976,42 @@
     <Compile Include="Migrations\201505151358507_ConnectingOrderContact.Designer.cs">
       <DependentUpon>201505151358507_ConnectingOrderContact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505152026261_AfterEntering1stCustomer.cs" />
+    <Compile Include="Migrations\201505152026261_AfterEntering1stCustomer.Designer.cs">
+      <DependentUpon>201505152026261_AfterEntering1stCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505181258250_MadePostalCodeString.cs" />
+    <Compile Include="Migrations\201505181258250_MadePostalCodeString.Designer.cs">
+      <DependentUpon>201505181258250_MadePostalCodeString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505181303134_MadePostalCodeString2.cs" />
+    <Compile Include="Migrations\201505181303134_MadePostalCodeString2.Designer.cs">
+      <DependentUpon>201505181303134_MadePostalCodeString2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505181329597_Other12ToContact.cs" />
+    <Compile Include="Migrations\201505181329597_Other12ToContact.Designer.cs">
+      <DependentUpon>201505181329597_Other12ToContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505181349519_AddingNamesToShipping.cs" />
+    <Compile Include="Migrations\201505181349519_AddingNamesToShipping.Designer.cs">
+      <DependentUpon>201505181349519_AddingNamesToShipping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505181641522_AddingSTypeToShipping.cs" />
+    <Compile Include="Migrations\201505181641522_AddingSTypeToShipping.Designer.cs">
+      <DependentUpon>201505181641522_AddingSTypeToShipping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505191436345_AddingOrderShipping2.cs" />
+    <Compile Include="Migrations\201505191436345_AddingOrderShipping2.Designer.cs">
+      <DependentUpon>201505191436345_AddingOrderShipping2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505191437551_removeShippingIdColumnFromOrder.cs" />
+    <Compile Include="Migrations\201505191437551_removeShippingIdColumnFromOrder.Designer.cs">
+      <DependentUpon>201505191437551_removeShippingIdColumnFromOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505191851419_addingisShipping.cs" />
+    <Compile Include="Migrations\201505191851419_addingisShipping.Designer.cs">
+      <DependentUpon>201505191851419_addingisShipping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ExceptionUtility.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.Designer.cs">
@@ -1089,6 +1141,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderActions.cs" />
     <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\OrderShipping.cs" />
     <Compile Include="Models\PackCharge.cs" />
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\Product.cs" />
@@ -1287,6 +1340,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505151358507_ConnectingOrderContact.resx">
       <DependentUpon>201505151358507_ConnectingOrderContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505152026261_AfterEntering1stCustomer.resx">
+      <DependentUpon>201505152026261_AfterEntering1stCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505181258250_MadePostalCodeString.resx">
+      <DependentUpon>201505181258250_MadePostalCodeString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505181303134_MadePostalCodeString2.resx">
+      <DependentUpon>201505181303134_MadePostalCodeString2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505181329597_Other12ToContact.resx">
+      <DependentUpon>201505181329597_Other12ToContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505181349519_AddingNamesToShipping.resx">
+      <DependentUpon>201505181349519_AddingNamesToShipping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505181641522_AddingSTypeToShipping.resx">
+      <DependentUpon>201505181641522_AddingSTypeToShipping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505191436345_AddingOrderShipping2.resx">
+      <DependentUpon>201505191436345_AddingOrderShipping2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505191437551_removeShippingIdColumnFromOrder.resx">
+      <DependentUpon>201505191437551_removeShippingIdColumnFromOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505191851419_addingisShipping.resx">
+      <DependentUpon>201505191851419_addingisShipping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

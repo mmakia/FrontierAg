@@ -28,9 +28,7 @@
                     runat="server" />
               </ItemTemplate>
             </asp:TemplateField>   
-               --%>
-            <asp:DynamicField DataField="DateCreated" ReadOnly="True"/>     
-            
+               --%>           
         </Columns>
     </asp:GridView>
         <div class="row">
@@ -38,7 +36,7 @@
 					</div>
 					<div class="form-group">
 						<div>
-							<asp:button id="backButton" runat="server" text="Back" OnClick="Back_Click" CssClass="btn btn-warning" />
+							<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
 						</div>
 					</div>
     </div>
