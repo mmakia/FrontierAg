@@ -48,7 +48,7 @@ namespace FrontierAg.Contacts
                         item2.PostalCode = item.PostalCode;
                         item2.Country = item.Country;
                         item2.PPhone = item.PPhone;
-                        item2.isShipping = true;
+                        item2.SType = SType.Shipping;
                         item2.DateCreated = item.DateCreated;                        
                         item2.ContactId = item.ContactId;
                         _db.Shippings.Add(item2);
@@ -66,7 +66,7 @@ namespace FrontierAg.Contacts
                         item3.PostalCode = item.PostalCode;
                         item3.Country = item.Country;
                         item3.PPhone = item.PPhone;
-                        item3.isShipping = false;
+                        item3.SType = SType.Billing;
                         item3.DateCreated = item.DateCreated;
                         item3.ContactId = item.ContactId;
                         _db.Shippings.Add(item3);

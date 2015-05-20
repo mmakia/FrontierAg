@@ -237,7 +237,7 @@ namespace FrontierAg.Checkout
                 myShipping.ContactId = myExistingShipping.ContactId;
                 myShipping.PPhone = myExistingShipping.PPhone;
                 myShipping.isHistory = true;
-                myShipping.isShipping = true;
+                myShipping.SType = SType.Shipping;
                 myShipping.DateCreated = System.DateTime.Now;
                 _db.Shippings.Add(myShipping);
 
@@ -266,7 +266,7 @@ namespace FrontierAg.Checkout
                 myBilling.ContactId = myExistingBilling.ContactId;
                 myBilling.PPhone = myExistingBilling.PPhone;
                 myBilling.isHistory = true;
-                myBilling.isShipping = false;
+                myBilling.SType = SType.Billing;
                 myBilling.DateCreated = System.DateTime.Now;
                 _db.Shippings.Add(myBilling);
 

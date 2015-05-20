@@ -7,6 +7,10 @@ using System.Web;
 
 namespace FrontierAg.Models
 {    
+    public enum SType
+    {
+        Shipping, Billing, Other
+    }
     public class Shipping
     {
         
@@ -37,9 +41,9 @@ namespace FrontierAg.Models
         public string Country { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        public string PPhone { get; set; }
+        public string PPhone { get; set; }        
 
-        public bool isShipping { get; set; }
+        public SType SType { get; set; }
 
         public bool isHistory { get; set; }
 

@@ -1012,6 +1012,10 @@
     <Compile Include="Migrations\201505191851419_addingisShipping.Designer.cs">
       <DependentUpon>201505191851419_addingisShipping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505201529044_addingSType.cs" />
+    <Compile Include="Migrations\201505201529044_addingSType.Designer.cs">
+      <DependentUpon>201505201529044_addingSType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ExceptionUtility.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.Designer.cs">
@@ -1367,6 +1371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505191851419_addingisShipping.resx">
       <DependentUpon>201505191851419_addingisShipping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505201529044_addingSType.resx">
+      <DependentUpon>201505201529044_addingSType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

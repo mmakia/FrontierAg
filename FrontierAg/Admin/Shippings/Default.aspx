@@ -10,7 +10,7 @@
         <asp:ValidationSummary ShowModelStateErrors="true" runat="server" />
         <asp:GridView runat="server" ID="ShippingsGrid"
         ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId" AutoGenerateEditButton="true" UpdateMethod="ShippingsGrid_UpdateItem" 
-        SelectMethod="ShippingsGrid_GetData"  CssClass="table table-striped table-bordered" EnableModelValidation="true"
+        SelectMethod="ShippingsGrid_GetData"  CssClass="table table-striped table-bordered" EnableModelValidation="true" DeleteMethod="ShippingsGrid_DeleteItem"
         AutoGenerateColumns="false" >
         <Columns>
             <asp:TemplateField HeaderText="Contact ID">
@@ -32,11 +32,7 @@
             <asp:DynamicField DataField="PostalCode" />                 
             <asp:DynamicField DataField="Country" />  
             <asp:DynamicField DataField="PPhone"  />   
-            <asp:TemplateField HeaderText="Type">
-              <ItemTemplate >
-                  <%#:  Item.isShipping != true ? "Shipping" : "Billing" %>                             
-              </ItemTemplate>
-            </asp:TemplateField>                            
+            <asp:DynamicField DataField="SType" />                                
         </Columns>
         </asp:GridView>
         <div class="row">

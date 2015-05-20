@@ -44,15 +44,7 @@
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
         <Columns>                  
             <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
-            <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>              
-                     
-            <asp:TemplateField HeaderText="Shipping To">
-                <ItemTemplate>
-                    <asp:LinkButton runat="server" OnClick="Unnamed_Click" Text="Details" CommandArgument="<%# Item.OrderId %>"/>
-                    <%--<asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Details", Item.OrderShippings.Select(en => en.Shipping).Where(en => en.isShipping == true).Select(en => en.Company)) %>' Text="<%#: Item.OrderShippings.Select(en => en.Shipping).Where(en => en.isShipping == true).Select(m => m.Company) %>" />--%>
-                </ItemTemplate>
-            </asp:TemplateField>
-                
+            <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
             <asp:DynamicField DataField="Status" HeaderText="Status" />   
             <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" /> 
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />         

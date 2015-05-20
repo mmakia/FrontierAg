@@ -8,13 +8,14 @@ using System.Web.UI.WebControls;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using Microsoft.AspNet.FriendlyUrls;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 
 namespace FrontierAg.Admin.Orders
 {
     public partial class OpenOrder : System.Web.UI.Page
     {
         Decimal PreTotal;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -70,11 +71,13 @@ namespace FrontierAg.Admin.Orders
             int myOrderId = Int32.Parse(yourValue);
             using (ProductContext db = new ProductContext())
             {
-                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.Shipping.isShipping == false).Select(en => en.ShippingId).FirstOrDefault();
+                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.Shipping.SType == SType.Billing).Select(en => en.ShippingId).FirstOrDefault();
 
-                Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Default", 0, myShippingId));
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Default",0, myShippingId));
 
             }
         }
+        
+        
     }
 }
