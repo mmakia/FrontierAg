@@ -48,7 +48,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                       
                     </button>
                     <a class="navbar-brand" runat="server" href="~/Default">Frontier Agricultural Sciences</a>
                 </div>
@@ -56,20 +56,18 @@
                     <ul class="nav navbar-nav">                        
                         <li><a runat="server" href="~/ProductList">Products</a></li>
                         <li><a runat="server" href="~/Checkout/ShoppingCart" ID="cartCount" visible="false">&nbsp;</a></li>
-                        <li><a runat="server" href="~/Admin/Orders/OpenOrder" id="OpenOrderLink" visible="false" >Open Orders</a></li>
+                        <li><a runat="server" href="~/Admin/Orders/OpenOrder" id="OpenOrderLink" visible="false" >Orders</a></li>
                         <li><a runat="server" href="~/Admin/AdminPage" id="adminLink" visible="false" >Admin</a></li>                        
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                
+                            <ul class="nav navbar-nav navbar-right">                                
                                 <li><a runat="server" href="~/Account/Login">Log in</a></li>
                             </ul>
-                        </AnonymousTemplate>                        
-
+                        </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%:Context.User.Identity.GetUserName()  %>!</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Default" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>

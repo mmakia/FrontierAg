@@ -13,7 +13,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
+  margin: 0;  
 }
 article,
 aside,
@@ -4878,7 +4878,7 @@ a.badge:focus {
 .jumbotron .container {
   max-width: 100%;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1500px) {
   .jumbotron {
     padding: 48px 0;
   }

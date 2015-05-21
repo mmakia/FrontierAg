@@ -91,7 +91,7 @@
         <Columns>      
             <asp:BoundField DataField="ProductId" HeaderText="Product ID" />   
 
-        <asp:TemplateField HeaderText="Product Name">
+        <asp:TemplateField HeaderText="Product No">
               <ItemTemplate>
                 <asp:Label id="ProductNo" Text="<%# Item.Product.ProductNo %>" runat="server" />
               </ItemTemplate>
