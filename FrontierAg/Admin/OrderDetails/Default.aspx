@@ -43,7 +43,7 @@
             <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
         <Columns>                  
-            <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
+            <%--<asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        --%>
             <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
             <asp:DynamicField DataField="Status" HeaderText="Status" />   
             <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" /> 
@@ -65,7 +65,7 @@
                     runat="server" />
               </ItemTemplate>
             </asp:TemplateField>  
-            <asp:DynamicField DataField="ShippingId" ReadOnly="true" />
+            <%--<asp:DynamicField DataField="ShippingId" ReadOnly="true" />--%>
             <asp:DynamicField DataField="Company"  />
             <asp:DynamicField DataField="FName"  />
             <asp:DynamicField DataField="LName"  />
@@ -89,7 +89,7 @@
         CssClass="table table-striped table-bordered" EnableModelValidation="true" >
 
         <Columns>      
-            <asp:BoundField DataField="ProductId" HeaderText="Product ID" />   
+            <%--<asp:BoundField DataField="ProductId" HeaderText="Product ID" />   --%>
 
         <asp:TemplateField HeaderText="Product No">
               <ItemTemplate>
@@ -126,16 +126,13 @@
                 <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyCancelledBx" />                     
               </ItemTemplate>
         </asp:TemplateField>
-
+        <asp:BoundField DataField="PriceOverride" HeaderText="Price"/>
         <asp:TemplateField HeaderText="Comment">
               <ItemTemplate>
                 <asp:TextBox id="CommentBx" Text="<%# Item.Comment %>" runat="server" CSSClass="form-control InputCmt" />                               
               </ItemTemplate>
-        </asp:TemplateField>
-            
-        <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" />
-
-        </Columns>        
+        </asp:TemplateField>            
+       </Columns>        
     </asp:GridView>
     <div>        
 		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						

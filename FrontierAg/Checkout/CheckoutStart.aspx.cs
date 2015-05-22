@@ -34,7 +34,7 @@ namespace FrontierAg.Checkout
                 return null;
             }
 
-            return _db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Shipping && n.isHistory == false);
+            return _db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Billing && n.isHistory == false);
         }
 
         public IQueryable<FrontierAg.Models.Shipping> GetData([FriendlyUrlSegmentsAttribute(0)] int? ContactId, [FriendlyUrlSegmentsAttribute(1)] int? ShippingId)

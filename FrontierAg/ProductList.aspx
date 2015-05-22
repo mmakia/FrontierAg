@@ -4,8 +4,8 @@
     <section>
         <div>
             <hgroup>
-                <h2><%: Page.Title %></h2>
-            </hgroup>            
+                <h3><%: Page.Title %></h3>
+            </hgroup>                                      
             <asp:TextBox ID="TextBox1" runat="server" CSSClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False"></asp:TextBox>
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" ClientIDMode="Static" style="display:none"/>
             &nbsp;
@@ -28,32 +28,18 @@
                     </tr>
                 </GroupTemplate>
                 <ItemTemplate>
-                    <td runat="server">
-                        
-                        <table>     
-                                                 
+                    <td runat="server">                        
+                        <table>                                                 
                             <tr>
-                                <td><asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/ProductDetails", Item.ProductId) %>' Text="<%#:Item.ProductName%>"/> 
-                                    <%--<a href="ProductDetails.aspx?productID=<%#:Item.ProductId%>">
-                                        <span>
-                                            <%#:Item.ProductName%>
-                                        </span>
-                                    </a>--%>
+                                <td><asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/ProductDetails", Item.ProductId) %>' Text="<%#:Item.ProductName%>"/>                                     
                                     <br />
                                     <span>
                                         <b>Product#: </b><%#:String.Format("{0:c}", Item.ProductNo)%>
                                     </span>
                                     <br />
                                     <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/AddToCart", Item.ProductId) %>' Text="Add To Cart"/> 
-                                    <%--<a href="AddToCart.aspx?productID=<%#:Item.ProductId %>">                
-                                        <span class="ProductListItem">
-                                            <b>Add To Cart<b> 
-                                        </span>           
-                                    </a>--%>
-
                                 </td>
-                            </tr>
-                            
+                            </tr>                            
                             <tr>
                                 <td>&nbsp;</td>
                             </tr>
@@ -78,7 +64,7 @@
                         </tbody>
                     </table>
                 </LayoutTemplate>
-            </asp:ListView>
+            </asp:ListView>                    
                 </div>
         
     </section>    
@@ -88,9 +74,7 @@
             $('.form-control').on('focusout', function () {
                 button.click();
             });
-            $('.form-control').on('enter', function () {
-                button.click();
-            });
+            
         });
     </script>
 </asp:Content>

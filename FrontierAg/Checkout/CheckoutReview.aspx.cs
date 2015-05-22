@@ -286,7 +286,8 @@ namespace FrontierAg.Checkout
                     myOrderDetail.QtyShipped = 0;
                     myOrderDetail.QtyCancelled = 0;
                     myOrderDetail.DateCreated = myOrder.OrderDate;
-                    myOrderDetail.UnitPrice = cartItem.ItemPrice;
+                    myOrderDetail.UnitPrice = cartItem.OriginalPrice;//from c in _db.Products//_db.Products.Where(m => m..Prices.Where(en => en.PriceId == en.)
+                    myOrderDetail.PriceOverride = cartItem.ItemPrice;
 
                     // Add product to DB.
                     _db.OrderDetails.Add(myOrderDetail);
