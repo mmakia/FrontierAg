@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -27,11 +28,14 @@ namespace FrontierAg.Models
         [ScaffoldColumn(false)]        
         public int ContactId { get; set; }        
 
+        [ReadOnly(true)]
         [Required, StringLength(100)]        
         public string Company { get; set; }
-        
+
+        [ReadOnly(true)]
         public string LName { get; set; }
-        
+
+        [ReadOnly(true)]
         public string FName { get; set; }        
 
         public string Address1 { get; set; }
