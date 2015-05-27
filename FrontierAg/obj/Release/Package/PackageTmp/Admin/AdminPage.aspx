@@ -21,7 +21,7 @@
         <tr>       
             
             <td>
-                <asp:Button ID="ContactsBtn" runat="server" Text="Contacts Shipping Orders Items" OnClick="ContactsBtn_Click" Width="300px" CssClass="btn btn-warning" />
+                <asp:Button ID="ContactsBtn" runat="server" Text="Contacts Addresses Orders Items" OnClick="ContactsBtn_Click" Width="300px" CssClass="btn btn-warning" />
             </td>
             </tr>
         <tr> 

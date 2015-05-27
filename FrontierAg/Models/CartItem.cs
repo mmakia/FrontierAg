@@ -21,6 +21,8 @@ namespace FrontierAg.Models
 
         public Decimal Charge { get; set; }
 
+        public Unit Unit { get; set; }
+
         public System.DateTime DateCreated { get; set; }
         
         public int ProductId { get; set; }

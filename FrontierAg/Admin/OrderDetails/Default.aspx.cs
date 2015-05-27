@@ -56,6 +56,7 @@ namespace FrontierAg.Admin.OrderDetails
                     
                     originalOrder.ShipCharge = order.ShipCharge;
                     originalOrder.Comment = order.Comment;
+                    originalOrder.Tracking = order.Tracking;
                     originalOrder.Status = order.Status;
                     
                     var AllOrderItems = db.OrderDetails.Where(en => en.OrderId == order.OrderId);
@@ -68,17 +69,20 @@ namespace FrontierAg.Admin.OrderDetails
                         }
                     }
 
-                    if (isRemaining == 0)///////////////////order.Status == Status.Shipped &&
+                    if (isRemaining == 0)///////////////////order.Status == Status.Shipped &&//When to updat the total? when no more QTYremaining ? or when we shipp an item?
                     {
-                        //valuse of cancelled items
-                        Decimal itemsValue = 0;                         
+                        //valuse of items
+                        Decimal itemsValue = 0, itemCharges;                         
                         foreach(var a in AllOrderItems)
                         {
-                            itemsValue = itemsValue + (a.QtyShipped * a.UnitPrice);
+                            OrderActions actions = new OrderActions();
+                            itemCharges = actions.GetChargeFromPackCharges(a.ProductId, a.QtyShipped);
+
+                            itemsValue = itemsValue + (a.QtyShipped * a.UnitPrice) + itemCharges;
                         }
-                        originalOrder.Total = itemsValue + originalOrder.OtherCharge - originalOrder.Discount + 5 + order.ShipCharge;                        
+                        originalOrder.Total = itemsValue + originalOrder.OtherCharge - originalOrder.Discount + originalOrder.PFee + order.ShipCharge;                        
                     }
-                    db.SaveChanges();                
+                    db.SaveChanges();                    
                 }
             }
         }
@@ -140,6 +144,8 @@ namespace FrontierAg.Admin.OrderDetails
 
                 MyOrderActions.UpdateOrderDetailDatabase(OrderId, ODUpdates);
                 OrderDetailList.DataBind();
+                //OpenOrdersList_GetData(1);
+                //OpenOrdersList2.DataBind();
                 return MyOrderActions.GetOrderDetailsItems(OrderId);
             }
         }
@@ -201,7 +207,24 @@ namespace FrontierAg.Admin.OrderDetails
 
             else return null;// _db.OrderShippings.Where(n => n.OrderId == OrderId && n.Shipping.isShipping == true).Select(en => en.Shipping);//.Include(m => m.Contact);//////////
         }
-
+        public void ShippingsGrid_UpdateItem(int ShippingId)
+        {
+            FrontierAg.Models.Shipping item = null;
+            item = _db.Shippings.Find(ShippingId);
+            // Load the item here, e.g. item = MyDataLayer.Find(id);
+            if (item == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", ShippingId));
+                return;
+            }
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here, e.g. MyDataLayer.SaveChanges();
+                _db.SaveChanges();
+            }
+        }
                
 
     }

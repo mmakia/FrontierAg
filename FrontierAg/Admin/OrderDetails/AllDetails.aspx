@@ -25,8 +25,8 @@
             </asp:TemplateField>  
             <asp:DynamicField DataField="QtyCancelled" HeaderText="QtyCancelled" />
              
-            <asp:DynamicField DataField="UnitPrice" HeaderText="Original Price" />
-            <asp:DynamicField DataField="PriceOverride" HeaderText="Price Override" />                         
+            <asp:DynamicField DataField="UnitPrice" HeaderText="OriginalPrice" />
+            <asp:DynamicField DataField="PriceOverride" HeaderText="FinalPrice" />                         
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />
         </Columns>        
     </asp:GridView>

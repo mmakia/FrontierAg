@@ -6,7 +6,7 @@
         <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />
     </p>
-<asp:ListView id="ListView3" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData2">
+<asp:ListView id="ListView2" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData2">
             <EmptyDataTemplate></EmptyDataTemplate>
             <LayoutTemplate>
                 <table class="table showing2">
@@ -24,6 +24,12 @@
                             <th>
 								<asp:LinkButton Text="FName" CommandName="Sort" CommandArgument="FName" runat="Server" />
 							</th>
+                            <th>
+								<asp:LinkButton Text="Other1" CommandName="Sort" CommandArgument="Other1" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Other2" CommandName="Sort" CommandArgument="Other2" runat="Server" />
+							</th>                            
                             <th>
 								<asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
 							</th>
@@ -64,6 +70,12 @@
                             <td>
 								<asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
 							</td>
+                     <td>
+								<asp:DynamicControl runat="server" DataField="Other1" ID="Other1" Mode="ReadOnly" />
+							</td>
+                            <td>
+								<asp:DynamicControl runat="server" DataField="Other2" ID="Other2" Mode="ReadOnly" />
+							</td>
                             <td>
 								<asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
 							</td>
@@ -94,7 +106,7 @@
     <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />
     </p>
-<asp:ListView id="ListView2" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData">
+<asp:ListView id="ListView3" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData3">
             <EmptyDataTemplate></EmptyDataTemplate>
             <LayoutTemplate>
                 <table class="table showing3">
@@ -111,6 +123,12 @@
 							</th>
                             <th>
 								<asp:LinkButton Text="FName" CommandName="Sort" CommandArgument="FName" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Other1" CommandName="Sort" CommandArgument="Other1" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Other2" CommandName="Sort" CommandArgument="Other2" runat="Server" />
 							</th>
                             <th>
 								<asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
@@ -152,6 +170,12 @@
                         <td>
 							<asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
 						</td>
+                     <td>
+								<asp:DynamicControl runat="server" DataField="Other1" ID="Other1" Mode="ReadOnly" />
+							</td>
+                            <td>
+								<asp:DynamicControl runat="server" DataField="Other2" ID="Other2" Mode="ReadOnly" />
+							</td>
 						<td>
 							<asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
 						</td>

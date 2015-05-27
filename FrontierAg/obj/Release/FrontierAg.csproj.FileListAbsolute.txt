@@ -108,3 +108,5 @@ C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.removeShippingIdColumnFromOrder.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.addingisShipping.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.addingSType.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.addingUnit.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.addingPFee.resources

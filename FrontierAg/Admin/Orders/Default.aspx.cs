@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
+using System.Web.ModelBinding;
 
 namespace FrontierAg.Admin.Orders
 {
@@ -25,10 +26,16 @@ namespace FrontierAg.Admin.Orders
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<Order> OrdersList_GetData() 
+        public IQueryable<Order> OrdersList_GetData([Control] Status? Status) 
         {
             ProductContext db = new ProductContext();
-            return db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
+            var query = db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
+
+            if (Status != null)
+            {
+                query = query.Where(en => en.Status == Status);
+            }
+            return query;
         }
 
 

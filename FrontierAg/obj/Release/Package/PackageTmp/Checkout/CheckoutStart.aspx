@@ -6,15 +6,15 @@
         <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />
     </p>
-<asp:ListView id="ListView3" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData2">
+<asp:ListView id="ListView2" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData2">
             <EmptyDataTemplate></EmptyDataTemplate>
             <LayoutTemplate>
                 <table class="table showing2">
                     <thead>
                         <tr>
-                            <th>
+                            <%--<th>
 								<asp:LinkButton Text="ShippingId" CommandName="Sort" CommandArgument="ShippingId" runat="Server" />
-							</th>
+							</th>--%>
                             <th>
 								<asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="Company" runat="Server" />
 							</th>
@@ -24,6 +24,12 @@
                             <th>
 								<asp:LinkButton Text="FName" CommandName="Sort" CommandArgument="FName" runat="Server" />
 							</th>
+                            <th>
+								<asp:LinkButton Text="Other1" CommandName="Sort" CommandArgument="Other1" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Other2" CommandName="Sort" CommandArgument="Other2" runat="Server" />
+							</th>                            
                             <th>
 								<asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
 							</th>
@@ -52,9 +58,9 @@
             </LayoutTemplate>
             <ItemTemplate>
                  <tr>
-							<td>
+							<%--<td>
 								<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
-							</td>
+							</td>--%>
 							<td>
 								<asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
 							</td>
@@ -64,8 +70,14 @@
                             <td>
 								<asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
 							</td>
+                     <td>
+								<asp:DynamicControl runat="server" DataField="Other1" ID="Other1" Mode="ReadOnly" />
+							</td>
                             <td>
-								<asp:DynamicControl runat="server" DataField="Address1" ID="DynamicControl3" Mode="ReadOnly" />
+								<asp:DynamicControl runat="server" DataField="Other2" ID="Other2" Mode="ReadOnly" />
+							</td>
+                            <td>
+								<asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
 							</td>
 							<td>
 								<asp:DynamicControl runat="server" DataField="Address2" ID="Address2" Mode="ReadOnly" />
@@ -81,10 +93,7 @@
 							</td>
 							<td>
 								<asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
-							</td>
-							<td>
-								<%#: Item.Contact != null ? Item.Contact.Company : "" %>
-							</td>
+							</td>							
                     <td>
                         <asp:LinkButton runat="server" Onclick="Unnamed_Click" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
@@ -97,15 +106,15 @@
     <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />
     </p>
-<asp:ListView id="ListView2" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData">
+<asp:ListView id="ListView3" runat="server"  DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping"  SelectMethod="GetData3">
             <EmptyDataTemplate></EmptyDataTemplate>
             <LayoutTemplate>
                 <table class="table showing3">
                     <thead>
                         <tr>
-                            <th>
+                            <%--<th>
 								<asp:LinkButton Text="ShippingId" CommandName="Sort" CommandArgument="ShippingId" runat="Server" />
-							</th>
+							</th>--%>
                             <th>
 								<asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="Company" runat="Server" />
 							</th>
@@ -114,6 +123,12 @@
 							</th>
                             <th>
 								<asp:LinkButton Text="FName" CommandName="Sort" CommandArgument="FName" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Other1" CommandName="Sort" CommandArgument="Other1" runat="Server" />
+							</th>
+                            <th>
+								<asp:LinkButton Text="Other2" CommandName="Sort" CommandArgument="Other2" runat="Server" />
 							</th>
                             <th>
 								<asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
@@ -143,9 +158,9 @@
             </LayoutTemplate>
             <ItemTemplate>
                  <tr>
-						<td>
+						<%--<td>
 							<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
-						</td>
+						</td>--%>
                         <td>
 							<asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
 						</td>
@@ -155,6 +170,12 @@
                         <td>
 							<asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
 						</td>
+                     <td>
+								<asp:DynamicControl runat="server" DataField="Other1" ID="Other1" Mode="ReadOnly" />
+							</td>
+                            <td>
+								<asp:DynamicControl runat="server" DataField="Other2" ID="Other2" Mode="ReadOnly" />
+							</td>
 						<td>
 							<asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
 						</td>
@@ -173,9 +194,7 @@
 						<td>
 							<asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
 						</td>
-						<td>
-							<%#: Item.Contact != null ? Item.Contact.Company : "" %>
-						</td>
+						
                     <td>
                         <asp:LinkButton runat="server" Onclick="Unnamed_Click1" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
@@ -265,9 +284,9 @@
 							<td>
 								<asp:DynamicControl runat="server" DataField="Type" ID="Type" Mode="ReadOnly" />
 							</td>
-							<td>
+							<%--<td>
 								<asp:DynamicControl runat="server" DataField="DateCreated" ID="DateCreated" Mode="ReadOnly" />
-							</td>
+							</td>--%>
                     
                     <td>                    
                         <asp:HyperLink  runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutStart", Item.ContactId) %>' Text="Select" /> | 

@@ -96,11 +96,58 @@ namespace FrontierAg.Models
                 }
             }
         }
-        public IQueryable<OrderDetail> GetOrderDetailsItems(int OrderId)
+        public IQueryable<OrderDetail> GetOrderDetailsItems(int OrderId)//
         {
             
 
             return _db.OrderDetails.Where(c => c.OrderId == OrderId);
+        }
+
+        public decimal GetChargeFromPackCharges(int productId, int qty)//1-check if exist in packcharge table 2-check if qty is within limit 3- then calculate packCharge for multipule boxes
+        {
+            var myPackageCharge = _db.PackCharges.Where(en => en.ProductId == productId).FirstOrDefault();//1
+            if (myPackageCharge == null)
+            {
+                return 0;
+            }
+            else
+            {
+                var myItem = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();//2
+
+                //found the value
+                if (myItem != null)
+                {
+                    return myItem.PackChargeAmt;
+                }
+
+                //3-value not found, will pack QTY in multipule boxes
+                Decimal totalCharge = 0;
+
+                //max qty fit in a box 
+                var maxQtyInBox = _db.PackCharges.Where(en => en.ProductId == productId).Max(m => m.To);
+
+                //the charge for max qty
+                var maxQtyInBoxItem = _db.PackCharges.Where(en => en.ProductId == productId && en.To == maxQtyInBox).FirstOrDefault();
+
+                //counting how many boxes needed
+                while (qty > maxQtyInBox)
+                {
+                    totalCharge = totalCharge + maxQtyInBoxItem.PackChargeAmt;
+                    qty = qty - maxQtyInBox;
+                }
+                //getting the charge for the box thats gonna fit the remaining
+                var myItem2 = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
+                if (myItem2 != null)
+                {
+                    //calculating total charge
+                    return totalCharge + myItem2.PackChargeAmt;//?
+                }
+                if (totalCharge + maxQtyInBoxItem.PackChargeAmt != null)
+                {
+                    return totalCharge + maxQtyInBoxItem.PackChargeAmt;
+                }
+                return 0;
+            }
         }
 
         public void Dispose()

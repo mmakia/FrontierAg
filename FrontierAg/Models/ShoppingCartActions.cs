@@ -38,6 +38,7 @@ namespace FrontierAg.Models
                         ItemPrice = GetPriceforMinQty(id),
                         Charge = GetChargeFromMinQty(id),
                         Product = _db.Products.SingleOrDefault(p => p.ProductId == id),
+                        Unit = GetUnit(id,GetMinQty(id)),
                         DateCreated = DateTime.Now
                     };
 
@@ -47,9 +48,28 @@ namespace FrontierAg.Models
                 {                                    
                     cartItem.Quantity++;                    
                     cartItem.ItemPrice = GetPriceFromPrices(cartItem.ProductId, cartItem.Quantity);
+                    cartItem.Unit = GetUnit(cartItem.ProductId, cartItem.Quantity); //_db.Prices.Where(p => p.From >= GetPriceFromPrices(cartItem.ProductId, cartItem.Quantity) && p.To >= GetPriceFromPrices(cartItem.ProductId, cartItem.Quantity)).Select(en => en.Unit).SingleOrDefault();
                     cartItem.Charge = GetChargeFromPackCharges(cartItem.ProductId, cartItem.Quantity);
                 }
                 _db.SaveChanges();            
+        }
+
+        private Unit GetUnit(int ProductId, int qty)
+        {            
+                try
+                {
+                    var myItem = _db.Prices.Where(en => en.ProductId == ProductId && en.From <= qty && en.To >= qty).FirstOrDefault();
+
+                    if (myItem != null)
+                    {
+                        return myItem.Unit;
+                    }
+                    return Unit.Jug;
+                }
+                    catch (Exception exp)
+                {
+                    throw new Exception("ERROR: Unable to get Unit - " + exp.Message.ToString(), exp);
+                }
         }
 
         private decimal GetChargeFromPackCharges(int productId, int qty)//done------ ( 2 )

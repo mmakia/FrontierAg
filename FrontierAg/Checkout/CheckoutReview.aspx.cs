@@ -12,28 +12,27 @@ using Microsoft.AspNet.FriendlyUrls;
 
 namespace FrontierAg.Checkout
 {
-    
-
     public partial class CheckoutReview : System.Web.UI.Page
     {
         decimal cartTotal = 0;
         decimal orderTotal = 0;
-        decimal ProcessingFee = 5;        
+        decimal ProcessingFee;          
 
         protected void Page_Load(object sender, EventArgs e)
         {
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
-                
+                if (!IsPostBack)
+                {
+                    PFeeBox.Text = "5.00";
+                }
+                ProcessingFee = Convert.ToDecimal(PFeeBox.Text.ToString());;   
                 cartTotal = usersShoppingCart.GetTotal();
                 orderTotal = cartTotal + ProcessingFee;
                 if (cartTotal > 0)
-                {
-
-                    //ProcessingFeeLbl.Text = "5";
+                {                    
                     // Display Total.
-                    lblTotal.Text = String.Format("{0:c}", cartTotal);
-                    ProcessingFeeLbl.Text = String.Format("{0:c}", ProcessingFee);
+                    lblTotal.Text = String.Format("{0:c}", cartTotal);                    
                     GTotalValueLbl.Text = String.Format("{0:c}", orderTotal);                    
                 }
                 else
@@ -44,6 +43,7 @@ namespace FrontierAg.Checkout
                     PlaceOrderBtn.Visible = false;
                 }
             }
+           
         }
 
         public List<CartItem> GetShoppingCartItems()
@@ -166,7 +166,7 @@ namespace FrontierAg.Checkout
                 List<CartItem> MyCart = usersShoppingCart.GetCartItems();
                 
                 //Place an order
-                AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart);                
+                AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart);    //PFeeBox.Text,            
                
 
                 RemoveCartItems();
@@ -189,7 +189,7 @@ namespace FrontierAg.Checkout
             Response.Redirect("~/Checkout/CheckoutCancel");
         }
 
-        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)//
+        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)//Decimal Pfee,
         {
             IList<string> segments = Request.GetFriendlyUrlSegments();
 
@@ -218,6 +218,7 @@ namespace FrontierAg.Checkout
                 }
                 myOrder.ContactId = int.Parse(segments[0]);
                 myOrder.Comment = CommentBox;
+                myOrder.PFee = ProcessingFee;
                 _db.Orders.Add(myOrder);          
 
                 //Create new Shipping Address to Link to myOrder
@@ -283,6 +284,7 @@ namespace FrontierAg.Checkout
                     myOrderDetail.OrderId = myOrder.OrderId;
                     myOrderDetail.ProductId = cartItem.ProductId;
                     myOrderDetail.Quantity = cartItem.Quantity;
+                    myOrderDetail.Unit = cartItem.Unit;
                     myOrderDetail.QtyShipped = 0;
                     myOrderDetail.QtyCancelled = 0;
                     myOrderDetail.DateCreated = myOrder.OrderDate;
@@ -309,9 +311,7 @@ namespace FrontierAg.Checkout
         public IQueryable<FrontierAg.Models.Contact> CustomerGrid_GetData()
         {
             return null;
-        }
-        
-       
+        }               
                
     }
 }

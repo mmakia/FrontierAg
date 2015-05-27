@@ -1,6 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ContactOrder.aspx.cs" Inherits="FrontierAg.Admin.Orders.ContactOrder" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div id="OpenOrderTitle" runat="server" class="ContentHead"><h3>Orders</h3></div>
+
+    
+    <h4>Show Status</h4>
+
+<asp:DropDownList runat="server" AutoPostBack="true" ID="Status" class="form-control" Width="150">
+    <asp:ListItem Text="All" Value="" />
+    <asp:ListItem Text="Cancelled" />
+    <asp:ListItem Text="Processing" />
+    <asp:ListItem Text="PartialShipment" />
+    <asp:ListItem Text="Shipped" />
+    <asp:ListItem Text="Billed" />
+    <asp:ListItem Text="Closed" />
+</asp:DropDownList>
+    <br />
     <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OrdersList_GetData"      
     CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="18">
         <Columns>                  

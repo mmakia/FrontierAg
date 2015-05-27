@@ -58,22 +58,31 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
-        /// PFeeLbl control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PFeeLbl;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// ProcessingFeeLbl control.
+        /// PFeeBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ProcessingFeeLbl;
+        protected global::System.Web.UI.WebControls.TextBox PFeeBox;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// LabelTotalText control.
@@ -92,6 +101,15 @@ namespace FrontierAg.Checkout {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label GTotalValueLbl;
+        
+        /// <summary>
+        /// myHiddenBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button myHiddenBtn;
         
         /// <summary>
         /// PaymentLbl control.

@@ -1016,6 +1016,14 @@
     <Compile Include="Migrations\201505201529044_addingSType.Designer.cs">
       <DependentUpon>201505201529044_addingSType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505261337583_addingUnit.cs" />
+    <Compile Include="Migrations\201505261337583_addingUnit.Designer.cs">
+      <DependentUpon>201505261337583_addingUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505261548448_addingPFee.cs" />
+    <Compile Include="Migrations\201505261548448_addingPFee.Designer.cs">
+      <DependentUpon>201505261548448_addingPFee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ExceptionUtility.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.Designer.cs">
@@ -1374,6 +1382,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505201529044_addingSType.resx">
       <DependentUpon>201505201529044_addingSType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505261337583_addingUnit.resx">
+      <DependentUpon>201505261337583_addingUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505261548448_addingPFee.resx">
+      <DependentUpon>201505261548448_addingPFee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

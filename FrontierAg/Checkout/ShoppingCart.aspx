@@ -73,7 +73,18 @@
                     <%#: Item.Product.ProductNo  %>
                 </ItemTemplate>        
         </asp:TemplateField>    
-        <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />                      
+        <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />  
+            
+        <asp:TemplateField   HeaderText="Quantity">             
+                <ItemTemplate>
+                    <asp:TextBox ID="PurchaseQuantity" CSSClass="form-control InputQty" Width="70" runat="server" Text="<%#: Item.Quantity %>" ></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="PurchaseQuantity"></asp:RequiredFieldValidator> 
+                    <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PurchaseQuantity" />                  
+                </ItemTemplate>            
+        </asp:TemplateField> 
+                  
+        <asp:BoundField DataField="Unit" HeaderText="Unit" /> 
+                          
         <asp:BoundField DataField="OriginalPrice" HeaderText="Price" />
               
         <asp:TemplateField HeaderText="Price Override">
@@ -82,16 +93,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="PriceBx"></asp:RequiredFieldValidator>               
                 <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Currency" ControlToValidate="PriceBx" />    
             </ItemTemplate>
-        </asp:TemplateField>            
-             
-
-        <asp:TemplateField   HeaderText="Quantity">             
-                <ItemTemplate>
-                    <asp:TextBox ID="PurchaseQuantity" CSSClass="form-control InputQty" Width="70" runat="server" Text="<%#: Item.Quantity %>" ></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="PurchaseQuantity"></asp:RequiredFieldValidator> 
-                    <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PurchaseQuantity" />                  
-                </ItemTemplate>            
-        </asp:TemplateField>    
+        </asp:TemplateField>          
 
         <asp:BoundField DataField="Charge" HeaderText="Packaging" />
 

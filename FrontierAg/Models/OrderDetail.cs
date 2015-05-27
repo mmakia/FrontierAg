@@ -24,6 +24,8 @@ namespace FrontierAg.Models
 
         public Decimal PriceOverride { get; set; }
 
+        public Unit Unit { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
 

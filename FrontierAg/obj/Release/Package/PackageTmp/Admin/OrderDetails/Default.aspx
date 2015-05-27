@@ -39,7 +39,8 @@
             });
         }        
     </script>        
-            <div id="OpenOrderTitle" runat="server" class="ContentHead"><h3>Order</h3></div>
+            <div id="Div2" runat="server" class="ContentHead"><h3>Order Details</h3></div>
+            <div id="OpenOrderTitle" runat="server" class="ContentHead"><h4>Order</h4></div>
             <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
     AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
         <Columns>                  
@@ -48,11 +49,12 @@
             <asp:DynamicField DataField="Status" HeaderText="Status" />   
             <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" /> 
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />         
-            <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping" /> 
+            <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping Total" /> 
             <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>                      
         </Columns>     
-                <EditRowStyle CssClass="GridViewEditRow" />   
-    </asp:GridView>
+                <EditRowStyle CssClass="GridViewEditRow" />  
+            </asp:GridView>
+
     <div id="Div1" runat="server" class="ContentHead"><h4>Shipping To</h4></div>
     <asp:GridView runat="server" ID="ShippingsGrid"
         ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId" AutoGenerateEditButton="true" UpdateMethod="ShippingsGrid_UpdateItem" 
@@ -91,7 +93,7 @@
         <Columns>      
             <asp:BoundField DataField="ProductId" HeaderText="Product ID" />   
 
-        <asp:TemplateField HeaderText="Product Name">
+        <asp:TemplateField HeaderText="Product No">
               <ItemTemplate>
                 <asp:Label id="ProductNo" Text="<%# Item.Product.ProductNo %>" runat="server" />
               </ItemTemplate>
@@ -104,7 +106,7 @@
         </asp:TemplateField> 
             
         <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="true"/>
-
+        <asp:BoundField DataField="Unit" HeaderText="Unit" ReadOnly="true"/>
         <asp:TemplateField HeaderText="Qty Shipped">
               <ItemTemplate>
                 <asp:TextBox id="QtyShippedBx" CSSClass="form-control InputInt" Text="<%# Item.QtyShipped %>" runat="server" width="50"/>
@@ -126,16 +128,13 @@
                 <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyCancelledBx" />                     
               </ItemTemplate>
         </asp:TemplateField>
-
+        <asp:BoundField DataField="PriceOverride" HeaderText="Price"/>
         <asp:TemplateField HeaderText="Comment">
               <ItemTemplate>
                 <asp:TextBox id="CommentBx" Text="<%# Item.Comment %>" runat="server" CSSClass="form-control InputCmt" />                               
               </ItemTemplate>
-        </asp:TemplateField>
-            
-        <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" />
-
-        </Columns>        
+        </asp:TemplateField>            
+       </Columns>        
     </asp:GridView>
     <div>        
 		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						

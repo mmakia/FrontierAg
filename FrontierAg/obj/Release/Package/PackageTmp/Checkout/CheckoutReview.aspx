@@ -1,6 +1,42 @@
 ﻿<%@ Page Title="Checkout Review" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CheckoutReview.aspx.cs" Inherits="FrontierAg.Checkout.CheckoutReview" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">   
+     <script type="text/javascript">
+         $(function () {
+             //$(alert("Price Changed1"))
+             validate();
+         });
 
+         //JS code to be executed after partial postback due to updatepanel
+         var prm = Sys.WebForms.PageRequestManager.getInstance();
+
+         prm.add_endRequest(function () {
+             //$(alert("Price Changed2"))
+             validate();
+         });
+
+         function validate() {
+             var button = document.getElementById("myHiddenBtn");
+
+             $('.form-control.PFee').on('input', function () {
+                 //$(alert("Price Changed3"))
+                 var input = $(this);
+                 var re = /[0-9]+(\.[0-9][0-9]?)?/;
+                 var is_price = re.test(input.val());
+                 if (is_price) {
+                     $(".error_msg").html("")
+                     input.removeClass("invalid").addClass("valid")
+                     $('.form-control.PFee').on('focusout', function () {
+                         button.click();
+                     });
+                 }
+                 else {
+                     //$(alert("Price Changed4"))
+                     $(".error_msg").html("Please enter a fee")
+                     input.removeClass("valid").addClass("invalid");
+                 }
+             });             
+         }
+    </script>    
     <asp:UpdatePanel runat="server" ID="UpdatePanel2">
         <ContentTemplate>
     <div id="CheckoutReviewTitle" runat="server" class="ContentHead"><h3>Checkout Review</h3></div>
@@ -12,10 +48,11 @@
         <Columns>
         <asp:BoundField DataField="ProductID" HeaderText="ID" SortExpression="ProductID" />         
         <asp:BoundField DataField="Product.ProductNo" HeaderText="Product No." />        
-        <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />        
+        <asp:BoundField DataField="Product.ProductName" HeaderText="Name" /> 
+        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />  
+        <asp:BoundField DataField="Unit" HeaderText="Unit" />         
         <asp:BoundField DataField="OriginalPrice" HeaderText="Original Price" />
-        <asp:BoundField DataField="ItemPrice" HeaderText="Price Override" />
-        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />   
+        <asp:BoundField DataField="ItemPrice" HeaderText="Price Override" />         
         <asp:BoundField DataField="Charge" HeaderText="Packaging" />          
         <asp:TemplateField HeaderText="Item Total">            
                 <ItemTemplate>                    
@@ -160,7 +197,7 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                 <fieldset class="form-horizontal">
-                    <legend>Shipping Address</legend>	
+                    <legend>Shipping To</legend>	
                     <div class="row">
 							<div class="col-sm-2 text-right">
 									<strong>Company</strong>
@@ -184,7 +221,23 @@
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="FName" ID="DynamicControl3" Mode="ReadOnly" />
 								</div>
-							</div>			
+							</div>	
+                             <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>Other1</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="Other1" ID="DynamicControl4" Mode="ReadOnly" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>Other2</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="Other2" ID="DynamicControl5" Mode="ReadOnly" />
+								</div>
+							</div>		
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>Address1</strong>
@@ -270,6 +323,22 @@
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="FName" ID="DynamicControl3" Mode="ReadOnly" />
 								</div>
+							</div>		
+                    <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>Other1</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="Other1" ID="DynamicControl4" Mode="ReadOnly" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>Other2</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="Other2" ID="DynamicControl5" Mode="ReadOnly" />
+								</div>
 							</div>									
 							<div class="row">
 								<div class="col-sm-2 text-right">
@@ -337,15 +406,26 @@
             </td>
         </tr>
         
-        <tr>
+        <%--<tr>
             <td>
                 <asp:Label ID="PFeeLbl" runat="server" Text="Label">Processing Fee:</asp:Label>
             </td>
             <td>
                &nbsp; <asp:Label ID="ProcessingFeeLbl" runat="server" ></asp:Label>             
             </td>            
-        </tr>     
-        
+        </tr>   --%>  
+       <%-- <asp:UpdatePanel runat="server" ID="UpdatePanel3">
+            <ContentTemplate>--%>            
+        <tr>
+            <td>
+                <asp:Label ID="Label2" runat="server" Text="Processing Fee: " ></asp:Label>  
+            </td>
+            <td>
+                &nbsp;<asp:TextBox ID="PFeeBox" runat="server" CSSClass="form-control PFee" ClientIDMode="Static"></asp:TextBox>                
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter fee" ControlToValidate="PFeeBox"></asp:RequiredFieldValidator> 
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PFeeBox" />             
+            </td>
+        </tr>
         <tr>
             <td>
                 <asp:Label ID="LabelTotalText" runat="server" Text="Sub Total: "></asp:Label>            
@@ -354,7 +434,9 @@
                &nbsp; <asp:Label ID="GTotalValueLbl" runat="server" EnableViewState="false"></asp:Label>
             </td>
         </tr>
-        
+                <asp:Button Text="Hidden" ID="myHiddenBtn" runat="server" style="display:none" ClientIDMode="Static"/>
+       <%--</ContentTemplate>
+        </asp:UpdatePanel>--%>
         <tr>
             <td>
                 <asp:Label ID="PaymentLbl" runat="server" Text="Payment No: " ></asp:Label>  
@@ -403,6 +485,9 @@
                 <td>
                     &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order" OnClick="PlaceOrderBtn_Click" CssClass="btn btn-warning"/>
                 </td>
+                <td>
+                    <span class="error_msg" style="color: red; margin-left: 10px;" ></span>
+                </td>
             </tr>
     </table>            
          <br />               
@@ -416,7 +501,7 @@
             </div>
         </ProgressTemplate>   
     </asp:UpdateProgress>      
-    <script>
+    <%--<script>
         $(function () {
             $('form').bind('submit', function () {
                 if (Page_IsValid) {
@@ -424,6 +509,6 @@
                 }
             });
         });        
-    </script>
+    </script>--%>
    
 </asp:Content>
