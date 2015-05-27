@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">   
      <script type="text/javascript">
          $(function () {
-             //$(alert("Price Changed1"))
+             //$(alert("load"))
              validate();
          });
 
@@ -10,27 +10,30 @@
          var prm = Sys.WebForms.PageRequestManager.getInstance();
 
          prm.add_endRequest(function () {
-             //$(alert("Price Changed2"))
+             //$(alert("Post back"))
              validate();
          });
 
          function validate() {
              var button = document.getElementById("myHiddenBtn");
 
-             $('.form-control.PFee').on('input', function () {
-                 //$(alert("Price Changed3"))
+             $('.form-control.PFee').on('focusout', function () {
+                 //$(alert("focus out"))
                  var input = $(this);
                  var re = /[0-9]+(\.[0-9][0-9]?)?/;
                  var is_price = re.test(input.val());
                  if (is_price) {
+                     //$(alert("price"))
                      $(".error_msg").html("")
                      input.removeClass("invalid").addClass("valid")
-                     $('.form-control.PFee').on('focusout', function () {
-                         button.click();
-                     });
+                     button.click();
+                     //$('.form-control.PFee').on('focusout', function () {
+                     //    $(alert("before button click"))
+                     //    button.click();
+                     //});
                  }
                  else {
-                     //$(alert("Price Changed4"))
+                     //$(alert("not valid"))
                      $(".error_msg").html("Please enter a fee")
                      input.removeClass("valid").addClass("invalid");
                  }
@@ -422,8 +425,8 @@
             </td>
             <td>
                 &nbsp;<asp:TextBox ID="PFeeBox" runat="server" CSSClass="form-control PFee" ClientIDMode="Static"></asp:TextBox>                
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter fee" ControlToValidate="PFeeBox"></asp:RequiredFieldValidator> 
-                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PFeeBox" />             
+                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter fee" ControlToValidate="PFeeBox"></asp:RequiredFieldValidator> 
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PFeeBox" />--%>             
             </td>
         </tr>
         <tr>
@@ -493,14 +496,14 @@
          <br />               
        </ContentTemplate>
     </asp:UpdatePanel>
- <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
+ <%--<asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
         <ProgressTemplate>
             <div class="PleaseWait">
                 <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PleaseWait.gif"/>
                 Processing...
             </div>
         </ProgressTemplate>   
-    </asp:UpdateProgress>      
+    </asp:UpdateProgress>   --%>   
     <%--<script>
         $(function () {
             $('form').bind('submit', function () {

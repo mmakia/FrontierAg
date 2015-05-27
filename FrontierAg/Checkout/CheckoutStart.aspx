@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Start Checkout" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="CheckoutStart.aspx.cs" Inherits="FrontierAg.Checkout.CheckoutStart" %>
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">  
-
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
     <div id="modal_dialog2" style="display: none" >
         <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />
@@ -95,7 +96,7 @@
 								<asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
 							</td>							
                     <td>
-                        <asp:LinkButton runat="server" Onclick="Unnamed_Click" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutStart", Item.ShippingId) %>'  Text="Select" />  | 					     
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
                     </td>
                 </tr>
@@ -196,7 +197,7 @@
 						</td>
 						
                     <td>
-                        <asp:LinkButton runat="server" Onclick="Unnamed_Click1" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
+                        <asp:HyperLink runat="server" Onclick="Unnamed_Click3" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
                     </td>
                 </tr>
@@ -289,6 +290,7 @@
 							</td>--%>
                     
                     <td>                    
+                        <%--<asp:LinkButton runat="server" OnClick="Unnamed_Click1" CommandArgument="<%# Item.ContactId %>" Text="Select"  /> |--%>
                         <asp:HyperLink  runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutStart", Item.ContactId) %>' Text="Select" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="Details" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" /> 
@@ -335,5 +337,7 @@
             }
         });        
 </script>
+            </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 
