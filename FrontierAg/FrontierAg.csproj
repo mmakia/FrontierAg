@@ -51,10 +51,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AspNet.ScriptManager.jQuery.2.1.3\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -200,6 +196,7 @@
     <Content Include="Admin\Categories\AddCategory.aspx" />
     <Content Include="Admin\AdminPage.aspx" />
     <Content Include="Admin\Categories\Default.aspx" />
+    <Content Include="Admin\Contacts\EditDraft.aspx" />
     <Content Include="Admin\OrderDetails\AllDetails.aspx" />
     <Content Include="Admin\OrderDetails\Default.aspx" />
     <Content Include="Admin\Orders\ContactOrder.aspx" />
@@ -214,7 +211,6 @@
     <Content Include="Admin\Shippings\AddShipping3.aspx" />
     <Content Include="Admin\Shippings\Default.aspx" />
     <Content Include="App_Data\ErrorLog.txt" />
-    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Checkout\CheckoutCancel.aspx" />
     <Content Include="Checkout\CheckoutComplete.aspx" />
     <Content Include="Checkout\CheckoutError.aspx" />
@@ -579,6 +575,13 @@
     </Compile>
     <Compile Include="Admin\Categories\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contacts\EditDraft.aspx.cs">
+      <DependentUpon>EditDraft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contacts\EditDraft.aspx.designer.cs">
+      <DependentUpon>EditDraft.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\OrderDetails\AllDetails.aspx.cs">
       <DependentUpon>AllDetails.aspx</DependentUpon>

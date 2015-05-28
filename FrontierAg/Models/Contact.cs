@@ -27,15 +27,12 @@ namespace FrontierAg.Models
         [Key]        
         [ScaffoldColumn(false)]        
         public int ContactId { get; set; }        
-
-        [ReadOnly(true)]
+                
         [Required, StringLength(100)]        
         public string Company { get; set; }
-
-        [ReadOnly(true)]
+                
         public string LName { get; set; }
-
-        [ReadOnly(true)]
+        
         public string FName { get; set; }        
 
         public string Address1 { get; set; }
@@ -79,6 +76,7 @@ namespace FrontierAg.Models
         [Display(Name = "Contact Type")]
         public CType Type { get; set; }
 
+        [ReadOnly(true)]
         public bool isHistory { get; set; }
 
         [DataType(DataType.Date)]

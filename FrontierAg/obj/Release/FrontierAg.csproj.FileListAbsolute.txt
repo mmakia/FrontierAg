@@ -55,7 +55,6 @@ C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.addingProductNavigationPropertyToOderDetail.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.addingDateCreatedToDbs.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.csproj.GenerateResource.Cache
-C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\bin\Elmah.dll
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\bin\JuiceUI.dll
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\bin\Microsoft.AspNet.DynamicData.EFProvider.dll
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\bin\Microsoft.AspNet.EntityDataSource.dll
