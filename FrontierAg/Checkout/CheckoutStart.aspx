@@ -96,7 +96,7 @@
 								<asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
 							</td>							
                     <td>
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutStart", Item.ShippingId) %>'  Text="Select" />  | 					     
+                        <asp:LinkButton runat="server" Onclick="Unnamed_Click2" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
                     </td>
                 </tr>
@@ -197,7 +197,7 @@
 						</td>
 						
                     <td>
-                        <asp:HyperLink runat="server" Onclick="Unnamed_Click3" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
+                        <asp:LinkButton runat="server" Onclick="Unnamed_Click3" CommandArgument="<%# Item.ShippingId %>"  Text="Select" />  | 					     
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        
                     </td>
                 </tr>

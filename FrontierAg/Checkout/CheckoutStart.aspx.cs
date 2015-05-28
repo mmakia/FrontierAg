@@ -71,17 +71,17 @@ namespace FrontierAg.Checkout
         {
             LinkButton btn = (LinkButton)(sender);
             string yourValue3 = btn.CommandArgument;
-            Session["Billing"] = yourValue3;
-            //IList<string> segments = Request.GetFriendlyUrlSegments();
-            Int32 myContactId = Convert.ToInt32(Session["myContactId"]);
-            Int32 Shipping = Convert.ToInt32(Session["Shipping"]);
-            Int32 Billing = Convert.ToInt32(Session["Billing"]);
+            //Session["Billing"] = yourValue3;
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            //Int32 myContactId = Convert.ToInt32(Session["myContactId"]);
+            //Int32 Shipping = Convert.ToInt32(Session["Shipping"]);
+            //Int32 Billing = Convert.ToInt32(Session["Billing"]);
 
-            Session["myContactId"] = null;
-            Session["Shipping"] = null;
-            Session["Billing"] = null; 
+            //Session["myContactId"] = null;
+            //Session["Shipping"] = null;
+            //Session["Billing"] = null; 
 
-            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutReview/", myContactId, Shipping, Billing));
+            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutReview/", int.Parse(segments[0]), int.Parse(segments[1]), yourValue3));
         }
 
         protected void Unnamed_Click1(object sender, EventArgs e)

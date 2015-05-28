@@ -290,8 +290,8 @@
 							</td>--%>
                     
                     <td>                    
-                        <asp:LinkButton runat="server" OnClick="Unnamed_Click1" CommandArgument="<%# Item.ContactId %>" Text="Select"  /> |
-                        <%--<asp:HyperLink  runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutStart", Item.ContactId) %>' Text="Select" /> | --%>
+                        <%--<asp:LinkButton runat="server" OnClick="Unnamed_Click1" CommandArgument="<%# Item.ContactId %>" Text="Select"  /> |--%>
+                        <asp:HyperLink  runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Checkout/CheckoutStart", Item.ContactId) %>' Text="Select" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="Details" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" /> 
                         

@@ -18,26 +18,24 @@
              var button = document.getElementById("myHiddenBtn");
 
              $('.form-control.PFee').on('focusout', function () {
-                 //$(alert("focus out"))
                  var input = $(this);
-                 var re = /[0-9]+(\.[0-9][0-9]?)?/;
+                 var re = /^\d+(\.\d\d)?$/;
                  var is_price = re.test(input.val());
                  if (is_price) {
-                     //$(alert("price"))
                      $(".error_msg").html("")
                      input.removeClass("invalid").addClass("valid")
+
+                     //$('#PriceHiddenBox').val(this.value)                    
+                     //var x = $(this).closest('tr').children('td:eq(0)').text();
+                     //$('#ProductIdHiddenBox').val(x)                    
                      button.click();
-                     //$('.form-control.PFee').on('focusout', function () {
-                     //    $(alert("before button click"))
-                     //    button.click();
-                     //});
                  }
                  else {
-                     //$(alert("not valid"))
-                     $(".error_msg").html("Please enter a fee")
+                     $(".error_msg").html("Please enter a price")
                      input.removeClass("valid").addClass("invalid");
                  }
-             });             
+             });
+
          }
     </script>    
     <asp:UpdatePanel runat="server" ID="UpdatePanel2">

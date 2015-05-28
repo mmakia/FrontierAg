@@ -48,9 +48,7 @@ namespace FrontierAg.Admin.Categories
                 if (ModelState.IsValid)
                 {
                    _db.SaveChanges();
-
-                }
-            
+                }            
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
@@ -68,8 +66,6 @@ namespace FrontierAg.Admin.Categories
                 ModelState.AddModelError("",
                   String.Format("Item with id {0} no longer exists in the database.", CategoryId));
             }
-
-
         }
 
         protected void backBtn_Click(object sender, FormViewInsertedEventArgs e)
