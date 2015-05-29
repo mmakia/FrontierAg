@@ -3,7 +3,11 @@
      <script type="text/javascript">
          $(function () {
              //$(alert("load"))
+             Required();
              validate();
+             $(function () {
+                 $("#PaymentDateBox").datepicker();
+             });
          });
 
          //JS code to be executed after partial postback due to updatepanel
@@ -11,6 +15,7 @@
 
          prm.add_endRequest(function () {
              //$(alert("Post back"))
+             Required();
              validate();
          });
 
@@ -22,21 +27,36 @@
                  var re = /^\d+(\.\d\d)?$/;
                  var is_price = re.test(input.val());
                  if (is_price) {
-                     $(".error_msg").html("")
-                     input.removeClass("invalid").addClass("valid")
-
-                     //$('#PriceHiddenBox').val(this.value)                    
-                     //var x = $(this).closest('tr').children('td:eq(0)').text();
-                     //$('#ProductIdHiddenBox').val(x)                    
+                     $(".error_msg").html("");
+                     input.removeClass("invalid").addClass("valid");                                                 
                      button.click();
                  }
                  else {
-                     $(".error_msg").html("Please enter a price")
+                     $(".error_msg").html("Please enter Payment #");
                      input.removeClass("valid").addClass("invalid");
                  }
-             });
-
+             });             
          }
+
+         function Required() {
+             var button2 = document.getElementById("PlaceOrderBtnHidden");
+
+             $('.PlaceOrderButton').on('click', function (e) {
+                 
+                 var inp = $(".PaymentBox").val();
+                 var input3 = $(".PaymentBox");
+                 if (jQuery.trim(inp).length > 0) {
+                     button2.click();
+                     $(".error_msg").html("");
+                     input3.removeClass("invalid").addClass("valid");
+                                      }
+                 else {                     
+                     $(".error_msg").html("Please enter a valid fee");
+                     e.preventDefault();
+                     input3.removeClass("valid").addClass("invalid");
+                 }
+             });
+         }         
     </script>    
     <asp:UpdatePanel runat="server" ID="UpdatePanel2">
         <ContentTemplate>
@@ -405,26 +425,14 @@
             <td>
                &nbsp; <asp:Label ID="lblTotal" runat="server" EnableViewState="false"></asp:Label>
             </td>
-        </tr>
-        
-        <%--<tr>
-            <td>
-                <asp:Label ID="PFeeLbl" runat="server" Text="Label">Processing Fee:</asp:Label>
-            </td>
-            <td>
-               &nbsp; <asp:Label ID="ProcessingFeeLbl" runat="server" ></asp:Label>             
-            </td>            
-        </tr>   --%>  
-       <%-- <asp:UpdatePanel runat="server" ID="UpdatePanel3">
-            <ContentTemplate>--%>            
+        </tr>              
         <tr>
             <td>
                 <asp:Label ID="Label2" runat="server" Text="Processing Fee: " ></asp:Label>  
             </td>
             <td>
                 &nbsp;<asp:TextBox ID="PFeeBox" runat="server" CSSClass="form-control PFee" ClientIDMode="Static"></asp:TextBox>                
-                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter fee" ControlToValidate="PFeeBox"></asp:RequiredFieldValidator> 
-                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="PFeeBox" />--%>             
+                            
             </td>
         </tr>
         <tr>
@@ -435,24 +443,23 @@
                &nbsp; <asp:Label ID="GTotalValueLbl" runat="server" EnableViewState="false"></asp:Label>
             </td>
         </tr>
-                <asp:Button Text="Hidden" ID="myHiddenBtn" runat="server" style="display:none" ClientIDMode="Static"/>
-       <%--</ContentTemplate>
-        </asp:UpdatePanel>--%>
+                <asp:Button Text="Hidden" ID="myHiddenBtn" runat="server" style="display:none" ClientIDMode="Static"/>       
         <tr>
             <td>
                 <asp:Label ID="PaymentLbl" runat="server" Text="Payment No: " ></asp:Label>  
             </td>
             <td>
-                &nbsp;<asp:TextBox ID="PaymentBox" runat="server" CSSClass="form-control"></asp:TextBox>                
+                &nbsp;<asp:TextBox ID="PaymentBox" runat="server" CSSClass="form-control PaymentBox"></asp:TextBox>                
             </td>
         </tr>
         <tr>
             <td>    
                 <asp:Label ID="PaymentDateLbl" runat="server" Text="Payment Date: "></asp:Label>&nbsp;
             </td>    
-             <juice:Datepicker runat="server" ID="t1" TargetControlID="PaymentDateBox"/>
+             
             <td>                              
                 &nbsp; <asp:TextBox ID="PaymentDateBox" runat="server" ClientIDMode="Static" CSSClass="form-control"></asp:TextBox>
+                
             </td>
         </tr>        
         <tr>
@@ -484,7 +491,10 @@
                     <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" CssClass="btn btn-warning"/>
                 </td>
                 <td>
-                    &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order" OnClick="PlaceOrderBtn_Click" CssClass="btn btn-warning"/>
+                    &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order"  CssClass="btn btn-warning PlaceOrderButton"/>
+                    <div style="display: none;">
+                    <asp:Button OnClick="PlaceOrderBtn_Click" ID="PlaceOrderBtnHidden" runat="server"   ClientIDMode="Static"/>  
+                        </div>
                 </td>
                 <td>
                     <span class="error_msg" style="color: red; margin-left: 10px;" ></span>

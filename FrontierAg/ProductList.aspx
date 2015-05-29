@@ -7,7 +7,7 @@
                 <h3><%: Page.Title %></h3>
             </hgroup>                                      
             <asp:TextBox ID="TextBox1" runat="server" CSSClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" ClientIDMode="Static" style="display:none"/>
+            <%--<asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" ClientIDMode="Static" style="display:none"/>--%>
             &nbsp;
             <asp:ListView ID="productList" runat="server" 
                 DataKeyNames="ProductID" GroupItemCount="4"
@@ -68,7 +68,7 @@
                 </div>
         
     </section>    
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         $(function () {
             var button = document.getElementById("Button1");
             $('.form-control').on('focusout', function () {
@@ -76,5 +76,5 @@
             });
             
         });
-    </script>
+    </script>--%>
 </asp:Content>

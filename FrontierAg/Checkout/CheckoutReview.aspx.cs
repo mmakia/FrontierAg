@@ -158,7 +158,7 @@ namespace FrontierAg.Checkout
 
 
         protected void PlaceOrderBtn_Click(object sender, EventArgs e)
-        {
+        {                         
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
                 Session["payment_amt"] = usersShoppingCart.GetTotal();
@@ -174,11 +174,12 @@ namespace FrontierAg.Checkout
             }
 
             new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
-            //new Emailer().SendEmail("snacko@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
-            //new Emailer().SendEmail("ugatti@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
-            //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
-            //new Emailer().SendEmail("ddavis@fsiag.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
-            //new Emailer().SendEmail("mvella@fsiag.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
+            //new Emailer().SendEmail("snacko@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
+            //new Emailer().SendEmail("ugatti@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
+            //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
+            //new Emailer().SendEmail("ddavis@fsiag.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
+            //new Emailer().SendEmail("mvella@fsiag.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
+            //new Emailer().SendEmail("mwoolman@frontierssi.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
 
             Response.Redirect("~/Checkout/CheckoutComplete.aspx");
         }
@@ -199,7 +200,7 @@ namespace FrontierAg.Checkout
                 var myOrder = new Order();
                 myOrder.OrderDate = System.DateTime.Now;
                 myOrder.Total = orderTotal;
-                myOrder.Status = Status.Processing;                                                                        
+                myOrder.Status = Status.New;                                                                        
                 if (Payment == "")
                 {
                     myOrder.Payment = "";

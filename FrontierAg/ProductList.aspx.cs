@@ -34,17 +34,17 @@ namespace FrontierAg
             return query;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            //LinkButton btn = (LinkButton)(sender);
-            //string yourValue = btn.CommandArgument;
-            string myValue = TextBox1.Text;
-            if (myValue != "")
-            {
-                Response.Redirect(FriendlyUrl.Href("~/ProductList/", 0, myValue));
-            }
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    //LinkButton btn = (LinkButton)(sender);
+        //    //string yourValue = btn.CommandArgument;
+        //    string myValue = TextBox1.Text;
+        //    if (myValue != "")
+        //    {
+        //        Response.Redirect(FriendlyUrl.Href("~/ProductList/", 0, myValue));
+        //    }
             
-        }
+        //}
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {

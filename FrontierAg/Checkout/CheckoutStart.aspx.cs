@@ -23,16 +23,24 @@ namespace FrontierAg.Checkout
         }
         //In the method: Session["BackgroundColor"] = ColorSelector.SelectedValue;
 
-        public IQueryable<FrontierAg.Models.Contact> GetContacts()
+        public IQueryable<FrontierAg.Models.Contact> GetContacts([FriendlyUrlSegmentsAttribute(3)]String searchString)
         {
-            return _db.Contacts.Where(en => en.Type == CType.Customer);
+            if(searchString != null)
+            {
+                return _db.Contacts.Where(en => en.Type == CType.Customer && (en.Company.Contains(searchString) || en.LName.Contains(searchString) || en.FName.Contains(searchString)));                
+            }
+
+            else 
+            {
+                return _db.Contacts.Where(en => en.Type == CType.Customer);
+            }            
         }
 
 
         public IQueryable<FrontierAg.Models.Shipping> GetData2([FriendlyUrlSegmentsAttribute(0)] int? ContactId)
         {
             //if (Session["myContactId"] == null)
-            if (ContactId == null)
+            if (ContactId == null || ContactId == 0)
             {
                 return null;
             }
@@ -43,7 +51,7 @@ namespace FrontierAg.Checkout
         public IQueryable<FrontierAg.Models.Shipping> GetData3([FriendlyUrlSegmentsAttribute(0)] int? ContactId, [FriendlyUrlSegmentsAttribute(1)] int? ShippingId)
         {
             //if (Session["Shipping"] == null)
-            if (ContactId == null || ShippingId == null)
+            if (ContactId == null || ShippingId == null || ContactId == 0 || ShippingId == 0)
             {
                 return null;
             }
@@ -83,16 +91,18 @@ namespace FrontierAg.Checkout
 
             Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutReview/", int.Parse(segments[0]), int.Parse(segments[1]), yourValue3));
         }
+        
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string yourValue = Server.HtmlEncode(TextBox1.Text);
 
-        protected void Unnamed_Click1(object sender, EventArgs e)
-        {            
-            LinkButton btn = (LinkButton)(sender);
-            string myContactId = btn.CommandArgument;
-            Session["myContactId"] = myContactId;
-            Response.Redirect(Request.RawUrl);
-            
-        }       
-          
+            if (yourValue != "")
+            {
+                Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/", 0, 0,0, yourValue));
+            }
+
+            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/"));
+        }
     }
 }
 

@@ -9,7 +9,7 @@ namespace FrontierAg.Models
 {
     public enum Status
     {
-        Cancelled, Processing, PartialShipment, Shipped, Billed, Closed
+        Cancelled, New, Processing, PartialShipment, Shipped, Billed, Closed
     }
 
     public class Order
