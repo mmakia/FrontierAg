@@ -1,55 +1,61 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Admin.OrderDetails.Default" %>
 <%@ Import Namespace = "System.Data.Entity" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <script type="text/javascript">
-        $(function () {            
-            validate();            
-        });
+     <script type="text/javascript">         
+        //$(function () {            
+        //    validate();            
+        //});
         
         //JS code to be executed after partial postback due to updatepanel
         var prm = Sys.WebForms.PageRequestManager.getInstance();
 
-        prm.add_endRequest(function () {
+        //prm.add_endRequest(function () {
             //$(alert("Price Changed"))
-            validate();               
-        }); 
+            //validate();               
+        //}); 
 
         function validate() {
-            var button = document.getElementById("UpdateBtn");
-
-            $('.form-control.InputInt').on('input', function () {
-                var input = $(this);
-                var re = /^-?\d\d*$/;
-                var is_int = re.test(input.val());
+            //var button = document.getElementById("UpdateBtn");
+            //$(alert("running validate"));
+            //$('.form-control.InputInt').on('input', function () {
+                var input = $('.form-control.InputInt');
+                var reInt = /^-?\d\d*$/;
+                var is_int = reInt.test(input.val());                
                 if (is_int) {
-                    $(".error_msg").html("")
-                    input.removeClass("invalid").addClass("valid")
-                    $('.form-control.InputInt').on('focusout', function () {
-                        button.click();
-                    });
+                    $(".error_msg").html("");
+                    input.removeClass("invalid").addClass("valid");
+                    return true;
+                    //$('.form-control.InputInt').on('focusout', function () {
+                    //    button.click();
+                    //});
                 }
                 else {
-                    $(".error_msg").html("Please enter a number")
+                    $(".error_msg").html("Please enter a valid number");
                     input.removeClass("valid").addClass("invalid");
+                    return false;
                 }
-            });
+            //});
             
-            $('.InputCmt').on('focusout', function () {
-                button.click();
-            });
+            //$('.InputCmt').on('focusout', function () {
+            //    button.click();
+            //});
         }        
     </script>        
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate> 
             <div id="Div2" runat="server" class="ContentHead"><h3>Order Details</h3></div>
+
             <div id="OpenOrderTitle" runat="server" class="ContentHead"><h4>Order</h4></div>
+
             <asp:GridView ID="OpenOrdersList2" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OpenOrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"     
-    AutoGenerateEditButton="True" CssClass="table table-striped table-bordered mytable" EnableModelValidation="true">
+    AutoGenerateEditButton="True" CssClass="table table-striped table-bordered " EnableModelValidation="true">
         <Columns>                  
             <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
             <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
             <asp:DynamicField DataField="Status" HeaderText="Status" />   
-            <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" /> 
+            <%--<asp:DynamicField DataField="Tracking" HeaderText="Tracking #" /> --%>
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />         
-            <asp:DynamicField DataField="ShipCharge" HeaderText="Shipping Total" /> 
+            <%--<asp:DynamicField DataField="ShipCharge" HeaderText="Shipping Total" /> --%>
             <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>                      
         </Columns>     
                 <EditRowStyle CssClass="GridViewEditRow" />  
@@ -83,9 +89,8 @@
             <%--<asp:DynamicField DataField="DateCreated" ReadOnly="true"/> --%>           
         </Columns>
     </asp:GridView>
-     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate> 
-    <div id="OperOrderTitle" runat="server" class="ContentHead"><h4>Order Items</h4></div>
+     
+    <div id="OperOrderTitle" runat="server" class="ContentHead"><h4>Order Products</h4></div>
     <asp:GridView ID="OrderDetailList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.OrderDetail" SelectMethod="OpenOrderList_GetData" DataKeyNames="OrderDetailId" 
         CssClass="table table-striped table-bordered" EnableModelValidation="true" >
@@ -107,27 +112,32 @@
             
         <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="true"/>
         <asp:BoundField DataField="Unit" HeaderText="Unit" ReadOnly="true"/>
-        <asp:TemplateField HeaderText="Qty Shipped">
-              <ItemTemplate>
-                <asp:TextBox id="QtyShippedBx" CSSClass="form-control InputInt" Text="<%# Item.QtyShipped %>" runat="server" width="50"/>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="QtyShippedBx"></asp:RequiredFieldValidator> 
-                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyShippedBx" />                     
-              </ItemTemplate>
-        </asp:TemplateField>
+        <asp:BoundField DataField="QtyShipped" HeaderText="PrevShipped" ReadOnly="true"/>
 
-        <asp:TemplateField HeaderText="Qty Remaining" ItemStyle-CssClass="myGridStyle">
+        <asp:TemplateField HeaderText="Remaining" ItemStyle-CssClass="myGridStyle">
               <ItemTemplate >
                 <asp:Label Text="<%# Item.Quantity - Item.QtyShipped - Item.QtyCancelled %>"  runat="server"/>
               </ItemTemplate>
-        </asp:TemplateField>              
+        </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Qty Cancelled">
+        <asp:TemplateField HeaderText="Shipping">
               <ItemTemplate>
-                <asp:TextBox id="QtyCancelledBx" CSSClass="form-control InputInt" Text="<%# Item.QtyCancelled %>" runat="server" width="50"/>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="QtyCancelledBx"></asp:RequiredFieldValidator> 
-                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyCancelledBx" />                     
+                <asp:TextBox id="QtyShippingBx" CSSClass="form-control InputInt" runat="server" width="50" Text="0"/>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="QtyShippingBx"></asp:RequiredFieldValidator> 
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyShippingBx" />                     
               </ItemTemplate>
         </asp:TemplateField>
+        
+        <asp:BoundField DataField="QtyCancelled" HeaderText="Cancelled"/>        
+
+        <asp:TemplateField HeaderText="Cancelling">
+              <ItemTemplate>
+                <asp:TextBox id="QtyCancellingBx" CSSClass="form-control InputInt" runat="server" width="50" Text="0"/>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="QtyCancellingBx"></asp:RequiredFieldValidator> 
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="QtyCancellingBx" />   
+              </ItemTemplate>
+        </asp:TemplateField>
+
         <asp:BoundField DataField="PriceOverride" HeaderText="Price"/>
         <asp:TemplateField HeaderText="Comment">
               <ItemTemplate>
@@ -137,13 +147,12 @@
        </Columns>        
     </asp:GridView>
     <div>        
-		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />						
-        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" style="display:none"/>         
+		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />       
+        <asp:Button ID="SvToShipment" runat="server" Text="Save To Shipments" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" onclientclick="javascript:return validate();"/>         
+        <asp:Button ID="ShipmentsBtn" runat="server" Text="Shipments" OnClick="ShipmentsBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
         <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
     </div>           
-      
-
-        </ContentTemplate>
+      </ContentTemplate>
     </asp:UpdatePanel> 
 
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
@@ -153,5 +162,7 @@
                 Please Wait...
             </div>
         </ProgressTemplate>   
-    </asp:UpdateProgress>    
+    </asp:UpdateProgress>  
+
+          
 </asp:Content>

@@ -7,19 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FrontierAg.Checkout {
+namespace FrontierAg.Admin.Shipments {
     
     
-    public partial class SelectShipping {
+    public partial class Default {
         
         /// <summary>
-        /// ListView1 control.
+        /// ShipmentsTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShipmentsTitle;
+        
+        /// <summary>
+        /// ShipmentsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ShipmentsList;
         
         /// <summary>
         /// backButton control.

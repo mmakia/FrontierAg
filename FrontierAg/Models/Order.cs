@@ -42,10 +42,13 @@ namespace FrontierAg.Models
 
         public String Tracking { get; set; }
 
+
         public List<OrderDetail> OrderDetails { get; set; }
 
         public virtual Contact Contact { get; set; }
 
-        public virtual ICollection<OrderShipping> OrderShippings { get; set; } 
+        public virtual ICollection<OrderShipping> OrderShippings { get; set; }
+
+        //public virtual ICollection<Shipment> Shipments { get; set; }
     }
 }

@@ -21,13 +21,32 @@ namespace FrontierAg.Admin.OrderDetails
     {
         protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
 
-        //Decimal TotalWOShipping;       
-        Decimal newTotal;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            //to force browser to reload when using back button inorder to display updated info on page
+            if (!IsPostBack)
+            {
+                Response.Buffer = true;
+                Response.CacheControl = "no-cache";
+                Response.AddHeader("Pragma", "no-cache");
+                Response.Expires = -1441;
+            }
+            //Response.Write(DateTime.Now.ToString());
         }
+
+        //to force browser to reload when using back button inorder to display updated info on page
+        //public class ProductBrowser : Page
+        //{
+        //    protected override void OnInit(EventArgs e)
+        //    {
+        //        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //        Response.Cache.SetNoStore();
+        //        Response.Cache.SetExpires(DateTime.MinValue);
+
+        //        base.OnInit(e);
+        //    }
+        //}
         /// <summary>
         /// //////////////////
         /// </summary>
@@ -104,37 +123,51 @@ namespace FrontierAg.Admin.OrderDetails
             else return null;
         }
 
-        protected void UpdateBtn_Click(object sender, EventArgs e)
+        protected void UpdateBtn_Click(object sender, EventArgs e)//////////////1
         {
             //string rawId = Request.QueryString["OrderId"];
 
             IList<string> segments = Request.GetFriendlyUrlSegments();
             //x = int.Parse(segments[0]);
 
-
-            UpdateOrderDetail(int.Parse(segments[0]));            
+            UpdateOrderDetail(int.Parse(segments[0]));///////////////2     
         }
 
-        public IQueryable<OrderDetail> UpdateOrderDetail(int OrderId)
+        public IQueryable<OrderDetail> UpdateOrderDetail(int OrderId)/////////////////////3
         {
             //String cartId = usersShoppingCart.GetCartId();
             using (OrderActions MyOrderActions = new OrderActions())
             {
 
                 OrderActions.OrederDetailUpdates[] ODUpdates = new OrderActions.OrederDetailUpdates[OrderDetailList.Rows.Count];
+
                 for (int i = 0; i < OrderDetailList.Rows.Count; i++)
                 {
                     IOrderedDictionary rowValues = new OrderedDictionary();
                     rowValues = GetValues(OrderDetailList.Rows[i]);
                     ODUpdates[i].ProductId = Convert.ToInt32(rowValues["ProductId"]);
 
+                    Label ProductNoLbl = new Label();
+                    ProductNoLbl = (Label)OrderDetailList.Rows[i].FindControl("ProductNo");
+                    ODUpdates[i].ProductNo = Convert.ToString(ProductNoLbl.Text.ToString());                    
+
+                    Label ProductNameLbl = new Label();
+                    ProductNameLbl = (Label)OrderDetailList.Rows[i].FindControl("ProductName");
+                    ODUpdates[i].ProductName = Convert.ToString(ProductNameLbl.Text.ToString());                    
+
+                    ODUpdates[i].Quantity = Convert.ToUInt16(rowValues["Quantity"]);
+                    ODUpdates[i].UnitString = Convert.ToString(rowValues["Unit"]);
+                    ODUpdates[i].QtyShipped = Convert.ToInt16(rowValues["QtyShipped"]);
+                    ODUpdates[i].QtyCancelled = Convert.ToInt16(rowValues["QtyCancelled"]);
+                    ODUpdates[i].Price = Convert.ToDecimal(rowValues["PriceOverride"]);
+
                     TextBox QtyShippedTextBox = new TextBox();
-                    QtyShippedTextBox = (TextBox)OrderDetailList.Rows[i].FindControl("QtyShippedBx");
-                    ODUpdates[i].QtyShipped = Convert.ToInt16(QtyShippedTextBox.Text.ToString());
+                    QtyShippedTextBox = (TextBox)OrderDetailList.Rows[i].FindControl("QtyShippingBx");
+                    ODUpdates[i].QtyShipping = Convert.ToInt16(QtyShippedTextBox.Text.ToString());
 
                     TextBox QtyCancelledTextBox = new TextBox();
-                    QtyCancelledTextBox = (TextBox)OrderDetailList.Rows[i].FindControl("QtyCancelledBx");
-                    ODUpdates[i].QtyCancelled = Convert.ToInt16(QtyCancelledTextBox.Text.ToString());
+                    QtyCancelledTextBox = (TextBox)OrderDetailList.Rows[i].FindControl("QtyCancellingBx");
+                    ODUpdates[i].QtyCancelling = Convert.ToInt16(QtyCancelledTextBox.Text.ToString());
 
                     TextBox CommentBox = new TextBox();
                     CommentBox = (TextBox)OrderDetailList.Rows[i].FindControl("CommentBx");
@@ -142,10 +175,9 @@ namespace FrontierAg.Admin.OrderDetails
 
                 }
 
-                MyOrderActions.UpdateOrderDetailDatabase(OrderId, ODUpdates);
+                MyOrderActions.UpdateOrderDetailDatabase(OrderId, ODUpdates);//////////////////4
                 OrderDetailList.DataBind();
-                //OpenOrdersList_GetData(1);
-                //OpenOrdersList2.DataBind();
+                
                 return MyOrderActions.GetOrderDetailsItems(OrderId);
             }
         }
@@ -223,6 +255,19 @@ namespace FrontierAg.Admin.OrderDetails
             {
                 // Save changes here, e.g. MyDataLayer.SaveChanges();
                 _db.SaveChanges();
+            }
+        }
+
+
+        protected void ShipmentsBtn_Click(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            int myOrderId = int.Parse(segments[0]);
+
+            using (ProductContext db = new ProductContext())
+            {
+                //var myShipmentId = db.Shipments.Select(en => en.ShipmentId).FirstOrDefault();//Where(en => en.OrderId == myOrderId).Select(en => en.ShipmentId).FirstOrDefault();
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shipments/Default", myOrderId));
             }
         }
                

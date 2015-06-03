@@ -86,6 +86,6 @@ namespace FrontierAg.Models
 
         public virtual ICollection<Shipping> Shippings { get; set; }
 
-        
+        //public virtual ICollection<Shipment> Shipments { get; set; }
     }
 }

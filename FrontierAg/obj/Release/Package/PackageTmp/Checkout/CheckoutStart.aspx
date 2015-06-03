@@ -204,10 +204,12 @@
             </ItemTemplate>
         </asp:ListView>
         </div>
-    <h3>Select Ordering Customer or create new:</h3>
-    <p>
+    <h3>
+        Select Ordering Customer or 
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Contacts/Insert"  Text="Create new" />
-    </p>
+    </h3>
+      <asp:TextBox ID="TextBox1" runat="server" CSSClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False"></asp:TextBox> 
+    
     <div>
         <asp:ListView id="ListView1" runat="server"
             DataKeyNames="ContactId" 
@@ -334,7 +336,7 @@
                         }
                     }
                 });
-            }
+            }            
         });        
 </script>
             </ContentTemplate>

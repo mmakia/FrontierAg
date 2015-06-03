@@ -14,9 +14,9 @@
                 </ItemTemplate>
             </asp:TemplateField>    
 
-            <asp:TemplateField HeaderText="Bill To">
+            <asp:TemplateField HeaderText="Billing">
             <ItemTemplate>
-                <asp:LinkButton runat="server" OnClick="Unnamed_Click1" Text="Details" CommandArgument="<%# Item.OrderId %>"/>
+                <asp:LinkButton runat="server" OnClick="Unnamed_Click1" Text="Bill To" CommandArgument="<%# Item.OrderId %>"/>
                 <%--<asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Shippings/Default", Item.OrderShippings.Select( en => en.Shipping.ShippingId)) %>' Text="<%#: Item.OrderShippings.Select(w => w.Shipping.City) %>" />--%>
             </ItemTemplate>
             </asp:TemplateField>  
@@ -32,7 +32,7 @@
             <asp:DynamicField DataField="Status" HeaderText="Status" />                 
 
                         
-            <asp:HyperLinkField Text="Items" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default/{0}" DataNavigateUrlFields="OrderId" />
+            <asp:HyperLinkField Text="Details" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default/{0}" DataNavigateUrlFields="OrderId" />
         </Columns>        
     </asp:GridView>
     <div class="row">

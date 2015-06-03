@@ -173,14 +173,5 @@ namespace FrontierAg.Checkout {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button PlaceOrderBtn;
-        
-        /// <summary>
-        /// PlaceOrderBtnHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PlaceOrderBtnHidden;
     }
 }

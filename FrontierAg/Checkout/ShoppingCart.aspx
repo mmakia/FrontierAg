@@ -61,18 +61,20 @@
         <ContentTemplate>                          
 
     <div id="ShoppingCartTitle" runat="server" class="ContentHead"><h3>Shopping Cart</h3></div>
+
     <asp:GridView ID="CartList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.CartItem" SelectMethod="GetShoppingCartItems" 
         CssClass="table table-striped table-bordered"  >
-
         <Columns>
             
-        <asp:BoundField DataField="ProductID" HeaderText="ID" />     
+        <asp:BoundField DataField="ProductID" HeaderText="ID" />  
+               
         <asp:TemplateField HeaderText="Product No.">            
                 <ItemTemplate>                    
                     <%#: Item.Product.ProductNo  %>
                 </ItemTemplate>        
         </asp:TemplateField>    
+
         <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />  
             
         <asp:TemplateField   HeaderText="Quantity">             
@@ -83,9 +85,9 @@
                 </ItemTemplate>            
         </asp:TemplateField> 
                   
-        <asp:BoundField DataField="Unit" HeaderText="Unit" /> 
-                          
-        <asp:BoundField DataField="OriginalPrice" HeaderText="Price" />
+        <asp:BoundField DataField="Unit" HeaderText="Unit" />   
+
+        <asp:BoundField DataField="OriginalPrice" HeaderText="Price" />        
               
         <asp:TemplateField HeaderText="Price Override">
             <ItemTemplate>
@@ -123,9 +125,7 @@
     <table> 
     <tr>
       <td >
-
-        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" style="display:none"/>
-          
+        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" style="display:none"/>          
       </td>
       <td >
         &nbsp;<asp:Button ID="CheckoutBtn" runat="server" Text="Start Checkout" OnClick="CheckoutBtn_Click" CssClass="btn btn-warning" />
@@ -134,7 +134,6 @@
             <span class="error_msg" style="color: red; margin-left: 10px;" ></span>
         </td>
     </tr>
-
     </table>
             
      </ContentTemplate>

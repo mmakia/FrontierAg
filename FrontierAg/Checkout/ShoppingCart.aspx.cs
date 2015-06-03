@@ -12,12 +12,12 @@ using System.Web.ModelBinding;
 namespace FrontierAg 
 {
     public partial class ShoppingCart : System.Web.UI.Page
-    {          
+    {
+        private ProductContext _db = new ProductContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-             
-
+            
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
 
@@ -45,6 +45,15 @@ namespace FrontierAg
               
         }
 
+        //protected IQueryable<FrontierAg.Models.Unit> GetMyDropDownItems()
+        //{
+        //    var items = from t in _db.ShoppingCartItems
+        //                where 
+        //                select new { ID = t.ID, Name = t.Name };
+        //    return new SelectList(items, "ID", "Name");
+        //}
+
+        
         public List<CartItem> GetShoppingCartItems()
         {
             ShoppingCartActions actions = new ShoppingCartActions();

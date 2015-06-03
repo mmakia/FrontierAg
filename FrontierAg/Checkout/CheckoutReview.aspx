@@ -2,9 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">   
      <script type="text/javascript">
          $(function () {
-             //$(alert("load"))
-             Required();
-             validate();
+             //$(alert("load"))            
+             validate();             
              $(function () {
                  $("#PaymentDateBox").datepicker();
              });
@@ -14,9 +13,11 @@
          var prm = Sys.WebForms.PageRequestManager.getInstance();
 
          prm.add_endRequest(function () {
-             //$(alert("Post back"))
-             Required();
-             validate();
+             //$(alert("Post back"))             
+             validate();             
+             $(function () {
+                 $("#PaymentDateBox").datepicker();
+             });
          });
 
          function validate() {
@@ -38,24 +39,19 @@
              });             
          }
 
-         function Required() {
-             var button2 = document.getElementById("PlaceOrderBtnHidden");
-
-             $('.PlaceOrderButton').on('click', function (e) {
-                 
-                 var inp = $(".PaymentBox").val();
+         function FillingPaymentNo() {             
+                 var inpVal = $(".PaymentBox").val();
                  var input3 = $(".PaymentBox");
-                 if (jQuery.trim(inp).length > 0) {
-                     button2.click();
+                 if (jQuery.trim(inpVal).length > 0) {                     
                      $(".error_msg").html("");
                      input3.removeClass("invalid").addClass("valid");
-                                      }
-                 else {                     
-                     $(".error_msg").html("Please enter a valid fee");
-                     e.preventDefault();
-                     input3.removeClass("valid").addClass("invalid");
+                     return true;
                  }
-             });
+                 else {
+                     $(".error_msg").html("Please enter a valid fee");                     
+                     input3.removeClass("valid").addClass("invalid");
+                     return false;
+                 }             
          }         
     </script>    
     <asp:UpdatePanel runat="server" ID="UpdatePanel2">
@@ -491,10 +487,8 @@
                     <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="CancelBtn_Click" CssClass="btn btn-warning"/>
                 </td>
                 <td>
-                    &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order"  CssClass="btn btn-warning PlaceOrderButton"/>
-                    <div style="display: none;">
-                    <asp:Button OnClick="PlaceOrderBtn_Click" ID="PlaceOrderBtnHidden" runat="server"   ClientIDMode="Static"/>  
-                        </div>
+                    &nbsp;<asp:Button ID="PlaceOrderBtn" runat="server" Text="Place Order"  CssClass="btn btn-warning PlaceOrderButton" onclientclick="javascript:return FillingPaymentNo();" OnClick="PlaceOrderBtn_Click"/> 
+                        
                 </td>
                 <td>
                     <span class="error_msg" style="color: red; margin-left: 10px;" ></span>

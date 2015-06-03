@@ -12,7 +12,10 @@ using System.Data.Entity;
 namespace FrontierAg.Models
 {
     public class OrderActions : IDisposable
-    {        
+    {
+        bool isItemShipping = false;
+        int myShipmentId;
+
         private ProductContext _db = new ProductContext();        
 
         public IQueryable<OrderDetail> GetOrderItems(int? OrderId)
@@ -25,21 +28,55 @@ namespace FrontierAg.Models
             else return _db.OrderDetails.Include(n => n.Order);//.Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
         }
 
-        public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates)
+        public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates)//////////////////5*******************
         {
+            
             try
             {
                 int ODUpdatesCount = ODetailUpdates.Count();
+
+                // Iterate through all OrderDetail list to see if creating new shipment is needed
+                for (int i = 0; i < ODUpdatesCount; i++)
+                {
+                    if (ODetailUpdates[i].QtyShipping > 0)
+                    {
+                        isItemShipping = true;
+                    }
+                }
+
+                //inserting new Shipment & ShipmentDetail
+                if (isItemShipping)
+                {
+                    var myShipment = new Shipment();
+                    myShipment.OrderId = OrderId;
+                    myShipment.ShipCharge = 0;
+                    myShipment.Tracking = "";
+                    myShipment.Comment = "";
+                    myShipment.DateCreated = System.DateTime.Now;
+
+                    _db.Shipments.Add(myShipment);
+                    _db.SaveChanges();
+
+                    myShipmentId = myShipment.ShipmentId;
+
+                    //inserting new ShipmentDetailS                    
+                    InsertShipmentDetail(myShipment.ShipmentId, ODetailUpdates);////////////6
+                    
+                }
+
                 List<OrderDetail> myDetails = GetOrderDetails(OrderId);//getting originals from Db
                 foreach (var OrderDetail in myDetails)
                 {
-                    // Iterate through all rows within OrderDetail list
+                    
+                       
+
+                    //updating OrderDetails
                     for (int i = 0; i < ODUpdatesCount; i++)
                     {
                         if (OrderDetail.Product.ProductId == ODetailUpdates[i].ProductId)
                         {
 
-                            UpdateItem(OrderId, OrderDetail.ProductId, ODetailUpdates[i].QtyShipped, ODetailUpdates[i].QtyCancelled, ODetailUpdates[i].Comment);
+                            UpdateItem(OrderId, OrderDetail.ProductId, ODetailUpdates[i].QtyShipping, ODetailUpdates[i].QtyCancelling, ODetailUpdates[i].Comment);//////////////////8
 
                         }
                     }
@@ -49,16 +86,20 @@ namespace FrontierAg.Models
             {
                 throw new Exception("ERROR: Unable to Update Cart Database - " + exp.Message.ToString(), exp);  ///error input string was not in correct format                  
             }
-
-
-
         }
 
         public struct OrederDetailUpdates
         {
             public int ProductId;
+            public string ProductNo;
+            public string ProductName;
+            public int Quantity;
+            public string UnitString;            
             public int QtyShipped;
+            public int QtyShipping;
             public int QtyCancelled;
+            public int QtyCancelling;
+            public Decimal Price;
             public String Comment;
         }
 
@@ -67,9 +108,8 @@ namespace FrontierAg.Models
 
             return _db.OrderDetails.Where(c => c.OrderId == OrderId).ToList();
         }
-
-
-        public void UpdateItem(int OrderID, int updateProductID, int qtyShipped, int qtyCancelled, string comment)
+        
+        public void UpdateItem(int OrderID, int updateProductID, int qtyShipping, int qtyCancelling, string comment)//////////////////9
         {
             using (var _db = new FrontierAg.Models.ProductContext())
             {
@@ -80,13 +120,13 @@ namespace FrontierAg.Models
                     if (myDBOrderDetail != null)
                     {
                         //do the work.............
-                        if (qtyCancelled + qtyShipped <= myDBOrderDetail.Quantity)
-                        {
-                            myDBOrderDetail.QtyShipped = qtyShipped;
-                            myDBOrderDetail.QtyCancelled = qtyCancelled;
-                            myDBOrderDetail.Comment = comment;
-                        }                        
-                       
+                        if (qtyCancelling + qtyShipping <= myDBOrderDetail.Quantity)
+                        {                                                 
+                            //update OrderDeatils DB
+                            myDBOrderDetail.QtyCancelled = myDBOrderDetail.QtyCancelled + qtyCancelling;
+                            myDBOrderDetail.QtyShipped = myDBOrderDetail.QtyShipped + qtyShipping;                            
+                            myDBOrderDetail.Comment = comment;                                                  
+                        }                       
                         _db.SaveChanges();
                     }
                 }
@@ -96,6 +136,46 @@ namespace FrontierAg.Models
                 }
             }
         }
+
+        protected void InsertShipmentDetail(int ShipmentId, OrederDetailUpdates[] ODetailUpdates)//////////////////7****************************
+        {
+            int ODUpdatesCount = ODetailUpdates.Count();
+            try
+            {
+                // Iterate through all OrderDetail list to see if creating new shipment is needed
+                for (int i = 0; i < ODUpdatesCount; i++)
+                {
+                    if (ODetailUpdates[i].QtyShipping > 0)
+                    {                        
+                        var myShipmentDetail = new ShipmentDetail();
+
+                        myShipmentDetail.ShipmentId = myShipmentId;//1
+                        myShipmentDetail.ProductId = ODetailUpdates[i].ProductId;
+                        myShipmentDetail.ProductNo = ODetailUpdates[i].ProductNo;
+                        myShipmentDetail.ProductName = ODetailUpdates[i].ProductName;
+                        myShipmentDetail.Qty = ODetailUpdates[i].Quantity;//2
+                        myShipmentDetail.UnitString = ODetailUpdates[i].UnitString;//3
+                        myShipmentDetail.Price = ODetailUpdates[i].Price;
+                        myShipmentDetail.QtyShipped = ODetailUpdates[i].QtyShipped;
+                        myShipmentDetail.QtyShipping = ODetailUpdates[i].QtyShipping;
+                        myShipmentDetail.Comment = ODetailUpdates[i].Comment;
+                        myShipmentDetail.QtyCancelled = ODetailUpdates[i].QtyCancelled + ODetailUpdates[i].QtyCancelling;
+                        myShipmentDetail.DateCreated = System.DateTime.Now;
+
+                        _db.ShipmentDetails.Add(myShipmentDetail);
+                        _db.SaveChanges();       
+                    }
+                }
+
+                         
+            }
+            catch (Exception exp)
+            {
+                throw new Exception("ERROR: Unable to add ShipmentDetail - " + exp.Message.ToString(), exp);                
+            }          
+            
+        }
+
         public IQueryable<OrderDetail> GetOrderDetailsItems(int OrderId)//
         {
             

@@ -206,6 +206,8 @@
     <Content Include="Admin\PackCharges\Default.aspx" />
     <Content Include="Admin\Prices\AddPrice.aspx" />
     <Content Include="Admin\Products\AddProduct.aspx" />
+    <Content Include="Admin\Shipments\Default.aspx" />
+    <Content Include="Admin\Shipments\ShipmentDetail.aspx" />
     <Content Include="Admin\Shippings\AddShipping.aspx" />
     <Content Include="Admin\Shippings\AddShipping2.aspx" />
     <Content Include="Admin\Shippings\AddShipping3.aspx" />
@@ -646,6 +648,20 @@
     <Compile Include="Admin\Products\AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Shipments\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Shipments\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Shipments\ShipmentDetail.aspx.cs">
+      <DependentUpon>ShipmentDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Shipments\ShipmentDetail.aspx.designer.cs">
+      <DependentUpon>ShipmentDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Shippings\AddShipping.aspx.cs">
       <DependentUpon>AddShipping.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -923,6 +939,7 @@
     <Compile Include="ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logic\ShipmentActions.cs" />
     <Compile Include="Migrations\201505071907074_addingPriceOverride.cs" />
     <Compile Include="Migrations\201505071907074_addingPriceOverride.Designer.cs">
       <DependentUpon>201505071907074_addingPriceOverride.cs</DependentUpon>
@@ -1027,7 +1044,7 @@
     <Compile Include="Migrations\201505261548448_addingPFee.Designer.cs">
       <DependentUpon>201505261548448_addingPFee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ExceptionUtility.cs" />
+    <Compile Include="Logic\ExceptionUtility.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.cs" />
     <Compile Include="Migrations\201504171502084_ChangingOrderandOrderDetail2.Designer.cs">
       <DependentUpon>201504171502084_ChangingOrderandOrderDetail2.cs</DependentUpon>
@@ -1124,6 +1141,38 @@
     <Compile Include="Migrations\201505011945261_ReturningMustContactIdInShipping.Designer.cs">
       <DependentUpon>201505011945261_ReturningMustContactIdInShipping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506011347585_AddingShipment.cs" />
+    <Compile Include="Migrations\201506011347585_AddingShipment.Designer.cs">
+      <DependentUpon>201506011347585_AddingShipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506021549560_DisconnectShipmentAndShipping.cs" />
+    <Compile Include="Migrations\201506021549560_DisconnectShipmentAndShipping.Designer.cs">
+      <DependentUpon>201506021549560_DisconnectShipmentAndShipping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506021838375_CreatingShipmentDetail3.cs" />
+    <Compile Include="Migrations\201506021838375_CreatingShipmentDetail3.Designer.cs">
+      <DependentUpon>201506021838375_CreatingShipmentDetail3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506021928297_RemovingModels.cs" />
+    <Compile Include="Migrations\201506021928297_RemovingModels.Designer.cs">
+      <DependentUpon>201506021928297_RemovingModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506021939009_ReAddingModels.cs" />
+    <Compile Include="Migrations\201506021939009_ReAddingModels.Designer.cs">
+      <DependentUpon>201506021939009_ReAddingModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506021939277_ReAddingModels2.cs" />
+    <Compile Include="Migrations\201506021939277_ReAddingModels2.Designer.cs">
+      <DependentUpon>201506021939277_ReAddingModels2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506031526319_ShipmentDetailUnitConvert.cs" />
+    <Compile Include="Migrations\201506031526319_ShipmentDetailUnitConvert.Designer.cs">
+      <DependentUpon>201506031526319_ShipmentDetailUnitConvert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506031615219_AddingProductInfoToShipmentdetail.cs" />
+    <Compile Include="Migrations\201506031615219_AddingProductInfoToShipmentdetail.Designer.cs">
+      <DependentUpon>201506031615219_AddingProductInfoToShipmentdetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Emailer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1154,16 +1203,22 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderActions.cs" />
+    <Compile Include="Logic\OrderActions.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderShipping.cs" />
     <Compile Include="Models\PackCharge.cs" />
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductContext.cs" />
-    <Compile Include="Models\RoleActions.cs" />
+    <Compile Include="Logic\RoleActions.cs" />
+    <Compile Include="Models\Shipment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ShipmentDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Shipping.cs" />
-    <Compile Include="Models\ShoppingCartActions.cs">
+    <Compile Include="Logic\ShoppingCartActions.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Admin\Prices\Default.aspx.cs">
@@ -1391,6 +1446,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505261548448_addingPFee.resx">
       <DependentUpon>201505261548448_addingPFee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506011347585_AddingShipment.resx">
+      <DependentUpon>201506011347585_AddingShipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506021549560_DisconnectShipmentAndShipping.resx">
+      <DependentUpon>201506021549560_DisconnectShipmentAndShipping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506021838375_CreatingShipmentDetail3.resx">
+      <DependentUpon>201506021838375_CreatingShipmentDetail3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506021928297_RemovingModels.resx">
+      <DependentUpon>201506021928297_RemovingModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506021939009_ReAddingModels.resx">
+      <DependentUpon>201506021939009_ReAddingModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506021939277_ReAddingModels2.resx">
+      <DependentUpon>201506021939277_ReAddingModels2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506031526319_ShipmentDetailUnitConvert.resx">
+      <DependentUpon>201506031526319_ShipmentDetailUnitConvert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506031615219_AddingProductInfoToShipmentdetail.resx">
+      <DependentUpon>201506031615219_AddingProductInfoToShipmentdetail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

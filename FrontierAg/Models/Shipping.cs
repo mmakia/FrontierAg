@@ -16,6 +16,8 @@ namespace FrontierAg.Models
         
         public int ShippingId { get; set; }
 
+        //public int? ShipmentId { get; set; }
+
         public string Company { get; set; }
 
         public string LName { get; set; }
@@ -55,5 +57,7 @@ namespace FrontierAg.Models
         public virtual Contact Contact { get; set; }        
 
         public virtual ICollection<OrderShipping> OrderShippings { get; set; }
+
+        //public virtual Shipment Shipment { get; set; }
     }
 }

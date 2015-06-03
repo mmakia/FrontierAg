@@ -166,13 +166,10 @@ namespace FrontierAg.Checkout
                 List<CartItem> MyCart = usersShoppingCart.GetCartItems();
                 
                 //Place an order
-                AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart);    //PFeeBox.Text,            
-               
-
-                RemoveCartItems();
-                
+                AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart);
+                RemoveCartItems();                
             }
-
+                 
             new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
             //new Emailer().SendEmail("snacko@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
             //new Emailer().SendEmail("ugatti@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
@@ -180,8 +177,8 @@ namespace FrontierAg.Checkout
             //new Emailer().SendEmail("ddavis@fsiag.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
             //new Emailer().SendEmail("mvella@fsiag.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
             //new Emailer().SendEmail("mwoolman@frontierssi.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
-
-            Response.Redirect("~/Checkout/CheckoutComplete.aspx");
+            Response.Redirect("~/Checkout/CheckoutComplete.aspx");   
+            
         }
         
         protected void CancelBtn_Click(object sender, EventArgs e)
@@ -190,7 +187,7 @@ namespace FrontierAg.Checkout
             Response.Redirect("~/Checkout/CheckoutCancel");
         }
 
-        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)//Decimal Pfee,
+        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)
         {
             IList<string> segments = Request.GetFriendlyUrlSegments();
 
@@ -283,13 +280,14 @@ namespace FrontierAg.Checkout
                 {
                     var myOrderDetail = new OrderDetail();
                     myOrderDetail.OrderId = myOrder.OrderId;
-                    myOrderDetail.ProductId = cartItem.ProductId;
+                    myOrderDetail.ProductId = cartItem.ProductId;//do we need it, should we copy it?
                     myOrderDetail.Quantity = cartItem.Quantity;
                     myOrderDetail.Unit = cartItem.Unit;
                     myOrderDetail.QtyShipped = 0;
+                    //myOrderDetail.QtyShipping = 0;
                     myOrderDetail.QtyCancelled = 0;
                     myOrderDetail.DateCreated = myOrder.OrderDate;
-                    myOrderDetail.UnitPrice = cartItem.OriginalPrice;//from c in _db.Products//_db.Products.Where(m => m..Prices.Where(en => en.PriceId == en.)
+                    myOrderDetail.UnitPrice = cartItem.OriginalPrice;
                     myOrderDetail.PriceOverride = cartItem.ItemPrice;
 
                     // Add product to DB.

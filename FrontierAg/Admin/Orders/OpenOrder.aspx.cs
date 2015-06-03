@@ -31,7 +31,7 @@ namespace FrontierAg.Admin.Orders
         public IQueryable<Order> OpenOrdersList_GetData()
         {
             ProductContext db = new ProductContext();
-            return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Billed || n.Status == Status.PartialShipment || n.Status == Status.Shipped).Include(en => en.OrderShippings.Select( em => em.Shipping.Contact));
+            return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Billed || n.Status == Status.New || n.Status == Status.PartialShipment || n.Status == Status.Shipped).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
         }
 
         
