@@ -24,20 +24,20 @@ namespace FrontierAg.Checkout
             {
                 if (!IsPostBack)
                 {
-                    PFeeBox.Text = "5.00";
+                    //PFeeBox.Text = "5.00";
                 }
-                ProcessingFee = Convert.ToDecimal(PFeeBox.Text.ToString());;   
+                //ProcessingFee = Convert.ToDecimal(PFeeBox.Text.ToString());  
                 cartTotal = usersShoppingCart.GetTotal();
-                orderTotal = cartTotal + ProcessingFee;
+                orderTotal = cartTotal;// +ProcessingFee;
                 if (cartTotal > 0)
                 {                    
                     // Display Total.
                     lblTotal.Text = String.Format("{0:c}", cartTotal);                    
-                    GTotalValueLbl.Text = String.Format("{0:c}", orderTotal);                    
+                    //GTotalValueLbl.Text = String.Format("{0:c}", orderTotal);                    
                 }
                 else
                 {
-                    LabelTotalText.Text = "";
+                    //LabelTotalText.Text = "";
                     lblTotal.Text = "";
                     CheckoutReviewTitle.InnerText = "Shopping Cart is Empty";
                     PlaceOrderBtn.Visible = false;
@@ -169,21 +169,18 @@ namespace FrontierAg.Checkout
                 AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart);
                 RemoveCartItems();                
             }
-                 
-            new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Login to the website to see order details");
-            //new Emailer().SendEmail("snacko@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
-            //new Emailer().SendEmail("ugatti@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
-            //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
-            //new Emailer().SendEmail("ddavis@fsiag.com", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
-            //new Emailer().SendEmail("mvella@fsiag.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
-            //new Emailer().SendEmail("mwoolman@frontierssi.com ", "orders@frontierssi.com", "FrontierAg New Order ", "Please login to the website to see order details");
-            Response.Redirect("~/Checkout/CheckoutComplete.aspx");   
-            
+            //new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
+            //new Emailer().SendEmail("snacko@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
+            //new Emailer().SendEmail("ugatti@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
+            //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
+            //new Emailer().SendEmail("ddavis@fsiag.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
+            //new Emailer().SendEmail("mvella@fsiag.com ", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
+            //new Emailer().SendEmail("mwoolman@frontierssi.com ", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
+            Response.Redirect("~/Checkout/CheckoutComplete.aspx");               
         }
         
         protected void CancelBtn_Click(object sender, EventArgs e)
-        {
-            
+        {            
             Response.Redirect("~/Checkout/CheckoutCancel");
         }
 
@@ -216,7 +213,7 @@ namespace FrontierAg.Checkout
                 }
                 myOrder.ContactId = int.Parse(segments[0]);
                 myOrder.Comment = CommentBox;
-                myOrder.PFee = ProcessingFee;
+                //myOrder.PFee = ProcessingFee;
                 _db.Orders.Add(myOrder);          
 
                 //Create new Shipping Address to Link to myOrder

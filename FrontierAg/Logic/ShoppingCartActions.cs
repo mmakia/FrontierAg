@@ -36,7 +36,7 @@ namespace FrontierAg.Models
                         Quantity = GetMinQty(id),
                         OriginalPrice = GetPriceforMinQty(id),
                         ItemPrice = GetPriceforMinQty(id),
-                        Charge = GetChargeFromMinQty(id),
+                        //Charge = GetChargeFromMinQty(id),
                         Product = _db.Products.SingleOrDefault(p => p.ProductId == id),
                         Unit = GetUnit(id,GetMinQty(id)),
                         DateCreated = DateTime.Now
@@ -49,7 +49,7 @@ namespace FrontierAg.Models
                     cartItem.Quantity++;                    
                     cartItem.ItemPrice = GetPriceFromPrices(cartItem.ProductId, cartItem.Quantity);
                     cartItem.Unit = GetUnit(cartItem.ProductId, cartItem.Quantity); //_db.Prices.Where(p => p.From >= GetPriceFromPrices(cartItem.ProductId, cartItem.Quantity) && p.To >= GetPriceFromPrices(cartItem.ProductId, cartItem.Quantity)).Select(en => en.Unit).SingleOrDefault();
-                    cartItem.Charge = GetChargeFromPackCharges(cartItem.ProductId, cartItem.Quantity);
+                    //cartItem.Charge = GetChargeFromPackCharges(cartItem.ProductId, cartItem.Quantity);
                 }
                 _db.SaveChanges();            
         }
@@ -72,47 +72,47 @@ namespace FrontierAg.Models
                 }
         }
 
-        private decimal GetChargeFromPackCharges(int productId, int qty)//done------ ( 2 )
-        {
-            var x = _db.PackCharges.Where(en => en.ProductId == productId).FirstOrDefault();
-            if ( x == null)
-            {
-                return 0;
-            }
-            else
-            {
-                var myItem = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
+        //private decimal GetChargeFromPackCharges(int productId, int qty)//done------ ( 2 )
+        //{
+        //    var x = _db.PackCharges.Where(en => en.ProductId == productId).FirstOrDefault();
+        //    if ( x == null)
+        //    {
+        //        return 0;
+        //    }
+        //    else
+        //    {
+        //        var myItem = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
 
-                //found the value
-                if (myItem != null)
-                {
-                    return myItem.PackChargeAmt;
-                }
+        //        //found the value
+        //        if (myItem != null)
+        //        {
+        //            return myItem.PackChargeAmt;
+        //        }
 
-                //value not found, will pack QTY in multipule boxes
-                Decimal totalCharge = 0;
+        //        //value not found, will pack QTY in multipule boxes
+        //        Decimal totalCharge = 0;
 
 
 
-                //max qty fit in a box 
-                var maxTo = _db.PackCharges.Where(en => en.ProductId == productId).Max(m => m.To);
+        //        //max qty fit in a box 
+        //        var maxTo = _db.PackCharges.Where(en => en.ProductId == productId).Max(m => m.To);
 
-                //the charge for max qty
-                var maxToItem = _db.PackCharges.Where(en => en.ProductId == productId && en.To == maxTo).FirstOrDefault();
+        //        //the charge for max qty
+        //        var maxToItem = _db.PackCharges.Where(en => en.ProductId == productId && en.To == maxTo).FirstOrDefault();
 
-                //counting how many boxes needed
-                while (qty > maxTo)
-                {
-                    totalCharge = totalCharge + maxToItem.PackChargeAmt;
-                    qty = qty - maxTo;
-                }
-                //getting the charge for the box thats gonna fit the remaining
-                var myItem2 = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
+        //        //counting how many boxes needed
+        //        while (qty > maxTo)
+        //        {
+        //            totalCharge = totalCharge + maxToItem.PackChargeAmt;
+        //            qty = qty - maxTo;
+        //        }
+        //        //getting the charge for the box thats gonna fit the remaining
+        //        var myItem2 = _db.PackCharges.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
 
-                //calculating total charge
-                return totalCharge + myItem2.PackChargeAmt;
-            }
-        }
+        //        //calculating total charge
+        //        return totalCharge + myItem2.PackChargeAmt;
+        //    }
+        //}
 
         private decimal GetChargeFromMinQty(int id)
         {
@@ -280,7 +280,7 @@ namespace FrontierAg.Models
                 
                 total = (decimal?)(from cartItems in _db.ShoppingCartItems
                                    where cartItems.CartId == ShoppingCartId
-                                   select (int?)cartItems.Quantity * cartItems.ItemPrice + cartItems.Charge).Sum();
+                                   select (int?)cartItems.Quantity * cartItems.ItemPrice).Sum();//+ cartItems.Charge
                 
                 return total ?? decimal.Zero;      
             
@@ -316,7 +316,7 @@ namespace FrontierAg.Models
                             {
                                 myItem.Quantity = quantity;
                                 myItem.ItemPrice = GetPriceFromPrices(updateProductID, quantity);
-                                myItem.Charge = GetChargeFromPackCharges(updateProductID, quantity);
+                                //myItem.Charge = GetChargeFromPackCharges(updateProductID, quantity);
                                 myItem.OriginalPrice = myItem.ItemPrice;
                             }                                
                             else

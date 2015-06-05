@@ -30,18 +30,11 @@ namespace FrontierAg.Models
         
         public string Comment { get; set; }
 
-        public Status Status { get; set; }
+        public Status Status { get; set; }        
 
-        public Decimal PFee { get; set; }
-
-        public Decimal ShipCharge { get; set; }
-
-        public Decimal OtherCharge { get; set; }
-
-        public Decimal Discount { get; set; }
+        public Decimal ShipCharge { get; set; }        
 
         public String Tracking { get; set; }
-
 
         public List<OrderDetail> OrderDetails { get; set; }
 

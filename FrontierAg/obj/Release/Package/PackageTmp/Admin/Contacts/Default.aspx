@@ -1,10 +1,23 @@
 ﻿<%@ Page Title="ContactList" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Contacts.Default" %>
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <h3>Contacts List</h3>
-    <p>
-        <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
-    </p>
+    <table>
+        <tr>
+            <td>
+                <h3>Contacts List</h3>
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
+            </td>
+        </tr> 
+        <tr>
+            <td>
+                <asp:TextBox ID="TextBox1" runat="server" CSSClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False"></asp:TextBox>
+            </td>
+        </tr>           
+    </table>
     <div>
         <asp:ListView id="ListView1" runat="server"
             DataKeyNames="ContactId" 
@@ -55,7 +68,7 @@
                         <tr runat="server" id="itemPlaceholder" />
                     </tbody>
                 </table>
-				<asp:DataPager PageSize="15"  runat="server">
+				<asp:DataPager PageSize="9"  runat="server">
 					<Fields>
                         <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
                         <asp:NumericPagerField ButtonType="Button"  NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
@@ -100,7 +113,7 @@
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="Details" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Contacts/Edit", Item.ContactId) %>' Text="Edit" /> |
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Default", Item.ContactId) %>' Text="Addresses" /> | 
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Orders/ContactOrder", Item.ContactId) %>' Text="Orders" /> | 
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Orders/Default", Item.ContactId) %>' Text="Orders" /> | 
                          <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/AllDetails", Item.ContactId) %>' Text="Items" />                                            
                     </td>
                 </tr>

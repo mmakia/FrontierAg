@@ -2,22 +2,24 @@
 <%@ Import Namespace = "System.Data.Entity" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <script type="text/javascript">         
-        //$(function () {            
-        //    validate();            
-        //});
+        $(function () {            
+            validate();
+            ValidatePFee();
+        });
         
         //JS code to be executed after partial postback due to updatepanel
         var prm = Sys.WebForms.PageRequestManager.getInstance();
 
-        //prm.add_endRequest(function () {
+        prm.add_endRequest(function () {
             //$(alert("Price Changed"))
-            //validate();               
-        //}); 
+            validate();
+            ValidatePFee();
+        }); 
 
         function validate() {
             //var button = document.getElementById("UpdateBtn");
             //$(alert("running validate"));
-            //$('.form-control.InputInt').on('input', function () {
+            $('.form-control.InputInt').on('input', function () {
                 var input = $('.form-control.InputInt');
                 var reInt = /^-?\d\d*$/;
                 var is_int = reInt.test(input.val());                
@@ -32,14 +34,30 @@
                 else {
                     $(".error_msg").html("Please enter a valid number");
                     input.removeClass("valid").addClass("invalid");
-                    return false;
+                    //return false;
                 }
-            //});
+            });
             
             //$('.InputCmt').on('focusout', function () {
             //    button.click();
             //});
-        }        
+        }
+        function ValidatePFee() {
+            $('.form-control.PFee').on('input', function () {
+                var input = $(this);
+                var re = /^\d+(\.\d\d)?$/;
+                var is_price = re.test(input.val());
+                if (is_price) {
+                    $(".error_msg").html("");
+                    input.removeClass("invalid").addClass("valid");
+                    //button.click();
+                }
+                else {
+                    $(".error_msg").html("Please enter valid dollar amount");
+                    input.removeClass("valid").addClass("invalid");
+                }
+            });
+        }
     </script>        
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate> 
@@ -67,13 +85,13 @@
         SelectMethod="ShippingsGrid_GetData"  CssClass="table table-striped table-bordered" EnableModelValidation="true"
         AutoGenerateColumns="false" >
         <Columns>
-            <asp:TemplateField HeaderText="Contact ID">
+            <%--<asp:TemplateField HeaderText="Contact ID">
               <ItemTemplate>
                 <asp:Label Text="<%# Item.Contact.ContactId %>" 
                     runat="server" />
               </ItemTemplate>
             </asp:TemplateField>  
-            <asp:DynamicField DataField="ShippingId" ReadOnly="true" />
+            <asp:DynamicField DataField="ShippingId" ReadOnly="true" />--%>
             <asp:DynamicField DataField="Company"  />
             <asp:DynamicField DataField="FName"  />
             <asp:DynamicField DataField="LName"  />
@@ -83,20 +101,17 @@
             <asp:DynamicField DataField="Address2" />
             <asp:DynamicField DataField="City" />
             <asp:DynamicField DataField="State" />                 
-            <asp:DynamicField DataField="PostalCode" />                 
-            <asp:DynamicField DataField="Country" />  
-            <asp:DynamicField DataField="PPhone"  />                        
-            <%--<asp:DynamicField DataField="DateCreated" ReadOnly="true"/> --%>           
+            <asp:DynamicField DataField="PostalCode" />
         </Columns>
     </asp:GridView>
      
     <div id="OperOrderTitle" runat="server" class="ContentHead"><h4>Order Products</h4></div>
-    <asp:GridView ID="OrderDetailList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
+    <asp:GridView ID="OrderDetailList" runat="server" AutoGenerateColumns="False" ShowFooter="False" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.OrderDetail" SelectMethod="OpenOrderList_GetData" DataKeyNames="OrderDetailId" 
         CssClass="table table-striped table-bordered" EnableModelValidation="true" >
 
         <Columns>      
-            <asp:BoundField DataField="ProductId" HeaderText="Product ID" />   
+            <asp:BoundField DataField="ProductId" HeaderText="ID" />   
 
         <asp:TemplateField HeaderText="Product No">
               <ItemTemplate>
@@ -146,10 +161,19 @@
         </asp:TemplateField>            
        </Columns>        
     </asp:GridView>
+            
+                <asp:Label ID="Label2" runat="server" Text="Processing Fee: " ></asp:Label>  
+            
+                <asp:TextBox ID="PFeeBox" runat="server" CSSClass="form-control PFee" Width="100" ClientIDMode="Static"></asp:TextBox>                
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="PFeeBox"></asp:RequiredFieldValidator> 
+                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Currency" ControlToValidate="PFeeBox" />      
+            &nbsp;
+                <asp:Button Text="Hidden" ID="myHiddenBtn" runat="server" style="display:none" ClientIDMode="Static"/>       
+           
     <div>        
 		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />       
-        <asp:Button ID="SvToShipment" runat="server" Text="Save To Shipments" OnClick="UpdateBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" onclientclick="javascript:return validate();"/>         
-        <asp:Button ID="ShipmentsBtn" runat="server" Text="Shipments" OnClick="ShipmentsBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
+        <asp:Button ID="SvToShipment" runat="server" Text="Save To Shipments" OnClick="SvToShipment_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
+        <asp:Button ID="ShipmentsBtn" runat="server" Text="Order Shipments" OnClick="ShipmentsBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
         <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
     </div>           
       </ContentTemplate>

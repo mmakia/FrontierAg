@@ -13,7 +13,14 @@ namespace FrontierAg.Admin.Shipments
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //to force browser to reload when using back button inorder to display updated info on page
+            if (!IsPostBack)
+            {
+                Response.Buffer = true;
+                Response.CacheControl = "no-cache";
+                Response.AddHeader("Pragma", "no-cache");
+                Response.Expires = -1441;
+            }
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -24,30 +31,36 @@ namespace FrontierAg.Admin.Shipments
         //     string sortByExpression
         public IQueryable<FrontierAg.Models.Shipment> ShipmentList_GetData([FriendlyUrlSegmentsAttribute(0)]int? OrderId)
         {
+            ProductContext db = new ProductContext();
             if (OrderId != null)
-            {
-                ProductContext db = new ProductContext();
+            {                
                 return db.Shipments.Where(en => en.OrderId == OrderId);//.Include(en => en.OrderShippings.Select(m => m.Shipping))
             }
-            else return null;            
+            else return db.Shipments;
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
-        public void ShipmentList_UpdateItem(int id)
+        public void ShipmentList_UpdateItem(Shipment shipment)
         {
-            FrontierAg.Models.Shipment item = null;
-            // Load the item here, e.g. item = MyDataLayer.Find(id);
-            if (item == null)
+            if (shipment != null)
             {
-                // The item wasn't found
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-                return;
-            }
-            TryUpdateModel(item);
-            if (ModelState.IsValid)
-            {
-                // Save changes here, e.g. MyDataLayer.SaveChanges();
+                using (ProductContext db = new ProductContext())
+                {
+                    //grab original order
+                    var originalShipment = db.Shipments.Find(shipment.ShipmentId);
 
+                    //originalShipment.OrderId = shipment.OrderId;
+                    originalShipment.Tracking = shipment.Tracking;
+                    originalShipment.Total = originalShipment.Total - originalShipment.ShipCharge + shipment.ShipCharge - originalShipment.PFee + shipment.PFee;
+                    originalShipment.PFee = shipment.PFee;
+                    originalShipment.ShipCharge = shipment.ShipCharge;
+                    originalShipment.Comment = shipment.Comment;
+                    originalShipment.DateCreated = System.DateTime.Now;                                
+                    db.SaveChanges();
+
+                    new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
+                    new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
+                }
             }
         }
     }

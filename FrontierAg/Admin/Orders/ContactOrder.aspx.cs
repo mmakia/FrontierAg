@@ -23,12 +23,14 @@ namespace FrontierAg.Admin.Orders
             {
                 FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
                 var query = _db.Orders.Where(en => en.ContactId == ContactId); //_db.Orders.Include(m => m.OrderShippings.Select(en => en.Shipping)).Where(en => en.ContactId == ContactId);                                             
+                
                 if(Status != null)
                 {
                     query = query.Where(en => en.Status == Status);
                 }
                 return query;
             }
+
             return null;
         }
     }

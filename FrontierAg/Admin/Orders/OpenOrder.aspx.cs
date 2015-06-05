@@ -19,7 +19,14 @@ namespace FrontierAg.Admin.Orders
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
+            //to force browser to reload when using back button inorder to display updated info on page
+            if (!IsPostBack)
+            {
+                Response.Buffer = true;
+                Response.CacheControl = "no-cache";
+                Response.AddHeader("Pragma", "no-cache");
+                Response.Expires = -1441;
+            }        
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -28,10 +35,14 @@ namespace FrontierAg.Admin.Orders
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<Order> OpenOrdersList_GetData()
+        public IQueryable<Order> OpenOrdersList_GetData([FriendlyUrlSegmentsAttribute(0)]int? OrderId)
         {
             ProductContext db = new ProductContext();
-            return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Billed || n.Status == Status.New || n.Status == Status.PartialShipment || n.Status == Status.Shipped).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
+            if (OrderId == null)
+            {
+                return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Billed || n.Status == Status.New || n.Status == Status.PartialShipment || n.Status == Status.Shipped).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
+            }
+            else return db.Orders.Where(n => n.OrderId == OrderId).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
         }
 
         
@@ -46,12 +57,12 @@ namespace FrontierAg.Admin.Orders
                     //grab original order
                     var originalOrder = db.Orders.Find(order.OrderId);
                     //Total fee without  charges
-                    PreTotal = originalOrder.Total - (originalOrder.OtherCharge - originalOrder.Discount);
+                    //PreTotal = originalOrder.Total;// -(originalOrder.OtherCharge - originalOrder.Discount);
 
-                    originalOrder.OtherCharge = order.OtherCharge;                                       
-                    originalOrder.Discount = order.Discount;
+                    //originalOrder.OtherCharge = order.OtherCharge;                                       
+                    //originalOrder.Discount = order.Discount;
 
-                    originalOrder.Total = PreTotal + order.OtherCharge - order.Discount;
+                    //originalOrder.Total = PreTotal + order.OtherCharge - order.Discount;
 
                     originalOrder.Payment = order.Payment;
                     originalOrder.PaymentDate = order.PaymentDate;

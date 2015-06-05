@@ -21,7 +21,9 @@ namespace FrontierAg.Models
 
         public string UnitString { get; set; }
 
-        public Decimal Price { get; set; }        
+        public Decimal Price { get; set; }
+
+        public Decimal PCharge { get; set; }
 
         public int QtyShipped { get; set; }     
 

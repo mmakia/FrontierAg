@@ -117,3 +117,6 @@ C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.ReAddingModels2.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.ShipmentDetailUnitConvert.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.AddingProductInfoToShipmentdetail.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.AddingShippingToShipments.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.MovingPFeeRemovingDiscountOtherCharge.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.AddPChargesToShipment.resources

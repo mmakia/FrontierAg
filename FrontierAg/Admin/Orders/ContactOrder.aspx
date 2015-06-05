@@ -27,13 +27,13 @@
             </ItemTemplate>
         </asp:TemplateField> --%>   
 
-            <asp:DynamicField DataField="OtherCharge" HeaderText="Other Charges" />  
-            <asp:DynamicField DataField="Discount" HeaderText="Discount" /> 
+            <%--<asp:DynamicField DataField="OtherCharge" HeaderText="Other Charges" />  
+            <asp:DynamicField DataField="Discount" HeaderText="Discount" />--%> 
             <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>  
 
             <asp:DynamicField DataField="Payment" HeaderText="Payment No." />
             <asp:DynamicField DataField="PaymentDate" HeaderText="Payment Date" />  
-            <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" />  
+            <%--<asp:DynamicField DataField="Tracking" HeaderText="Tracking #" />  --%>
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
             <asp:DynamicField DataField="Status" HeaderText="Status" />               
 

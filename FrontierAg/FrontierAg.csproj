@@ -199,7 +199,6 @@
     <Content Include="Admin\Contacts\EditDraft.aspx" />
     <Content Include="Admin\OrderDetails\AllDetails.aspx" />
     <Content Include="Admin\OrderDetails\Default.aspx" />
-    <Content Include="Admin\Orders\ContactOrder.aspx" />
     <Content Include="Admin\Orders\Default.aspx" />
     <Content Include="Admin\Orders\OpenOrder.aspx" />
     <Content Include="Admin\PackCharges\AddPackCharge.aspx" />
@@ -598,13 +597,6 @@
     </Compile>
     <Compile Include="Admin\OrderDetails\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Orders\ContactOrder.aspx.cs">
-      <DependentUpon>ContactOrder.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Orders\ContactOrder.aspx.designer.cs">
-      <DependentUpon>ContactOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Orders\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1173,6 +1165,18 @@
     <Compile Include="Migrations\201506031615219_AddingProductInfoToShipmentdetail.Designer.cs">
       <DependentUpon>201506031615219_AddingProductInfoToShipmentdetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506031930091_AddingShippingToShipments.cs" />
+    <Compile Include="Migrations\201506031930091_AddingShippingToShipments.Designer.cs">
+      <DependentUpon>201506031930091_AddingShippingToShipments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506041651437_MovingPFeeRemovingDiscountOtherCharge.cs" />
+    <Compile Include="Migrations\201506041651437_MovingPFeeRemovingDiscountOtherCharge.Designer.cs">
+      <DependentUpon>201506041651437_MovingPFeeRemovingDiscountOtherCharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506041815018_AddPChargesToShipment.cs" />
+    <Compile Include="Migrations\201506041815018_AddPChargesToShipment.Designer.cs">
+      <DependentUpon>201506041815018_AddPChargesToShipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Emailer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1470,6 +1474,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506031615219_AddingProductInfoToShipmentdetail.resx">
       <DependentUpon>201506031615219_AddingProductInfoToShipmentdetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506031930091_AddingShippingToShipments.resx">
+      <DependentUpon>201506031930091_AddingShippingToShipments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506041651437_MovingPFeeRemovingDiscountOtherCharge.resx">
+      <DependentUpon>201506041651437_MovingPFeeRemovingDiscountOtherCharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506041815018_AddPChargesToShipment.resx">
+      <DependentUpon>201506041815018_AddPChargesToShipment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

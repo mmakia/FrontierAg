@@ -17,9 +17,7 @@ namespace FrontierAg.Models
 
         public Decimal OriginalPrice { get; set; }
 
-        public int Quantity { get; set; }
-
-        public Decimal Charge { get; set; }
+        public int Quantity { get; set; }        
 
         public Unit Unit { get; set; }
 

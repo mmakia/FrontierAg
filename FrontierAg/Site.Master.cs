@@ -75,6 +75,7 @@ namespace FrontierAg
                 adminLink.Visible = true;
                 cartCount.Visible = true;
                 OpenOrderLink.Visible = true;
+                ShipmentsLink.Visible = true;
             }
         }
 
@@ -87,6 +88,7 @@ namespace FrontierAg
             }
         }
 
+        //***
         public IQueryable<Category> GetCategories()
         {
             var _db = new FrontierAg.Models.ProductContext();

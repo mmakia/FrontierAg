@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using System.Web.ModelBinding;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 
 namespace FrontierAg.Admin.Orders
 {
@@ -26,16 +27,39 @@ namespace FrontierAg.Admin.Orders
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<Order> OrdersList_GetData([Control] Status? Status) 
+        public IQueryable<Order> OrdersList_GetData([FriendlyUrlSegmentsAttribute(0)]int? ContactId, [Control] Status? Status) 
         {
-            ProductContext db = new ProductContext();
-            var query = db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
+            
+             
+            //old code
+            //ProductContext db = new ProductContext();
+            //var query = db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
 
-            if (Status != null)
-            {
-                query = query.Where(en => en.Status == Status);
+            //if (Status != null)
+            //{
+            //    query = query.Where(en => en.Status == Status);
+            //}
+            //return query;
+            FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
+
+            if (ContactId != null)
+            {                
+                var query = _db.Orders.Where(en => en.ContactId == ContactId); //_db.Orders.Include(m => m.OrderShippings.Select(en => en.Shipping)).Where(en => en.ContactId == ContactId);                                             
+
+                if (Status != null)
+                {
+                    query = query.Where(en => en.Status == Status);
+                }
+                return query;
             }
-            return query;
+            else
+                if (Status != null)
+                {
+                    var query = _db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
+                    return query = query.Where(en => en.Status == Status);
+                }            
+
+            return _db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
         }
 
 
@@ -49,17 +73,7 @@ namespace FrontierAg.Admin.Orders
 
                     //grab original order
                     var originalOrder = db.Orders.Find(order.OrderId);
-                    //Total fee without  charges
-                    //PreTotal = originalOrder.Total - (originalOrder.OtherCharge - originalOrder.Discount);
-
-                    //originalOrder.OtherCharge = order.OtherCharge;
-                    //originalOrder.Discount = order.Discount;
-
-                    //originalOrder.Total = PreTotal + order.OtherCharge - order.Discount;
-
-                    //originalOrder.Payment = order.Payment;
-                    //originalOrder.PaymentDate = order.PaymentDate;
-                    //originalOrder.Tracking = order.Tracking;
+                    
                     originalOrder.Comment = order.Comment;
                     originalOrder.Status = order.Status;
                     db.SaveChanges();

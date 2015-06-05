@@ -57,9 +57,10 @@
             });
         }        
     </script>    
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>                          
+    
 
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>                 
     <div id="ShoppingCartTitle" runat="server" class="ContentHead"><h3>Shopping Cart</h3></div>
 
     <asp:GridView ID="CartList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
@@ -97,11 +98,11 @@
             </ItemTemplate>
         </asp:TemplateField>          
 
-        <asp:BoundField DataField="Charge" HeaderText="Packaging" />
+        <%--<asp:BoundField DataField="Charge" HeaderText="Packaging" />--%>
 
         <asp:TemplateField HeaderText="Item Total">            
                 <ItemTemplate>                    
-                    <%#: Item.Quantity *  Item.ItemPrice + Item.Charge  %>
+                    <%#: Item.Quantity *  Item.ItemPrice  %>
                 </ItemTemplate>        
         </asp:TemplateField> 
 

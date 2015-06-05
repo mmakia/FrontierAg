@@ -58,6 +58,7 @@ namespace FrontierAg.Models
 
         public virtual ICollection<OrderShipping> OrderShippings { get; set; }
 
+        public virtual ICollection<Shipment> Shipments { get; set; }
         //public virtual Shipment Shipment { get; set; }
     }
 }

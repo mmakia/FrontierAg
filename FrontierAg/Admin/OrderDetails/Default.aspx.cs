@@ -21,21 +21,23 @@ namespace FrontierAg.Admin.OrderDetails
     {
         protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
 
-        
+        //decimal ProcessingFee;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //to force browser to reload when using back button inorder to display updated info on page
+            //Solution 1, to force browser to reload when using back button inorder to display updated info on page
             if (!IsPostBack)
             {
+                PFeeBox.Text = "5.00";
                 Response.Buffer = true;
                 Response.CacheControl = "no-cache";
                 Response.AddHeader("Pragma", "no-cache");
                 Response.Expires = -1441;
             }
-            //Response.Write(DateTime.Now.ToString());
+            //ProcessingFee = Convert.ToDecimal(PFeeBox.Text.ToString());; 
         }
 
-        //to force browser to reload when using back button inorder to display updated info on page
+        //Solution2, to force browser to reload when using back button inorder to display updated info on page
         //public class ProductBrowser : Page
         //{
         //    protected override void OnInit(EventArgs e)
@@ -47,10 +49,7 @@ namespace FrontierAg.Admin.OrderDetails
         //        base.OnInit(e);
         //    }
         //}
-        /// <summary>
-        /// //////////////////
-        /// </summary>
-        /// <returns></returns>
+                
         public IQueryable<Order> OpenOrdersList_GetData([FriendlyUrlSegmentsAttribute(0)]int? OrderId)
         {
             if (OrderId != null)
@@ -99,7 +98,7 @@ namespace FrontierAg.Admin.OrderDetails
 
                             itemsValue = itemsValue + (a.QtyShipped * a.UnitPrice) + itemCharges;
                         }
-                        originalOrder.Total = itemsValue + originalOrder.OtherCharge - originalOrder.Discount + originalOrder.PFee + order.ShipCharge;                        
+                        originalOrder.Total = itemsValue + order.ShipCharge;//+ originalOrder.OtherCharge - originalOrder.Discount + originalOrder.PFee               
                     }
                     db.SaveChanges();                    
                 }
@@ -123,22 +122,19 @@ namespace FrontierAg.Admin.OrderDetails
             else return null;
         }
 
-        protected void UpdateBtn_Click(object sender, EventArgs e)//////////////1
-        {
-            //string rawId = Request.QueryString["OrderId"];
+        protected void SvToShipment_Click(object sender, EventArgs e)//////////////1
+        {                      
+            Decimal PFee = Convert.ToDecimal(PFeeBox.Text.ToString());
+            IList<string> segments = Request.GetFriendlyUrlSegments();  
 
-            IList<string> segments = Request.GetFriendlyUrlSegments();
-            //x = int.Parse(segments[0]);
-
-            UpdateOrderDetail(int.Parse(segments[0]));///////////////2     
+            SaveUpdateOrderDetail(int.Parse(segments[0]), PFee);///////////////2     
         }
 
-        public IQueryable<OrderDetail> UpdateOrderDetail(int OrderId)/////////////////////3
+        public IQueryable<OrderDetail> SaveUpdateOrderDetail(int OrderId, Decimal PFee)/////////////////////3
         {
             //String cartId = usersShoppingCart.GetCartId();
             using (OrderActions MyOrderActions = new OrderActions())
             {
-
                 OrderActions.OrederDetailUpdates[] ODUpdates = new OrderActions.OrederDetailUpdates[OrderDetailList.Rows.Count];
 
                 for (int i = 0; i < OrderDetailList.Rows.Count; i++)
@@ -160,7 +156,7 @@ namespace FrontierAg.Admin.OrderDetails
                     ODUpdates[i].QtyShipped = Convert.ToInt16(rowValues["QtyShipped"]);
                     ODUpdates[i].QtyCancelled = Convert.ToInt16(rowValues["QtyCancelled"]);
                     ODUpdates[i].Price = Convert.ToDecimal(rowValues["PriceOverride"]);
-
+                    
                     TextBox QtyShippedTextBox = new TextBox();
                     QtyShippedTextBox = (TextBox)OrderDetailList.Rows[i].FindControl("QtyShippingBx");
                     ODUpdates[i].QtyShipping = Convert.ToInt16(QtyShippedTextBox.Text.ToString());
@@ -175,7 +171,7 @@ namespace FrontierAg.Admin.OrderDetails
 
                 }
 
-                MyOrderActions.UpdateOrderDetailDatabase(OrderId, ODUpdates);//////////////////4
+                MyOrderActions.UpdateOrderDetailDatabase(OrderId, ODUpdates, PFee);//////////////////4
                 OrderDetailList.DataBind();
                 
                 return MyOrderActions.GetOrderDetailsItems(OrderId);

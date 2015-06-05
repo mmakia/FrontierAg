@@ -8,6 +8,7 @@
 <asp:DropDownList runat="server" AutoPostBack="true" ID="Status" class="form-control" Width="150">
     <asp:ListItem Text="All" Value="" />
     <asp:ListItem Text="Cancelled" />
+    <asp:ListItem Text="New" />
     <asp:ListItem Text="Processing" />
     <asp:ListItem Text="PartialShipment" />
     <asp:ListItem Text="Shipped" />
@@ -27,14 +28,11 @@
                 <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="<%#: Item.Contact.Company %>" />
             </ItemTemplate>
         </asp:TemplateField>    
-
-            <asp:DynamicField DataField="OtherCharge" HeaderText="Other Charges" ReadOnly="true"/>  
-            <asp:DynamicField DataField="Discount" HeaderText="Discount" ReadOnly="true"/> 
+                        
             <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>  
-
             <asp:DynamicField DataField="Payment" HeaderText="Payment No." ReadOnly="true"/>
             <asp:DynamicField DataField="PaymentDate" HeaderText="Payment Date" ReadOnly="true"/>  
-            <asp:DynamicField DataField="Tracking" HeaderText="Tracking #" ReadOnly="true"/>  
+            <%--<asp:DynamicField DataField="Tracking" HeaderText="Tracking #" ReadOnly="true"/>  --%>
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
             <asp:DynamicField DataField="Status" HeaderText="Status" />               
 

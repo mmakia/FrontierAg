@@ -28,7 +28,7 @@ namespace FrontierAg.Models
             else return _db.OrderDetails.Include(n => n.Order);//.Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
         }
 
-        public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates)//////////////////5*******************
+        public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates, Decimal PFee)//////////////////5
         {
             
             try
@@ -49,6 +49,13 @@ namespace FrontierAg.Models
                 {
                     var myShipment = new Shipment();
                     myShipment.OrderId = OrderId;
+
+                    var myShipping = (from my in _db.OrderShippings
+                                         where my.OrderId == OrderId && my.Shipping.SType == SType.Shipping
+                                         select my.Shipping).FirstOrDefault();
+                                   
+                    myShipment.ShippingId = InsertNewShipping(myShipping.ShippingId);//originalShippingAddressId
+                    myShipment.PFee = PFee;
                     myShipment.ShipCharge = 0;
                     myShipment.Tracking = "";
                     myShipment.Comment = "";
@@ -59,17 +66,17 @@ namespace FrontierAg.Models
 
                     myShipmentId = myShipment.ShipmentId;
 
-                    //inserting new ShipmentDetailS                    
-                    InsertShipmentDetail(myShipment.ShipmentId, ODetailUpdates);////////////6
-                    
+                    //inserting new ShipmentDetailS   
+                    Tuple<Decimal, Decimal> myTuple = InsertShipmentDetail(myShipment.ShipmentId, ODetailUpdates);////////////6
+
+                    myShipment.PCharges = myTuple.Item2;
+                    myShipment.Total = PFee + myTuple.Item1 + myTuple.Item2;
+                    _db.SaveChanges();
                 }
 
                 List<OrderDetail> myDetails = GetOrderDetails(OrderId);//getting originals from Db
                 foreach (var OrderDetail in myDetails)
                 {
-                    
-                       
-
                     //updating OrderDetails
                     for (int i = 0; i < ODUpdatesCount; i++)
                     {
@@ -88,20 +95,56 @@ namespace FrontierAg.Models
             }
         }
 
+        private int InsertNewShipping(int ShippingId)
+        {            
+            //Create new Shipping Address to Link to myOrder
+            var myShipping = new Shipping();
+
+            var myExistingShipping = _db.Shippings.Find(ShippingId);
+
+            if (myExistingShipping != null)
+            {
+                myShipping.Company = myExistingShipping.Company;
+                myShipping.LName = myExistingShipping.LName;
+                myShipping.FName = myExistingShipping.FName;
+                myShipping.Other1 = myExistingShipping.Other1;
+                myShipping.Other2 = myExistingShipping.Other2;
+                myShipping.Address1 = myExistingShipping.Address1;
+                myShipping.Address2 = myExistingShipping.Address2;
+                myShipping.City = myExistingShipping.City;
+                myShipping.State = myExistingShipping.State;
+                myShipping.PostalCode = myExistingShipping.PostalCode;
+                myShipping.Country = myExistingShipping.Country;
+                myShipping.ContactId = myExistingShipping.ContactId;
+                myShipping.PPhone = myExistingShipping.PPhone;
+                myShipping.isHistory = true;
+                myShipping.SType = SType.Shipping;
+                myShipping.DateCreated = System.DateTime.Now;
+                _db.Shippings.Add(myShipping);
+                _db.SaveChanges();
+
+                return myShipping.ShippingId;
+            }
+            else return 0;            
+        }       
+
+        
+
         public struct OrederDetailUpdates
         {
             public int ProductId;
             public string ProductNo;
             public string ProductName;
             public int Quantity;
-            public string UnitString;            
+            public string UnitString;
+            public Decimal_EditField PFee;
             public int QtyShipped;
             public int QtyShipping;
             public int QtyCancelled;
             public int QtyCancelling;
             public Decimal Price;
             public String Comment;
-        }
+        }        
 
         public List<OrderDetail> GetOrderDetails(int OrderId)
         {
@@ -137,9 +180,12 @@ namespace FrontierAg.Models
             }
         }
 
-        protected void InsertShipmentDetail(int ShipmentId, OrederDetailUpdates[] ODetailUpdates)//////////////////7****************************
+        protected Tuple<Decimal, Decimal> InsertShipmentDetail(int ShipmentId, OrederDetailUpdates[] ODetailUpdates)//////////////////7
         {
+            Decimal ShipmentTotal = 0;
+            Decimal PChargeTotal = 0;
             int ODUpdatesCount = ODetailUpdates.Count();
+
             try
             {
                 // Iterate through all OrderDetail list to see if creating new shipment is needed
@@ -159,22 +205,27 @@ namespace FrontierAg.Models
                         myShipmentDetail.QtyShipped = ODetailUpdates[i].QtyShipped;
                         myShipmentDetail.QtyShipping = ODetailUpdates[i].QtyShipping;
                         myShipmentDetail.Comment = ODetailUpdates[i].Comment;
+                        
+                        myShipmentDetail.PCharge = GetChargeFromPackCharges(ODetailUpdates[i].ProductId, ODetailUpdates[i].QtyShipping);
+
                         myShipmentDetail.QtyCancelled = ODetailUpdates[i].QtyCancelled + ODetailUpdates[i].QtyCancelling;
                         myShipmentDetail.DateCreated = System.DateTime.Now;
-
+                        ShipmentTotal = ShipmentTotal + (ODetailUpdates[i].QtyShipping * ODetailUpdates[i].Price);
+                        PChargeTotal = PChargeTotal + myShipmentDetail.PCharge;
                         _db.ShipmentDetails.Add(myShipmentDetail);
-                        _db.SaveChanges();       
+                        _db.SaveChanges();                        
                     }
                 }
 
+                return Tuple.Create(ShipmentTotal, PChargeTotal);
+                //return ShipmentTotal;
                          
             }
             catch (Exception exp)
             {
                 throw new Exception("ERROR: Unable to add ShipmentDetail - " + exp.Message.ToString(), exp);                
-            }          
-            
-        }
+            }
+        }        
 
         public IQueryable<OrderDetail> GetOrderDetailsItems(int OrderId)//
         {

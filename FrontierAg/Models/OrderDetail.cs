@@ -20,9 +20,7 @@ namespace FrontierAg.Models
 
         public int Quantity { get; set; }        
 
-        public int QtyShipped { get; set; }
-
-        //public int QtyShipping { get; set; }
+        public int QtyShipped { get; set; }        
 
         public int QtyCancelled { get; set; }
 
@@ -36,7 +34,6 @@ namespace FrontierAg.Models
         public DateTime DateCreated { get; set; }
 
         public string Comment { get; set; }
-
 
         public virtual Order Order { get; set; }
 

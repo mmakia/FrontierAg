@@ -3,7 +3,7 @@
      <script type="text/javascript">
          $(function () {
              //$(alert("load"))            
-             validate();             
+                          
              $(function () {
                  $("#PaymentDateBox").datepicker();
              });
@@ -14,30 +14,30 @@
 
          prm.add_endRequest(function () {
              //$(alert("Post back"))             
-             validate();             
+                          
              $(function () {
                  $("#PaymentDateBox").datepicker();
              });
          });
 
-         function validate() {
-             var button = document.getElementById("myHiddenBtn");
+         //function validate() {
+         //    var button = document.getElementById("myHiddenBtn");
 
-             $('.form-control.PFee').on('focusout', function () {
-                 var input = $(this);
-                 var re = /^\d+(\.\d\d)?$/;
-                 var is_price = re.test(input.val());
-                 if (is_price) {
-                     $(".error_msg").html("");
-                     input.removeClass("invalid").addClass("valid");                                                 
-                     button.click();
-                 }
-                 else {
-                     $(".error_msg").html("Please enter Payment #");
-                     input.removeClass("valid").addClass("invalid");
-                 }
-             });             
-         }
+         //    $('.form-control.PFee').on('input', function () {
+         //        var input = $(this);
+         //        var re = /^\d+(\.\d\d)?$/;
+         //        var is_price = re.test(input.val());
+         //        if (is_price) {
+         //            $(".error_msg").html("");
+         //            input.removeClass("invalid").addClass("valid");
+         //            button.click();
+         //        }
+         //        else {
+         //            $(".error_msg").html("Please enter Payment #");
+         //            input.removeClass("valid").addClass("invalid");
+         //        }
+         //    });
+         //}
 
          function FillingPaymentNo() {             
                  var inpVal = $(".PaymentBox").val();
@@ -48,7 +48,7 @@
                      return true;
                  }
                  else {
-                     $(".error_msg").html("Please enter a valid fee");                     
+                     $(".error_msg").html("Please enter a Payment#");                     
                      input3.removeClass("valid").addClass("invalid");
                      return false;
                  }             
@@ -69,11 +69,10 @@
         <asp:BoundField DataField="Quantity" HeaderText="Quantity" />  
         <asp:BoundField DataField="Unit" HeaderText="Unit" />         
         <asp:BoundField DataField="OriginalPrice" HeaderText="Original Price" />
-        <asp:BoundField DataField="ItemPrice" HeaderText="Price Override" />         
-        <asp:BoundField DataField="Charge" HeaderText="Packaging" />          
+        <asp:BoundField DataField="ItemPrice" HeaderText="Price Override" />      
         <asp:TemplateField HeaderText="Item Total">            
                 <ItemTemplate>                    
-                    <%#: Item.Quantity *  Item.ItemPrice + Item.Charge %>
+                    <%#: Item.Quantity *  Item.ItemPrice  %>
                 </ItemTemplate>        
         </asp:TemplateField>             
         </Columns>    
@@ -421,28 +420,11 @@
             <td>
                &nbsp; <asp:Label ID="lblTotal" runat="server" EnableViewState="false"></asp:Label>
             </td>
-        </tr>              
+        </tr>                
+        
         <tr>
             <td>
-                <asp:Label ID="Label2" runat="server" Text="Processing Fee: " ></asp:Label>  
-            </td>
-            <td>
-                &nbsp;<asp:TextBox ID="PFeeBox" runat="server" CSSClass="form-control PFee" ClientIDMode="Static"></asp:TextBox>                
-                            
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="LabelTotalText" runat="server" Text="Sub Total: "></asp:Label>            
-            </td>
-            <td>
-               &nbsp; <asp:Label ID="GTotalValueLbl" runat="server" EnableViewState="false"></asp:Label>
-            </td>
-        </tr>
-                <asp:Button Text="Hidden" ID="myHiddenBtn" runat="server" style="display:none" ClientIDMode="Static"/>       
-        <tr>
-            <td>
-                <asp:Label ID="PaymentLbl" runat="server" Text="Payment No: " ></asp:Label>  
+                <asp:Label ID="PaymentLbl" runat="server" Text="Payment: " ></asp:Label>  
             </td>
             <td>
                 &nbsp;<asp:TextBox ID="PaymentBox" runat="server" CSSClass="form-control PaymentBox"></asp:TextBox>                

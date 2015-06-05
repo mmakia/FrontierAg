@@ -45,15 +45,7 @@ namespace FrontierAg
               
         }
 
-        //protected IQueryable<FrontierAg.Models.Unit> GetMyDropDownItems()
-        //{
-        //    var items = from t in _db.ShoppingCartItems
-        //                where 
-        //                select new { ID = t.ID, Name = t.Name };
-        //    return new SelectList(items, "ID", "Name");
-        //}
-
-        
+                
         public List<CartItem> GetShoppingCartItems()
         {
             ShoppingCartActions actions = new ShoppingCartActions();
