@@ -6,11 +6,11 @@ using System.Linq;
 using System.Web;
 
 namespace FrontierAg.Models
-{    
-    public enum SType
-    {
-        Shipping, Billing
-    }
+{
+    //public enum SType
+    //{
+    //    Shipping, Billing, Ordering
+    //}
     public class Shipping
     {
         [ScaffoldColumn(false)]
@@ -43,7 +43,7 @@ namespace FrontierAg.Models
         [DataType(DataType.PhoneNumber)]
         public string PPhone { get; set; }        
 
-        public SType SType { get; set; }
+        //public SType SType { get; set; }
 
         [ScaffoldColumn(false)]
         public bool isHistory { get; set; }

@@ -39,16 +39,16 @@ namespace FrontierAg.Admin.Orders
                 {
                     query = query.Where(en => en.Status == Status);
                 }
-                return query;
+                return query.OrderByDescending(en => en.OrderDate);
             }
             else
                 if (Status != null)
                 {
                     var query = _db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
-                    return query = query.Where(en => en.Status == Status);
-                }            
+                    return query = query.Where(en => en.Status == Status).OrderByDescending(en => en.OrderDate);
+                }
 
-            return _db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
+            return _db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact)).OrderByDescending(en => en.OrderDate);
         }
 
 
@@ -70,6 +70,21 @@ namespace FrontierAg.Admin.Orders
             }
         }
 
+        protected void Unnamed_Click0(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)(sender);
+            string yourValue = btn.CommandArgument;
+
+            int myOrderId = Int32.Parse(yourValue);
+            using (ProductContext db = new ProductContext())
+            {
+                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.SType == SType.Ordering).Select(en => en.ShippingId).FirstOrDefault();
+
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Details", 0, myShippingId));
+
+            }
+        }
+
         protected void Unnamed_Click1(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)(sender);
@@ -78,7 +93,7 @@ namespace FrontierAg.Admin.Orders
             int myOrderId = Int32.Parse(yourValue);
             using (ProductContext db = new ProductContext())
             {
-                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.Shipping.SType == SType.Billing).Select(en => en.ShippingId).FirstOrDefault();
+                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.SType == SType.Billing).Select(en => en.ShippingId).FirstOrDefault();
 
                 Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Details", 0, myShippingId));
 

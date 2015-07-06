@@ -11,7 +11,7 @@ namespace FrontierAg.Admin.Shippings
 {
     public partial class Edit : System.Web.UI.Page
     {
-        protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
+        //protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +24,7 @@ namespace FrontierAg.Admin.Shippings
             //SType temp1;
             //DateTime temp2;
 
-            using (_db)
+            using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
             {
                 
                 // Load the item here, e.g. item = MyDataLayer.Find(id);
@@ -49,9 +49,9 @@ namespace FrontierAg.Admin.Shippings
 
                     // Save changes here, e.g. MyDataLayer.SaveChanges();
                     _db.SaveChanges();
-                    if ((string)(Session["ReturnUrlEditShipping"]) != "")
+                    if ((string)(Session["ReturnUrlEditOrdering"]) != "")
                     {
-                        Response.Redirect((string)(Session["ReturnUrlEditShipping"]));
+                        Response.Redirect((string)(Session["ReturnUrlEditOrdering"]));
                     }
 
                     else if ((string)(Session["ReturnUrlEditBilling"]) != "")
@@ -75,7 +75,7 @@ namespace FrontierAg.Admin.Shippings
                 return null;
             }
 
-            using (_db)
+            using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
             {
                 return _db.Shippings.Find(ShippingId);
             }

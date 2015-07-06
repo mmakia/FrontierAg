@@ -37,7 +37,12 @@ namespace FrontierAg.Admin.Shippings
                     db.SaveChanges();
                 }
             }
-            if ((string)(Session["ReturnUrlCreateShipping"]) != "")//if exist
+
+            if ((string)(Session["ReturnUrlCreateOrdering"]) != "")//if exist
+            {
+                Response.Redirect((string)(Session["ReturnUrlCreateOrdering"]) + "/" + item.ShippingId);
+            }
+            else if ((string)(Session["ReturnUrlCreateShipping"]) != "")//if exist
             {
                 Response.Redirect((string)(Session["ReturnUrlCreateShipping"]) + "/" + item.ShippingId);
             }

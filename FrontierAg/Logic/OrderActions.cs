@@ -16,7 +16,7 @@ namespace FrontierAg.Models
         bool isItemShipping = false;
         bool isValidUpdate = true;
         bool isRemainingZero = true;
-        bool isRemainingZero2 = true; 
+        //bool isRemainingZero2 = true; 
         bool isAllPaid = true;
         bool isAllCancelled = true;
         int myShipmentId;
@@ -83,7 +83,7 @@ namespace FrontierAg.Models
                         myShipment.OrderId = OrderId;
 
                         var myShipping = (from my in _db.OrderShippings
-                                          where my.OrderId == OrderId && my.Shipping.SType == SType.Shipping
+                                          where my.OrderId == OrderId //&& my.Shipping.SType == SType.Shipping///////////////To fix later
                                           select my.Shipping).FirstOrDefault();
 
                         myShipment.ShippingId = InsertNewShipping(myShipping.ShippingId);//originalShippingAddressId
@@ -197,7 +197,7 @@ namespace FrontierAg.Models
                 myShipping.ContactId = myExistingShipping.ContactId;
                 myShipping.PPhone = myExistingShipping.PPhone;
                 myShipping.isHistory = true;
-                myShipping.SType = SType.Shipping;
+                //myShipping.SType = SType.Shipping;
                 myShipping.DateCreated = System.DateTime.Now;
                 _db.Shippings.Add(myShipping);
                 _db.SaveChanges();

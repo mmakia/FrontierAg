@@ -94,24 +94,6 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.TextBox CommentBox;
         
         /// <summary>
-        /// PaymentDateLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PaymentDateLbl;
-        
-        /// <summary>
-        /// PaymentDateBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PaymentDateBox;
-        
-        /// <summary>
         /// isSOLbl control.
         /// </summary>
         /// <remarks>

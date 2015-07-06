@@ -209,7 +209,7 @@ namespace FrontierAg.Admin.OrderDetails
             int myOrderId = Int32.Parse(yourValue);
             using (ProductContext db = new ProductContext())
             {
-                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.Shipping.SType == SType.Shipping).Select(en => en.ShippingId).FirstOrDefault();
+                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.SType == SType.Shipping).Select(en => en.ShippingId).FirstOrDefault();
 
                 Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Default",0, myShippingId));
                 
@@ -226,7 +226,7 @@ namespace FrontierAg.Admin.OrderDetails
             if (OrderId != null)
             {
                 var myShippingId3 = (from my in _db.OrderShippings
-                                     where my.OrderId == OrderId && my.Shipping.SType == SType.Shipping
+                                     where my.OrderId == OrderId && my.SType == SType.Shipping
                                      select my.Shipping);
 
                 return myShippingId3;// _db.OrderShippings.Include(m => m.Contact);

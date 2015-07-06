@@ -990,7 +990,6 @@
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logic\RouteActions.cs" />
-    <Compile Include="Logic\ShipmentActions.cs" />
     <Compile Include="Migrations\201505071907074_addingPriceOverride.cs" />
     <Compile Include="Migrations\201505071907074_addingPriceOverride.Designer.cs">
       <DependentUpon>201505071907074_addingPriceOverride.cs</DependentUpon>
@@ -1271,6 +1270,18 @@
     <Compile Include="Migrations\201506171734254_ChangingActionInShipment.cs" />
     <Compile Include="Migrations\201506171734254_ChangingActionInShipment.Designer.cs">
       <DependentUpon>201506171734254_ChangingActionInShipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507061643118_RemoveDescriptionFromproduct.cs" />
+    <Compile Include="Migrations\201507061643118_RemoveDescriptionFromproduct.Designer.cs">
+      <DependentUpon>201507061643118_RemoveDescriptionFromproduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507061704360_RemoveNameFromContact.cs" />
+    <Compile Include="Migrations\201507061704360_RemoveNameFromContact.Designer.cs">
+      <DependentUpon>201507061704360_RemoveNameFromContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507061854483_SwitchSTypeToPivot.cs" />
+    <Compile Include="Migrations\201507061854483_SwitchSTypeToPivot.Designer.cs">
+      <DependentUpon>201507061854483_SwitchSTypeToPivot.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Emailer.cs" />
@@ -1606,6 +1617,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506171734254_ChangingActionInShipment.resx">
       <DependentUpon>201506171734254_ChangingActionInShipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507061643118_RemoveDescriptionFromproduct.resx">
+      <DependentUpon>201507061643118_RemoveDescriptionFromproduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507061704360_RemoveNameFromContact.resx">
+      <DependentUpon>201507061704360_RemoveNameFromContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507061854483_SwitchSTypeToPivot.resx">
+      <DependentUpon>201507061854483_SwitchSTypeToPivot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

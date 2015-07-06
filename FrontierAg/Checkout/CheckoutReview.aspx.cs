@@ -120,7 +120,7 @@ namespace FrontierAg.Checkout
             }
         }
 
-        public FrontierAg.Models.Shipping GetItem2([FriendlyUrlSegmentsAttribute(1)]int ShippingId)
+        public FrontierAg.Models.Shipping GetItem1([FriendlyUrlSegmentsAttribute(1)]int ShippingId)
         {
             using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
             {
@@ -128,7 +128,15 @@ namespace FrontierAg.Checkout
             }
         }
 
-        public FrontierAg.Models.Shipping GetItem3([FriendlyUrlSegmentsAttribute(2)]int ShippingId)
+        public FrontierAg.Models.Shipping GetItem2([FriendlyUrlSegmentsAttribute(2)]int ShippingId)
+        {
+            using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
+            {
+                return _db.Shippings.Where(m => m.ShippingId == ShippingId).FirstOrDefault();
+            }
+        }
+
+        public FrontierAg.Models.Shipping GetItem3([FriendlyUrlSegmentsAttribute(3)]int ShippingId)
         {
             using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
             {
@@ -156,7 +164,7 @@ namespace FrontierAg.Checkout
                         if (i.DayOfWeek != DayOfWeek.Saturday || i.DayOfWeek != DayOfWeek.Sunday)
                         {
                             //Place an order
-                            AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                            
+                            AddOrder(PaymentBox.Text, CommentBox.Text, MyCart, i);   //PaymentDateBox.Text,                         
                         }                        
                     }
                 }
@@ -165,7 +173,7 @@ namespace FrontierAg.Checkout
                     for (DateTime i = StartDate; i < EndDate; i = i.AddDays(7))
                     {
                         //Place an order
-                        AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                         
+                        AddOrder(PaymentBox.Text, CommentBox.Text, MyCart, i);                         
                     }
                 }
                 else if (Frequent.Equals("BiWeekly"))
@@ -173,7 +181,7 @@ namespace FrontierAg.Checkout
                     for (DateTime i = StartDate; i < EndDate; i = i.AddDays(14))
                     {
                         //Place an order
-                        AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                        
+                        AddOrder(PaymentBox.Text, CommentBox.Text, MyCart, i);                        
                     }
                 }
 
@@ -182,7 +190,7 @@ namespace FrontierAg.Checkout
                     for (DateTime i = StartDate; i < EndDate; i = i.AddDays(30))
                     {
                         //Place an order
-                        AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                         
+                        AddOrder(PaymentBox.Text, CommentBox.Text, MyCart, i);                         
                     }
                 } 
             }
@@ -207,14 +215,14 @@ namespace FrontierAg.Checkout
                 List<CartItem> MyCart = usersShoppingCart.GetCartItems();
 
                 //Place an order
-                AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, System.DateTime.Now);
+                AddOrder(PaymentBox.Text, CommentBox.Text, MyCart, System.DateTime.Now);//PaymentDateBox.Text,
                 RemoveCartItems();
             }
             Response.Redirect("~/Checkout/CheckoutComplete");//To send emails
             
         }
 
-        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart, DateTime myDate)
+        public bool AddOrder(string Payment, string CommentBox, List<CartItem> MyCart, DateTime myDate)//string PaymentDate,
         {
             IList<string> segments = Request.GetFriendlyUrlSegments();
 
@@ -225,8 +233,8 @@ namespace FrontierAg.Checkout
                 var myContact = _db.Contacts.Where(e => e.ContactId == x).SingleOrDefault();
                 var myCustomer = new Customer();
                 myCustomer.Company = myContact.Company;
-                myCustomer.LName = myContact.LName;
-                myCustomer.FName = myContact.FName;
+                //myCustomer.LName = myContact.LName;
+                //myCustomer.FName = myContact.FName;
                 myCustomer.Address1 = myContact.Address1;
                 myCustomer.Address2 = myContact.Address2;
                 myCustomer.City = myContact.City;
@@ -257,22 +265,53 @@ namespace FrontierAg.Checkout
                 {
                     myOrder.Payment = Payment;
                 }
-                if (PaymentDate == "")
-                {
-                    myOrder.PaymentDate = null;
-                }
-                else
-                {
-                    myOrder.PaymentDate = Convert.ToDateTime(PaymentDate);
-                }
+                //if (PaymentDate == "")
+                //{
+                //    myOrder.PaymentDate = null;
+                //}
+                //else
+                //{
+                //    myOrder.PaymentDate = Convert.ToDateTime(PaymentDate);
+                //}
                 myOrder.ContactId = int.Parse(segments[0]);
                 myOrder.Comment = CommentBox;
                 //myOrder.PFee = ProcessingFee;
                 _db.Orders.Add(myOrder);
 
+                //Create new OrderingPerson to Link to myOrder
+                var myOrderingPerson = new Shipping();
+                var myExistingOrdering = _db.Shippings.Find(int.Parse(segments[1]));
+                myOrderingPerson.Company = myExistingOrdering.Company;
+                myOrderingPerson.LName = myExistingOrdering.LName;
+                myOrderingPerson.FName = myExistingOrdering.FName;
+                myOrderingPerson.Other1 = myExistingOrdering.Other1;
+                myOrderingPerson.Other2 = myExistingOrdering.Other2;
+                myOrderingPerson.Address1 = myExistingOrdering.Address1;
+                myOrderingPerson.Address2 = myExistingOrdering.Address2;
+                myOrderingPerson.City = myExistingOrdering.City;
+                myOrderingPerson.State = myExistingOrdering.State;
+                myOrderingPerson.PostalCode = myExistingOrdering.PostalCode;
+                myOrderingPerson.Country = myExistingOrdering.Country;
+                myOrderingPerson.ContactId = myExistingOrdering.ContactId;
+                myOrderingPerson.PPhone = myExistingOrdering.PPhone;
+                myOrderingPerson.EMail = myExistingOrdering.EMail;
+                myOrderingPerson.isHistory = true;
+                //myOrderingPerson.SType = SType.Ordering;
+                myOrderingPerson.DateCreated = myDate; // System.DateTime.Now;
+                _db.Shippings.Add(myOrderingPerson);
+
+                //create OrderShipping for OrderingPerson
+                var myOrderShipping0 = new OrderShipping();
+                myOrderShipping0.ShippingId = myOrderingPerson.ShippingId;
+                myOrderShipping0.OrderId = myOrder.OrderId;
+                myOrderShipping0.SType = SType.Ordering;
+                _db.OrderShippings.Add(myOrderShipping0);
+
+                _db.SaveChanges();
+
                 //Create new Shipping Address to Link to myOrder
                 var myShipping = new Shipping();
-                var myExistingShipping = _db.Shippings.Find(int.Parse(segments[1]));
+                var myExistingShipping = _db.Shippings.Find(int.Parse(segments[2]));
                 myShipping.Company = myExistingShipping.Company;
                 myShipping.LName = myExistingShipping.LName;
                 myShipping.FName = myExistingShipping.FName;
@@ -288,7 +327,7 @@ namespace FrontierAg.Checkout
                 myShipping.PPhone = myExistingShipping.PPhone;
                 myShipping.EMail = myExistingShipping.EMail;
                 myShipping.isHistory = true;
-                myShipping.SType = SType.Shipping;
+                //myShipping.SType = SType.Shipping;
                 myShipping.DateCreated = myDate; // System.DateTime.Now;
                 _db.Shippings.Add(myShipping);
 
@@ -296,13 +335,14 @@ namespace FrontierAg.Checkout
                 var myOrderShipping1 = new OrderShipping();
                 myOrderShipping1.ShippingId = myShipping.ShippingId;
                 myOrderShipping1.OrderId = myOrder.OrderId;
+                myOrderShipping1.SType = SType.Shipping;
                 _db.OrderShippings.Add(myOrderShipping1);
 
                 _db.SaveChanges();
 
                 //Create new Billing Address to Link to myOrder
                 var myBilling = new Shipping();
-                var myExistingBilling = _db.Shippings.Find(int.Parse(segments[2]));
+                var myExistingBilling = _db.Shippings.Find(int.Parse(segments[3]));
                 myBilling.Company = myExistingBilling.Company;
                 myBilling.LName = myExistingBilling.LName;
                 myBilling.FName = myExistingBilling.FName;
@@ -318,7 +358,7 @@ namespace FrontierAg.Checkout
                 myBilling.PPhone = myExistingBilling.PPhone;
                 myBilling.EMail = myExistingBilling.EMail;
                 myBilling.isHistory = true;
-                myBilling.SType = SType.Billing;
+                //myBilling.SType = SType.Billing;
                 myBilling.DateCreated = myDate; // System.DateTime.Now;
                 _db.Shippings.Add(myBilling);
 
@@ -326,6 +366,7 @@ namespace FrontierAg.Checkout
                 var myOrderShipping2 = new OrderShipping();
                 myOrderShipping2.ShippingId = myBilling.ShippingId;
                 myOrderShipping2.OrderId = myOrder.OrderId;
+                myOrderShipping2.SType = SType.Billing;
                 _db.OrderShippings.Add(myOrderShipping2);
 
                 //Add OrderDetail

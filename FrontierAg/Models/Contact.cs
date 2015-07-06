@@ -18,10 +18,10 @@ namespace FrontierAg.Models
         Customer, Vendor
     }
 
-    public enum PhoneType
-    {
-        Home, Business, Cell
-    }
+    //public enum PhoneType
+    //{
+    //    Home, Business, Cell
+    //}
 
     public class Contact
     {
@@ -34,9 +34,9 @@ namespace FrontierAg.Models
         //[ReadOnlyAttribute(true)]
         public string Company { get; set; }
 
-        public string FName { get; set; } 
+        //public string FName { get; set; } 
 
-        public string LName { get; set; }                     
+        //public string LName { get; set; }                     
 
         public string Address1 { get; set; }
 
@@ -53,6 +53,7 @@ namespace FrontierAg.Models
         public string Country { get; set; }
         
         [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Primary Phone")]
         public string PPhone { get; set; }        
 
         [Display(Name = "Secondary Phone")]

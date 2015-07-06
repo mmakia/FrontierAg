@@ -19,7 +19,7 @@
                     runat="server" />
               </ItemTemplate>
             </asp:TemplateField>--%>
-            <asp:DynamicField DataField="ShippingId" ReadOnly="true" />
+            <%--<asp:DynamicField DataField="ShippingId" ReadOnly="true" />--%>
             <asp:DynamicField DataField="Company"  />
             <asp:DynamicField DataField="FName"  />
             <asp:DynamicField DataField="LName"  />
@@ -33,7 +33,7 @@
             <asp:DynamicField DataField="Country" />  
             <asp:DynamicField DataField="PPhone"  />   
             <asp:DynamicField DataField="EMail" />                                
-            <asp:DynamicField DataField="SType" />    
+            <%--<asp:DynamicField DataField="SType" />    --%>
         </Columns>
         </asp:GridView>
         <div class="row">

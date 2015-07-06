@@ -11,6 +11,8 @@ namespace FrontierAg.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["ReturnUrlCreateOrdering"] = "";
+            Session["ReturnUrlEditOrdering"] = "";
             Session["ReturnUrlCreateContact"] = "";
             Session["ReturnUrlEditContact"] = "";
             Session["ReturnUrlCreateShipping"] = "";

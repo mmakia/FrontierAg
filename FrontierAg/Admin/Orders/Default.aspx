@@ -30,6 +30,12 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
+            <asp:TemplateField HeaderText="Person">
+            <ItemTemplate>
+                <asp:LinkButton runat="server" OnClick="Unnamed_Click0" Text="Person" CommandArgument="<%# Item.OrderId %>"/>                
+            </ItemTemplate>
+            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="Billing">
                 <ItemTemplate>
                     <asp:LinkButton runat="server" OnClick="Unnamed_Click1" Text="Bill To" CommandArgument="<%# Item.OrderId %>" />
@@ -40,7 +46,7 @@
             <asp:DynamicField DataField="Payment" HeaderText="Payment" ReadOnly="true" />
             <%--<asp:DynamicField DataField="Tracking" HeaderText="Tracking #" ReadOnly="true"/>  --%>
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />
-            <asp:DynamicField DataField="PaymentDate" HeaderText="Date" ReadOnly="true" />
+            <%--<asp:DynamicField DataField="PaymentDate" HeaderText="Date" ReadOnly="true" />--%>
             <asp:DynamicField DataField="Status" HeaderText="Status" />
             <asp:HyperLinkField Text="Process" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default/{0}" DataNavigateUrlFields="OrderId" />
             <asp:HyperLinkField Text="Shipments" DataNavigateUrlFormatString="~/Admin/Shipments/Default/{0}" DataNavigateUrlFields="OrderId" />

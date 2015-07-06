@@ -5,6 +5,11 @@ using System.Web;
 
 namespace FrontierAg.Models
 {
+    public enum SType
+    {
+        Shipping, Billing, Ordering
+    }
+
     public class OrderShipping
     {
         public int OrderShippingId { get; set; }
@@ -12,6 +17,8 @@ namespace FrontierAg.Models
         public int OrderId { get; set; }
 
         public int ShippingId { get; set; }
+
+        public SType SType { get; set; }
 
         public virtual Order Order { get; set; }
 

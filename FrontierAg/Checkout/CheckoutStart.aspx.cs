@@ -19,6 +19,8 @@ namespace FrontierAg.Checkout
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["ReturnUrlCreateOrdering"] = "";
+            Session["ReturnUrlEditOrdering"] = "";
             Session["ReturnUrlCreateContact"] = "";
             Session["ReturnUrlEditContact"] = "";
             Session["ReturnUrlCreateShipping"] = "";
@@ -32,7 +34,7 @@ namespace FrontierAg.Checkout
         {
             if(searchString != null)
             {
-                return _db.Contacts.Where(en => en.Type == CType.Customer && (en.Company.Contains(searchString) || en.LName.Contains(searchString) || en.FName.Contains(searchString)));                
+                return _db.Contacts.Where(en => en.Type == CType.Customer && (en.Company.Contains(searchString)));                
             }
 
             else 
@@ -41,8 +43,7 @@ namespace FrontierAg.Checkout
             }            
         }
 
-
-        public IQueryable<FrontierAg.Models.Shipping> GetData2([FriendlyUrlSegmentsAttribute(0)] int? ContactId)
+        public IQueryable<FrontierAg.Models.Shipping> GetData1([FriendlyUrlSegmentsAttribute(0)] int? ContactId)
         {
             //if (Session["myContactId"] == null)
             if (ContactId == null || ContactId == 0)
@@ -50,10 +51,21 @@ namespace FrontierAg.Checkout
                 return null;
             }
             //int x = Convert.ToInt32(Session["myContactId"]);
-            return _db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Shipping && n.isHistory == false);//_db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Shipping && n.isHistory == false);
+            return _db.Shippings.Where(n => n.ContactId == ContactId && n.isHistory == false);//_db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Shipping && n.isHistory == false);
         }
 
-        public IQueryable<FrontierAg.Models.Shipping> GetData3([FriendlyUrlSegmentsAttribute(0)] int? ContactId, [FriendlyUrlSegmentsAttribute(1)] int? ShippingId)
+        public IQueryable<FrontierAg.Models.Shipping> GetData2([FriendlyUrlSegmentsAttribute(0)] int? ContactId, [FriendlyUrlSegmentsAttribute(1)] int? OrderingId)
+        {
+            //if (Session["myContactId"] == null)
+            if (ContactId == null || ContactId == 0 || OrderingId == null || OrderingId == 0)
+            {
+                return null;
+            }
+            //int x = Convert.ToInt32(Session["myContactId"]);
+            return _db.Shippings.Where(n => n.ContactId == ContactId && n.isHistory == false);//_db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Shipping && n.isHistory == false);
+        }
+
+        public IQueryable<FrontierAg.Models.Shipping> GetData3([FriendlyUrlSegmentsAttribute(0)] int? ContactId, [FriendlyUrlSegmentsAttribute(1)] int? OrderingId, [FriendlyUrlSegmentsAttribute(2)] int? ShippingId)
         {
             //if (Session["Shipping"] == null)
             if (ContactId == null || ShippingId == null || ContactId == 0 || ShippingId == 0)
@@ -61,7 +73,7 @@ namespace FrontierAg.Checkout
                 return null;
             }
             //int y = Convert.ToInt32(Session["myContactId"]);
-            return _db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Billing && n.isHistory == false);
+            return _db.Shippings.Where(n => n.ContactId == ContactId && n.isHistory == false);
         }
 
         protected void backButton_Click(object sender, EventArgs e)
@@ -69,7 +81,18 @@ namespace FrontierAg.Checkout
             Response.Redirect("~/Checkout/ShoppingCart");
         }
 
-        protected void Unnamed_Click2(object sender, EventArgs e)
+        protected void Unnamed_Click1(object sender, EventArgs e)///1
+        {
+            LinkButton btn = (LinkButton)(sender);
+            string yourValue1 = btn.CommandArgument;
+            //Session["Shipping"] = yourValue2;
+            //Response.Redirect(Request.RawUrl);
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+
+            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/", int.Parse(segments[0]), yourValue1));
+        }
+
+        protected void Unnamed_Click2(object sender, EventArgs e)///2
         {
             LinkButton btn = (LinkButton)(sender);
             string yourValue2 = btn.CommandArgument;
@@ -77,10 +100,10 @@ namespace FrontierAg.Checkout
             //Response.Redirect(Request.RawUrl);
             IList<string> segments = Request.GetFriendlyUrlSegments();
 
-            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/", int.Parse(segments[0]), yourValue2));
+            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/", int.Parse(segments[0]), int.Parse(segments[1]), yourValue2));
         }
 
-        protected void Unnamed_Click3(object sender, EventArgs e)
+        protected void Unnamed_Click3(object sender, EventArgs e)//3
         {
             LinkButton btn = (LinkButton)(sender);
             string yourValue3 = btn.CommandArgument;
@@ -94,7 +117,7 @@ namespace FrontierAg.Checkout
             //Session["Shipping"] = null;
             //Session["Billing"] = null; 
 
-            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutReview/", int.Parse(segments[0]), int.Parse(segments[1]), yourValue3));
+            Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutReview/", int.Parse(segments[0]), int.Parse(segments[1]), int.Parse(segments[2]), yourValue3));
         }
         
         protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -125,13 +148,30 @@ namespace FrontierAg.Checkout
         }
 
 
+        protected void CreateNewOrderingBtn_Click(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            Session["ReturnUrlCreateOrdering"] = "~/Checkout/CheckoutStart/" + int.Parse(segments[0]);
+           Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping", int.Parse(segments[0])));/////
+        }
+
         protected void CreateNewShippingBtn_Click(object sender, EventArgs e)
         {
             IList<string> segments = Request.GetFriendlyUrlSegments();
-            Session["ReturnUrlCreateShipping"] = "~/Checkout/CheckoutStart/" + int.Parse(segments[0]);
+            Session["ReturnUrlCreateShipping"] = "~/Checkout/CheckoutStart/" + int.Parse(segments[0]) + "/" + int.Parse(segments[1]);
            Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping", int.Parse(segments[0])));/////
         }
-        
+
+
+        protected void OrderingList_Edit(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            LinkButton btn = (LinkButton)(sender);
+            string ShippingId = btn.CommandArgument;
+
+            Session["ReturnUrlEditOrdering"] = "~/Checkout/CheckoutStart/" + int.Parse(segments[0]) + "/" + ShippingId;
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Edit", ShippingId));
+        } 
 
         protected void ShippingList_Edit(object sender, EventArgs e)
         {
@@ -147,7 +187,7 @@ namespace FrontierAg.Checkout
         protected void CreateNewBilling_Click(object sender, EventArgs e)
         {
             IList<string> segments = Request.GetFriendlyUrlSegments();
-            Session["ReturnUrlCreateBilling"] = "~/Checkout/CheckoutReview/" + int.Parse(segments[0]) + "/" + int.Parse(segments[1]);
+            Session["ReturnUrlCreateBilling"] = "~/Checkout/CheckoutReview/" + int.Parse(segments[0]) + "/" + int.Parse(segments[1]) + "/" + int.Parse(segments[2]);
             Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping", int.Parse(segments[0])));
         }
 

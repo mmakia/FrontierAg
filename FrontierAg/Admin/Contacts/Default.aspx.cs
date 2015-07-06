@@ -25,7 +25,7 @@ namespace FrontierAg.Contacts
         {            
             if (!String.IsNullOrEmpty(SearchString))
             {
-                return _db.Contacts.Where(s => s.Company.Contains(SearchString) || s.LName.Contains(SearchString) || s.FName.Contains(SearchString));
+                return _db.Contacts.Where(s => s.Company.Contains(SearchString));
             }
             return _db.Contacts;
         }

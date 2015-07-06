@@ -18,7 +18,7 @@ namespace FrontierAg.Models
         [Required(ErrorMessage = "Product Name is required."), StringLength(100), Display(Name = "Name")]
         public string ProductName { get; set; }        
         
-        public string Description { get; set; }
+        //public string Description { get; set; }
         
         public DateTime DateCreated { get; set; }
 

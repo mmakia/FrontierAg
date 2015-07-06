@@ -172,8 +172,9 @@
            
     <div>        
 		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />       
-        <asp:Button ID="SvToShipment" runat="server" Text="Save To Shipments" OnClick="SvToShipment_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
-        <asp:Button ID="ShipmentsBtn" runat="server" Text="Order's Open Shipments" OnClick="ShipmentsBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
+        <asp:Button ID="SvToShipment" runat="server" Text="Save To Shipments" OnClick="SvToShipment_Click" CssClass="btn btn-warning" ClientIDMode="Static" />                 
+        <%--<asp:LinkButton ID="ShipmentsBtn" runat="server" Text="Order's Open Shipments" OnClick="ShipmentsBtn_Click" ClientIDMode="Static" />--%>
+        <asp:Button ID="ShipmentsBtn" runat="server" Text="Order's Open Shipments" OnClick="ShipmentsBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />
         <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
     </div>           
       </ContentTemplate>
