@@ -61,7 +61,7 @@
     </script>        
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate> 
-            <div id="Div2" runat="server" class="ContentHead"><h3>Order Details</h3></div>
+            <div id="Div2" runat="server" class="ContentHead"><h3>Order Processing</h3></div>
 
             <div id="OpenOrderTitle" runat="server" class="ContentHead"><h4>Order</h4></div>
 
@@ -70,7 +70,7 @@
         <Columns>                  
             <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
             <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
-            <asp:DynamicField DataField="Status" HeaderText="Status" />   
+            <asp:DynamicField DataField="Status" HeaderText="Status" ReadOnly="true"/>   
             <%--<asp:DynamicField DataField="Tracking" HeaderText="Tracking #" /> --%>
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />         
             <%--<asp:DynamicField DataField="ShipCharge" HeaderText="Shipping Total" /> --%>
@@ -79,7 +79,7 @@
                 <EditRowStyle CssClass="GridViewEditRow" />  
             </asp:GridView>
 
-    <div id="Div1" runat="server" class="ContentHead"><h4>Shipping To</h4></div>
+    <div id="Div1" runat="server" class="ContentHead"><h4>Shipping To (Editable for multiple shipments, When each shipment is going to a different address)</h4></div>
     <asp:GridView runat="server" ID="ShippingsGrid"
         ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId" AutoGenerateEditButton="true" UpdateMethod="ShippingsGrid_UpdateItem" 
         SelectMethod="ShippingsGrid_GetData"  CssClass="table table-striped table-bordered" EnableModelValidation="true"
@@ -105,7 +105,7 @@
         </Columns>
     </asp:GridView>
      
-    <div id="OperOrderTitle" runat="server" class="ContentHead"><h4>Order Products</h4></div>
+    <div id="OperOrderTitle" runat="server" class="ContentHead"><h4>Products</h4></div>
     <asp:GridView ID="OrderDetailList" runat="server" AutoGenerateColumns="False" ShowFooter="False" GridLines="Vertical" CellPadding="4"
         ItemType="FrontierAg.Models.OrderDetail" SelectMethod="OpenOrderList_GetData" DataKeyNames="OrderDetailId" 
         CssClass="table table-striped table-bordered" EnableModelValidation="true" >
@@ -127,7 +127,7 @@
             
         <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="true"/>
         <asp:BoundField DataField="Unit" HeaderText="Unit" ReadOnly="true"/>
-        <asp:BoundField DataField="QtyShipped" HeaderText="PrevShipped" ReadOnly="true"/>
+        <asp:BoundField DataField="QtyShipped" HeaderText="Shipped" ReadOnly="true"/>
 
         <asp:TemplateField HeaderText="Remaining" ItemStyle-CssClass="myGridStyle">
               <ItemTemplate >
@@ -173,7 +173,7 @@
     <div>        
 		<asp:button id="Button1" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />       
         <asp:Button ID="SvToShipment" runat="server" Text="Save To Shipments" OnClick="SvToShipment_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
-        <asp:Button ID="ShipmentsBtn" runat="server" Text="Order Shipments" OnClick="ShipmentsBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
+        <asp:Button ID="ShipmentsBtn" runat="server" Text="Order's Open Shipments" OnClick="ShipmentsBtn_Click" CssClass="btn btn-warning" ClientIDMode="Static" />         
         <span><div class="error_msg" style="color: red; margin-left: 10px;" /></span>
     </div>           
       </ContentTemplate>

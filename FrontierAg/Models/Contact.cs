@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,12 +10,12 @@ namespace FrontierAg.Models
 {
     public enum State
     {
-        AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, other
+        AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY, other
     }
 
     public enum CType
     {
-        Customer, Vendor, Employee, Other
+        Customer, Vendor
     }
 
     public enum PhoneType
@@ -26,14 +27,16 @@ namespace FrontierAg.Models
     {
         [Key]        
         [ScaffoldColumn(false)]        
-        public int ContactId { get; set; }        
-                
-        [Required, StringLength(100)]        
+        public int ContactId { get; set; }
+
+        [Index(IsUnique = true)]
+        [Required, StringLength(100)]
+        //[ReadOnlyAttribute(true)]
         public string Company { get; set; }
-                
-        public string LName { get; set; }
-        
-        public string FName { get; set; }        
+
+        public string FName { get; set; } 
+
+        public string LName { get; set; }                     
 
         public string Address1 { get; set; }
 
@@ -50,15 +53,10 @@ namespace FrontierAg.Models
         public string Country { get; set; }
         
         [DataType(DataType.PhoneNumber)]
-        public string PPhone { get; set; }
-                
-        public PhoneType? PPType { get; set; }
+        public string PPhone { get; set; }        
 
         [Display(Name = "Secondary Phone")]
-        public string SPhone { get; set; }
-
-        [Display(Name = "Secondary Phone Type")]
-        public PhoneType? SPType { get; set; }
+        public string SPhone { get; set; }                
 
         [DataType(DataType.PhoneNumber)]
         public string Fax { get; set; }
@@ -76,9 +74,7 @@ namespace FrontierAg.Models
         [Display(Name = "Contact Type")]
         public CType Type { get; set; }
 
-        [ReadOnly(true)]
-        public bool isHistory { get; set; }
-
+        [ScaffoldColumn(false)]        
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
 

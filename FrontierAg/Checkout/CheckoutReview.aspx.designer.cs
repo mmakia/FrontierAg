@@ -76,6 +76,24 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.TextBox PaymentBox;
         
         /// <summary>
+        /// CommentLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CommentLbl;
+        
+        /// <summary>
+        /// CommentBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CommentBox;
+        
+        /// <summary>
         /// PaymentDateLbl control.
         /// </summary>
         /// <remarks>
@@ -94,22 +112,94 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.TextBox PaymentDateBox;
         
         /// <summary>
-        /// CommentLbl control.
+        /// isSOLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CommentLbl;
+        protected global::System.Web.UI.WebControls.Label isSOLbl;
         
         /// <summary>
-        /// CommentBox control.
+        /// isSOCheckBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CommentBox;
+        protected global::System.Web.UI.WebControls.CheckBox isSOCheckBox;
+        
+        /// <summary>
+        /// StartLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StartLbl;
+        
+        /// <summary>
+        /// StartTxb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox StartTxb;
+        
+        /// <summary>
+        /// EndLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EndLbl;
+        
+        /// <summary>
+        /// EndTxb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EndTxb;
+        
+        /// <summary>
+        /// RepeatLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RepeatLbl;
+        
+        /// <summary>
+        /// RepeatDdl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RepeatDdl;
+        
+        /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button3;
+        
+        /// <summary>
+        /// RecurringButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button RecurringButton;
         
         /// <summary>
         /// Button1 control.

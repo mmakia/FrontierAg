@@ -21,5 +21,11 @@
             </EditItemTemplate>
         </asp:FormView>
     </div>
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=ctl00_Label1]").hide();
+            $("[id*=Company_TextBox1]").hide();
+        });
+    </script>
 </asp:Content>
 

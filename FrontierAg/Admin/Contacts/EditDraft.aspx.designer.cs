@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FrontierAg.Admin.Shippings {
+namespace FrontierAg.Admin.Contacts {
     
     
-    public partial class AddShipping3 {
+    public partial class Edit {
         
         /// <summary>
-        /// addShippingForm control.
+        /// FormViewId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView addShippingForm;
+        protected global::System.Web.UI.WebControls.FormView FormViewId;
     }
 }

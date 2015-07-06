@@ -17,7 +17,13 @@ namespace FrontierAg
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            Session["ReturnUrlCreateContact"] = "";
+            Session["ReturnUrlEditContact"] = "";
+            Session["ReturnUrlCreateShipping"] = "";
+            Session["ReturnUrlEditShipping"] = "";
+            Session["ReturnUrlCreateBilling"] = "";
+            Session["ReturnUrlEditBilling"] = "";
+
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
 
@@ -85,10 +91,10 @@ namespace FrontierAg
                 CartList.DataBind();
                 //GetTotal() suppose to execute after UpdateShoppingCartDatabase                
                 string x = String.Format("{0:c}", usersShoppingCart.GetTotal());
-                if (x != "$0.00")
+                //if (x != "$0.00")
                     lblTotal.Text = x;
-                else
-                    lblTotal.Text = "";
+                //else
+                //    lblTotal.Text = "";
                 return usersShoppingCart.GetCartItems();
             }
         }

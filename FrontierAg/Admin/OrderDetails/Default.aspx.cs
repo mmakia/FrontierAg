@@ -34,7 +34,7 @@ namespace FrontierAg.Admin.OrderDetails
                 Response.AddHeader("Pragma", "no-cache");
                 Response.Expires = -1441;
             }
-            //ProcessingFee = Convert.ToDecimal(PFeeBox.Text.ToString());; 
+            
         }
 
         //Solution2, to force browser to reload when using back button inorder to display updated info on page
@@ -90,7 +90,7 @@ namespace FrontierAg.Admin.OrderDetails
                     if (isRemaining == 0)///////////////////order.Status == Status.Shipped &&//When to updat the total? when no more QTYremaining ? or when we shipp an item?
                     {
                         //valuse of items
-                        Decimal itemsValue = 0, itemCharges;                         
+                        decimal itemsValue = 0, itemCharges;//decimal
                         foreach(var a in AllOrderItems)
                         {
                             OrderActions actions = new OrderActions();
@@ -124,13 +124,13 @@ namespace FrontierAg.Admin.OrderDetails
 
         protected void SvToShipment_Click(object sender, EventArgs e)//////////////1
         {                      
-            Decimal PFee = Convert.ToDecimal(PFeeBox.Text.ToString());
+            decimal PFee = Convert.ToDecimal(PFeeBox.Text.ToString());
             IList<string> segments = Request.GetFriendlyUrlSegments();  
 
             SaveUpdateOrderDetail(int.Parse(segments[0]), PFee);///////////////2     
         }
 
-        public IQueryable<OrderDetail> SaveUpdateOrderDetail(int OrderId, Decimal PFee)/////////////////////3
+        public IQueryable<OrderDetail> SaveUpdateOrderDetail(int OrderId, decimal PFee)/////////////////////3/
         {
             //String cartId = usersShoppingCart.GetCartId();
             using (OrderActions MyOrderActions = new OrderActions())
@@ -168,11 +168,11 @@ namespace FrontierAg.Admin.OrderDetails
                     TextBox CommentBox = new TextBox();
                     CommentBox = (TextBox)OrderDetailList.Rows[i].FindControl("CommentBx");
                     ODUpdates[i].Comment = CommentBox.Text.ToString();
-
                 }
 
                 MyOrderActions.UpdateOrderDetailDatabase(OrderId, ODUpdates, PFee);//////////////////4
                 OrderDetailList.DataBind();
+                OpenOrdersList2.DataBind();
                 
                 return MyOrderActions.GetOrderDetailsItems(OrderId);
             }
@@ -263,7 +263,7 @@ namespace FrontierAg.Admin.OrderDetails
             using (ProductContext db = new ProductContext())
             {
                 //var myShipmentId = db.Shipments.Select(en => en.ShipmentId).FirstOrDefault();//Where(en => en.OrderId == myOrderId).Select(en => en.ShipmentId).FirstOrDefault();
-                Response.Redirect(FriendlyUrl.Href("~/Admin/Shipments/Default", myOrderId));
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shipments/OpenShipment", myOrderId));
             }
         }
                

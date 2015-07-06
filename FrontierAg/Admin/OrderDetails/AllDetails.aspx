@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AllDetails.aspx.cs" Inherits="FrontierAg.Admin.OrderDetails.AllDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="AllDetail" runat="server" class="ContentHead"><h3>Items</h3></div>
+    <div id="AllDetail" runat="server" class="ContentHead"><h3>Products</h3></div>
     <asp:GridView ID="AllDetailsGrid" runat="server" DataKeyNames="OrderDetailId" ItemType="FrontierAg.Models.OrderDetail" SelectMethod="AllDetailsGrid_GetData" AutoGenerateColumns="false" CssClass="table table-striped table-bordered"
         AllowSorting="true" AllowPaging="true" PageSize="17">
         <Columns>      

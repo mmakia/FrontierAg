@@ -19,6 +19,14 @@ namespace FrontierAg.Admin.Shippings
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                //to force browser to reload when using back button inorder to display updated info on page
+                Response.Buffer = true;
+                Response.CacheControl = "no-cache";
+                Response.AddHeader("Pragma", "no-cache");
+                Response.Expires = -1441;
+            }
         }
 
         //protected void Page_Init()
@@ -92,12 +100,12 @@ namespace FrontierAg.Admin.Shippings
                       String.Format("Item with id {0} no longer exists in the database.", ShippingId));
                 }
             }
-        }
+        }  
 
-        protected void Unnamed_Click(object sender, EventArgs e)
+        protected void CreateAddress_Click(object sender, EventArgs e)
         {
             IList<string> segments = Request.GetFriendlyUrlSegments();
-             Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping2/", int.Parse(segments[0])));            
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping/", int.Parse(segments[0])));            
         }  
         
     }

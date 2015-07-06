@@ -9,12 +9,12 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using System.Web.ModelBinding;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace FrontierAg.Admin.Orders
 {
     public partial class Default : System.Web.UI.Page
-    {
-        Decimal PreTotal;
+    {        
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -28,18 +28,7 @@ namespace FrontierAg.Admin.Orders
         //     out int totalRowCount
         //     string sortByExpression
         public IQueryable<Order> OrdersList_GetData([FriendlyUrlSegmentsAttribute(0)]int? ContactId, [Control] Status? Status) 
-        {
-            
-             
-            //old code
-            //ProductContext db = new ProductContext();
-            //var query = db.Orders.Include(n => n.OrderShippings.Select(en => en.Shipping.Contact));
-
-            //if (Status != null)
-            //{
-            //    query = query.Where(en => en.Status == Status);
-            //}
-            //return query;
+        {                    
             FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
 
             if (ContactId != null)
@@ -79,8 +68,21 @@ namespace FrontierAg.Admin.Orders
                     db.SaveChanges();
                 }
             }
-        }    
-            
-        
+        }
+
+        protected void Unnamed_Click1(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)(sender);
+            string yourValue = btn.CommandArgument;
+
+            int myOrderId = Int32.Parse(yourValue);
+            using (ProductContext db = new ProductContext())
+            {
+                var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.Shipping.SType == SType.Billing).Select(en => en.ShippingId).FirstOrDefault();
+
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Details", 0, myShippingId));
+
+            }
+        }
     }
 }

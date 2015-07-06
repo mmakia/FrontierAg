@@ -14,6 +14,11 @@ namespace FrontierAg.Models
     public class OrderActions : IDisposable
     {
         bool isItemShipping = false;
+        bool isValidUpdate = true;
+        bool isRemainingZero = true;
+        bool isRemainingZero2 = true; 
+        bool isAllPaid = true;
+        bool isAllCancelled = true;
         int myShipmentId;
 
         private ProductContext _db = new ProductContext();        
@@ -28,66 +33,140 @@ namespace FrontierAg.Models
             else return _db.OrderDetails.Include(n => n.Order);//.Include(o => o.Product).Include(l => l.Order.Shipping.Contact);
         }
 
-        public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates, Decimal PFee)//////////////////5
+        public void UpdateOrderDetailDatabase(int OrderId, OrederDetailUpdates[] ODetailUpdates, decimal PFee)//////////////////5
         {
             
             try
             {
-                int ODUpdatesCount = ODetailUpdates.Count();
-
+                int ODUpdatesCount = ODetailUpdates.Count();                
+                
                 // Iterate through all OrderDetail list to see if creating new shipment is needed
                 for (int i = 0; i < ODUpdatesCount; i++)
                 {
+                    //isValidUpdate
+                    if (ODetailUpdates[i].Quantity < ODetailUpdates[i].QtyShipped + ODetailUpdates[i].QtyCancelled + ODetailUpdates[i].QtyShipping + ODetailUpdates[i].QtyCancelling)
+                    {
+                        isValidUpdate = false;
+                    }
+
+                    //isItemShipping                                                                                                                                                             
                     if (ODetailUpdates[i].QtyShipping > 0)
                     {
                         isItemShipping = true;
                     }
-                }
 
-                //inserting new Shipment & ShipmentDetail
-                if (isItemShipping)
-                {
-                    var myShipment = new Shipment();
-                    myShipment.OrderId = OrderId;
-
-                    var myShipping = (from my in _db.OrderShippings
-                                         where my.OrderId == OrderId && my.Shipping.SType == SType.Shipping
-                                         select my.Shipping).FirstOrDefault();
-                                   
-                    myShipment.ShippingId = InsertNewShipping(myShipping.ShippingId);//originalShippingAddressId
-                    myShipment.PFee = PFee;
-                    myShipment.ShipCharge = 0;
-                    myShipment.Tracking = "";
-                    myShipment.Comment = "";
-                    myShipment.DateCreated = System.DateTime.Now;
-
-                    _db.Shipments.Add(myShipment);
-                    _db.SaveChanges();
-
-                    myShipmentId = myShipment.ShipmentId;
-
-                    //inserting new ShipmentDetailS   
-                    Tuple<Decimal, Decimal> myTuple = InsertShipmentDetail(myShipment.ShipmentId, ODetailUpdates);////////////6
-
-                    myShipment.PCharges = myTuple.Item2;
-                    myShipment.Total = PFee + myTuple.Item1 + myTuple.Item2;
-                    _db.SaveChanges();
-                }
-
-                List<OrderDetail> myDetails = GetOrderDetails(OrderId);//getting originals from Db
-                foreach (var OrderDetail in myDetails)
-                {
-                    //updating OrderDetails
-                    for (int i = 0; i < ODUpdatesCount; i++)
+                    //isRemainingZero
+                    if(ODetailUpdates[i].Quantity != ODetailUpdates[i].QtyShipped + ODetailUpdates[i].QtyCancelled + ODetailUpdates[i].QtyShipping + ODetailUpdates[i].QtyCancelling)
                     {
-                        if (OrderDetail.Product.ProductId == ODetailUpdates[i].ProductId)
+                        isRemainingZero = false;
+                    }
+                    
+                    //if all cancelled
+                    if (ODetailUpdates[i].Quantity != ODetailUpdates[i].QtyCancelled + ODetailUpdates[i].QtyCancelling)
+                    {
+                        isAllCancelled = false;
+                    }
+                    
+                }
+
+                if (isValidUpdate)
+                {
+                    //inserting new Shipment & ShipmentDetail
+                    if (isItemShipping)
+                    {
+                        //change order status to partialShipment
+                        var myOrder = _db.Orders.Find(OrderId);
+                        myOrder.Status = Status.PartialShipment;                        
+
+                        //add  new shipment
+                        var myShipment = new Shipment();
+                        myShipment.OrderId = OrderId;
+
+                        var myShipping = (from my in _db.OrderShippings
+                                          where my.OrderId == OrderId && my.Shipping.SType == SType.Shipping
+                                          select my.Shipping).FirstOrDefault();
+
+                        myShipment.ShippingId = InsertNewShipping(myShipping.ShippingId);//originalShippingAddressId
+                        myShipment.PFee = PFee;
+                        myShipment.ShipCharge = 0;
+                        myShipment.Tracking = "";
+                        myShipment.Comment = "";
+                        myShipment.Action = Action.New;
+                        myShipment.DateCreated = System.DateTime.Now;
+
+                        _db.Shipments.Add(myShipment);
+                        _db.SaveChanges();
+
+                        //change order status to shipped
+                        if (isRemainingZero)
                         {
+                            myOrder.Status = Status.Shipped;
+                        }
 
-                            UpdateItem(OrderId, OrderDetail.ProductId, ODetailUpdates[i].QtyShipping, ODetailUpdates[i].QtyCancelling, ODetailUpdates[i].Comment);//////////////////8
+                        myShipmentId = myShipment.ShipmentId;
 
+                        //inserting new ShipmentDetailS   
+                        Tuple<decimal, decimal> myTuple = InsertShipmentDetail(myShipment.ShipmentId, ODetailUpdates);////////////6//decimal
+
+                        myShipment.PCharges = myTuple.Item2;
+                        myShipment.Total = PFee + myTuple.Item1 + myTuple.Item2;
+                        _db.SaveChanges();
+                    }
+
+                    //change status to cancelled, if remaining zero and all cancelled
+                    var myOrder3 = _db.Orders.Find(OrderId);
+                    if (isAllCancelled)
+                    {
+                        myOrder3.Status = Status.Cancelled;
+                    }
+                    _db.SaveChanges();
+
+                    List<OrderDetail> myDetails = GetOrderDetails(OrderId);//getting originals from Db
+                    foreach (var OrderDetail in myDetails)
+                    {
+                        //updating OrderDetails
+                        for (int i = 0; i < ODUpdatesCount; i++)
+                        {
+                            if (OrderDetail.Product.ProductId == ODetailUpdates[i].ProductId)
+                            {
+
+                                UpdateItem(OrderId, OrderDetail.ProductId, ODetailUpdates[i].QtyShipping, ODetailUpdates[i].QtyCancelling, ODetailUpdates[i].Comment);//////////////////8
+
+                            }
                         }
                     }
+
+                    //here to code for order status == partial and shipped?
+                    //Check if All shipments are Paid for
+                    var allShipments = _db.Shipments.Where(r => r.OrderId == OrderId);
+                    foreach (var myshipment in allShipments)
+                    {
+                        if (myshipment != null && myshipment.Action != FrontierAg.Models.Action.Paid)
+                        {
+                            isAllPaid = false;
+                        }
+                    }
+
+                    ////check if all OrderDetails have remaning zero
+                    //var myorder = _db.Orders.Where(e => e.OrderId == OrderId).SingleOrDefault();
+                    //var allOrderDetails = _db.OrderDetails.Where(e => e.OrderId == myorder.OrderId);
+                    //foreach (var OrderDetail1 in allOrderDetails)
+                    //{
+                    //    if (OrderDetail1.Quantity != OrderDetail1.QtyCancelled + OrderDetail1.QtyShipped)
+                    //    {
+                    //        isRemainingZero2 = false;
+                    //    }
+                    //}
+
+                    //change order status to closed
+                    if (isRemainingZero && isAllPaid)
+                    {                        
+                        var myorder2 = _db.Orders.Find(OrderId);
+                        myorder2.Status = Status.Closed;
+                        _db.SaveChanges();
+                    }
                 }
+                
             }
             catch (Exception exp)
             {
@@ -137,12 +216,12 @@ namespace FrontierAg.Models
             public string ProductName;
             public int Quantity;
             public string UnitString;
-            public Decimal_EditField PFee;
+            public decimal PFee;//Decimal_EditField
             public int QtyShipped;
             public int QtyShipping;
             public int QtyCancelled;
             public int QtyCancelling;
-            public Decimal Price;
+            public decimal Price;//decimal
             public String Comment;
         }        
 
@@ -163,7 +242,7 @@ namespace FrontierAg.Models
                     if (myDBOrderDetail != null)
                     {
                         //do the work.............
-                        if (qtyCancelling + qtyShipping <= myDBOrderDetail.Quantity)
+                        if (myDBOrderDetail.Quantity >= qtyCancelling + qtyShipping)
                         {                                                 
                             //update OrderDeatils DB
                             myDBOrderDetail.QtyCancelled = myDBOrderDetail.QtyCancelled + qtyCancelling;
@@ -180,10 +259,10 @@ namespace FrontierAg.Models
             }
         }
 
-        protected Tuple<Decimal, Decimal> InsertShipmentDetail(int ShipmentId, OrederDetailUpdates[] ODetailUpdates)//////////////////7
+        protected Tuple<decimal, decimal> InsertShipmentDetail(int ShipmentId, OrederDetailUpdates[] ODetailUpdates)//////////////////7//decimal
         {
-            Decimal ShipmentTotal = 0;
-            Decimal PChargeTotal = 0;
+            decimal ShipmentTotal = 0;//decimal
+            decimal PChargeTotal = 0;//decimal
             int ODUpdatesCount = ODetailUpdates.Count();
 
             try
@@ -229,12 +308,10 @@ namespace FrontierAg.Models
 
         public IQueryable<OrderDetail> GetOrderDetailsItems(int OrderId)//
         {
-            
-
             return _db.OrderDetails.Where(c => c.OrderId == OrderId);
         }
 
-        public decimal GetChargeFromPackCharges(int productId, int qty)//1-check if exist in packcharge table 2-check if qty is within limit 3- then calculate packCharge for multipule boxes
+        public decimal GetChargeFromPackCharges(int productId, int qty)//1-check if exist in packcharge table 2-check if qty is within limit 3- then calculate packCharge for multipule boxes//decimal
         {
             var myPackageCharge = _db.PackCharges.Where(en => en.ProductId == productId).FirstOrDefault();//1
             if (myPackageCharge == null)
@@ -252,7 +329,7 @@ namespace FrontierAg.Models
                 }
 
                 //3-value not found, will pack QTY in multipule boxes
-                Decimal totalCharge = 0;
+                decimal totalCharge = 0;//decimal
 
                 //max qty fit in a box 
                 var maxQtyInBox = _db.PackCharges.Where(en => en.ProductId == productId).Max(m => m.To);
@@ -280,6 +357,7 @@ namespace FrontierAg.Models
                 return 0;
             }
         }
+              
 
         public void Dispose()
         {

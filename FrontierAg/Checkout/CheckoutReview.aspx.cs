@@ -8,42 +8,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Routing;
-using Microsoft.AspNet.FriendlyUrls; 
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace FrontierAg.Checkout
 {
     public partial class CheckoutReview : System.Web.UI.Page
     {
-        decimal cartTotal = 0;
         decimal orderTotal = 0;
-        decimal ProcessingFee;          
+        //int myOrderId2;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
-                if (!IsPostBack)
-                {
-                    //PFeeBox.Text = "5.00";
-                }
-                //ProcessingFee = Convert.ToDecimal(PFeeBox.Text.ToString());  
-                cartTotal = usersShoppingCart.GetTotal();
-                orderTotal = cartTotal;// +ProcessingFee;
-                if (cartTotal > 0)
-                {                    
-                    // Display Total.
-                    lblTotal.Text = String.Format("{0:c}", cartTotal);                    
-                    //GTotalValueLbl.Text = String.Format("{0:c}", orderTotal);                    
-                }
-                else
-                {
-                    //LabelTotalText.Text = "";
-                    lblTotal.Text = "";
-                    CheckoutReviewTitle.InnerText = "Shopping Cart is Empty";
-                    PlaceOrderBtn.Visible = false;
-                }
+                orderTotal = usersShoppingCart.GetTotal();
+                lblTotal.Text = String.Format("{0:c}", orderTotal);
             }
-           
         }
 
         public List<CartItem> GetShoppingCartItems()
@@ -76,7 +56,7 @@ namespace FrontierAg.Checkout
                 usersShoppingCart.UpdateShoppingCartDatabase(cartId, cartUpdates);
                 CheckoutReviewList.DataBind();
 
-                lblTotal.Text = String.Format("{0:c}", usersShoppingCart.GetTotal()); 
+                lblTotal.Text = String.Format("{0:c}", usersShoppingCart.GetTotal());
                 return usersShoppingCart.GetCartItems();
             }
         }
@@ -124,9 +104,9 @@ namespace FrontierAg.Checkout
 
 
         public FrontierAg.Models.Contact GetItem([FriendlyUrlSegmentsAttribute(0)]int ContactId)
-        {            
+        {
             using (FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext())
-            {               
+            {
                 return _db.Contacts.Where(m => m.ContactId == ContactId).FirstOrDefault();
             }
         }
@@ -155,53 +135,127 @@ namespace FrontierAg.Checkout
                 return _db.Shippings.Where(m => m.ShippingId == ShippingId).FirstOrDefault();
             }
         }
+        
 
 
-        protected void PlaceOrderBtn_Click(object sender, EventArgs e)
-        {                         
+        protected void RecurringButton_Click(object sender, EventArgs e)
+        {
+            DateTime StartDate = Convert.ToDateTime(StartTxb.Text);
+            DateTime EndDate = Convert.ToDateTime(EndTxb.Text);
+            string Frequent = RepeatDdl.SelectedItem.ToString().Trim();      
+
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
                 Session["payment_amt"] = usersShoppingCart.GetTotal();
-                
                 List<CartItem> MyCart = usersShoppingCart.GetCartItems();
-                
-                //Place an order
-                AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart);
-                RemoveCartItems();                
+
+                if (Frequent.Equals("Daily"))
+                {
+                    for (DateTime i = StartDate; i < EndDate; i = i.AddDays(1))
+                    {
+                        if (i.DayOfWeek != DayOfWeek.Saturday || i.DayOfWeek != DayOfWeek.Sunday)
+                        {
+                            //Place an order
+                            AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                            
+                        }                        
+                    }
+                }
+                else if (Frequent.Equals("Weekly"))
+                {
+                    for (DateTime i = StartDate; i < EndDate; i = i.AddDays(7))
+                    {
+                        //Place an order
+                        AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                         
+                    }
+                }
+                else if (Frequent.Equals("BiWeekly"))
+                {
+                    for (DateTime i = StartDate; i < EndDate; i = i.AddDays(14))
+                    {
+                        //Place an order
+                        AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                        
+                    }
+                }
+
+                else
+                {
+                    for (DateTime i = StartDate; i < EndDate; i = i.AddDays(30))
+                    {
+                        //Place an order
+                        AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, i);                         
+                    }
+                } 
             }
-            //new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
-            //new Emailer().SendEmail("snacko@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
-            //new Emailer().SendEmail("ugatti@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
-            //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
-            //new Emailer().SendEmail("ddavis@fsiag.com", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
-            //new Emailer().SendEmail("mvella@fsiag.com ", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
-            //new Emailer().SendEmail("mwoolman@frontierssi.com ", "orders@frontierssi.com", "FrontierAg New Order ", "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
-            Response.Redirect("~/Checkout/CheckoutComplete.aspx");               
+            Session["isStandOrder"] = "true";
+            RemoveCartItems();
+            Response.Redirect("~/Checkout/CheckoutComplete");//To send emails   
+            
         }
-        
+
         protected void CancelBtn_Click(object sender, EventArgs e)
-        {            
+        {
             Response.Redirect("~/Checkout/CheckoutCancel");
         }
 
-        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart)
+
+        protected void PlaceOrderBtn_Click(object sender, EventArgs e)//1
+        {
+            using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+            {
+                Session["payment_amt"] = usersShoppingCart.GetTotal();
+
+                List<CartItem> MyCart = usersShoppingCart.GetCartItems();
+
+                //Place an order
+                AddOrder(PaymentBox.Text, PaymentDateBox.Text, CommentBox.Text, MyCart, System.DateTime.Now);
+                RemoveCartItems();
+            }
+            Response.Redirect("~/Checkout/CheckoutComplete");//To send emails
+            
+        }
+
+        public bool AddOrder(string Payment, string PaymentDate, string CommentBox, List<CartItem> MyCart, DateTime myDate)
         {
             IList<string> segments = Request.GetFriendlyUrlSegments();
 
             using (ProductContext _db = new ProductContext())
-            {                
+            {
+                //create new customer
+                int x = int.Parse(segments[0]);
+                var myContact = _db.Contacts.Where(e => e.ContactId == x).SingleOrDefault();
+                var myCustomer = new Customer();
+                myCustomer.Company = myContact.Company;
+                myCustomer.LName = myContact.LName;
+                myCustomer.FName = myContact.FName;
+                myCustomer.Address1 = myContact.Address1;
+                myCustomer.Address2 = myContact.Address2;
+                myCustomer.City = myContact.City;
+                myCustomer.State = myContact.State;
+                myCustomer.PostalCode = myContact.PostalCode;
+                myCustomer.Country = myContact.Country;
+                myCustomer.PPhone = myContact.PPhone;
+                myCustomer.SPhone = myContact.SPhone;
+                myCustomer.WebSite = myContact.WebSite;
+                myCustomer.EMail = myContact.EMail;
+                myCustomer.DateCreated = myDate; // System.DateTime.Now;
+                myCustomer.Fax = myContact.Fax;
+                myCustomer.Comment = myContact.Comment;
+
+                _db.Customers.Add(myCustomer);
+
                 //Create new order
                 var myOrder = new Order();
-                myOrder.OrderDate = System.DateTime.Now;
+                myOrder.OrderDate = myDate; // System.DateTime.Now;
+                myOrder.CustomerId = myCustomer.CustomerId;
                 myOrder.Total = orderTotal;
-                myOrder.Status = Status.New;                                                                        
+                myOrder.Status = Status.New;
                 if (Payment == "")
                 {
                     myOrder.Payment = "";
                 }
                 else
                 {
-                    myOrder.Payment =  Payment;
+                    myOrder.Payment = Payment;
                 }
                 if (PaymentDate == "")
                 {
@@ -214,7 +268,7 @@ namespace FrontierAg.Checkout
                 myOrder.ContactId = int.Parse(segments[0]);
                 myOrder.Comment = CommentBox;
                 //myOrder.PFee = ProcessingFee;
-                _db.Orders.Add(myOrder);          
+                _db.Orders.Add(myOrder);
 
                 //Create new Shipping Address to Link to myOrder
                 var myShipping = new Shipping();
@@ -232,9 +286,10 @@ namespace FrontierAg.Checkout
                 myShipping.Country = myExistingShipping.Country;
                 myShipping.ContactId = myExistingShipping.ContactId;
                 myShipping.PPhone = myExistingShipping.PPhone;
+                myShipping.EMail = myExistingShipping.EMail;
                 myShipping.isHistory = true;
                 myShipping.SType = SType.Shipping;
-                myShipping.DateCreated = System.DateTime.Now;
+                myShipping.DateCreated = myDate; // System.DateTime.Now;
                 _db.Shippings.Add(myShipping);
 
                 //create OrderShipping for shipping
@@ -261,9 +316,10 @@ namespace FrontierAg.Checkout
                 myBilling.Country = myExistingBilling.Country;
                 myBilling.ContactId = myExistingBilling.ContactId;
                 myBilling.PPhone = myExistingBilling.PPhone;
+                myBilling.EMail = myExistingBilling.EMail;
                 myBilling.isHistory = true;
                 myBilling.SType = SType.Billing;
-                myBilling.DateCreated = System.DateTime.Now;
+                myBilling.DateCreated = myDate; // System.DateTime.Now;
                 _db.Shippings.Add(myBilling);
 
                 //create OrderShipping for billing
@@ -277,7 +333,7 @@ namespace FrontierAg.Checkout
                 {
                     var myOrderDetail = new OrderDetail();
                     myOrderDetail.OrderId = myOrder.OrderId;
-                    myOrderDetail.ProductId = cartItem.ProductId;//do we need it, should we copy it?
+                    myOrderDetail.ProductId = cartItem.ProductId;
                     myOrderDetail.Quantity = cartItem.Quantity;
                     myOrderDetail.Unit = cartItem.Unit;
                     myOrderDetail.QtyShipped = 0;
@@ -289,25 +345,16 @@ namespace FrontierAg.Checkout
 
                     // Add product to DB.
                     _db.OrderDetails.Add(myOrderDetail);
-                
+
                     //Save Changes
                     _db.SaveChanges();
                 }
+                Session["OrderId"] = myOrder.OrderId;
             }
             // Success.
             return true;
         }
+                
 
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
-        public IQueryable<FrontierAg.Models.Contact> CustomerGrid_GetData()
-        {
-            return null;
-        }               
-               
     }
 }

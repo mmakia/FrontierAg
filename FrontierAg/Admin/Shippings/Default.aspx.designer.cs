@@ -13,6 +13,15 @@ namespace FrontierAg.Admin.Shippings {
     public partial class Default {
         
         /// <summary>
+        /// CreateAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CreateAddress;
+        
+        /// <summary>
         /// ShippingsGrid control.
         /// </summary>
         /// <remarks>

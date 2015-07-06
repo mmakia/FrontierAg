@@ -9,20 +9,18 @@ namespace FrontierAg.Models
 {    
     public enum SType
     {
-        Shipping, Billing, Other
+        Shipping, Billing
     }
     public class Shipping
     {
-        
-        public int ShippingId { get; set; }
-
-        //public int? ShipmentId { get; set; }
+        [ScaffoldColumn(false)]
+        public int ShippingId { get; set; }        
 
         public string Company { get; set; }
 
-        public string LName { get; set; }
+        public string FName { get; set; }  
 
-        public string FName { get; set; }   
+        public string LName { get; set; } 
 
         public string Other1 { get; set; }
 
@@ -47,18 +45,23 @@ namespace FrontierAg.Models
 
         public SType SType { get; set; }
 
+        [ScaffoldColumn(false)]
         public bool isHistory { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        public string EMail { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
-        
+
+        [ScaffoldColumn(false)]
         public int? ContactId { get; set; }
 
         public virtual Contact Contact { get; set; }        
 
         public virtual ICollection<OrderShipping> OrderShippings { get; set; }
 
-        public virtual ICollection<Shipment> Shipments { get; set; }
-        //public virtual Shipment Shipment { get; set; }
+        public virtual ICollection<Shipment> Shipments { get; set; }        
     }
 }

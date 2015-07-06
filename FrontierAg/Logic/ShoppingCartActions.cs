@@ -136,7 +136,7 @@ namespace FrontierAg.Models
             return 0;
         }
 
-        protected Decimal GetPriceFromPrices(int productId, int qty)//done------ ( 2 )
+        protected decimal GetPriceFromPrices(int productId, int qty)//done------ ( 2 )
         {
              
             var myItem = _db.Prices.Where(en => en.ProductId == productId && en.From <= qty && en.To >= qty).FirstOrDefault();
@@ -159,7 +159,7 @@ namespace FrontierAg.Models
             return 0;
         }
 
-        protected Decimal GetPriceforMinQty(int id)//done--------------( 4 )
+        protected decimal GetPriceforMinQty(int id)//done--------------( 4 )//decimal
         {
             int myInt = GetMinQty(id);
 
@@ -276,30 +276,30 @@ namespace FrontierAg.Models
         public decimal GetTotal()
         {
             ShoppingCartId = GetCartId();            
-            decimal? total = decimal.Zero;            
+            decimal? total = (decimal)0;            
                 
                 total = (decimal?)(from cartItems in _db.ShoppingCartItems
                                    where cartItems.CartId == ShoppingCartId
                                    select (int?)cartItems.Quantity * cartItems.ItemPrice).Sum();//+ cartItems.Charge
                 
-                return total ?? decimal.Zero;      
+                return total ?? (decimal)0;      
             
         }
 
         public decimal GetTotalQty()
         {
             ShoppingCartId = GetCartId();
-            decimal? totalQty = decimal.Zero;
+            decimal? totalQty = (decimal)0;
 
             totalQty = (decimal?)(from cartItems in _db.ShoppingCartItems
                                where cartItems.CartId == ShoppingCartId
                                select (int?)cartItems.Quantity).Sum();
 
-            return totalQty ?? decimal.Zero;
+            return totalQty ?? (decimal)0;
 
         }
         
-        public void UpdateItem(string updateCartID, int updateProductID, int quantity,  Decimal PriceOverride)// execute when changing price box or qty 
+        public void UpdateItem(string updateCartID, int updateProductID, int quantity,  decimal PriceOverride)// execute when changing price box or qty 
         {
             using (var _db = new FrontierAg.Models.ProductContext())
             {
@@ -362,10 +362,16 @@ namespace FrontierAg.Models
         {
             ShoppingCartId = GetCartId();
 
+            //// Get the count of each item in the cart and sum them up          
+            //int? count = (from cartItems in _db.ShoppingCartItems
+            //              where cartItems.CartId == ShoppingCartId
+            //              select (int?)cartItems.Quantity).Sum();
+
             // Get the count of each item in the cart and sum them up          
             int? count = (from cartItems in _db.ShoppingCartItems
                           where cartItems.CartId == ShoppingCartId
-                          select (int?)cartItems.Quantity).Sum();
+                          select cartItems).Count();
+
             // Return 0 if all entries are null         
             return count ?? 0;
         }
@@ -373,7 +379,7 @@ namespace FrontierAg.Models
         public struct ShoppingCartUpdates
         {
             public int ProductId;
-            public Decimal PriceBx;            
+            public decimal PriceBx;            
             public int PurchaseQuantity;
             public bool RemoveItem;
         }

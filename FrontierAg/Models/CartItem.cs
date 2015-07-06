@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,9 +14,11 @@ namespace FrontierAg.Models
 
         public string CartId { get; set; }
 
-        public Decimal ItemPrice { get; set; }
+        //[Column(TypeName = "money")]
+        public decimal ItemPrice { get; set; }//decimal
 
-        public Decimal OriginalPrice { get; set; }
+        //[Column(TypeName = "money")]
+        public decimal OriginalPrice { get; set; }//decimal
 
         public int Quantity { get; set; }        
 

@@ -56,6 +56,12 @@ namespace FrontierAg
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
                 ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+
+                ////to force browser to reload when using back button inorder to display updated info on page
+                //Response.Buffer = true;
+                //Response.CacheControl = "no-cache";
+                //Response.AddHeader("Pragma", "no-cache");
+                //Response.Expires = -1441;
             }
             else
             {
@@ -84,7 +90,7 @@ namespace FrontierAg
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
                 string cartStr = string.Format("Cart ({0})", usersShoppingCart.GetCount());
-                cartCount.InnerText = cartStr;
+                cartCount.InnerText = cartStr;                
             }
         }
 

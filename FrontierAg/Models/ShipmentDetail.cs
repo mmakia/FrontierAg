@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -21,9 +22,11 @@ namespace FrontierAg.Models
 
         public string UnitString { get; set; }
 
-        public Decimal Price { get; set; }
+        //[Column(TypeName = "money")]
+        public decimal Price { get; set; }//decimal
 
-        public Decimal PCharge { get; set; }
+        //[Column(TypeName = "money")]
+        public decimal PCharge { get; set; }//decimal
 
         public int QtyShipped { get; set; }     
 

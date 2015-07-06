@@ -37,7 +37,7 @@ namespace FrontierAg.Contacts
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            string yourValue = Server.HtmlEncode(TextBox1.Text);
+            string yourValue = Server.HtmlEncode(TextBox1.Text.Trim());
 
             if (yourValue != "")
             {

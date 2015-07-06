@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -27,8 +28,9 @@ namespace FrontierAg.Models
         public Unit Unit { get; set; }
 
         [Required(ErrorMessage = "Price is required.")]
-        public decimal PriceNumber { get; set; }
-        
+        //[Column(TypeName = "money")]
+        public decimal PriceNumber { get; set; }        
+
         public DateTime DateCreated { get; set; }
 
         [Display(Name = "Product")]

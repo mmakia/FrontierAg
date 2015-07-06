@@ -5,7 +5,8 @@
             $('#CategoryMenu').hide();
         });
     </script>
-    <div id="PackingSliptitle" runat="server" class="ContentHead"><h3>Frontier Agricultural Sciences</h3></div>    
+    <%--<div id="PackingSliptitle" runat="server" class="ContentHead"><h3>Frontier Agricultural Sciences</h3></div>    --%>    
+    <asp:Image  ID="Image1" runat="server" ImageUrl="~/Images/fssi_logo.png"  />            
     <div id="ShipmentsTitle" runat="server" class="ContentHead"><h3>Packing Slip</h3></div>    
     <asp:GridView ID="ShipmentsList" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Shipment" DataKeyNames="ShipmentId" SelectMethod="ShipmentList_GetData" UpdateMethod="ShipmentList_UpdateItem"     
     AutoGenerateEditButton="False" CssClass="table table-striped table-bordered" EnableModelValidation="true">
@@ -44,6 +45,7 @@
             <asp:BoundField DataField="City" HeaderText="City"/>
             <asp:BoundField DataField="State" HeaderText="State"/>                 
             <asp:BoundField DataField="PostalCode" HeaderText="PostalCode"/>            
+            <asp:BoundField DataField="Country" HeaderText="Country"/>            
         </Columns>
     </asp:GridView>
 

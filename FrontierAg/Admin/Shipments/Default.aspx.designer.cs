@@ -22,6 +22,15 @@ namespace FrontierAg.Admin.Shipments {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShipmentsTitle;
         
         /// <summary>
+        /// myAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList myAction;
+        
+        /// <summary>
         /// ShipmentsList control.
         /// </summary>
         /// <remarks>

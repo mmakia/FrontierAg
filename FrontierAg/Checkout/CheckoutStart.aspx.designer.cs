@@ -13,6 +13,15 @@ namespace FrontierAg.Checkout {
     public partial class CheckoutStart {
         
         /// <summary>
+        /// CreateNewShippingBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CreateNewShippingBtn;
+        
+        /// <summary>
         /// ListView2 control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace FrontierAg.Checkout {
         protected global::System.Web.UI.WebControls.ListView ListView2;
         
         /// <summary>
+        /// CreateNewBilling control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CreateNewBilling;
+        
+        /// <summary>
         /// ListView3 control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace FrontierAg.Checkout {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView ListView3;
+        
+        /// <summary>
+        /// CreateNewBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CreateNewBtn;
         
         /// <summary>
         /// TextBox1 control.

@@ -19,7 +19,12 @@ namespace FrontierAg.Checkout
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            Session["ReturnUrlCreateContact"] = "";
+            Session["ReturnUrlEditContact"] = "";
+            Session["ReturnUrlCreateShipping"] = "";
+            Session["ReturnUrlEditShipping"] = "";
+            Session["ReturnUrlCreateBilling"] = "";
+            Session["ReturnUrlEditBilling"] = "";
         }
         //In the method: Session["BackgroundColor"] = ColorSelector.SelectedValue;
 
@@ -94,15 +99,68 @@ namespace FrontierAg.Checkout
         
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            string yourValue = Server.HtmlEncode(TextBox1.Text);
+            string yourValue = Server.HtmlEncode(TextBox1.Text.Trim());
 
             if (yourValue != "")
             {
                 Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/", 0, 0,0, yourValue));
             }
-
+            
             Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/"));
+        }               
+
+        protected void CreateNewBtn_Click(object sender, EventArgs e)
+        {
+            Session["ReturnUrlCreateContact"] = "~/Checkout/CheckoutStart";
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Contacts/Insert"));
+            
         }
+
+        protected void EditBtn_Click1(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)(sender);
+            string contactId = btn.CommandArgument;
+            Session["ReturnUrlEditContact"] = "~/Checkout/CheckoutStart/" + contactId;
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Contacts/Edit", contactId));
+        }
+
+
+        protected void CreateNewShippingBtn_Click(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            Session["ReturnUrlCreateShipping"] = "~/Checkout/CheckoutStart/" + int.Parse(segments[0]);
+           Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping", int.Parse(segments[0])));/////
+        }
+        
+
+        protected void ShippingList_Edit(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            LinkButton btn = (LinkButton)(sender);
+            string ShippingId = btn.CommandArgument;
+
+            Session["ReturnUrlEditShipping"] = "~/Checkout/CheckoutStart/" + int.Parse(segments[0]) + "/" + ShippingId;            
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Edit", ShippingId));
+        }
+
+
+        protected void CreateNewBilling_Click(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            Session["ReturnUrlCreateBilling"] = "~/Checkout/CheckoutReview/" + int.Parse(segments[0]) + "/" + int.Parse(segments[1]);
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping", int.Parse(segments[0])));
+        }
+
+        protected void BillingList_Edit(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            LinkButton btn = (LinkButton)(sender);
+            string BillingId = btn.CommandArgument;
+
+            Session["ReturnUrlEditBilling"] = "~/Checkout/CheckoutReview/" + int.Parse(segments[0]) + "/" + int.Parse(segments[1]) + "/" + BillingId;
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Edit", BillingId));
+        }
+        
     }
 }
 

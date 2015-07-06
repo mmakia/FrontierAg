@@ -117,7 +117,7 @@
     <div>
         <p>&nbsp;</p>
         <strong>
-            <asp:Label ID="LabelTotalText" runat="server" Text="Total: "></asp:Label>
+            <asp:Label ID="LabelTotalText" runat="server" Text="SubTotal: "></asp:Label>
             <asp:Label ID="lblTotal" runat="server" EnableViewState="false"></asp:Label>
         </strong> 
     </div>

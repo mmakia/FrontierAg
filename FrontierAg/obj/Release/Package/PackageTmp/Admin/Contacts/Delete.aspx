@@ -29,6 +29,14 @@
 									<asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
 								</div>
 							</div>
+                    <div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>FName</strong>
+								</div>
+								<div class="col-sm-4">
+									<asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>LName</strong>
@@ -37,14 +45,7 @@
 									<asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>FName</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
-								</div>
-							</div>
+							
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>Address1</strong>

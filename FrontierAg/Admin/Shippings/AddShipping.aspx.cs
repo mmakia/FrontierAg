@@ -1,4 +1,5 @@
 ﻿using FrontierAg.Models;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace FrontierAg.Admin.Shippings
             addShippingForm.SetMetaTable(table);
         }
 
-        public void addShippingForm_InsertItem()
+        public void addShippingForm_InsertItem([FriendlyUrlSegmentsAttribute(0)]int ContactId)
         {
             var item = new FrontierAg.Models.Shipping();
             TryUpdateModel(item);
@@ -31,15 +32,29 @@ namespace FrontierAg.Admin.Shippings
                 // Save changes here
                 using (FrontierAg.Models.ProductContext db = new FrontierAg.Models.ProductContext())
                 {
+                    item.ContactId = ContactId;                    
                     db.Shippings.Add(item);
                     db.SaveChanges();
                 }
+            }
+            if ((string)(Session["ReturnUrlCreateShipping"]) != "")//if exist
+            {
+                Response.Redirect((string)(Session["ReturnUrlCreateShipping"]) + "/" + item.ShippingId);
+            }
+            else if ((string)(Session["ReturnUrlCreateBilling"]) != "")//if exist
+            {
+                Response.Redirect((string)(Session["ReturnUrlCreateBilling"]) + "/" + item.ShippingId);
+            }
+            else
+            {
+                Response.Redirect("~/Admin/Contacts/Default");
             }
         }
 
         protected void addShippingForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
-            Response.Redirect("~/Admin/Contacts/Default");
+
+            //Response.Redirect("~/Admin/Contacts/Default");
         }
         
     }

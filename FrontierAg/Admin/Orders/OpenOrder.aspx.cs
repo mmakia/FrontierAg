@@ -13,9 +13,7 @@ using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 namespace FrontierAg.Admin.Orders
 {
     public partial class OpenOrder : System.Web.UI.Page
-    {
-        Decimal PreTotal;
-        
+    {                
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -40,9 +38,9 @@ namespace FrontierAg.Admin.Orders
             ProductContext db = new ProductContext();
             if (OrderId == null)
             {
-                return db.Orders.Where(n => n.Status == Status.Processing || n.Status == Status.Billed || n.Status == Status.New || n.Status == Status.PartialShipment || n.Status == Status.Shipped).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
+                return db.Orders.Where(n => (n.Status == Status.InProcess || n.Status == Status.New || n.Status == Status.PartialShipment || n.Status == Status.Shipped) && (n.OrderDate <= System.DateTime.Now)).OrderBy(en => en.OrderDate).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
             }
-            else return db.Orders.Where(n => n.OrderId == OrderId).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
+            else return db.Orders.Where(n => (n.OrderId == OrderId) && (n.OrderDate <= System.DateTime.Now)).OrderBy(en => en.OrderDate).Include(en => en.OrderShippings.Select(em => em.Shipping.Contact));
         }
 
         
@@ -84,7 +82,7 @@ namespace FrontierAg.Admin.Orders
             {
                 var myShippingId = db.OrderShippings.Where(en => en.OrderId == myOrderId && en.Shipping.SType == SType.Billing).Select(en => en.ShippingId).FirstOrDefault();
 
-                Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Default",0, myShippingId));
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/Details",0, myShippingId));
 
             }
         }

@@ -10,6 +10,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using FrontierAg.Logic;
 
 namespace FrontierAg
 {
@@ -27,6 +28,12 @@ namespace FrontierAg
             // Create the custom role and user.
             RoleActions roleActions = new RoleActions();
             roleActions.AddUserAndRole();
+
+            // Add Routes.
+            //RouteActions myRouteActions = new RouteActions();
+            //myRouteActions.RegisterCustomRoutes(RouteTable.Routes);
+
+
             CssManager.CssResourceMapping.AddDefinition("juice-ui", new CssResourceDefinition
             {
                 Path = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css",

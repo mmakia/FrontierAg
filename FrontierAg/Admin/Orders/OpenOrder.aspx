@@ -9,7 +9,7 @@
                      
             <asp:TemplateField HeaderText="Ordered By">
                 <ItemTemplate>
-                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.ContactId) %>' Text="<%#: Item.Contact.Company  %>" />
+                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Customers/Details", Item.CustomerId) %>' Text="<%#: Item.Customer.Company  %>" />
                 </ItemTemplate>
             </asp:TemplateField>    
 
@@ -19,13 +19,13 @@
             </ItemTemplate>
             </asp:TemplateField>  
             
-            <asp:DynamicField DataField="Total" HeaderText="Total" ReadOnly="true"/>  
-            <asp:DynamicField DataField="Payment" HeaderText="Payment" />
-            <asp:DynamicField DataField="PaymentDate" HeaderText="Payment Date" />               
+            <asp:DynamicField DataField="Total" HeaderText="SubTotal" ReadOnly="true"/>  
+            <asp:DynamicField DataField="Payment" HeaderText="Payment" />                         
             <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
-            <asp:DynamicField DataField="Status" HeaderText="Status" />                           
-            <asp:HyperLinkField Text="Details" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default/{0}" DataNavigateUrlFields="OrderId" />
-            <asp:HyperLinkField Text="Shipments" DataNavigateUrlFormatString="~/Admin/Shipments/Default/{0}" DataNavigateUrlFields="OrderId" />
+            <asp:DynamicField DataField="PaymentDate" HeaderText="Date" />  
+            <asp:DynamicField DataField="Status" HeaderText="Status" ReadOnly="true"/>                           
+            <asp:HyperLinkField Text="Process" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default/{0}" DataNavigateUrlFields="OrderId" />
+            <asp:HyperLinkField Text="Shipments" DataNavigateUrlFormatString="~/Admin/Shipments/OpenShipment/{0}" DataNavigateUrlFields="OrderId" />
         </Columns>        
     </asp:GridView>
     <div class="row">

@@ -12,35 +12,49 @@ namespace FrontierAg.Contacts
 {
     public partial class Edit : System.Web.UI.Page
     {
-		protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
+        protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //string sessionReturnUrl = (string)(Session["ReturnUrl"]);
         }
 
         // This is the Update methd to update the selected Contact item
         // USAGE: <asp:FormView UpdateMethod="UpdateItem">
-        public void UpdateItem(int  ContactId)
+        public void UpdateItem(int ContactId)
         {
             using (_db)
             {
-                var item = _db.Contacts.Find(ContactId);
+                //var isDuplicate = _db.Contacts.Any(w => w.Company == newContact.Company);
 
-                if (item == null)
-                {
-                    // The item wasn't found
-                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", ContactId));
-                    return;
-                }
+                //if (!isDuplicate)
+                //{
+                    var item = _db.Contacts.Find(ContactId);
 
-                TryUpdateModel(item);
+                    if (item == null)
+                    {
+                        // The item wasn't found
+                        ModelState.AddModelError("", String.Format("Item with id {0} was not found", ContactId));
+                        return;
+                    }
 
-                if (ModelState.IsValid)
-                {
-                    // Save changes here
-                    _db.SaveChanges();
-                    Response.Redirect("~/Admin/Contacts/Default");
-                }
+                    TryUpdateModel(item);
+
+                    if (ModelState.IsValid)
+                    {
+                        // Save changes here
+                        _db.SaveChanges();
+                        if ((string)(Session["ReturnUrlEditContact"]) != "")
+                        {
+                            Response.Redirect((string)(Session["ReturnUrlEditContact"]));
+                        }
+                        else
+                        {
+                            Response.Redirect("~/Admin/Contacts/Default");
+                        }
+
+                    }
+                //}
             }
         }
 

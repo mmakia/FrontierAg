@@ -11,7 +11,12 @@ namespace FrontierAg.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["ReturnUrlCreateContact"] = "";
+            Session["ReturnUrlEditContact"] = "";
+            Session["ReturnUrlCreateShipping"] = "";
+            Session["ReturnUrlEditShipping"] = "";
+            Session["ReturnUrlCreateBilling"] = "";
+            Session["ReturnUrlEditBilling"] = "";
         }
 
         protected void ContactsBtn_Click(object sender, EventArgs e)
@@ -33,6 +38,11 @@ namespace FrontierAg.Admin
         protected void AllOrderBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Admin/Orders/Default");
+        }
+
+        protected void AllShipments_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/Shipments/Default");
         }
     }
 }

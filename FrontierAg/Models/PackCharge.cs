@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,7 +21,8 @@ namespace FrontierAg.Models
         public int To { get; set; }
 
         [Required(ErrorMessage = "Packaging Charge is required.")]
-        public Decimal PackChargeAmt { get; set; }
+        //[Column(TypeName = "money")]
+        public decimal PackChargeAmt { get; set; }//decimal
 
         public DateTime DateCreated { get; set; }
 
