@@ -52,6 +52,9 @@
                                     <th>
                                         <asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
                                     </th>
+                                    <th>
+                                        <asp:LinkButton Text="email" CommandName="Sort" CommandArgument="Email" runat="Server" />
+                                    </th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -98,6 +101,9 @@
                             </td>
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="ReadOnly" />
                             </td>
                             <td>
                                 <asp:LinkButton runat="server" OnClick="Unnamed_Click1" CommandArgument="<%# Item.ShippingId %>" Text="Select" />
@@ -156,6 +162,9 @@
                                     <th>
                                         <asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
                                     </th>
+                                    <th>
+                                        <asp:LinkButton Text="Email" CommandName="Sort" CommandArgument="Email" runat="Server" />
+                                    </th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -204,6 +213,9 @@
                                 <asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
                             </td>
                             <td>
+                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="ReadOnly" />
+                            </td>
+                            <td>
                                 <asp:LinkButton runat="server" OnClick="Unnamed_Click2" CommandArgument="<%# Item.ShippingId %>" Text="Select" />
                                 <%--| 					     
 					    <asp:LinkButton runat="server" OnClick="ShippingList_Edit" ID="ShippingList" CommandArgument="<%# Item.ShippingId %>" Text="Edit" />--%>
@@ -236,7 +248,7 @@
                                     <th>
                                         <asp:LinkButton Text="LName" CommandName="Sort" CommandArgument="LName" runat="Server" />
                                     </th>
-                                    
+
                                     <th>
                                         <asp:LinkButton Text="Other1" CommandName="Sort" CommandArgument="Other1" runat="Server" />
                                     </th>
@@ -261,6 +273,9 @@
                                     <th>
                                         <asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
                                     </th>
+                                    <th>
+                                        <asp:LinkButton Text="Email" CommandName="Sort" CommandArgument="Email" runat="Server" />
+                                    </th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -283,7 +298,7 @@
                             <td>
                                 <asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
                             </td>
-                            
+
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Other1" ID="Other1" Mode="ReadOnly" />
                             </td>
@@ -308,7 +323,9 @@
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
                             </td>
-
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="ReadOnly" />
+                            </td>
                             <td>
                                 <asp:LinkButton runat="server" OnClick="Unnamed_Click3" CommandArgument="<%# Item.ShippingId %>" Text="Select" />
                                 <%--| 		
@@ -346,14 +363,14 @@
                                     <th>
                                         <asp:LinkButton Text="Address2" CommandName="Sort" CommandArgument="Address2" runat="Server" />
                                     </th>
-                                    
+
 
                                     <th>
                                         <asp:LinkButton Text="City" CommandName="Sort" CommandArgument="City" runat="Server" />
                                     </th>
                                     <th>
-								<asp:LinkButton Text="State" CommandName="Sort" CommandArgument="State" runat="Server" />
-							</th>
+                                        <asp:LinkButton Text="State" CommandName="Sort" CommandArgument="State" runat="Server" />
+                                    </th>
                                     <th>
                                         <asp:LinkButton Text="Comment" CommandName="Sort" CommandArgument="Comment" runat="Server" />
                                     </th>
@@ -389,14 +406,14 @@
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Address2" ID="Address2" Mode="ReadOnly" />
                             </td>
-                            
+
 
                             <td>
                                 <asp:DynamicControl runat="server" DataField="City" ID="City" Mode="ReadOnly" />
                             </td>
                             <td>
-								<asp:DynamicControl runat="server" DataField="State" ID="State" Mode="ReadOnly" />
-							</td>
+                                <asp:DynamicControl runat="server" DataField="State" ID="State" Mode="ReadOnly" />
+                            </td>
 
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Comment" ID="Comment" Mode="ReadOnly" />
@@ -435,7 +452,7 @@
                     if ($(".table.showing1").length) {
                         $("#modal_dialog1").dialog({
                             modal: true,
-                            title: "Select Ordering Person",
+                            title: "Select Ordering Customer",
                             width: 'auto',
                             buttons: {
                                 Close: function () {

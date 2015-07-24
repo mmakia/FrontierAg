@@ -4,15 +4,15 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <div id="modal_dialog2" style="display: none">
+            <div id="modal_dialog1" style="display: none">
                 <p>
                     <%--<asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />--%>
-                    <asp:LinkButton runat="server" ID="CreateNewShippingBtn" OnClick="CreateNewShippingBtn_Click" Text="Create New" />
+                    <asp:LinkButton runat="server" ID="LinkButton1" OnClick="CreateNewOrderingBtn_Click" Text="Create New" />
                 </p>
-                <asp:ListView ID="ListView2" runat="server" DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping" SelectMethod="GetData2">
+                <asp:ListView ID="ListView4" runat="server" DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping" SelectMethod="GetData1">
                     <EmptyDataTemplate></EmptyDataTemplate>
                     <LayoutTemplate>
-                        <table class="table showing2">
+                        <table class="table showing1">
                             <thead>
                                 <tr>
                                     <%--<th>
@@ -51,6 +51,9 @@
                                     </th>
                                     <th>
                                         <asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="email" CommandName="Sort" CommandArgument="Email" runat="Server" />
                                     </th>
                                     <th>&nbsp;</th>
                                 </tr>
@@ -100,23 +103,26 @@
                                 <asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
                             </td>
                             <td>
-                                <asp:LinkButton runat="server" OnClick="Unnamed_Click2" CommandArgument="<%# Item.ShippingId %>" Text="Select" />
+                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:LinkButton runat="server" OnClick="Unnamed_Click1" CommandArgument="<%# Item.ShippingId %>" Text="Select" />
                                 | 					     
-					    <asp:LinkButton runat="server" OnClick="ShippingList_Edit" ID="ShippingList" CommandArgument="<%# Item.ShippingId %>" Text="Edit" />
+					    <asp:LinkButton runat="server" OnClick="OrderingList_Edit" ID="ShippingList" CommandArgument="<%# Item.ShippingId %>" Text="Edit" />
                             </td>
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>
             </div>
-            <div id="modal_dialog3" style="display: none">
+            <div id="modal_dialog2" style="display: none">
                 <p>
                     <%--<asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />--%>
-                    <asp:LinkButton runat="server" ID="CreateNewBilling" OnClick="CreateNewBilling_Click" Text="Create New" />
+                    <asp:LinkButton runat="server" ID="CreateNewShippingBtn" OnClick="CreateNewShippingBtn_Click" Text="Create New" />
                 </p>
-                <asp:ListView ID="ListView3" runat="server" DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping" SelectMethod="GetData3">
+                <asp:ListView ID="ListView2" runat="server" DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping" SelectMethod="GetData2">
                     <EmptyDataTemplate></EmptyDataTemplate>
                     <LayoutTemplate>
-                        <table class="table showing3">
+                        <table class="table showing2">
                             <thead>
                                 <tr>
                                     <%--<th>
@@ -131,7 +137,7 @@
                                     <th>
                                         <asp:LinkButton Text="LName" CommandName="Sort" CommandArgument="LName" runat="Server" />
                                     </th>
-                                    
+
                                     <th>
                                         <asp:LinkButton Text="Other1" CommandName="Sort" CommandArgument="Other1" runat="Server" />
                                     </th>
@@ -156,6 +162,9 @@
                                     <th>
                                         <asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
                                     </th>
+                                    <th>
+                                        <asp:LinkButton Text="Email" CommandName="Sort" CommandArgument="Email" runat="Server" />
+                                    </th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -167,8 +176,8 @@
                     <ItemTemplate>
                         <tr>
                             <%--<td>
-							<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
-						</td>--%>
+								<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
+							</td>--%>
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
                             </td>
@@ -178,7 +187,7 @@
                             <td>
                                 <asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
                             </td>
-                            
+
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Other1" ID="Other1" Mode="ReadOnly" />
                             </td>
@@ -203,12 +212,125 @@
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
                             </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:LinkButton runat="server" OnClick="Unnamed_Click2" CommandArgument="<%# Item.ShippingId %>" Text="Select" />
+                                <%--| 					     
+					    <asp:LinkButton runat="server" OnClick="ShippingList_Edit" ID="ShippingList" CommandArgument="<%# Item.ShippingId %>" Text="Edit" />--%>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:ListView>
+            </div>
+
+            <div id="modal_dialog3" style="display: none">
+                <p>
+                    <%--<asp:HyperLink runat="server" NavigateUrl="~/Admin/Shippings/AddShipping" Text="Create new" />--%>
+                    <asp:LinkButton runat="server" ID="CreateNewBilling" OnClick="CreateNewBilling_Click" Text="Create New" />
+                </p>
+                <asp:ListView ID="ListView3" runat="server" DataKeyNames="ShippingId" ItemType="FrontierAg.Models.Shipping" SelectMethod="GetData3">
+                    <EmptyDataTemplate></EmptyDataTemplate>
+                    <LayoutTemplate>
+                        <table class="table showing3">
+                            <thead>
+                                <tr>
+                                    <%--<th>
+								<asp:LinkButton Text="ShippingId" CommandName="Sort" CommandArgument="ShippingId" runat="Server" />
+							</th>--%>
+                                    <th>
+                                        <asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="Company" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="FName" CommandName="Sort" CommandArgument="FName" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="LName" CommandName="Sort" CommandArgument="LName" runat="Server" />
+                                    </th>
+
+                                    <th>
+                                        <asp:LinkButton Text="Other1" CommandName="Sort" CommandArgument="Other1" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="Other2" CommandName="Sort" CommandArgument="Other2" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="Address2" CommandName="Sort" CommandArgument="Address2" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="City" CommandName="Sort" CommandArgument="City" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="State" CommandName="Sort" CommandArgument="State" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="PostalCode" CommandName="Sort" CommandArgument="PostalCode" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="Country" CommandName="Sort" CommandArgument="Country" runat="Server" />
+                                    </th>
+                                    <th>
+                                        <asp:LinkButton Text="Email" CommandName="Sort" CommandArgument="Email" runat="Server" />
+                                    </th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr runat="server" id="itemPlaceholder" />
+                            </tbody>
+                        </table>
+                    </LayoutTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <%--<td>
+							<asp:DynamicControl runat="server" DataField="ShippingId" ID="ShippingId" Mode="ReadOnly" />
+						</td>--%>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
+                            </td>
 
                             <td>
+                                <asp:DynamicControl runat="server" DataField="Other1" ID="Other1" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Other2" ID="Other2" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Address2" ID="Address2" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="City" ID="City" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="State" ID="State" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="PostalCode" ID="PostalCode" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
+                            </td>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="ReadOnly" />
+                            </td>
+                            <td>
                                 <asp:LinkButton runat="server" OnClick="Unnamed_Click3" CommandArgument="<%# Item.ShippingId %>" Text="Select" />
-                                | 		
-                        <asp:LinkButton runat="server" OnClick="BillingList_Edit" ID="BillingList" CommandArgument="<%# Item.ShippingId %>" Text="Edit" />
-                                <%--<asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Shippings/Edit", Item.ShippingId) %>' Text="Edit" />                        --%>
+                                <%--| 		
+                        <asp:LinkButton runat="server" OnClick="BillingList_Edit" ID="BillingList" CommandArgument="<%# Item.ShippingId %>" Text="Edit" />--%>
+                                
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -236,19 +358,19 @@
                                         <asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="Company" runat="Server" />
                                     </th>
                                     <th>
-                                        <asp:LinkButton Text="FName" CommandName="Sort" CommandArgument="FName" runat="Server" />
+                                        <asp:LinkButton Text="Address1" CommandName="Sort" CommandArgument="Address1" runat="Server" />
                                     </th>
                                     <th>
-                                        <asp:LinkButton Text="LName" CommandName="Sort" CommandArgument="LName" runat="Server" />
+                                        <asp:LinkButton Text="Address2" CommandName="Sort" CommandArgument="Address2" runat="Server" />
                                     </th>
-                                    
+
 
                                     <th>
-                                        <asp:LinkButton Text="Primary Phone" CommandName="Sort" CommandArgument="PPhone" runat="Server" />
+                                        <asp:LinkButton Text="City" CommandName="Sort" CommandArgument="City" runat="Server" />
                                     </th>
-                                    <%--<th>
-								<asp:LinkButton Text="Phone Type" CommandName="Sort" CommandArgument="PPType" runat="Server" />
-							</th>--%>
+                                    <th>
+                                        <asp:LinkButton Text="State" CommandName="Sort" CommandArgument="State" runat="Server" />
+                                    </th>
                                     <th>
                                         <asp:LinkButton Text="Comment" CommandName="Sort" CommandArgument="Comment" runat="Server" />
                                     </th>
@@ -279,19 +401,19 @@
                                 <asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
                             </td>
                             <td>
-                                <asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
                             </td>
                             <td>
-                                <asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server" DataField="Address2" ID="Address2" Mode="ReadOnly" />
                             </td>
-                            
+
 
                             <td>
-                                <asp:DynamicControl runat="server" DataField="PPhone" ID="PPhone" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server" DataField="City" ID="City" Mode="ReadOnly" />
                             </td>
-                            <%--<td>
-								<asp:DynamicControl runat="server" DataField="PPType" ID="PPType" Mode="ReadOnly" />
-							</td>--%>
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="State" ID="State" Mode="ReadOnly" />
+                            </td>
 
                             <td>
                                 <asp:DynamicControl runat="server" DataField="Comment" ID="Comment" Mode="ReadOnly" />
@@ -327,10 +449,22 @@
             <script type="text/javascript">
                 //$("[id*=btnModalPopup]").on("click", function () {
                 $(function () {
+                    if ($(".table.showing1").length) {
+                        $("#modal_dialog1").dialog({
+                            modal: true,
+                            title: "Select Ordering Customer",
+                            width: 'auto',
+                            buttons: {
+                                Close: function () {
+                                    $(this).dialog('close');
+                                }
+                            }
+                        });
+                    }
                     if ($(".table.showing2").length) {
                         $("#modal_dialog2").dialog({
                             modal: true,
-                            title: "Select Shipping Address",
+                            title: "Select Shipping",
                             width: 'auto',
                             buttons: {
                                 Close: function () {
@@ -342,7 +476,7 @@
                     if ($(".table.showing3").length) {
                         $("#modal_dialog3").dialog({
                             modal: true,
-                            title: "Select Billing Address",
+                            title: "Select Billing",
                             width: 'auto',
                             buttons: {
                                 Close: function () {

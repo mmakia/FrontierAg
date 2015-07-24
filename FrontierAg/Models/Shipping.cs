@@ -53,6 +53,7 @@ namespace FrontierAg.Models
         public string EMail { get; set; }
 
         [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
         public DateTime DateCreated { get; set; }
 
         [ScaffoldColumn(false)]

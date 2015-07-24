@@ -1283,6 +1283,14 @@
     <Compile Include="Migrations\201507061854483_SwitchSTypeToPivot.Designer.cs">
       <DependentUpon>201507061854483_SwitchSTypeToPivot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507091253338_AddingCreatedByToOrder.cs" />
+    <Compile Include="Migrations\201507091253338_AddingCreatedByToOrder.Designer.cs">
+      <DependentUpon>201507091253338_AddingCreatedByToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507091311225_ChangingCreatedByInOrders.cs" />
+    <Compile Include="Migrations\201507091311225_ChangingCreatedByInOrders.Designer.cs">
+      <DependentUpon>201507091311225_ChangingCreatedByInOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Emailer.cs" />
     <Compile Include="Global.asax.cs">
@@ -1626,6 +1634,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507061854483_SwitchSTypeToPivot.resx">
       <DependentUpon>201507061854483_SwitchSTypeToPivot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507091253338_AddingCreatedByToOrder.resx">
+      <DependentUpon>201507091253338_AddingCreatedByToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507091311225_ChangingCreatedByInOrders.resx">
+      <DependentUpon>201507091311225_ChangingCreatedByInOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

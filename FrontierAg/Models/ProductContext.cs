@@ -17,7 +17,7 @@ namespace FrontierAg.Models
         public DbSet<CartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Contact> Contacts { get; set; }        
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Shipping> Shippings { get; set; }
         public DbSet<PackCharge> PackCharges { get; set; }
         public DbSet<OrderShipping> OrderShippings { get; set; }

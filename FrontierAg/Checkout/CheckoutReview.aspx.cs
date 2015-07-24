@@ -195,6 +195,16 @@ namespace FrontierAg.Checkout
                 } 
             }
             Session["isStandOrder"] = "true";
+
+            //To get company name and store it in session
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            using (ProductContext _db = new ProductContext())
+            {
+            int x = int.Parse(segments[0]);
+            var myContact = _db.Contacts.Where(en => en.ContactId == x).SingleOrDefault();
+            Session["OrderedBy"] = myContact.Company;
+            }
+
             RemoveCartItems();
             Response.Redirect("~/Checkout/CheckoutComplete");//To send emails   
             
@@ -253,7 +263,8 @@ namespace FrontierAg.Checkout
 
                 //Create new order
                 var myOrder = new Order();
-                myOrder.OrderDate = myDate; // System.DateTime.Now;
+                myOrder.OrderDate = myDate;
+                myOrder.CreatedBy = HttpContext.Current.User.Identity.Name;
                 myOrder.CustomerId = myCustomer.CustomerId;
                 myOrder.Total = orderTotal;
                 myOrder.Status = Status.New;
@@ -391,6 +402,7 @@ namespace FrontierAg.Checkout
                     _db.SaveChanges();
                 }
                 Session["OrderId"] = myOrder.OrderId;
+                Session["OrderedBy"] = myOrder.Contact.Company;
             }
             // Success.
             return true;

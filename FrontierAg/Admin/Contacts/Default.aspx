@@ -120,7 +120,7 @@
                         | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Orders/Default", Item.ContactId) %>' Text="Orders" />
                         | 
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/AllDetails", Item.ContactId) %>' Text="Products" />
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/AllDetails", Item.ContactId) %>' Text="Purchased Products" />
                     </td>
                 </tr>
             </ItemTemplate>

@@ -83,7 +83,7 @@ namespace FrontierAg.Models
                         myShipment.OrderId = OrderId;
 
                         var myShipping = (from my in _db.OrderShippings
-                                          where my.OrderId == OrderId //&& my.Shipping.SType == SType.Shipping///////////////To fix later
+                                          where my.OrderId == OrderId && my.SType == SType.Shipping
                                           select my.Shipping).FirstOrDefault();
 
                         myShipment.ShippingId = InsertNewShipping(myShipping.ShippingId);//originalShippingAddressId

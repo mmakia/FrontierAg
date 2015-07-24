@@ -16,12 +16,7 @@ namespace FrontierAg.Models
     public enum CType
     {
         Customer, Vendor
-    }
-
-    //public enum PhoneType
-    //{
-    //    Home, Business, Cell
-    //}
+    }        
 
     public class Contact
     {
@@ -30,13 +25,8 @@ namespace FrontierAg.Models
         public int ContactId { get; set; }
 
         [Index(IsUnique = true)]
-        [Required, StringLength(100)]
-        //[ReadOnlyAttribute(true)]
-        public string Company { get; set; }
-
-        //public string FName { get; set; } 
-
-        //public string LName { get; set; }                     
+        [Required, StringLength(100)]        
+        public string Company { get; set; }                         
 
         public string Address1 { get; set; }
 

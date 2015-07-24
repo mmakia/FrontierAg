@@ -50,16 +50,16 @@ namespace FrontierAg.Admin.Shipments
                 {
                     query = query.Where(en => en.Action == myAction);
                 }
-                return query;
+                return query.OrderByDescending(en => en.DateCreated);
             }
 
             else if(myAction != null)
             {
                 var query = db.Shipments.Where(en => en.Action == myAction);
-                return query;
+                return query.OrderByDescending(en => en.DateCreated);
             }
 
-            else return db.Shipments;
+            else return db.Shipments.OrderByDescending(en => en.DateCreated);
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
@@ -147,8 +147,8 @@ namespace FrontierAg.Admin.Shipments
 
                     //Email Billing dept
                     if (shipment.Action == FrontierAg.Models.Action.ToInvoice){
-                        //new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
-                        //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
+                        new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
+                        new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
                     }
                     
                 }

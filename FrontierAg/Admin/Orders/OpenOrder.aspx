@@ -7,15 +7,15 @@
             <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true"/>        
             <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true"/>            
                      
-            <asp:TemplateField HeaderText="Ordered By">
+            <asp:TemplateField HeaderText="Ordering Company">
                 <ItemTemplate>
                     <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Customers/Details", Item.CustomerId) %>' Text="<%#: Item.Customer.Company  %>" />
                 </ItemTemplate>
             </asp:TemplateField>    
 
-            <asp:TemplateField HeaderText="Person">
+            <asp:TemplateField HeaderText="Customer">
             <ItemTemplate>
-                <asp:LinkButton runat="server" OnClick="Unnamed_Click0" Text="Person" CommandArgument="<%# Item.OrderId %>"/>                
+                <asp:LinkButton runat="server" OnClick="Unnamed_Click0" Text="Customer" CommandArgument="<%# Item.OrderId %>"/>                
             </ItemTemplate>
             </asp:TemplateField> 
 
@@ -27,8 +27,7 @@
             
             <asp:DynamicField DataField="Total" HeaderText="SubTotal" ReadOnly="true"/>  
             <asp:DynamicField DataField="Payment" HeaderText="Payment" />                         
-            <asp:DynamicField DataField="Comment" HeaderText="Comment" />          
-            <%--<asp:DynamicField DataField="PaymentDate" HeaderText="Date" />  --%>
+            <asp:DynamicField DataField="Comment" HeaderText="Comment" />            
             <asp:DynamicField DataField="Status" HeaderText="Status" ReadOnly="true"/>                           
             <asp:HyperLinkField Text="Process" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default/{0}" DataNavigateUrlFields="OrderId" />
             <asp:HyperLinkField Text="Shipments" DataNavigateUrlFormatString="~/Admin/Shipments/OpenShipment/{0}" DataNavigateUrlFields="OrderId" />

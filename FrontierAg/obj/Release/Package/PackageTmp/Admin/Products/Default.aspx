@@ -14,8 +14,7 @@
         <Columns>
             <asp:DynamicField DataField="ProductId" HeaderText="ID" ReadOnly="true"/>
             <asp:DynamicField DataField="ProductNo" ReadOnly="true"/>
-            <asp:DynamicField DataField="ProductName" />
-            <asp:DynamicField DataField="Description" />                 
+            <asp:DynamicField DataField="ProductName" />                          
             <asp:DynamicField DataField="Category" HeaderText="Category Name"/>                
             <asp:HyperLinkField Text="Prices" DataNavigateUrlFormatString="~/Admin/Prices/Default/{0}" DataNavigateUrlFields="ProductId" /> 
             <asp:HyperLinkField Text="Packaging Charges" DataNavigateUrlFormatString="~/Admin/PackCharges/Default/{0}" DataNavigateUrlFields="ProductId" />      

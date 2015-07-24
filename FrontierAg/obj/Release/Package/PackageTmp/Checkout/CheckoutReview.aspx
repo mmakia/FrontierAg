@@ -204,7 +204,7 @@
                                     <asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <%--<div class="row">
                                 <div class="col-sm-2 text-right">
                                     <strong>FName</strong>
                                 </div>
@@ -219,7 +219,7 @@
                                 <div class="col-sm-4">
                                     <asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
                                 </div>
-                            </div>
+                            </div>--%>
 
                             <div class="row">
                                 <div class="col-sm-2 text-right">
@@ -309,7 +309,116 @@
                     </ItemTemplate>
                 </asp:FormView>
 
+                 <asp:FormView runat="server"
+                    ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId"
+                    SelectMethod="GetItem1"
+                    OnItemCommand="ItemCommand" RenderOuterTable="false">
+                    <EmptyDataTemplate>
+                        Cannot find the Shipping with ShippingId <%: Request.QueryString["ShippingId"] %>
+                    </EmptyDataTemplate>
+                    <ItemTemplate>
+                        <fieldset class="form-horizontal">
+                            <legend>Ordering Customer</legend>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>Company</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="Company" ID="DynamicControl2" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>FName</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="FName" ID="DynamicControl3" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>LName</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="LName" ID="DynamicControl1" Mode="ReadOnly" />
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>Other1</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="Other1" ID="DynamicControl4" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>Other2</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="Other2" ID="DynamicControl5" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>Address1</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="Address1" ID="Address1" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>Address2</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="Address2" ID="Address2" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>City</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="City" ID="City" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>State</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="State" ID="State" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>PostalCode</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="PostalCode" ID="PostalCode" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>Country</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="Country" ID="Country" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 text-right">
+                                    <strong>EMail</strong>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:DynamicControl runat="server" DataField="EMail" ID="EMail" Mode="ReadOnly" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </ItemTemplate>
+                </asp:FormView>
 
                 <asp:FormView runat="server"
                     ItemType="FrontierAg.Models.Shipping" DataKeyNames="ShippingId"
@@ -562,7 +671,7 @@
                                 <td>&nbsp;<asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                                 </td>
                             </tr>
-                            <tr>
+                            <%--<tr>
                                 <td>
                                     <asp:Label ID="PaymentDateLbl" runat="server" for="PaymentDateBox" class="control-label">Date: </asp:Label>&nbsp;
                                 </td>
@@ -571,8 +680,8 @@
                                     <asp:TextBox ID="PaymentDateBox" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:TextBox>
 
                                 </td>
-                            </tr>
-                            <%--<tr></tr>--%>
+                            </tr>--%>
+                            
                             <tr>
                                 <td>&nbsp;
                                 </td>
@@ -660,13 +769,5 @@
             </table>
             <br />
         </ContentTemplate>
-    </asp:UpdatePanel>
-    <%--<asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
-        <ProgressTemplate>
-            <div class="PleaseWait">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PleaseWait.gif"/>
-                Processing...
-            </div>
-        </ProgressTemplate>   
-    </asp:UpdateProgress>   --%>
+    </asp:UpdatePanel>    
 </asp:Content>

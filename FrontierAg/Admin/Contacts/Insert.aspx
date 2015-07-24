@@ -5,7 +5,7 @@
     <div>
         <p>&nbsp;</p>
         <asp:ValidationSummary runat="server" ShowModelStateErrors="true" />
-        <asp:Label runat="server" ID="MessageLbl"></asp:Label>
+        <asp:Label runat="server" ID="MessageLbl" ForeColor="Red"></asp:Label>
         <asp:FormView runat="server" ItemType="FrontierAg.Models.Contact" DefaultMode="Insert"
             InsertItemPosition="FirstItem" InsertMethod="InsertItem"
             OnItemCommand="ItemCommand" RenderOuterTable="True" CssClass="table table-striped table-bordered">
@@ -18,23 +18,6 @@
                     <asp:Button ID="backButton" runat="server" Text="Cancel" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
                 </fieldset>
             </InsertItemTemplate>
-        </asp:FormView>
-        <asp:Label ID="Label1" runat="server" Text="Label">For customers, Default Shipping Address will be created automatically</asp:Label>
-    </div>
-    <%--<div id="dialog" style="display: none">
-    This is a simple popup
-</div>
-    <script type="text/javascript">
-    $("[id*=btnPopup]").on("click", function () {
-        $("#dialog").dialog({
-            title: "jQuery Dialog Popup",
-            buttons: {
-                Close: function () {
-                    $(this).dialog('close');
-                }
-            }
-        });
-        return false;
-    });
-</script>--%>
+        </asp:FormView>        
+    </div>    
 </asp:Content>

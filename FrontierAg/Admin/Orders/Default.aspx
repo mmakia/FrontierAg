@@ -6,7 +6,7 @@
         <h3>All Orders</h3>
     </div>
 
-    <h4>Show Status</h4>
+    <h4>Filter by Status</h4>
 
     <asp:DropDownList runat="server" AutoPostBack="true" ID="Status" class="form-control" Width="150">
         <asp:ListItem Text="All" Value="" />
@@ -24,15 +24,15 @@
             <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true" />
             <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true" />
 
-            <asp:TemplateField HeaderText="Ordered By">
-                <ItemTemplate>
-                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Contacts/Details", Item.CustomerId) %>' Text="<%#: Item.Customer.Company %>" />
+            <asp:TemplateField HeaderText="Ordering Company">
+                <ItemTemplate>                    
+                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Customers/Details", Item.CustomerId) %>' Text="<%#: Item.Customer.Company  %>" />
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Person">
+            <asp:TemplateField HeaderText="Customer">
             <ItemTemplate>
-                <asp:LinkButton runat="server" OnClick="Unnamed_Click0" Text="Person" CommandArgument="<%# Item.OrderId %>"/>                
+                <asp:LinkButton runat="server" OnClick="Unnamed_Click0" Text="Customer" CommandArgument="<%# Item.OrderId %>"/>                
             </ItemTemplate>
             </asp:TemplateField>
 
@@ -43,10 +43,8 @@
             </asp:TemplateField>
 
             <asp:DynamicField DataField="Total" HeaderText="SubTotal" ReadOnly="true" />
-            <asp:DynamicField DataField="Payment" HeaderText="Payment" ReadOnly="true" />
-            <%--<asp:DynamicField DataField="Tracking" HeaderText="Tracking #" ReadOnly="true"/>  --%>
-            <asp:DynamicField DataField="Comment" HeaderText="Comment" />
-            <%--<asp:DynamicField DataField="PaymentDate" HeaderText="Date" ReadOnly="true" />--%>
+            <asp:DynamicField DataField="Payment" HeaderText="Payment" ReadOnly="true" />            
+            <asp:DynamicField DataField="Comment" HeaderText="Comment" />            
             <asp:DynamicField DataField="Status" HeaderText="Status" />
             <asp:HyperLinkField Text="Process" DataNavigateUrlFormatString="~/Admin/OrderDetails/Default/{0}" DataNavigateUrlFields="OrderId" />
             <asp:HyperLinkField Text="Shipments" DataNavigateUrlFormatString="~/Admin/Shipments/Default/{0}" DataNavigateUrlFields="OrderId" />

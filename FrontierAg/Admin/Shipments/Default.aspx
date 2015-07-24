@@ -4,7 +4,7 @@
     <div id="ShipmentsTitle" runat="server" class="ContentHead">
         <h3>All Shipment(s)</h3>
     </div>
-    <h4>Show Action</h4>
+    <h4>Filter by Action</h4>
 
 <asp:DropDownList runat="server" AutoPostBack="true" ID="myAction" class="form-control" Width="150">
     <asp:ListItem Text="All" Value="" />

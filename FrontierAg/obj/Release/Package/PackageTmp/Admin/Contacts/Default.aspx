@@ -37,12 +37,12 @@
                             <th>
                                 <asp:LinkButton Text="Company" CommandName="Sort" CommandArgument="Company" runat="Server" />
                             </th>
-                            <th>
+                            <%--<th>
                                 <asp:LinkButton Text="FName" CommandName="Sort" CommandArgument="FName" runat="Server" />
                             </th>
                             <th>
                                 <asp:LinkButton Text="LName" CommandName="Sort" CommandArgument="LName" runat="Server" />
-                            </th>
+                            </th>--%>
 
 
                             <%--<th>
@@ -86,12 +86,12 @@
                     <td>
                         <asp:DynamicControl runat="server" DataField="Company" ID="Company" Mode="ReadOnly" />
                     </td>
-                    <td>
+                    <%--<td>
                         <asp:DynamicControl runat="server" DataField="FName" ID="FName" Mode="ReadOnly" />
                     </td>
                     <td>
                         <asp:DynamicControl runat="server" DataField="LName" ID="LName" Mode="ReadOnly" />
-                    </td>
+                    </td>--%>
 
                     <%--<td>
                         <asp:DynamicControl runat="server" DataField="PPhone" ID="PPhone" Mode="ReadOnly" />
@@ -120,7 +120,7 @@
                         | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/Orders/Default", Item.ContactId) %>' Text="Orders" />
                         | 
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/AllDetails", Item.ContactId) %>' Text="Products" />
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Admin/OrderDetails/AllDetails", Item.ContactId) %>' Text="Purchased Products" />
                     </td>
                 </tr>
             </ItemTemplate>

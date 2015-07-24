@@ -25,6 +25,8 @@ namespace FrontierAg.Models
 
         public System.DateTime OrderDate { get; set; }
 
+        public string CreatedBy { get; set; }
+
         //[Column(TypeName = "money")]
         public decimal Total { get; set; }//decimal
 

@@ -17,44 +17,52 @@ namespace FrontierAg.Contacts
         protected void Page_Load(object sender, EventArgs e)
         {
             //string sessionReturnUrl = (string)(Session["ReturnUrl"]);
+            if (!IsPostBack)
+            {
+                MessageLbl.Text = "";
+            }
         }
 
         // This is the Update methd to update the selected Contact item
         // USAGE: <asp:FormView UpdateMethod="UpdateItem">
         public void UpdateItem(int ContactId)
         {
+            var item = _db.Contacts.Find(ContactId);
+
             using (_db)
             {
-                //var isDuplicate = _db.Contacts.Any(w => w.Company == newContact.Company);
-
-                //if (!isDuplicate)
-                //{
-                    var item = _db.Contacts.Find(ContactId);
-
                     if (item == null)
                     {
                         // The item wasn't found
                         ModelState.AddModelError("", String.Format("Item with id {0} was not found", ContactId));
                         return;
                     }
-
+                    //var AnotherItem = _db.Contacts.Where(m => m.Company == item.Company && m.ContactId != item.ContactId);
                     TryUpdateModel(item);
 
                     if (ModelState.IsValid)
                     {
-                        // Save changes here
-                        _db.SaveChanges();
-                        if ((string)(Session["ReturnUrlEditContact"]) != "")
+                        var Duplicate = _db.Contacts.Any(m => m.Company == item.Company && m.ContactId != item.ContactId);
+                        if (!Duplicate)
                         {
-                            Response.Redirect((string)(Session["ReturnUrlEditContact"]));
+                            // Save changes here
+                            _db.SaveChanges();
+
+                            if ((string)(Session["ReturnUrlEditContact"]) != "")
+                            {
+                                Response.Redirect((string)(Session["ReturnUrlEditContact"]));
+                            }
+                            else
+                            {
+                                Response.Redirect("~/Admin/Contacts/Default");
+                            }
                         }
                         else
                         {
-                            Response.Redirect("~/Admin/Contacts/Default");
+                            MessageLbl.Text = "* Make sure Company name is unique!";
                         }
-
-                    }
-                //}
+                    }               
+                
             }
         }
 
@@ -62,6 +70,8 @@ namespace FrontierAg.Contacts
         // USAGE: <asp:FormView SelectMethod="GetItem">
         public FrontierAg.Models.Contact GetItem([FriendlyUrlSegmentsAttribute(0)]int? ContactId)
         {
+            FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
+
             if (ContactId == null)
             {
                 return null;

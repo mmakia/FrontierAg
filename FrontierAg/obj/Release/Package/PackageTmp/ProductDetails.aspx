@@ -10,8 +10,8 @@
                     <td style="vertical-align: top; text-align:left;">
                         <b>Product Nanme: </b><%#:Item.ProductName %>
                         <br />
-                        <b>Description: </b><%#:Item.Description %>
-                        <br />
+                        <%--<b>Description: </b><%#:Item.Description %>
+                        <br />--%>
                         <b>Product Number: </b>&nbsp;<%#:Item.ProductNo %><br />
                         <br />
                         <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/AddToCart", Item.ProductId) %>' Text="Add To Cart"/>    

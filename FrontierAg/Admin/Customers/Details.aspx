@@ -12,7 +12,7 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                 <fieldset class="form-horizontal">
-                    <legend>Customer Details</legend>
+                    <legend>Company Details</legend>
 							<div class="row">
 								<div class="col-sm-2 text-right">
 									<strong>Company</strong>

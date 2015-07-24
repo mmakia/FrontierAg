@@ -134,3 +134,5 @@ C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\bin\
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.RemoveDescriptionFromproduct.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.RemoveNameFromContact.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.SwitchSTypeToPivot.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.AddingCreatedByToOrder.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.ChangingCreatedByInOrders.resources

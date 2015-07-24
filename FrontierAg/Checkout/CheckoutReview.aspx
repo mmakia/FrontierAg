@@ -318,7 +318,7 @@
                     </EmptyDataTemplate>
                     <ItemTemplate>
                         <fieldset class="form-horizontal">
-                            <legend>Ordering Person</legend>
+                            <legend>Ordering Customer</legend>
                             <div class="row">
                                 <div class="col-sm-2 text-right">
                                     <strong>Company</strong>
@@ -769,13 +769,5 @@
             </table>
             <br />
         </ContentTemplate>
-    </asp:UpdatePanel>
-    <%--<asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
-        <ProgressTemplate>
-            <div class="PleaseWait">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PleaseWait.gif"/>
-                Processing...
-            </div>
-        </ProgressTemplate>   
-    </asp:UpdateProgress>   --%>
+    </asp:UpdatePanel>    
 </asp:Content>
