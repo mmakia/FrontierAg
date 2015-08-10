@@ -668,7 +668,7 @@
                                 <td>
                                     <asp:Label ID="CommentLbl" runat="server" for="CommentBox" class="control-label">Comment: </asp:Label>
                                 </td>
-                                <td>&nbsp;<asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                <td>&nbsp;<asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine" CssClass="form-control commentBox"></asp:TextBox>
                                 </td>
                             </tr>
                             <%--<tr>

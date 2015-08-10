@@ -76,7 +76,7 @@ namespace FrontierAg
             ExceptionUtility.LogException(ex, errorHandler);
 
             //send email regarding the error
-            //new Emailer().SendEmail("mmakia@frontierssi.com", "errors@frontierssi.com", "FrontierAg error occurred ", "Check Log file or ELMAH for details ");
+            new Emailer().SendEmail("mmakia@frontierssi.com", "errors@frontierssi.com", "FrontierAg error occurred ", "Check Log file or ELMAH for details ");
 
             // Clear the error from the server.
             Server.ClearError();

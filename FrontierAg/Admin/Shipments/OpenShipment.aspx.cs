@@ -2,6 +2,7 @@
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,6 +15,7 @@ namespace FrontierAg.Admin.Shipments
         bool isRemainingZero = true;
         bool isAllPaid = true;
         bool isAllCancelled = true;
+        string isSendEmails = ConfigurationManager.AppSettings["SendEmails"];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -127,9 +129,15 @@ namespace FrontierAg.Admin.Shipments
                     db.SaveChanges();
 
                     //Email Billing dept
-                    if (shipment.Action == FrontierAg.Models.Action.ToInvoice){
-                        new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment for Order Id " + originalShipment.OrderId, "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/OpenShipment ");
-                        new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment for Order Id " + originalShipment.OrderId, "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/OpenShipment ");
+                    if (shipment.Action == FrontierAg.Models.Action.ToInvoice && isSendEmails == "1"){
+                        var allEmails = db.Emails.Where(r => r.isForShipment == true);
+                        foreach (var a in allEmails)
+                        {
+                            new Emailer().SendEmail(a.EmailAddress, "orders@frontierssi.com", "FrontierAg New Shipment for Order Id " + originalShipment.OrderId, "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/OpenShipment ");
+                        }
+
+                        //new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment for Order Id " + originalShipment.OrderId, "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/OpenShipment ");
+                        //new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment for Order Id " + originalShipment.OrderId, "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/OpenShipment ");
                     }
                     
                 }

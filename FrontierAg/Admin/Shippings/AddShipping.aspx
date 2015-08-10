@@ -5,7 +5,7 @@
 <asp:FormView runat="server" ID="addShippingForm"
     ItemType="FrontierAg.Models.Shipping" 
     InsertMethod="addShippingForm_InsertItem" DefaultMode="Insert"
-    RenderOuterTable="True" OnItemInserted="addShippingForm_ItemInserted" CssClass="table table-striped table-bordered">
+    RenderOuterTable="True" OnItemInserted="addShippingForm_ItemInserted" CssClass="table table-striped table-bordered myTableWidth">
     <InsertItemTemplate>
         <fieldset>
             <ol>

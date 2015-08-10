@@ -29,12 +29,13 @@ namespace FrontierAg.Models
 
         [Required(ErrorMessage = "Price is required.")]
         //[Column(TypeName = "money")]
-        public decimal PriceNumber { get; set; }        
+        public decimal PriceNumber { get; set; }
 
+        [ScaffoldColumn(false)]
         public DateTime DateCreated { get; set; }
 
-        [Display(Name = "Product")]
-        public int ProductId { get; set; }
+        [Display(Name = "Product")]        
+        public int? ProductId { get; set; }
 
         public virtual Product Product { get; set; }
 

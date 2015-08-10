@@ -9,6 +9,9 @@ using FrontierAg.Models;
 using System.Web.ModelBinding;
 using System.Data.Entity.Infrastructure;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using System.Web.Routing;
+using Microsoft.AspNet.FriendlyUrls;
+
 
 namespace FrontierAg.Admin.Prices
 {
@@ -75,6 +78,15 @@ namespace FrontierAg.Admin.Prices
         protected void Back_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Admin/Prices/Default");
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            IList<string> segments = Request.GetFriendlyUrlSegments();
+            //Response.Redirect(FriendlyUrl.Href("~/Admin/Shippings/AddShipping/", int.Parse(segments[0])));
+
+            Session["TheProductId"] = int.Parse(segments[0]);
+            Response.Redirect("~/Admin/Prices/AddPrice");
         }
         
     }

@@ -32,7 +32,8 @@ namespace FrontierAg.Admin.Shippings
                 // Save changes here
                 using (FrontierAg.Models.ProductContext db = new FrontierAg.Models.ProductContext())
                 {
-                    item.ContactId = ContactId;                    
+                    item.ContactId = ContactId;
+                    item.DateCreated = System.DateTime.Now;
                     db.Shippings.Add(item);
                     db.SaveChanges();
                 }

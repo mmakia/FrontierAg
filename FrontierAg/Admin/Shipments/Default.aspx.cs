@@ -9,6 +9,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using System.Web.ModelBinding;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace FrontierAg.Admin.Shipments
 {
@@ -60,6 +61,18 @@ namespace FrontierAg.Admin.Shipments
             }
 
             else return db.Shipments.OrderByDescending(en => en.DateCreated);
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string yourValue = Server.HtmlEncode(TextBox1.Text.Trim());
+
+            if (yourValue != "")
+            {
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Shipments/Default/", yourValue));
+            }
+
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Shipments/Default/"));
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
@@ -153,6 +166,11 @@ namespace FrontierAg.Admin.Shipments
                     
                 }
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

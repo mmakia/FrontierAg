@@ -5,7 +5,7 @@
 <asp:FormView runat="server" ID="addPriceForm"
     ItemType="FrontierAg.Models.Price" 
     InsertMethod="addPriceForm_InsertItem" DefaultMode="Insert"
-    RenderOuterTable="True" OnItemInserted="addPriceForm_ItemInserted" CssClass="table table-striped table-bordered">
+    RenderOuterTable="True"  CssClass="table table-striped table-bordered">
     <InsertItemTemplate>
         <fieldset>
             <ol>
@@ -16,4 +16,12 @@
         </fieldset>
     </InsertItemTemplate>
 </asp:FormView>
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=ctl00_Label1]").hide();
+            $("[id*=Product_DropDownList1]").hide();
+            //$("[id*=ctl05_Label1]").hide();
+            //$("[id*=DateCreated_TextBox1]").hide();
+        });
+    </script>
 </asp:Content>

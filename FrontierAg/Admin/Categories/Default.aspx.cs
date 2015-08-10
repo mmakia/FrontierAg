@@ -14,10 +14,10 @@ namespace FrontierAg.Admin.Categories
     public partial class Default : System.Web.UI.Page
     {
         protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
+                        
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -72,5 +72,6 @@ namespace FrontierAg.Admin.Categories
         {
             Response.Redirect("~/Admin/");
         }
+                
     }
 }

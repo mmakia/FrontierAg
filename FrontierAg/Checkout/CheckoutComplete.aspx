@@ -6,6 +6,7 @@
     <p></p>
     <h3>Thank You!</h3>
     <p></p>
+    <asp:Label ID="Label1" runat="server" Text=""></asp:Label> 
     <hr />
     <asp:Button ID="Continue" runat="server" Text="Continue Shopping" OnClick="Continue_Click" CssClass="btn btn-warning"/>
 </asp:Content>

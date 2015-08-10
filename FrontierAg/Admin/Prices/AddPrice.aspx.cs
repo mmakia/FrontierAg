@@ -1,4 +1,5 @@
 ﻿using FrontierAg.Models;
+using Microsoft.AspNet.FriendlyUrls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,27 +27,30 @@ namespace FrontierAg.Admin.Prices
         {
             var item = new FrontierAg.Models.Price();
             TryUpdateModel(item);
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && HttpContext.Current.Session["TheProductId"] != null)
             {
                 // Save changes here
                 using (FrontierAg.Models.ProductContext db = new FrontierAg.Models.ProductContext())
                 {
+                    item.ProductId = (int)HttpContext.Current.Session["TheProductId"];
+                    item.DateCreated = System.DateTime.Now;
                     db.Prices.Add(item);
                     db.SaveChanges();
                 }
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Prices/Default/", HttpContext.Current.Session["TheProductId"]));                
             }
         }
 
-        protected void addPriceForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
-        {
-            //LinkButton btn = (LinkButton)(sender);
-            //string yourValue = btn.CommandArgument;
+        //protected void addPriceForm_ItemInserted(object sender, FormViewInsertedEventArgs e)
+        //{
+        //    //LinkButton btn = (LinkButton)(sender);
+        //    //string yourValue = btn.CommandArgument;
 
-            //int myProductId = Int32.Parse(yourValue);
+        //    //int myProductId = Int32.Parse(yourValue);
 
             
-            Response.Redirect("~/Admin/Products/Default");
-        }
+        //    Response.Redirect("~/Admin/Products/Default");
+        //}
         
     }
 }

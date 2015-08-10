@@ -78,10 +78,7 @@ input.valid, textarea.valid{
   color:Red;
 }
 
-.mywidth{
+.MyDropList{
     width: 25%;
+    min-width: 100px;
 }
-
-
-
-

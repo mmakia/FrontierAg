@@ -35,6 +35,11 @@
                     <asp:Button ID="AllShipments" runat="server" Text="All Shipments" OnClick="AllShipments_Click" Width="300px" CssClass="btn btn-warning" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="Emails" runat="server" Text="Notification Emails" OnClick="Emails_Click" Width="300px" CssClass="btn btn-warning" />
+                </td>
+            </tr>
         </tbody>
     </table>
 

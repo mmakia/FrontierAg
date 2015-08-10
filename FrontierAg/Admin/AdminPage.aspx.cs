@@ -46,5 +46,10 @@ namespace FrontierAg.Admin
         {
             Response.Redirect("~/Admin/Shipments/Default");
         }
+
+        protected void Emails_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/Emails/Default");
+        }
     }
 }

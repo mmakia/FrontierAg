@@ -210,6 +210,11 @@
     <Content Include="Admin\Customers\Details.aspx" />
     <Content Include="Admin\Customers\Edit.aspx" />
     <Content Include="Admin\Customers\Insert.aspx" />
+    <Content Include="Admin\Emails\Default.aspx" />
+    <Content Include="Admin\Emails\Delete.aspx" />
+    <Content Include="Admin\Emails\Details.aspx" />
+    <Content Include="Admin\Emails\Edit.aspx" />
+    <Content Include="Admin\Emails\Insert.aspx" />
     <Content Include="Admin\OrderDetails\AllDetails.aspx" />
     <Content Include="Admin\OrderDetails\Default.aspx" />
     <Content Include="Admin\Orders\Default.aspx" />
@@ -227,6 +232,8 @@
     <Content Include="Admin\Shippings\Edit.aspx" />
     <Content Include="App_Data\ErrorLog.txt" />
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="bin\FrontierAg.dll" />
+    <Content Include="bin\FrontierAg.pdb" />
     <Content Include="Checkout\CheckoutCancel.aspx" />
     <Content Include="Checkout\CheckoutComplete.aspx" />
     <Content Include="Checkout\CheckoutError.aspx" />
@@ -633,6 +640,41 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Customers\Insert.aspx.designer.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Emails\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Emails\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Emails\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Emails\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Emails\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Emails\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Emails\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Emails\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Emails\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Emails\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\OrderDetails\AllDetails.aspx.cs">
@@ -1291,7 +1333,16 @@
     <Compile Include="Migrations\201507091311225_ChangingCreatedByInOrders.Designer.cs">
       <DependentUpon>201507091311225_ChangingCreatedByInOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507301851114_Email.cs" />
+    <Compile Include="Migrations\201507301851114_Email.Designer.cs">
+      <DependentUpon>201507301851114_Email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508061604286_OptionalProductIdInPrices.cs" />
+    <Compile Include="Migrations\201508061604286_OptionalProductIdInPrices.Designer.cs">
+      <DependentUpon>201508061604286_OptionalProductIdInPrices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Emailer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1640,6 +1691,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507091311225_ChangingCreatedByInOrders.resx">
       <DependentUpon>201507091311225_ChangingCreatedByInOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507301851114_Email.resx">
+      <DependentUpon>201507301851114_Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508061604286_OptionalProductIdInPrices.resx">
+      <DependentUpon>201508061604286_OptionalProductIdInPrices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

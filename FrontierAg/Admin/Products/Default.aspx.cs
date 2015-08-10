@@ -33,7 +33,7 @@ namespace FrontierAg.Products
         //     string sortByExpression
         public IQueryable<FrontierAg.Models.Product> ProductsGrid_GetData()
         {
-            return _db.Products.Include(m => m.Category);
+            return _db.Products.Include(m => m.Category).OrderByDescending(m => m.ProductId);
         }
 
         // The id parameter name should match the DataKeyNames value set on the control

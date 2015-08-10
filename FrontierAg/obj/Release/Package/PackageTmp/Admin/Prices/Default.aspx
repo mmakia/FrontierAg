@@ -3,7 +3,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h3>Prices List</h3>
     <p>
-        <asp:HyperLink runat="server" NavigateUrl="~/Admin/Prices/AddPrice" Text="Create new" />
+        <asp:LinkButton runat="server" OnClick="Unnamed_Click" Text="Create new" />        
     </p>
     <div>
         <asp:ValidationSummary ShowModelStateErrors="true" runat="server" />
