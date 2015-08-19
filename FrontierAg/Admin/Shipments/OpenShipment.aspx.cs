@@ -64,6 +64,12 @@ namespace FrontierAg.Admin.Shipments
                     originalShipment.ShipCharge = shipment.ShipCharge;
                     originalShipment.OtherCharges = shipment.OtherCharges;
                     originalShipment.Comment = shipment.Comment;
+
+                    if (originalShipment.Action != FrontierAg.Models.Action.ToInvoice && shipment.Action == FrontierAg.Models.Action.ToInvoice)
+                    {
+                        originalShipment.ReadyDate2 = System.DateTime.Now;
+                    }
+
                     originalShipment.Action = shipment.Action;
                     originalShipment.DateCreated = System.DateTime.Now;
 
@@ -125,6 +131,7 @@ namespace FrontierAg.Admin.Shipments
                             myorder1.Status = Status.Cancelled;
                         }
                     }
+                    
 
                     db.SaveChanges();
 

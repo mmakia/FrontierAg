@@ -224,6 +224,7 @@
     <Content Include="Admin\Prices\AddPrice.aspx" />
     <Content Include="Admin\Products\AddProduct.aspx" />
     <Content Include="Admin\Shipments\Default.aspx" />
+    <Content Include="Admin\Shipments\Invoice.aspx" />
     <Content Include="Admin\Shipments\OpenShipment.aspx" />
     <Content Include="Admin\Shipments\ShipmentDetail.aspx" />
     <Content Include="Admin\Shippings\AddShipping.aspx" />
@@ -740,6 +741,13 @@
     <Compile Include="Admin\Shipments\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Shipments\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Shipments\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Shipments\OpenShipment.aspx.cs">
       <DependentUpon>OpenShipment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1031,6 +1039,7 @@
     <Compile Include="ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logic\GeneralUtilities.cs" />
     <Compile Include="Logic\RouteActions.cs" />
     <Compile Include="Migrations\201505071907074_addingPriceOverride.cs" />
     <Compile Include="Migrations\201505071907074_addingPriceOverride.Designer.cs">
@@ -1340,6 +1349,18 @@
     <Compile Include="Migrations\201508061604286_OptionalProductIdInPrices.cs" />
     <Compile Include="Migrations\201508061604286_OptionalProductIdInPrices.Designer.cs">
       <DependentUpon>201508061604286_OptionalProductIdInPrices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508131927085_AddingReadyDate.cs" />
+    <Compile Include="Migrations\201508131927085_AddingReadyDate.Designer.cs">
+      <DependentUpon>201508131927085_AddingReadyDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508171202186_AddReadyDate2.cs" />
+    <Compile Include="Migrations\201508171202186_AddReadyDate2.Designer.cs">
+      <DependentUpon>201508171202186_AddReadyDate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508171212280_RemoveReadyDate.cs" />
+    <Compile Include="Migrations\201508171212280_RemoveReadyDate.Designer.cs">
+      <DependentUpon>201508171212280_RemoveReadyDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Email.cs" />
@@ -1697,6 +1718,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508061604286_OptionalProductIdInPrices.resx">
       <DependentUpon>201508061604286_OptionalProductIdInPrices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508131927085_AddingReadyDate.resx">
+      <DependentUpon>201508131927085_AddingReadyDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508171202186_AddReadyDate2.resx">
+      <DependentUpon>201508171202186_AddReadyDate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508171212280_RemoveReadyDate.resx">
+      <DependentUpon>201508171212280_RemoveReadyDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

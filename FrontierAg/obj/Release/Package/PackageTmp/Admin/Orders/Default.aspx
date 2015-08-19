@@ -5,7 +5,7 @@
     <div id="OrdersTitle" runat="server" class="ContentHead">
         <h3>All Orders</h3>
     </div>
-
+    
     <h4>Filter by Status</h4>
 
     <asp:DropDownList runat="server" AutoPostBack="true" ID="Status" class="form-control" Width="150">
@@ -16,8 +16,8 @@
         <asp:ListItem Text="Shipped" />
         <asp:ListItem Text="Closed" />
     </asp:DropDownList>
-    <br />
-
+    <asp:Label ID="ErrorLbl" runat="server" ForeColor="Red" Font-Bold="True" BackColor="#FFCC66"></asp:Label>
+    <br />    
     <asp:GridView ID="OrdersList" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"
         AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="10">
         <Columns>

@@ -172,14 +172,7 @@ namespace FrontierAg.Models
         }
         
 
-        public void Dispose()
-        {
-            if (_db != null)
-            {
-                _db.Dispose();
-                _db = null;
-            }
-        }
+        
 
         public string GetCartId()//done ------- default
         {
@@ -395,5 +388,13 @@ namespace FrontierAg.Models
             _db.SaveChanges();
         }
 
+        public void Dispose()
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
+                _db = null;
+            }
+        }
     }
 }

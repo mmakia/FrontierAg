@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Web.ModelBinding;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 using Microsoft.AspNet.FriendlyUrls;
+using System.Configuration;
 
 namespace FrontierAg.Admin.Shipments
 {
@@ -18,6 +19,7 @@ namespace FrontierAg.Admin.Shipments
         bool isRemainingZero = true;
         bool isAllPaid = true;
         bool isAllCancelled = true;
+        string isSendEmails = ConfigurationManager.AppSettings["SendEmails"];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -94,6 +96,12 @@ namespace FrontierAg.Admin.Shipments
                     originalShipment.ShipCharge = shipment.ShipCharge;
                     originalShipment.OtherCharges = shipment.OtherCharges;
                     originalShipment.Comment = shipment.Comment;
+
+                    if (originalShipment.Action != FrontierAg.Models.Action.ToInvoice && shipment.Action == FrontierAg.Models.Action.ToInvoice)
+                    {
+                        originalShipment.ReadyDate2 = System.DateTime.Now;
+                    }
+
                     originalShipment.Action = shipment.Action;
                     originalShipment.DateCreated = System.DateTime.Now;
 
@@ -156,12 +164,23 @@ namespace FrontierAg.Admin.Shipments
                         }
                     }
 
+                    
                     db.SaveChanges();
 
                     //Email Billing dept
-                    if (shipment.Action == FrontierAg.Models.Action.ToInvoice){
-                        new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
-                        new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
+                    //if (shipment.Action == FrontierAg.Models.Action.ToInvoice){
+                    //    new Emailer().SendEmail("mmakia@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
+                    //    new Emailer().SendEmail("rwright@frontierssi.com", "orders@frontierssi.com", "FrontierAg New Shipment ", "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/Default ");
+                    //}
+
+                    //Email Billing dept
+                    if (shipment.Action == FrontierAg.Models.Action.ToInvoice && isSendEmails == "1")
+                    {
+                        var allEmails = db.Emails.Where(r => r.isForShipment == true);
+                        foreach (var a in allEmails)
+                        {
+                            new Emailer().SendEmail(a.EmailAddress, "orders@frontierssi.com", "FrontierAg New Shipment for Order Id " + originalShipment.OrderId, "There is a new Shipment, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Shipments/OpenShipment ");
+                        }
                     }
                     
                 }

@@ -8,6 +8,7 @@ using System.Data.Entity;
 using FrontierAg.Models;
 using Microsoft.AspNet.FriendlyUrls;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using FrontierAg.Logic;
 
 namespace FrontierAg.Contacts
 {
@@ -21,11 +22,32 @@ namespace FrontierAg.Contacts
 
         // Model binding method to get List of Contact entries
         // USAGE: <asp:ListView SelectMethod="GetData">
-        public IQueryable<FrontierAg.Models.Contact> GetData([FriendlyUrlSegmentsAttribute(0)]String SearchString)
-        {            
-            if (!String.IsNullOrEmpty(SearchString))
+        public IQueryable<FrontierAg.Models.Contact> GetData([FriendlyUrlSegmentsAttribute(0)]String searchString)
+        {
+            if (searchString != null)
             {
-                return _db.Contacts.Where(s => s.Company.Contains(SearchString));
+                string[] myStrings = GeneralUtilities.LineToStrings(searchString, " ");
+
+                var ResultFContacts = _db.Contacts.AsQueryable();
+                var ResultFShippings = _db.Contacts.AsQueryable();
+                IQueryable<Contact> Result = null;
+
+                foreach (string qs in myStrings)
+                {
+                    ResultFShippings = _db.Shippings.Where(em => em.FName.Contains(qs) || em.LName.Contains(qs) || em.Address1.Contains(qs) || em.Address2.Contains(qs)).Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();//.Where(x => x..Contains(qs));
+                    ResultFContacts = _db.Contacts.Where(en => en.Type == CType.Customer && en.Company.Contains(qs) || en.Address1.Contains(qs) || en.Address2.Contains(qs));//qContacts.Where(en => en.Company.Contains(qs)) ||
+                    if (Result != null)
+                    {
+                        Result = Result.Union(ResultFContacts.Concat(ResultFShippings));
+                    }
+                    else
+                    {
+                        Result = ResultFContacts.Concat(ResultFShippings);
+                    }
+                }
+
+                return Result;
+                //return _db.Contacts.Where(en => en.Type == CType.Customer && (en.Company..Contains(searchString)));  ///////////              
             }
             return _db.Contacts;
         }

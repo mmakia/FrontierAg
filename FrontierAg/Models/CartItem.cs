@@ -14,11 +14,9 @@ namespace FrontierAg.Models
 
         public string CartId { get; set; }
 
-        //[Column(TypeName = "money")]
-        public decimal ItemPrice { get; set; }//decimal
-
-        //[Column(TypeName = "money")]
-        public decimal OriginalPrice { get; set; }//decimal
+        public decimal ItemPrice { get; set; }
+                
+        public decimal OriginalPrice { get; set; }
 
         public int Quantity { get; set; }        
 

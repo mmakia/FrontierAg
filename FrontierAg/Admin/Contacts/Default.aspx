@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td>
-                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False" placeholder="Search"></asp:TextBox>
+                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False" placeholder="Search by Company,Contact or Address" Width="300px"></asp:TextBox>
             </td>
         </tr>
     </table>

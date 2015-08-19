@@ -17,7 +17,10 @@ namespace FrontierAg.Admin.Orders
     {        
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                ErrorLbl.Text = "";
+            }
             
         }
 
@@ -62,9 +65,16 @@ namespace FrontierAg.Admin.Orders
 
                     //grab original order
                     var originalOrder = db.Orders.Find(order.OrderId);
+                    //bool HasShipments = db.Shipments.Any(en => en.OrderId == order.OrderId);
                     
+                    if (order.Status == FrontierAg.Models.Status.Cancelled && originalOrder.Status != FrontierAg.Models.Status.New)
+                    {
+                        ErrorLbl.Text = "**** This Order can not be cancelled directly, Please Cancel each shipment related to this order first, then this order will be cancelled Automatically ****";
+                        return;
+                    }
                     originalOrder.Comment = order.Comment;
                     originalOrder.Status = order.Status;
+
                     db.SaveChanges();
                 }
             }

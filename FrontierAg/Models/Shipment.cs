@@ -22,26 +22,25 @@ namespace FrontierAg.Models
 
         public String Tracking { get; set; }
 
-        //[Column(TypeName = "money")]
-        public decimal PFee { get; set; }//decimal
+        //public DateTime? ReadyDate { get; set; }
 
-        //[Column(TypeName = "money")]
-        public decimal PCharges { get; set; }//decimal
-
-        //[Column(TypeName = "money")]
-        public decimal ShipCharge { get; set; } //decimal
-
-        //[Column(TypeName = "money")]
+        public DateTime? ReadyDate2 { get; set; }
+        
+        public decimal PFee { get; set; }
+        
+        public decimal PCharges { get; set; }
+        
+        public decimal ShipCharge { get; set; }
+        
         public decimal OtherCharges { get; set; }
 
         public Action? Action { get; set; }
 
         public String Comment { get; set; }
-
+                
         public DateTime DateCreated { get; set; }
-
-        //[Column(TypeName = "money")]
-        public decimal Total { get; set; }//decimal
+       
+        public decimal Total { get; set; }
 
         public virtual Order Order { get; set; }
 

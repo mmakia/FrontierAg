@@ -340,7 +340,7 @@
         <%--<asp:HyperLink runat="server" NavigateUrl="~/Admin/Contacts/Insert"  Text="Create new" />--%>
                 <asp:LinkButton runat="server" ID="CreateNewBtn" OnClick="CreateNewBtn_Click" Text="Create New" />
             </h4>
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False" placeholder="Search"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False" placeholder="Search by Company,Contact or Address"></asp:TextBox>
 
             <div>
                 <asp:ListView ID="ListView1" runat="server"

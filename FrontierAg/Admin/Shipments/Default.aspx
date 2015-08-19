@@ -31,9 +31,11 @@
             <asp:DynamicField DataField="OtherCharges" HeaderText="Others(+/-)" />
             <asp:DynamicField DataField="Total" HeaderText="ShipmentTotal" ReadOnly="true" />
             <asp:DynamicField DataField="Tracking" HeaderText="Tracking" />
+            <asp:DynamicField DataField="ReadyDate2" HeaderText="ReadyDate" ReadOnly="true" />
             <asp:DynamicField DataField="Comment" HeaderText="NoteOnPackSlip" />
             <asp:DynamicField DataField="Action" HeaderText="Action" />
             <asp:HyperLinkField Text="Packing Slip" DataNavigateUrlFormatString="~/Admin/Shipments/ShipmentDetail/{0}" DataNavigateUrlFields="ShipmentId" />
+            <asp:HyperLinkField Text="Invoice" DataNavigateUrlFormatString="~/Admin/Shipments/Invoice/{0}" DataNavigateUrlFields="ShipmentId" />
         </Columns>
     </asp:GridView>
 

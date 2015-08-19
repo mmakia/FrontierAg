@@ -56,8 +56,8 @@
                     <ul class="nav navbar-nav">                        
                         <li><a runat="server" href="~/ProductList">Products</a></li>
                         <li><a runat="server" href="~/Checkout/ShoppingCart" ID="cartCount" visible="false">&nbsp;</a></li>
-                        <li><a runat="server" href="~/Admin/Orders/OpenOrder" id="OpenOrderLink" visible="false" >Orders</a></li>
-                        <li><a runat="server" href="~/Admin/Shipments/OpenShipment" id="ShipmentsLink" visible="false" >Shipments</a></li>
+                        <li><a runat="server" href="~/Admin/Orders/OpenOrder" id="OpenOrderLink" visible="false" >OpOrders</a></li>
+                        <li><a runat="server" href="~/Admin/Shipments/OpenShipment" id="ShipmentsLink" visible="false" >OpShipments</a></li>
                         <li><a runat="server" href="~/Admin/AdminPage" id="adminLink" visible="false" >Admin</a></li>                        
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
