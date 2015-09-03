@@ -694,6 +694,25 @@
                                     <asp:CheckBox runat="server" ID="isSOCheckBox" AutoPostBack="false" ClientIDMode="Static" OnClick="javascript:return validate3();" />
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td>
+                                    <asp:Label ID="EmlOrdrgCstmrLbl" runat="server">Email Ordering Customer:</asp:Label>
+                                </td>
+                                <td>&nbsp;
+                                    <asp:CheckBox runat="server" ID="EmlOrdrgCstmrChkBx" AutoPostBack="false" ClientIDMode="Static"  />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <asp:Label ID="EmlShpToCstmrLbl" runat="server">Email ShipTo Customer:</asp:Label>
+                                </td>
+                                <td>&nbsp;
+                                    <asp:CheckBox runat="server" ID="EmlShpToCstmrChkBx" AutoPostBack="false" ClientIDMode="Static" " Checked="True" />
+                                </td>
+                            </tr>
+
                             <tr>
                                 <td>&nbsp;
                                 </td>

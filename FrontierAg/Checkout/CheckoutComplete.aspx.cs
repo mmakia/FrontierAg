@@ -13,7 +13,8 @@ namespace FrontierAg.Checkout
 {
     public partial class CheckoutComplete : System.Web.UI.Page
     {
-        string isSendEmails = ConfigurationManager.AppSettings["SendEmails"];
+        string isEmailInternalUsers = ConfigurationManager.AppSettings["EmailInternalUsers"];
+        //string isEmailCustomers = ConfigurationManager.AppSettings["EmailCustomers"];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +28,7 @@ namespace FrontierAg.Checkout
                     {
                         Label1.Text = "You just placed a Standing Order which is ordered by " + HttpContext.Current.Session["OrderedBy"].ToString();
 
-                        if (isSendEmails == "1")
+                        if (isEmailInternalUsers == "1")
                         {
                             foreach (var a in allEmails)
                             {
@@ -39,15 +40,18 @@ namespace FrontierAg.Checkout
                     {
                         Label1.Text = "You just placed order #" + HttpContext.Current.Session["OrderId"].ToString() + " which is ordered by " + HttpContext.Current.Session["OrderedBy"].ToString();
 
-                        if (isSendEmails == "1")
+                        if (isEmailInternalUsers == "1")
                         {
                             foreach (var a in allEmails)
                             {
                                 new Emailer().SendEmail(a.EmailAddress, "orders@frontierssi.com", "FrontierAg New Order #" + HttpContext.Current.Session["OrderId"] + ", Ordered By " + HttpContext.Current.Session["OrderedBy"], "There is a new Order, Please Click on the following link for Details: http://orders2.frontiersci.com/FSIAg/Admin/Orders/OpenOrder");
                             }                                               
                         }
-
-                        //NotifyCustomer(HttpContext.Current.Session["OrderId"].ToString());
+                        //if (isEmailCustomers == "1")
+                        //{
+                        //    NotifyCustomer(HttpContext.Current.Session["OrderId"].ToString());
+                        //}
+                        
                     }
 
                 }

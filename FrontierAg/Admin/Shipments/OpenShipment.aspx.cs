@@ -15,7 +15,7 @@ namespace FrontierAg.Admin.Shipments
         bool isRemainingZero = true;
         bool isAllPaid = true;
         bool isAllCancelled = true;
-        string isSendEmails = ConfigurationManager.AppSettings["SendEmails"];
+        string isEmailInternalUsers = ConfigurationManager.AppSettings["EmailInternalUsers"];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -136,7 +136,7 @@ namespace FrontierAg.Admin.Shipments
                     db.SaveChanges();
 
                     //Email Billing dept
-                    if (shipment.Action == FrontierAg.Models.Action.ToInvoice && isSendEmails == "1"){
+                    if (shipment.Action == FrontierAg.Models.Action.ToInvoice && isEmailInternalUsers == "1"){
                         var allEmails = db.Emails.Where(r => r.isForShipment == true);
                         foreach (var a in allEmails)
                         {
