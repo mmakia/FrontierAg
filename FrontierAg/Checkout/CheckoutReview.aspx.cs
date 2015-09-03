@@ -225,7 +225,7 @@ namespace FrontierAg.Checkout
                 List<CartItem> MyCart = usersShoppingCart.GetCartItems();
 
                 //Place an order
-                AddOrder(PaymentBox.Text, CommentBox.Text, MyCart, System.DateTime.Now);//PaymentDateBox.Text,
+                AddOrder(PaymentBox.Text, CommentBox.Text, MyCart, System.DateTime.Now);
                 RemoveCartItems();
             }
             Response.Redirect("~/Checkout/CheckoutComplete");//To send emails
@@ -242,9 +242,7 @@ namespace FrontierAg.Checkout
                 int x = int.Parse(segments[0]);
                 var myContact = _db.Contacts.Where(e => e.ContactId == x).SingleOrDefault();
                 var myCustomer = new Customer();
-                myCustomer.Company = myContact.Company;
-                //myCustomer.LName = myContact.LName;
-                //myCustomer.FName = myContact.FName;
+                myCustomer.Company = myContact.Company;               
                 myCustomer.Address1 = myContact.Address1;
                 myCustomer.Address2 = myContact.Address2;
                 myCustomer.City = myContact.City;
@@ -255,7 +253,7 @@ namespace FrontierAg.Checkout
                 myCustomer.SPhone = myContact.SPhone;
                 myCustomer.WebSite = myContact.WebSite;
                 myCustomer.EMail = myContact.EMail;
-                myCustomer.DateCreated = myDate; // System.DateTime.Now;
+                myCustomer.DateCreated = myDate; 
                 myCustomer.Fax = myContact.Fax;
                 myCustomer.Comment = myContact.Comment;
 
@@ -275,18 +273,9 @@ namespace FrontierAg.Checkout
                 else
                 {
                     myOrder.Payment = Payment;
-                }
-                //if (PaymentDate == "")
-                //{
-                //    myOrder.PaymentDate = null;
-                //}
-                //else
-                //{
-                //    myOrder.PaymentDate = Convert.ToDateTime(PaymentDate);
-                //}
+                }               
                 myOrder.ContactId = int.Parse(segments[0]);
-                myOrder.Comment = CommentBox;
-                //myOrder.PFee = ProcessingFee;
+                myOrder.Comment = CommentBox;                
                 _db.Orders.Add(myOrder);
 
                 //Create new OrderingPerson to Link to myOrder
@@ -306,9 +295,8 @@ namespace FrontierAg.Checkout
                 myOrderingPerson.ContactId = myExistingOrdering.ContactId;
                 myOrderingPerson.PPhone = myExistingOrdering.PPhone;
                 myOrderingPerson.EMail = myExistingOrdering.EMail;
-                myOrderingPerson.isHistory = true;
-                //myOrderingPerson.SType = SType.Ordering;
-                myOrderingPerson.DateCreated = myDate; // System.DateTime.Now;
+                myOrderingPerson.isHistory = true;                
+                myOrderingPerson.DateCreated = myDate; 
                 _db.Shippings.Add(myOrderingPerson);
 
                 //create OrderShipping for OrderingPerson
@@ -337,9 +325,8 @@ namespace FrontierAg.Checkout
                 myShipping.ContactId = myExistingShipping.ContactId;
                 myShipping.PPhone = myExistingShipping.PPhone;
                 myShipping.EMail = myExistingShipping.EMail;
-                myShipping.isHistory = true;
-                //myShipping.SType = SType.Shipping;
-                myShipping.DateCreated = myDate; // System.DateTime.Now;
+                myShipping.isHistory = true;               
+                myShipping.DateCreated = myDate;
                 _db.Shippings.Add(myShipping);
 
                 //create OrderShipping for shipping
@@ -368,9 +355,8 @@ namespace FrontierAg.Checkout
                 myBilling.ContactId = myExistingBilling.ContactId;
                 myBilling.PPhone = myExistingBilling.PPhone;
                 myBilling.EMail = myExistingBilling.EMail;
-                myBilling.isHistory = true;
-                //myBilling.SType = SType.Billing;
-                myBilling.DateCreated = myDate; // System.DateTime.Now;
+                myBilling.isHistory = true;                
+                myBilling.DateCreated = myDate; 
                 _db.Shippings.Add(myBilling);
 
                 //create OrderShipping for billing
@@ -388,8 +374,7 @@ namespace FrontierAg.Checkout
                     myOrderDetail.ProductId = cartItem.ProductId;
                     myOrderDetail.Quantity = cartItem.Quantity;
                     myOrderDetail.Unit = cartItem.Unit;
-                    myOrderDetail.QtyShipped = 0;
-                    //myOrderDetail.QtyShipping = 0;
+                    myOrderDetail.QtyShipped = 0;                    
                     myOrderDetail.QtyCancelled = 0;
                     myOrderDetail.DateCreated = myOrder.OrderDate;
                     myOrderDetail.UnitPrice = cartItem.OriginalPrice;

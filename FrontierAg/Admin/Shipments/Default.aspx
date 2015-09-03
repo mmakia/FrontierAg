@@ -16,7 +16,7 @@
     </asp:DropDownList>
     <br />
     <asp:GridView ID="ShipmentsList" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Shipment" DataKeyNames="ShipmentId" SelectMethod="ShipmentList_GetData" UpdateMethod="ShipmentList_UpdateItem"
-        AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="15">
+        AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="40">
         <Columns>
             <%--<asp:DynamicField DataField="ShipmentId" HeaderText="ID" ReadOnly="true" />--%>
 
@@ -28,7 +28,7 @@
             <asp:DynamicField DataField="PFee" HeaderText="ProcessFee" />
             <asp:DynamicField DataField="ShipCharge" HeaderText="ShipCharge" />
             <asp:DynamicField DataField="PCharges" HeaderText="PackCharges" />
-            <asp:DynamicField DataField="OtherCharges" HeaderText="Others(+/-)" />
+            <asp:DynamicField DataField="OtherCharges" HeaderText="Others (+/-)" />
             <asp:DynamicField DataField="Total" HeaderText="ShipmentTotal" ReadOnly="true" />
             <asp:DynamicField DataField="Tracking" HeaderText="Tracking" />
             <asp:DynamicField DataField="ReadyDate2" HeaderText="ReadyDate" ReadOnly="true" />

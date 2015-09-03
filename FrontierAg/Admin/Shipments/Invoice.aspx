@@ -58,6 +58,7 @@
             <asp:BoundField DataField="State" HeaderText="State"/>                 
             <asp:BoundField DataField="PostalCode" HeaderText="PostalCode"/>            
             <asp:BoundField DataField="Country" HeaderText="Country"/>            
+            <asp:BoundField DataField="Email" HeaderText="Email"/>
         </Columns>
     </asp:GridView>
     

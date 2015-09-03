@@ -10,7 +10,7 @@
         <asp:GridView runat="server" ID="ProductsGrid"
         ItemType="FrontierAg.Models.Product" DataKeyNames="ProductId" AutoGenerateEditButton="true"
         SelectMethod="ProductsGrid_GetData" UpdateMethod="ProductsGrid_UpdateItem" CssClass="table table-striped table-bordered" EnableModelValidation="true"
-        AutoGenerateColumns="false" AllowPaging="true" PageSize="17">
+        AutoGenerateColumns="false" AllowPaging="true" PageSize="40">
         <Columns>
             <asp:DynamicField DataField="ProductId" HeaderText="ID" ReadOnly="true"/>
             <asp:DynamicField DataField="ProductNo" ReadOnly="true"/>

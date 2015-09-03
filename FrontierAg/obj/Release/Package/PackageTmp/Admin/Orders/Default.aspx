@@ -19,7 +19,7 @@
     <asp:Label ID="ErrorLbl" runat="server" ForeColor="Red" Font-Bold="True" BackColor="#FFCC66"></asp:Label>
     <br />    
     <asp:GridView ID="OrdersList" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Order" DataKeyNames="OrderId" SelectMethod="OrdersList_GetData" UpdateMethod="OpenOrders_UpdateItem"
-        AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="10">
+        AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="40">
         <Columns>
             <asp:DynamicField DataField="OrderId" HeaderText="ID" ReadOnly="true" />
             <asp:DynamicField DataField="OrderDate" HeaderText="Order Date" ReadOnly="true" />

@@ -387,7 +387,7 @@
                                 <tr runat="server" id="itemPlaceholder" />
                             </tbody>
                         </table>
-                        <asp:DataPager PageSize="15" runat="server">
+                        <asp:DataPager PageSize="60" runat="server">
                             <Fields>
                                 <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
                                 <asp:NumericPagerField ButtonType="Button" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
