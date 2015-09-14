@@ -64,7 +64,7 @@ namespace FrontierAg.Checkout
                 return _db.Contacts.Where(en => en.Type == CType.Customer);
             }
 
-
+            //C
             //Implementing revised search
             //if (searchString != null)
             //{
