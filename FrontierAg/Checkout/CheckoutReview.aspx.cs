@@ -221,6 +221,8 @@ namespace FrontierAg.Checkout
             using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
                 Session["payment_amt"] = usersShoppingCart.GetTotal();
+                Session["EmailOrderingCustomer"] = EmlOrdrngCstmrChkBx.Checked;
+                Session["EmailShpToCustomer"] = EmlShpToCstmrChkBx.Checked;
 
                 List<CartItem> MyCart = usersShoppingCart.GetCartItems();
 

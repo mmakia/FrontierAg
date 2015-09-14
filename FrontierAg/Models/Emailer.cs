@@ -31,6 +31,7 @@ namespace FrontierAg
             {
                 System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(_server);
                 System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage(from, to, subject, body);
+                msg.IsBodyHtml = true;
                 if (attachments != null)
                     foreach (System.Net.Mail.Attachment attachment in attachments)
                         msg.Attachments.Add(attachment);

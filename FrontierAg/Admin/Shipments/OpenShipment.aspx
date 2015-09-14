@@ -4,7 +4,7 @@
         <h3>Open Shipment(s)</h3>
     </div>
     <asp:GridView ID="ShipmentsList" runat="server" AutoGenerateColumns="False" ItemType="FrontierAg.Models.Shipment" DataKeyNames="ShipmentId" SelectMethod="ShipmentList_GetData" UpdateMethod="ShipmentList_UpdateItem"
-        AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="15">
+        AutoGenerateEditButton="True" CssClass="table table-striped table-bordered" EnableModelValidation="true" AllowSorting="true" AllowPaging="true" PageSize="35">
         <Columns>
             <%--<asp:DynamicField DataField="ShipmentId" HeaderText="ID" ReadOnly="true" />--%>
 

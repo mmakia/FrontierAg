@@ -9,7 +9,7 @@ namespace FrontierAg.Models
 {
     public enum Unit
     {
-        Kg, Liter, Cup, Container, Tray, Batch, Case, Pack, Each, Hundred, Thousand, Roll, Box, Jug 
+        Kg, Liter, Cup, Container, Tray, Batch, Case, Pack, Each, Hundred, Thousand, Roll, Box, Jug, HalfKg 
     }
     
     public class Price

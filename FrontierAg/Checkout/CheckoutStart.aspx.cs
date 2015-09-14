@@ -35,17 +35,17 @@ namespace FrontierAg.Checkout
         {
             if (searchString != null)
             {
-                string[] myStrings = GeneralUtilities.LineToStrings(searchString, " ");
+                string[] mySearchStrings = GeneralUtilities.LineToStrings(searchString, " ");
 
                 var ResultFContacts = _db.Contacts.AsQueryable();
                 var ResultFShippings = _db.Contacts.AsQueryable();
                 IQueryable<Contact> Result = null;
-                
-                foreach (string qs in myStrings)
+
+                foreach (string qs in mySearchStrings)
                 {
                     ResultFShippings = _db.Shippings.Where(em => em.FName.Contains(qs) || em.LName.Contains(qs) || em.Address1.Contains(qs) || em.Address2.Contains(qs)).Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();//.Where(x => x..Contains(qs));
                     ResultFContacts = _db.Contacts.Where(en => en.Type == CType.Customer && en.Company.Contains(qs) || en.Address1.Contains(qs) || en.Address2.Contains(qs));//qContacts.Where(en => en.Company.Contains(qs)) ||
-                    if(Result != null)
+                    if (Result != null)
                     {
                         Result = Result.Union(ResultFContacts.Concat(ResultFShippings));
                     }
@@ -63,6 +63,39 @@ namespace FrontierAg.Checkout
             {
                 return _db.Contacts.Where(en => en.Type == CType.Customer);
             }
+
+
+            //Implementing revised search
+            //if (searchString != null)
+            //{
+            //    string[] mySearchStrings = GeneralUtilities.LineToStrings(searchString, " ");
+
+            //    var ResultFromContacts = _db.Contacts.AsQueryable();
+            //    var ResultFromShippings = _db.Contacts.AsQueryable();
+            //    IQueryable<Contact> Result = null;
+
+            //    for (int i = 0; i < mySearchStrings.Length; i++ )
+            //    {
+            //        ResultFromShippings = _db.Shippings.Where(em => em.FName.Contains(mySearchStrings[i]) || em.LName.Contains(mySearchStrings[i]) || em.Address1.Contains(mySearchStrings[i]) || em.Address2.Contains(mySearchStrings[i])).Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();//.Where(x => x..Contains(qs));
+            //        ResultFromContacts = _db.Contacts.Where(en => en.Type == CType.Customer && en.Company.Contains(mySearchStrings[i]) || en.Address1.Contains(mySearchStrings[i]) || en.Address2.Contains(mySearchStrings[i]));//qContacts.Where(en => en.Company.Contains(qs)) ||
+            //        if (Result != null)
+            //        {
+            //            Result = Result.Union(ResultFromContacts.Concat(ResultFromShippings));
+            //        }
+            //        else
+            //        {
+            //            Result = ResultFromContacts.Concat(ResultFromShippings);
+            //        }
+            //    }
+
+            //    return Result;
+            //    //return _db.Contacts.Where(en => en.Type == CType.Customer && (en.Company..Contains(searchString)));  ///////////              
+            //}
+
+            //else
+            //{
+            //    return _db.Contacts.Where(en => en.Type == CType.Customer);
+            //}
         }
 
         
