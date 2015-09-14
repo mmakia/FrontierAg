@@ -43,15 +43,15 @@ namespace FrontierAg.Checkout
 
                 foreach (string qs in mySearchStrings)
                 {
-                    ResultFShippings = _db.Shippings.Where(em => em.FName.Contains(qs) || em.LName.Contains(qs) || em.Address1.Contains(qs) || em.Address2.Contains(qs)).Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();//.Where(x => x..Contains(qs));
-                    ResultFContacts = _db.Contacts.Where(en => en.Type == CType.Customer && en.Company.Contains(qs) || en.Address1.Contains(qs) || en.Address2.Contains(qs));//qContacts.Where(en => en.Company.Contains(qs)) ||
+                    //ResultFShippings = _db.Shippings.Where(em => em.FName.Contains(qs) || em.LName.Contains(qs) || em.Address1.Contains(qs) || em.Address2.Contains(qs)).Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();//.Where(x => x..Contains(qs));
+                    ResultFContacts = _db.Contacts.Where(en => en.Type == CType.Customer && en.Company.Contains(qs));//qContacts.Where(en => en.Company.Contains(qs)) ||
                     if (Result != null)
                     {
-                        Result = Result.Union(ResultFContacts.Concat(ResultFShippings));
+                        Result = Result.Union(ResultFContacts);//.Concat(ResultFShippings));
                     }
                     else
                     {
-                        Result = ResultFContacts.Concat(ResultFShippings);
+                        Result = ResultFContacts;//.Concat(ResultFShippings);
                     }
                 }
 
