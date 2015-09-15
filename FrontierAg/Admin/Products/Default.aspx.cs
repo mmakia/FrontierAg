@@ -8,6 +8,8 @@ using System.Data.Entity;
 using FrontierAg.Models;
 using System.Web.DynamicData;
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNet.FriendlyUrls;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 
 namespace FrontierAg.Products
 {
@@ -31,8 +33,16 @@ namespace FrontierAg.Products
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<FrontierAg.Models.Product> ProductsGrid_GetData()
+        public IQueryable<FrontierAg.Models.Product> ProductsGrid_GetData([FriendlyUrlSegmentsAttribute(0)]string SearchString)
         {
+            ProductContext db = new ProductContext();
+
+            if (SearchString != null)
+            {
+                var query = db.Products.Where(en => en.ProductNo.Contains(SearchString) || en.ProductName.Contains(SearchString));//.Include(en => en.OrderShippings.Select(m => m.Shipping))
+                return query;
+            }           
+
             return _db.Products.Include(m => m.Category).OrderByDescending(m => m.ProductId);
         }
 
@@ -57,6 +67,18 @@ namespace FrontierAg.Products
                     _db.SaveChanges();
                 }
             
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string yourValue = Server.HtmlEncode(TextBox1.Text.Trim());
+
+            if (yourValue != "")
+            {
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Products/Default/", yourValue));
+            }
+
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Products/Default/"));
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
