@@ -17,7 +17,7 @@ namespace FrontierAg.Checkout
 {
     public partial class CheckoutStart : System.Web.UI.Page
     {
-        protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
+        protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();//
 
         protected void Page_Load(object sender, EventArgs e)
         {
