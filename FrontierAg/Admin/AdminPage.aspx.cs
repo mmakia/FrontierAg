@@ -51,5 +51,10 @@ namespace FrontierAg.Admin
         {
             Response.Redirect("~/Admin/Emails/Default");
         }
+
+        protected void ToProcessOrdersBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/Orders/ToProcess");
+        }
     }
 }

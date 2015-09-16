@@ -93,7 +93,9 @@
         }
 
         function validate3() {
-            if ($("#isSOCheckBox").is(':checked')) {
+            if ($("#isSOCheckBox").is(':checked')) {                
+                $('#EmlOrdrngCstmrChkBx').attr('checked', false);
+                $('#EmlShpToCstmrChkBx').attr('checked', false);
                 //$(alert("Post back"));                
                 ModalPopup();
             }
@@ -709,7 +711,7 @@
                                     <asp:Label ID="Label2" runat="server" >Email ShipTo Customer:</asp:Label>
                                 </td>
                                 <td>&nbsp;
-                                    <asp:CheckBox runat="server" ID="EmlShpToCstmrChkBx" AutoPostBack="false" ClientIDMode="Static" />
+                                    <asp:CheckBox runat="server" ID="EmlShpToCstmrChkBx" AutoPostBack="false" ClientIDMode="Static" Checked="True" />
                                 </td>
                             </tr>
                             <tr>

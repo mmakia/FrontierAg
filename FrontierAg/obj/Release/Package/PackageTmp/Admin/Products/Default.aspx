@@ -5,14 +5,17 @@
     <p>
         <asp:HyperLink runat="server" NavigateUrl="~/Admin/Products/AddProduct" Text="Create new" />
     </p>
+    <p>
+        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False" placeholder="Search by Product# or Name"></asp:TextBox>
+    </p>    
     <div>
         <asp:ValidationSummary ShowModelStateErrors="true" runat="server" />
         <asp:GridView runat="server" ID="ProductsGrid"
         ItemType="FrontierAg.Models.Product" DataKeyNames="ProductId" AutoGenerateEditButton="true"
         SelectMethod="ProductsGrid_GetData" UpdateMethod="ProductsGrid_UpdateItem" CssClass="table table-striped table-bordered" EnableModelValidation="true"
-        AutoGenerateColumns="false" AllowPaging="true" PageSize="17">
+        AutoGenerateColumns="false" AllowPaging="true" PageSize="45">
         <Columns>
-            <asp:DynamicField DataField="ProductId" HeaderText="ID" ReadOnly="true"/>
+            <%--<asp:DynamicField DataField="ProductId" HeaderText="ID" ReadOnly="true"/>--%>
             <asp:DynamicField DataField="ProductNo" ReadOnly="true"/>
             <asp:DynamicField DataField="ProductName" />                          
             <asp:DynamicField DataField="Category" HeaderText="Category Name"/>                
