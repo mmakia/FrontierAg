@@ -1422,6 +1422,26 @@
     <Compile Include="Migrations\201509171524134_AddingRaw.Designer.cs">
       <DependentUpon>201509171524134_AddingRaw.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509171541513_RemovingrawVirtual.cs" />
+    <Compile Include="Migrations\201509171541513_RemovingrawVirtual.Designer.cs">
+      <DependentUpon>201509171541513_RemovingrawVirtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171555457_MakingProductOne2.cs" />
+    <Compile Include="Migrations\201509171555457_MakingProductOne2.Designer.cs">
+      <DependentUpon>201509171555457_MakingProductOne2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171604318_MakingProductOne3.cs" />
+    <Compile Include="Migrations\201509171604318_MakingProductOne3.Designer.cs">
+      <DependentUpon>201509171604318_MakingProductOne3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171723363_ProductIdMandatory.cs" />
+    <Compile Include="Migrations\201509171723363_ProductIdMandatory.Designer.cs">
+      <DependentUpon>201509171723363_ProductIdMandatory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171725324_ExpdateOptional.cs" />
+    <Compile Include="Migrations\201509171725324_ExpdateOptional.Designer.cs">
+      <DependentUpon>201509171725324_ExpdateOptional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Emailer.cs" />
@@ -1791,6 +1811,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509171524134_AddingRaw.resx">
       <DependentUpon>201509171524134_AddingRaw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171541513_RemovingrawVirtual.resx">
+      <DependentUpon>201509171541513_RemovingrawVirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171555457_MakingProductOne2.resx">
+      <DependentUpon>201509171555457_MakingProductOne2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171604318_MakingProductOne3.resx">
+      <DependentUpon>201509171604318_MakingProductOne3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171723363_ProductIdMandatory.resx">
+      <DependentUpon>201509171723363_ProductIdMandatory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171725324_ExpdateOptional.resx">
+      <DependentUpon>201509171725324_ExpdateOptional.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

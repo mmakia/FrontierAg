@@ -2,27 +2,17 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
 		<p>&nbsp;</p>
-        <asp:FormView runat="server"
-            ItemType="FrontierAg.Models.Raw" DefaultMode="Insert"
-            InsertItemPosition="FirstItem" InsertMethod="InsertItem"
-            OnItemCommand="ItemCommand" RenderOuterTable="false">
+        <asp:FormView runat="server" ItemType="FrontierAg.Models.Raw" DefaultMode="Insert"  InsertItemPosition="FirstItem" InsertMethod="InsertItem"
+            OnItemCommand="ItemCommand" RenderOuterTable="false" ID="addRawForm">
             <InsertItemTemplate>
-                <fieldset class="form-horizontal">
-				<legend>Insert Raw</legend>
-		        <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
-						    <asp:DynamicControl Mode="Insert" DataField="LotNumber" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="Manufacturer" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="ManLotNumber" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="ManPartNumber" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="DateRecived" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="ExpDate" runat="server" />
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-primary" />
-                            <asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
-                        </div>
-					</div>
-                </fieldset>
+                <fieldset>
+            <ol>
+
+                <asp:DynamicEntity runat="server" Mode="Insert" />
+            </ol>
+            <asp:Button runat="server" Text="Insert" CommandName="Insert" CssClass="btn btn-warning" />            
+			<asp:button id="backButton" runat="server" text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
+        </fieldset>
             </InsertItemTemplate>
         </asp:FormView>
     </div>

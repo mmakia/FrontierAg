@@ -142,3 +142,8 @@ C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.AddReadyDate2.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.RemoveReadyDate.resources
 C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.AddingRaw.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.RemovingrawVirtual.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.MakingProductOne2.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.MakingProductOne3.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.ProductIdMandatory.resources
+C:\Users\mmakia\Documents\Visual Studio 2013\Projects\FrontierAg\FrontierAg\obj\Release\FrontierAg.Migrations.ExpdateOptional.resources
