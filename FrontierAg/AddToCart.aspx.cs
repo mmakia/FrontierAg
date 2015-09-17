@@ -22,7 +22,7 @@ namespace FrontierAg
             {
                 using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
                 {
-                    usersShoppingCart.AddToCart(Convert.ToInt16(rawId));
+                    usersShoppingCart.AddToCart(productId);//Convert.ToInt16(rawId));
                 }
 
             }

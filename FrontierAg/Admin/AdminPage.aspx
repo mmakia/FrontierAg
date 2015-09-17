@@ -30,12 +30,12 @@
                     <asp:Button ID="AllOrderBtn" runat="server" Text="All Orders" OnClick="AllOrderBtn_Click" Width="300px" CssClass="btn btn-warning" />
                 </td>
             </tr>
-            <%--<tr>
+            <tr>
 
                 <td>
                     <asp:Button ID="ToProcessOrdersBtn" runat="server" Text="ToProcess Orders" OnClick="ToProcessOrdersBtn_Click" Width="300px" CssClass="btn btn-warning" />
                 </td>
-            </tr>--%>
+            </tr>
             <tr>
                 <td>
                     <asp:Button ID="AllShipments" runat="server" Text="All Shipments" OnClick="AllShipments_Click" Width="300px" CssClass="btn btn-warning" />

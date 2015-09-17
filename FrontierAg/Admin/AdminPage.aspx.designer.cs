@@ -49,6 +49,15 @@ namespace FrontierAg.Admin {
         protected global::System.Web.UI.WebControls.Button AllOrderBtn;
         
         /// <summary>
+        /// ToProcessOrdersBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ToProcessOrdersBtn;
+        
+        /// <summary>
         /// AllShipments control.
         /// </summary>
         /// <remarks>

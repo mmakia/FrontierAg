@@ -82,3 +82,5 @@ input.valid, textarea.valid{
     width: 25%;
     min-width: 100px;
 }
+
+.floatLeft { float: left; }
