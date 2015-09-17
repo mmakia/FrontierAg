@@ -1418,6 +1418,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Logic\RoleActions.cs" />
+    <Compile Include="Models\Raw.cs" />
     <Compile Include="Models\Shipment.cs">
       <SubType>Code</SubType>
     </Compile>

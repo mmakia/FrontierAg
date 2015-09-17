@@ -24,6 +24,7 @@ namespace FrontierAg.Models
         public DbSet<Shipment> Shipments { get; set; }
         public DbSet<ShipmentDetail> ShipmentDetails { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Email> Emails { get; set; } 
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<Raw> Raws { get; set; } 
     }
 }

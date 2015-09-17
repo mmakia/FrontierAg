@@ -32,6 +32,7 @@ namespace FrontierAg.Models
         public virtual ICollection<CartItem> CartItems { get; set; }
 
         public virtual ICollection<PackCharge> PackCharges { get; set; }
-                
+
+        public virtual ICollection<Raw> Raws { get; set; }
     }
 }
