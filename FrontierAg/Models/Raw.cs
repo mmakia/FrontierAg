@@ -7,6 +7,7 @@ namespace FrontierAg.Models
 {
     public class Raw
     {
+        [ScaffoldColumn(false)]
         public int RawId { get; set; }
 
         public string LotNumber { get; set; }

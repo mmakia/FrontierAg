@@ -225,6 +225,11 @@
     <Content Include="Admin\PackCharges\Default.aspx" />
     <Content Include="Admin\Prices\AddPrice.aspx" />
     <Content Include="Admin\Products\AddProduct.aspx" />
+    <Content Include="Admin\Raws\Default.aspx" />
+    <Content Include="Admin\Raws\Delete.aspx" />
+    <Content Include="Admin\Raws\Details.aspx" />
+    <Content Include="Admin\Raws\Edit.aspx" />
+    <Content Include="Admin\Raws\Insert.aspx" />
     <Content Include="Admin\Shipments\Default.aspx" />
     <Content Include="Admin\Shipments\Invoice.aspx" />
     <Content Include="Admin\Shipments\OpenShipment.aspx" />
@@ -749,6 +754,41 @@
     </Compile>
     <Compile Include="Admin\Products\AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Raws\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Raws\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Raws\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Raws\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Raws\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Raws\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Raws\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Raws\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Raws\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Raws\Insert.aspx.designer.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Shipments\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1378,6 +1418,10 @@
     <Compile Include="Migrations\201508171212280_RemoveReadyDate.Designer.cs">
       <DependentUpon>201508171212280_RemoveReadyDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509171524134_AddingRaw.cs" />
+    <Compile Include="Migrations\201509171524134_AddingRaw.Designer.cs">
+      <DependentUpon>201509171524134_AddingRaw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Emailer.cs" />
@@ -1744,6 +1788,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508171212280_RemoveReadyDate.resx">
       <DependentUpon>201508171212280_RemoveReadyDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171524134_AddingRaw.resx">
+      <DependentUpon>201509171524134_AddingRaw.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
