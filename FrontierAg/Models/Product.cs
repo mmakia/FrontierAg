@@ -20,7 +20,7 @@ namespace FrontierAg.Models
         
         //public string Description { get; set; }
         
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } 
 
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
