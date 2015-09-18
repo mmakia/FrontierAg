@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data.Entity;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 using FrontierAg.Models;
+using System.Data.Entity;
 
 namespace FrontierAg.Admin.Raws
 {
@@ -30,7 +31,7 @@ namespace FrontierAg.Admin.Raws
 
             using (_db)
             {
-	            return _db.Raws.Where(m => m.RawId == RawId).FirstOrDefault();
+                return _db.Raws.Where(m => m.RawId == RawId).Include(m => m.Product).FirstOrDefault(); ;
             }
         }
 

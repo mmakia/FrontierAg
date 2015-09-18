@@ -38,41 +38,42 @@ namespace FrontierAg.Admin.Raws
 
                 if (ModelState.IsValid)
                 {
-                    // Save changes                                   
+                    // getting Last Raw                                   
                     var myLastRaw = _db.Raws.OrderByDescending(x => x.RawId).First();
                     var lastLotNumber = myLastRaw.LotNumber;
-                    
-                    string  temp = lastLotNumber.ToString();
-                    string myDateSubString = temp.Substring(5,6);
+
+                    string lastLotNumberString = lastLotNumber.ToString();
+                    string myDateSubString = lastLotNumberString.Substring(3, 6);
                     DateTime StoredDate = DateTime.ParseExact(myDateSubString, "MMddyy", CultureInfo.InvariantCulture);
 
                     //string temp = lastLotNumber.ToString();
-                    string temp3 = "9999";
-                    if (temp.Length == 16)
+                    string mySequenceSubstring = "9998";
+                    if (lastLotNumberString.Length >= 12)
                     {
-                        temp3 = temp.Substring(14);
+                        mySequenceSubstring = lastLotNumberString.Substring(10);
                     }
-                    int myNumberSubString = 0;
-                    Int32.TryParse(temp3, out myNumberSubString);
+                    int mySequenceAsInt = 0;
+                    Int32.TryParse(mySequenceSubstring, out mySequenceAsInt);
 
+                    //if todays date is different than last saved date, then record todays date
                     if (DateTime.Now.Date != StoredDate.Date)
-                    {                        
-                        item.LotNumber = "RM - " + myDateSubString + " - 01";                       
+                    {
+                        item.LotNumber = "RM - " + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + " - 01";                       
                     }
+                        //else,we are still adding sequences to today
                     else
                     {
-                        if (myNumberSubString < 10)
+                        if (mySequenceAsInt < 9)
                         {
-                            item.LotNumber = "RM - " + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + " - 0" + (myNumberSubString + 1).ToString();
+                            item.LotNumber = "RM-" + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + "-0" + (mySequenceAsInt + 1).ToString();
                         }
-                        else
+                        else 
                         {
-                            item.LotNumber = "RM - " + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + " - " + (myNumberSubString + 1).ToString();
+                            item.LotNumber = "RM-" + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + "-" + (mySequenceAsInt + 1).ToString();
                         }
                         
-                    }
+                    }                    
                     
-                    //item.ExpDate = datetime2;
                     _db.Raws.Add(item);
                     _db.SaveChanges();
 

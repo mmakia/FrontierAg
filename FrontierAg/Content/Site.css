@@ -92,3 +92,18 @@ input.valid, textarea.valid{
     width: 25%;
     min-width: 100px;
 }
+
+@media print {
+    .btn, #CategoryMenu, #myPrintButton, .PrintHidden{
+        display: none;
+    }
+    /*#CategoryMenu{
+         display: none;
+    }
+    #myPrintButton {
+        display: none;
+    }
+    .PrintHidden{
+        display: none;
+    }*/
+}

@@ -47,7 +47,7 @@ namespace FrontierAg.Admin.Shipments
             if (OrderId != null)
             {
 
-                var query = db.Shipments.Where(en => en.OrderId == OrderId);//.Include(en => en.OrderShippings.Select(m => m.Shipping))
+                var query = db.Shipments.Where(en => en.OrderId == OrderId);//.Include(en => en.OrderShippings.Select(m => m.Shipping));
 
                 if (myAction != null)
                 {

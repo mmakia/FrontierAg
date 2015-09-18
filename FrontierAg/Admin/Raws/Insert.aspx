@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="RawInsert" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Insert.aspx.cs" Inherits="FrontierAg.Admin.Raws.Insert" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    
     <div>
 		<p>&nbsp;</p>
+        <div>
+        <asp:ValidationSummary runat="server" ShowModelStateErrors="true" />
+    </div>
         <asp:FormView runat="server" ItemType="FrontierAg.Models.Raw" DefaultMode="Insert"  InsertItemPosition="FirstItem" InsertMethod="InsertItem"
             OnItemCommand="ItemCommand" RenderOuterTable="false" ID="addRawForm">
             <InsertItemTemplate>
