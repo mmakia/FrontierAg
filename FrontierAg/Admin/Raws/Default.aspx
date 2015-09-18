@@ -2,7 +2,7 @@
 
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-   <%-- <script type="text/javascript">
+    <%-- <script type="text/javascript">
 
         function Popup2(data) {
             var mywindow = window.open('', 'new div', 'height=400,width=600');
@@ -67,7 +67,7 @@
                 <asp:DynamicField DataField="LotNumber" />
                 <asp:DynamicField DataField="ExpDate" />
                 <%--<asp:ButtonField ButtonType="Link" Text="Print Label" ControlStyle-CssClass="test1" />--%>
-                <asp:HyperLinkField Text="Label" DataNavigateUrlFormatString="~/Admin/Raws/Details/{0}" DataNavigateUrlFields="RawId" />
+                <asp:HyperLinkField Text="Print Label" DataNavigateUrlFormatString="~/Admin/Raws/Details/{0}" DataNavigateUrlFields="RawId" />
             </Columns>
         </asp:GridView>
         <div class="row">

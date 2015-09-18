@@ -1450,6 +1450,10 @@
     <Compile Include="Migrations\201509171725324_ExpdateOptional.Designer.cs">
       <DependentUpon>201509171725324_ExpdateOptional.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509181924193_RequiredMan2.cs" />
+    <Compile Include="Migrations\201509181924193_RequiredMan2.Designer.cs">
+      <DependentUpon>201509181924193_RequiredMan2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Emailer.cs" />
@@ -1834,6 +1838,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509171725324_ExpdateOptional.resx">
       <DependentUpon>201509171725324_ExpdateOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509181924193_RequiredMan2.resx">
+      <DependentUpon>201509181924193_RequiredMan2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

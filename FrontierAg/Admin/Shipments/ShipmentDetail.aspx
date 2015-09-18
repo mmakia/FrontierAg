@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShipmentDetail.aspx.cs" Inherits="FrontierAg.Admin.Shipments.ShipmentDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <%--<script type="text/javascript">
-        $(function () {
-            $('#CategoryMenu').hide();
-        });   
-    </script>--%>
-    <%--<div id="PackingSliptitle" runat="server" class="ContentHead"><h3>Frontier Agricultural Sciences</h3></div>    --%>
+    <script type="text/javascript">    
+        $(function () {           
+            window.print();
+            window.history.back(1);
+        });
+    </script>
     <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/fssi_logo.png" />
     <div id="ShipmentsTitle" runat="server" class="ContentHead">
         <h3>Packing Slip</h3>
