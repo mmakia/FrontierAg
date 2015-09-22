@@ -10,25 +10,25 @@
 namespace FrontierAg.Admin.Orders {
     
     
-    public partial class Default {
+    public partial class ToProcess {
         
         /// <summary>
-        /// OrdersTitle control.
+        /// Status2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OrdersTitle;
+        protected global::System.Web.UI.WebControls.DropDownList Status2;
         
         /// <summary>
-        /// Status control.
+        /// CheckBoxSelectCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Status;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxSelectCategory;
         
         /// <summary>
         /// ErrorLbl control.
@@ -40,13 +40,13 @@ namespace FrontierAg.Admin.Orders {
         protected global::System.Web.UI.WebControls.Label ErrorLbl;
         
         /// <summary>
-        /// OrdersList control.
+        /// OrdersList2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView OrdersList;
+        protected global::System.Web.UI.WebControls.GridView OrdersList2;
         
         /// <summary>
         /// backButton control.

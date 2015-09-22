@@ -11,12 +11,7 @@ namespace FrontierAg.Models
     public enum Status
     {
         Cancelled, New, InProcess, PartialShipment, Shipped, Closed
-    }
-
-    //public enum Action
-    //{
-    //    Hold, CancelOrder
-    //}
+    }    
 
     public class Order
     {
@@ -54,8 +49,6 @@ namespace FrontierAg.Models
 
         public virtual Customer Customer { get; set; }
 
-        public virtual ICollection<OrderShipping> OrderShippings { get; set; }
-
-        //public virtual ICollection<Shipment> Shipments { get; set; }
+        public virtual ICollection<OrderShipping> OrderShippings { get; set; }        
     }
 }

@@ -82,3 +82,28 @@ input.valid, textarea.valid{
     width: 25%;
     min-width: 100px;
 }
+
+#MainContent_addRawForm_ctl03_ctl00___Product_DropDownList1{
+    width: 25%;
+    min-width: 100px;
+}
+
+#MainContent_addProductForm_ctl03_ctl00___Category_DropDownList1{
+    width: 25%;
+    min-width: 100px;
+}
+
+@media print {
+    .btn, #CategoryMenu, #myPrintButton, .PrintHidden{
+        display: none;
+    }
+    /*#CategoryMenu{
+         display: none;
+    }
+    #myPrintButton {
+        display: none;
+    }
+    .PrintHidden{
+        display: none;
+    }*/
+}

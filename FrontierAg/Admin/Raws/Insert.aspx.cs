@@ -36,7 +36,7 @@ namespace FrontierAg.Admin.Raws
 
                 TryUpdateModel(item);
 
-                if (ModelState.IsValid)
+                if (ModelState.IsValid & _db.Raws.FirstOrDefault() != null)//.OrderByDescending(x => x.RawId).First() != null) NEED TO FIX
                 {
                     // getting Last Raw                                   
                     var myLastRaw = _db.Raws.OrderByDescending(x => x.RawId).First();

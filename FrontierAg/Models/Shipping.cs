@@ -41,9 +41,7 @@ namespace FrontierAg.Models
         public string Country { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        public string PPhone { get; set; }        
-
-        //public SType SType { get; set; }
+        public string PPhone { get; set; }             
 
         [ScaffoldColumn(false)]
         public bool isHistory { get; set; }

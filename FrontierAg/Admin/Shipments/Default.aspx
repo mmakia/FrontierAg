@@ -22,7 +22,7 @@
 
             <asp:TemplateField HeaderText="OrderId">
                 <ItemTemplate>
-                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Orders/Default", Item.OrderId) %>' Text="<%#: Item.OrderId  %>" />
+                    <asp:HyperLink runat="server" NavigateUrl='<%# Microsoft.AspNet.FriendlyUrls.FriendlyUrl.Href("~/Admin/Orders/Default/0/", Item.OrderId) %>' Text="<%#: Item.OrderId  %>" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:DynamicField DataField="PFee" HeaderText="ProcessFee" />

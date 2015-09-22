@@ -18,12 +18,27 @@ namespace FrontierAg.Contacts
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label1.Text = "";
         }
 
         // Model binding method to get List of Contact entries
         // USAGE: <asp:ListView SelectMethod="GetData">
-        public IQueryable<FrontierAg.Models.Contact> GetData([FriendlyUrlSegmentsAttribute(0)]String searchString)
+        public IQueryable<FrontierAg.Models.Contact> GetData([FriendlyUrlSegmentsAttribute(0)]String searchString, [FriendlyUrlSegmentsAttribute(1)]String searchStringOrderId)
         {
+            if (searchStringOrderId != null)
+            {
+                int searchIntOrderId = 0;
+
+                Int32.TryParse(searchStringOrderId, out searchIntOrderId);
+                if (searchIntOrderId == 0)
+                {
+                    Label1.Text = "Please enter a valid number";
+                    return _db.Contacts;
+                }
+
+                return _db.Orders.Where(o => o.OrderId == searchIntOrderId).Select(i => i.Contact);
+            }
+
             if (searchString != null)
             {
                 string[] myStrings = GeneralUtilities.LineToStrings(searchString, " ");
@@ -48,7 +63,7 @@ namespace FrontierAg.Contacts
 
                 return Result;
                 //return _db.Contacts.Where(en => en.Type == CType.Customer && (en.Company..Contains(searchString)));  ///////////              
-            }
+            }                 
             return _db.Contacts;
         }
 
@@ -64,6 +79,18 @@ namespace FrontierAg.Contacts
             if (yourValue != "")
             {
                 Response.Redirect(FriendlyUrl.Href("~/Admin/Contacts/Default/", yourValue));
+            }
+
+            Response.Redirect(FriendlyUrl.Href("~/Admin/Contacts/Default/"));
+        }
+
+        protected void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+            string yourValue = Server.HtmlEncode(TextBox2.Text.Trim());
+
+            if (yourValue != "")
+            {
+                Response.Redirect(FriendlyUrl.Href("~/Admin/Contacts/Default/0/", yourValue));
             }
 
             Response.Redirect(FriendlyUrl.Href("~/Admin/Contacts/Default/"));

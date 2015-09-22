@@ -217,10 +217,9 @@
     <Content Include="Admin\Emails\Insert.aspx" />
     <Content Include="Admin\OrderDetails\AllDetails.aspx" />
     <Content Include="Admin\OrderDetails\Default.aspx" />
-    <Content Include="Admin\Orders\FilteredOrder.aspx" />
-    <Content Include="Admin\Orders\Default.aspx" />
+    <Content Include="Admin\Orders\OldDefault.aspx" />
     <Content Include="Admin\Orders\OpenOrder.aspx" />
-    <Content Include="Admin\Orders\ToProcess.aspx" />
+    <Content Include="Admin\Orders\Default.aspx" />
     <Content Include="Admin\PackCharges\AddPackCharge.aspx" />
     <Content Include="Admin\PackCharges\Default.aspx" />
     <Content Include="Admin\Prices\AddPrice.aspx" />
@@ -700,19 +699,12 @@
     <Compile Include="Admin\OrderDetails\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Orders\FilteredOrder.aspx.cs">
-      <DependentUpon>FilteredOrder.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\OldDefault.aspx.cs">
+      <DependentUpon>OldDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Orders\FilteredOrder.aspx.designer.cs">
-      <DependentUpon>FilteredOrder.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Orders\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Orders\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\OldDefault.aspx.designer.cs">
+      <DependentUpon>OldDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Orders\OpenOrder.aspx.cs">
       <DependentUpon>OpenOrder.aspx</DependentUpon>
@@ -721,12 +713,12 @@
     <Compile Include="Admin\Orders\OpenOrder.aspx.designer.cs">
       <DependentUpon>OpenOrder.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Orders\ToProcess.aspx.cs">
-      <DependentUpon>ToProcess.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Orders\ToProcess.aspx.designer.cs">
-      <DependentUpon>ToProcess.aspx</DependentUpon>
+    <Compile Include="Admin\Orders\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\PackCharges\AddPackCharge.aspx.cs">
       <DependentUpon>AddPackCharge.aspx</DependentUpon>

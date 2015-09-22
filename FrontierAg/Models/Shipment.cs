@@ -20,9 +20,7 @@ namespace FrontierAg.Models
 
         public int ShippingId { get; set; }
 
-        public String Tracking { get; set; }
-
-        //public DateTime? ReadyDate { get; set; }
+        public String Tracking { get; set; }        
 
         public DateTime? ReadyDate2 { get; set; }
         

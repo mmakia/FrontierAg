@@ -10,42 +10,51 @@
 namespace FrontierAg.Admin.Orders {
     
     
-    public partial class ToProcess {
+    public partial class Default {
         
         /// <summary>
-        /// CheckBoxSelectCategory2 control.
+        /// OrdersTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxSelectCategory2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OrdersTitle;
         
         /// <summary>
-        /// Status2 control.
+        /// Status control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList Status2;
+        protected global::System.Web.UI.WebControls.DropDownList Status;
         
         /// <summary>
-        /// GoToOrdersBtn control.
+        /// ErrorLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GoToOrdersBtn;
+        protected global::System.Web.UI.WebControls.Label ErrorLbl;
         
         /// <summary>
-        /// OrdersList2 control.
+        /// OrdersList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView OrdersList2;
+        protected global::System.Web.UI.WebControls.GridView OrdersList;
+        
+        /// <summary>
+        /// backButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button backButton;
     }
 }

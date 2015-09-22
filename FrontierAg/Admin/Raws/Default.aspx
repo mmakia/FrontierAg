@@ -64,7 +64,7 @@
                             runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:DynamicField DataField="LotNumber" />
+                <asp:DynamicField DataField="LotNumber" ReadOnly="true"/>
                 <asp:DynamicField DataField="ExpDate" />
                 <%--<asp:ButtonField ButtonType="Link" Text="Print Label" ControlStyle-CssClass="test1" />--%>
                 <asp:HyperLinkField Text="Print Label" DataNavigateUrlFormatString="~/Admin/Raws/Details/{0}" DataNavigateUrlFields="RawId" />

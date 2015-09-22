@@ -672,17 +672,7 @@
                                 </td>
                                 <td>&nbsp;<asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine" CssClass="form-control commentBox"></asp:TextBox>
                                 </td>
-                            </tr>
-                            <%--<tr>
-                                <td>
-                                    <asp:Label ID="PaymentDateLbl" runat="server" for="PaymentDateBox" class="control-label">Date: </asp:Label>&nbsp;
-                                </td>
-
-                                <td>&nbsp;
-                                    <asp:TextBox ID="PaymentDateBox" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:TextBox>
-
-                                </td>
-                            </tr>--%>
+                            </tr>                            
                             
                             <tr>
                                 <td>&nbsp;

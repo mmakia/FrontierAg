@@ -24,12 +24,10 @@ namespace FrontierAg.Models
         public int QtyShipped { get; set; }        
 
         public int QtyCancelled { get; set; }
-
-        //[Column(TypeName = "money")]
-        public decimal UnitPrice { get; set; }//decimal
-
-        //[Column(TypeName = "money")]
-        public decimal PriceOverride { get; set; }//decimal
+        
+        public decimal UnitPrice { get; set; }
+        
+        public decimal PriceOverride { get; set; }
 
         public Unit Unit { get; set; }
 
@@ -40,9 +38,6 @@ namespace FrontierAg.Models
 
         public virtual Order Order { get; set; }
 
-        public virtual Product Product { get; set; }
-
-        //public virtual ICollection<Shipment> Shipments { get; set; }
-
+        public virtual Product Product { get; set; }      
     }
 }
