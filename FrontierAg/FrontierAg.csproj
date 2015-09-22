@@ -225,11 +225,8 @@
     <Content Include="Admin\Prices\AddPrice.aspx" />
     <Content Include="Admin\Products\AddProduct.aspx" />
     <Content Include="Admin\Raws\Default.aspx" />
-    <Content Include="Admin\Raws\Delete.aspx" />
     <Content Include="Admin\Raws\Details.aspx" />
-    <Content Include="Admin\Raws\Edit.aspx" />
     <Content Include="Admin\Raws\Insert.aspx" />
-    <Content Include="Admin\Raws\Label.aspx" />
     <Content Include="Admin\Shipments\Default.aspx" />
     <Content Include="Admin\Shipments\Invoice.aspx" />
     <Content Include="Admin\Shipments\OpenShipment.aspx" />
@@ -755,13 +752,6 @@
     <Compile Include="Admin\Raws\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Raws\Delete.aspx.cs">
-      <DependentUpon>Delete.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Raws\Delete.aspx.designer.cs">
-      <DependentUpon>Delete.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Raws\Details.aspx.cs">
       <DependentUpon>Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -769,26 +759,12 @@
     <Compile Include="Admin\Raws\Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Raws\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Raws\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Raws\Insert.aspx.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Raws\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Raws\Label.aspx.cs">
-      <DependentUpon>Label.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Raws\Label.aspx.designer.cs">
-      <DependentUpon>Label.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Shipments\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

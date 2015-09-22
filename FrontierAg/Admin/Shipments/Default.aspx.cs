@@ -68,7 +68,7 @@ namespace FrontierAg.Admin.Shipments
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
             string yourValue = Server.HtmlEncode(TextBox1.Text.Trim());
-
+            //string hh = TextBox1.
             if (yourValue != "")
             {
                 Response.Redirect(FriendlyUrl.Href("~/Admin/Shipments/Default/", yourValue));

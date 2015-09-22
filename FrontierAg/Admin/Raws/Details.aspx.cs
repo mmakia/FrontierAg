@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 using System.Data.Entity;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 using FrontierAg.Models;
-using System.Data.Entity;
 
 namespace FrontierAg.Admin.Raws
 {
