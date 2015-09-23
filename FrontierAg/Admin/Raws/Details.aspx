@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="Raw Details" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Details.aspx.cs" Inherits="FrontierAg.Admin.Raws.Details" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">   
-      <script type="text/javascript">    
-        $(function () {           
-            window.print();
-            window.history.back(1);
-        });
-    </script>
+      <script type="text/javascript">
+          $(function () {
+              $('h4:contains("AG_")').html($('h4:contains("AG_")').html().replace("AG_", ""));
+              window.print();
+              window.history.back(1);
+          });
+    </script>   
     <asp:FormView runat="server"
         ItemType="FrontierAg.Models.Raw" DataKeyNames="RawId"
         SelectMethod="GetItem"

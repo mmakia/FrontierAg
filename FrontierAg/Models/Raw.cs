@@ -18,6 +18,7 @@ namespace FrontierAg.Models
         [Required]
         public string Manufacturer { get; set; }
 
+        [Required]
         [Display(Name = "Manufacturer Lot#")]
         public string ManLotNumber { get; set; }
 
@@ -31,6 +32,7 @@ namespace FrontierAg.Models
 
         [Display(Name = "Expiration Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(NullDisplayText = "N/A")]
         public System.DateTime? ExpDate { get; set; }
 
         [Display(Name = "Frontier Product#")]
