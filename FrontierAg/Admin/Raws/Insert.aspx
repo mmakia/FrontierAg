@@ -20,7 +20,7 @@
             </InsertItemTemplate>
         </asp:FormView>
     </div>--%>
-    <h3>Insert New Raw Material</h3>
+    <%--<h3>Insert New Raw Material</h3>
     <div class="table-responsive">
     <table class="table">
         <tr>
@@ -86,5 +86,5 @@
             </td>            
         </tr>
     </table>
-      </div>  
+      </div>--%>  
 </asp:Content>
