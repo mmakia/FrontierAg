@@ -8,6 +8,7 @@
                 <h3>Companies List</h3>
             </td>
         </tr>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <tr>
             <td>
                 <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
@@ -16,6 +17,16 @@
         <tr>
             <td>
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" EnableViewState="False" placeholder="Search by Company,Contact or Address" Width="300px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="TextBox2_TextChanged" EnableViewState="False" placeholder="Search by OrderId" Width="300px"></asp:TextBox>
             </td>
         </tr>
     </table>

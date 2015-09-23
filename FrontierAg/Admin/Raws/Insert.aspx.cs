@@ -13,18 +13,18 @@ namespace FrontierAg.Admin.Raws
 {
     public partial class Insert : System.Web.UI.Page
     {
-		protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
+        protected FrontierAg.Models.ProductContext _db = new FrontierAg.Models.ProductContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void Page_Init()
-        {
-            MetaTable table = MetaTable.GetTable(typeof(Raw));
-            addRawForm.SetMetaTable(table);
-        }
+        //protected void Page_Init()
+        //{
+        //    MetaTable table = MetaTable.GetTable(typeof(Raw));
+        //    addRawForm.SetMetaTable(table);
+        //}
 
         // This is the Insert method to insert the entered Raw item
         // USAGE: <asp:FormView InsertMethod="InsertItem">
@@ -58,22 +58,22 @@ namespace FrontierAg.Admin.Raws
                     //if todays date is different than last saved date, then record todays date
                     if (DateTime.Now.Date != StoredDate.Date)
                     {
-                        item.LotNumber = "RM - " + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + " - 01";                       
+                        item.LotNumber = "RM - " + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + " - 01";
                     }
-                        //else,we are still adding sequences to today
+                    //else,we are still adding sequences to today
                     else
                     {
                         if (mySequenceAsInt < 9)
                         {
                             item.LotNumber = "RM-" + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + "-0" + (mySequenceAsInt + 1).ToString();
                         }
-                        else 
+                        else
                         {
                             item.LotNumber = "RM-" + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + "-" + (mySequenceAsInt + 1).ToString();
                         }
-                        
-                    }                    
-                    
+
+                    }
+
                     _db.Raws.Add(item);
                     _db.SaveChanges();
 
@@ -82,12 +82,25 @@ namespace FrontierAg.Admin.Raws
             }
         }
 
-        protected void ItemCommand(object sender, FormViewCommandEventArgs e)
+
+
+        public IQueryable GetProducts()
         {
-            if (e.CommandName.Equals("Cancel", StringComparison.OrdinalIgnoreCase))
-            {
-                Response.Redirect("Default");
-            }
+            var _db = new FrontierAg.Models.ProductContext();
+            IQueryable query = _db.Products;//.Where(u => (u.CategoryId == 11 || u.CategoryId == 12 || u.CategoryId == 13 || u.CategoryId == 15));
+            return query;
         }
+        protected void AddRAWButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //protected void ItemCommand(object sender, FormViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName.Equals("Cancel", StringComparison.OrdinalIgnoreCase))
+        //    {
+        //        Response.Redirect("Default");
+        //    }
+        //}
     }
 }

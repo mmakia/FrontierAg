@@ -19,6 +19,7 @@ namespace FrontierAg.Models
         public string Manufacturer { get; set; }
 
         [Display(Name = "Manufacturer Lot#")]
+        [Required]
         public string ManLotNumber { get; set; }
 
         [Required]
