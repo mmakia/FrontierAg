@@ -20,11 +20,22 @@ namespace FrontierAg.Admin.Raws
 
         }
 
-        protected void Page_Init()
+        public IQueryable GetProducts()
         {
-            MetaTable table = MetaTable.GetTable(typeof(Raw));
-            addRawForm.SetMetaTable(table);
+            var _db = new FrontierAg.Models.ProductContext();
+            IQueryable query = _db.Products;//.Where(u => (u.CategoryId == 11 || u.CategoryId == 12 || u.CategoryId == 13 || u.CategoryId == 15));
+            return query;
         }
+        protected void AddRAWButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //protected void Page_Init()
+        //{
+        //    MetaTable table = MetaTable.GetTable(typeof(Raw));
+        //    addRawForm.SetMetaTable(table);
+        //}
 
         // This is the Insert method to insert the entered Raw item
         // USAGE: <asp:FormView InsertMethod="InsertItem">
