@@ -38,14 +38,6 @@
         });
 
     </script>--%>
-    <script type="text/javascript">        
-        $(function () {
-            if ($('span:contains("AG_")').length)
-            {
-                $('span:contains("AG_")').html($('span:contains("AG_")').html().replace("AG_", ""));
-            }                                       
-        });
-    </script>
     <div class="PrintHidden2">
         <h3>Raw Material List</h3>
         <p>
