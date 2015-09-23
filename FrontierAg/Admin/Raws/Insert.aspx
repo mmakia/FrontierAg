@@ -76,7 +76,7 @@
             <td>
                 <asp:TextBox ID="TXTBXDateReceived" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Text="* Date Received is required." ControlToValidate="TXTBXDateReceived" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-            <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Text="* Enter A Valid Date." ControlToValidate="AddProductPrice" SetFocusOnError="True" Display="Dynamic" ValidationExpression="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"></asp:RegularExpressionValidator>--%>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Text="* Enter A Valid Date." ControlToValidate="TXTBXDateReceived" SetFocusOnError="True" Display="Dynamic" ValidationExpression="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"></asp:RegularExpressionValidator>
                 
             </td>
         </tr>
@@ -88,7 +88,7 @@
             <td>
                 
                 <asp:TextBox ID="TXTBXExpirationDate" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
-                <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" Text="* Enter A Valid Date" ControlToValidate="TXTBXExpirationDate" SetFocusOnError="True" Display="Dynamic" ValidationExpression="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"></asp:RegularExpressionValidator>--%>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" Text="* Enter A Valid Date" ControlToValidate="TXTBXExpirationDate" SetFocusOnError="True" Display="Dynamic" ValidationExpression="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>

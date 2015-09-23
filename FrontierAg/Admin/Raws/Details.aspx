@@ -3,6 +3,10 @@
       <script type="text/javascript">
           $(function () {
               $('h4:contains("AG_")').html($('h4:contains("AG_")').html().replace("AG_", ""));
+            if ($('h4:contains("12:00:00 AM")').length)
+            {
+                $('h4:contains("12:00:00 AM")').html($('h4:contains("12:00:00 AM")').html().replace("12:00:00 AM", ""));
+            } 
               window.print();
               window.history.back(1);
           });
