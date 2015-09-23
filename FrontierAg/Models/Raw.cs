@@ -29,8 +29,9 @@ namespace FrontierAg.Models
         [DataType(DataType.Date)]
         public System.DateTime DateRecived { get; set; }
 
-        [Display(Name = "Expiration Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(NullDisplayText = "N/A")]
+        [Display(Name = "Expiration Date")]                      
         public System.DateTime? ExpDate { get; set; }
 
         [Display(Name = "Frontier Product#")]

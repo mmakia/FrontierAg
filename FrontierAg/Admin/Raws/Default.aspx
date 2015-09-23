@@ -43,6 +43,10 @@
             if ($('span:contains("AG_")').length)
             {
                 $('span:contains("AG_")').html($('span:contains("AG_")').html().replace("AG_", ""));
+            }  
+            if ($('td:contains("12:00:00 AM")').length)
+            {
+                $('td:contains("12:00:00 AM")').html($('td:contains("12:00:00 AM")').html().replace("12:00:00 AM", ""));
             }                                       
         });
     </script>
