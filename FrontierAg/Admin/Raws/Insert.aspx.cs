@@ -41,7 +41,7 @@ namespace FrontierAg.Admin.Raws
 
                     string lastLotNumberString = lastLotNumber.ToString();
                     string myDateSubString = lastLotNumberString.Substring(3, 6);
-                    DateTime StoredDate = DateTime.ParseExact(myDateSubString, "MMddyy", CultureInfo.InvariantCulture);
+                    DateTime StoredDate = DateTime.ParseExact(myDateSubString, "MMddyy", CultureInfo.InvariantCulture);//error
 
                     //string temp = lastLotNumber.ToString();
                     string mySequenceSubstring = "9998";
@@ -55,7 +55,7 @@ namespace FrontierAg.Admin.Raws
                     //if todays date is different than last saved date, then record todays date
                     if (DateTime.Now.Date != StoredDate.Date)
                     {
-                        item.LotNumber = "RM - " + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + " - 01";
+                        item.LotNumber = "RM-" + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("yy") + "-01";
                     }
                     //else,we are still adding sequences to today
                     else
@@ -83,7 +83,7 @@ namespace FrontierAg.Admin.Raws
 
 
                 item.DateRecived = DateTime.ParseExact(TXTBXDateReceived.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-
+                 
                 if (TXTBXExpirationDate.Text != "")
                 item.ExpDate = Convert.ToDateTime(TXTBXExpirationDate.Text);
 

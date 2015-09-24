@@ -83,6 +83,11 @@ input.valid, textarea.valid{
     min-width: 100px;
 }
 
+.MyDropList2{
+    width: 40%;
+    min-width: 100px;
+}
+
 #MainContent_addRawForm_ctl03_ctl00___Product_DropDownList1{
     width: 25%;
     min-width: 100px;
