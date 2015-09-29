@@ -51,7 +51,7 @@
         });
     </script>
     <div class="PrintHidden2">
-        <h3>Raw Material List</h3>
+        <h3>Raw Materials</h3>
         <p>
             <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
         </p>

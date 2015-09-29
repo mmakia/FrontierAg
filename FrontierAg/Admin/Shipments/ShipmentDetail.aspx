@@ -7,6 +7,7 @@
             window.history.back(1);
         });
     </script>
+    <div id="myPrintForm">
     <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/fssi_logo.png" />
     <div id="ShipmentsTitle" runat="server" class="ContentHead">
         <h3>Packing Slip</h3>
@@ -72,4 +73,5 @@
     </asp:GridView>
     <asp:Button ID="backButton" runat="server" Text="Back" OnClientClick="JavaScript:window.history.back(1);return false;" CssClass="btn btn-warning" />
     <button id="myPrintButton" onclick="window.print();" Class="btn btn-warning">Print Page</button>
+        </div>
 </asp:Content>

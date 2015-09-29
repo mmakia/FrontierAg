@@ -2,15 +2,17 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">   
       <script type="text/javascript">
           $(function () {
-              $('h4:contains("AG_")').html($('h4:contains("AG_")').html().replace("AG_", ""));
+              window.print();
+              window.history.back(1);
+            $('h4:contains("AG_")').html($('h4:contains("AG_")').html().replace("AG_", ""));
             if ($('h4:contains("12:00:00 AM")').length)
             {
                 $('h4:contains("12:00:00 AM")').html($('h4:contains("12:00:00 AM")').html().replace("12:00:00 AM", ""));
             } 
-              window.print();
-              window.history.back(1);
+            
           });
     </script>
+    
     <asp:FormView runat="server"
         ItemType="FrontierAg.Models.Raw" DataKeyNames="RawId"
         SelectMethod="GetItem"
@@ -18,7 +20,7 @@
         
         <ItemTemplate>
             <fieldset class="form-horizontal">
-
+                <div id="myPrintForm">
                 <div class="row">                    
                     <div class="col-sm-6 ">
                          <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/fssi_logo.png" />
@@ -28,7 +30,7 @@
                 <div class="row">
                     <div class="col-sm-6 ">
                         <div>
-                <h4><%#:Item.Product.ProductNo %></h4>
+                <p><%#:Item.Product.ProductNo %></p>
             </div>
                 </asp>
                     </div>
@@ -37,7 +39,7 @@
                 <div class="row">
                     <div class="col-sm-6 ">
                         <div>
-                <h4><%#:Item.Product.ProductName %></h4>
+                <p><%#:Item.Product.ProductName %></p>
             </div>
                 </asp>
                     </div>
@@ -45,18 +47,18 @@
 
                 <div class="row">
                     <div class="col-sm-6 ">
-                       <h4> <asp:DynamicControl runat="server" DataField="LotNumber" ID="LotNumber" Mode="ReadOnly" /></h4>
+                       <p> <asp:DynamicControl runat="server" DataField="LotNumber" ID="LotNumber" Mode="ReadOnly" /></p>
                     </div>
                 </div>
 
                 <div class="row">    
                                     
                     <div class="col-sm-6 ">
-                        <h4>Exp: <asp:DynamicControl runat="server" DataField="ExpDate" ID="ExpDate" Mode="ReadOnly" /></h4>
+                        <p>Exp: <asp:DynamicControl runat="server" DataField="ExpDate" ID="ExpDate" Mode="ReadOnly" /></p>
                     </div>
                 </div>
-
-                <div class="row">
+</div>
+                <%--<%--<div class="row">
                     &nbsp;
                 </div>
                 <div class="form-group">
@@ -64,10 +66,10 @@
                         <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Back" CssClass="btn btn-warning" />
                         <button id="myPrintButton" onclick="window.print();" Class="btn btn-warning">Print Page</button>
                     </div>
-                </div>
+                </div>--%>
             </fieldset>
         </ItemTemplate>
     </asp:FormView>
-
+        
 </asp:Content>
 
