@@ -34,10 +34,10 @@ namespace FrontierAg.Models
         [Display(Name = "Expiration Date")]                      
         public System.DateTime? ExpDate { get; set; }
 
-        [Display(Name = "Frontier Product#")]
+        //[Display(Name = "Frontier Product#")]
         public int ProductId { get; set; }
 
-        [Display(Name = "Frontier Product#")]
+        //[Display(Name = "Frontier Product#")]
         public virtual Product Product { get; set; } 
     }
 }

@@ -20,7 +20,7 @@ namespace FrontierAg.Admin.Raws
 
         // Model binding method to get List of Raw entries
         // USAGE: <asp:ListView SelectMethod="GetData">
-        public IQueryable<FrontierAg.Models.Raw> GetData()
+        public IQueryable<FrontierAg.Models.Raw> GetData3()
         {
             return _db.Raws;
         }

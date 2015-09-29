@@ -4,7 +4,7 @@
     <script type="text/javascript">    
         $(function () {           
             window.print();
-            window.history.back(1);
+            setTimeout("window.history.back(1)", 100);
         });
     </script>
     <div id="myPrintForm">
