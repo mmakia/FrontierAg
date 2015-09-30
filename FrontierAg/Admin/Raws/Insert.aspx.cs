@@ -23,7 +23,7 @@ namespace FrontierAg.Admin.Raws
         public IQueryable GetProducts()
         {
             var _db = new FrontierAg.Models.ProductContext();
-            IQueryable query = _db.Products.Where(u => (u.CategoryId == 11 || u.CategoryId == 12 || u.CategoryId == 13 || u.CategoryId == 15));
+            IQueryable query = _db.Products.Where(u => (u.CategoryId == 11 || u.CategoryId == 12 || u.CategoryId == 13 || u.CategoryId == 15 || u.CategoryId == 17));
             return query;
         }
         protected void AddRAWButton_Click(object sender, EventArgs e)

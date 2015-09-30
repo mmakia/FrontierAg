@@ -98,7 +98,7 @@ namespace FrontierAg
         public IQueryable<Category> GetCategories()
         {
             var _db = new FrontierAg.Models.ProductContext();
-            IQueryable<Category> query = _db.Categories;
+            IQueryable<Category> query = _db.Categories.Where(cat => cat.CategoryId != 17);
             return query;
         }
 

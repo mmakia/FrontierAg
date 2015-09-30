@@ -98,6 +98,10 @@ input.valid, textarea.valid{
     min-width: 100px;
 }
 
+.ExtendedWidth{
+    min-width:350px;
+}
+
 @media print {   
     .btn, #CategoryMenu, #myPrintButton, .PrintHidden, .navbar{
         display: none;        

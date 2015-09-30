@@ -22,7 +22,7 @@ namespace FrontierAg
         {
             var _db = new FrontierAg.Models.ProductContext();
 
-            IQueryable<Product> query = _db.Products;
+            IQueryable<Product> query = _db.Products.Where(prod => prod.CategoryId != 17);
 
             if (categoryId.HasValue && categoryId > 0)
             {
@@ -30,7 +30,7 @@ namespace FrontierAg
             }
             else if (!String.IsNullOrEmpty(searchString))
             {
-                return query = query.Where(s => s.ProductNo.Contains(searchString) || s.ProductName.Contains(searchString));
+                return query = query.Where(s => s.ProductNo.Contains(searchString) || s.ProductName.Contains(searchString)).Where(prod => prod.CategoryId != 17);
             }
 
             return query;
