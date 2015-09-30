@@ -1,51 +1,9 @@
 ﻿<%@ Page Title="RawList" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Default.aspx.cs" Inherits="FrontierAg.Admin.Raws.Default" %>
 
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
-<asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <%-- <script type="text/javascript">
-
-        function Popup2(data) {
-            var mywindow = window.open('', 'new div', 'height=400,width=600');
-            mywindow.document.write('<html><head><title>my div</title>');
-            /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-            mywindow.document.write('</head><body >');
-            mywindow.document.write(data);
-            mywindow.document.write('</body></html>');
-            mywindow.document.close();
-            mywindow.focus();
-            mywindow.print();
-            mywindow.close();
-            return true;
-        }
-
-        function ReStructureData(data) {
-            var Four = $("td").eq(3);
-            
-            $("p").append(" <b>Appended text</b>.");
-        }
-
-        $(function () {
-            $('.test1').on('click', function () {
-                var HyperLink = $(this);
-                var MyRow = $(this).parent().parent().html();
-                ReStructureData(MyRow);
-                //var myDate1 = $(MyRow).
-                //alert(MyRow);
-                //window.print(MyRow);
-                //PrintElem('MyRow');
-                //Popup2(MyRow);
-            });
-        });
-
-    </script>--%>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">    
     <script type="text/javascript">        
-        $(function () {
-            //if ($('span:contains("AG_")').length)
-            //{
-            //    $('span:contains("AG_")').html($('span:contains("AG_")').html().replace("AG_", ""));
-            //}  
-                  
-            
+        $(function () {                                    
             $('span:contains("AG_")').each(function () {
                 $(this).html($('span:contains("AG_")').html().replace("AG_", ""));
             });
