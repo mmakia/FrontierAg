@@ -92,6 +92,7 @@ namespace FrontierAg.Admin.Orders
                     Result = Result.Where(y => y.Status == myStatus);
                 }
 
+
                 Session["CategoryCondition"] = null;
 
                 if (OrderId != null)
