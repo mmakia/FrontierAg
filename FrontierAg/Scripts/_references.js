@@ -13,3 +13,5 @@
 /// <reference path="juice.min.js" />
 /// <reference path="amplify/amplify.request.min.js" />
 /// <reference path="amplify/amplify.core.min.js" />
+/// <reference path="jquery-1.8.2.min.js" />
+/// <reference path="webkit.js" />

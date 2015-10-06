@@ -10,7 +10,7 @@
 
         prm.add_endRequest(function () {
             //$(alert("Price Changed"))
-            validate();               
+            validate();
         }); 
 
         function validate() {
