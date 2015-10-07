@@ -7,8 +7,8 @@
             if ($('p:contains("12:00:00 AM")').length) {
                 $('p:contains("12:00:00 AM")').html($('p:contains("12:00:00 AM")').html().replace("12:00:00 AM", ""))
             }
-            window.print()
-            setTimeout("window.history.back(1)", 100);
+            //window.print();
+            //setTimeout("window.history.back(1)", 100);            
         });
     </script>
     <asp:FormView runat="server"

@@ -4,7 +4,8 @@
     <script type="text/javascript">    
         $(function () {           
             window.print();
-            setTimeout("window.history.back(1)", 100);
+            setTimeout("window.history.back(1)", 200);           
+            //window.onfocus = function () { window.history.back(1); }
         });
     </script>
     <div id="myPrintForm">

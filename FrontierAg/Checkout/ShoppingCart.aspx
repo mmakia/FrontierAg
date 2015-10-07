@@ -1,22 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="FrontierAg.ShoppingCart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-        $(function () {            
-            validate();            
-        });
+        function pageLoad(sender, args) { 
+        //$(function () {
+            validate();             
+        }
         
         //JS code to be executed after partial postback due to updatepanel
-        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        //var prm = Sys.WebForms.PageRequestManager.getInstance();
 
-        prm.add_endRequest(function () {
-            //$(alert("Price Changed"))
-            validate();
-        }); 
+        //prm.add_endRequest(function () {
+        //    //$(alert("Price Changed"))
+        //    validate();            
+        //}); 
 
         function validate() {
             var button = document.getElementById("UpdateBtn");
 
             $('.form-control.InputQty').on('input', function () {
+                
                 var input = $(this);
                 var re = /^-?\d\d*$/;
                 var is_int = re.test(input.val());
@@ -34,6 +36,7 @@
             });
 
             $('.form-control.InputPrice').on('focusout', function () {
+                
                 var input = $(this);
                 var re = /^\d+(\.\d\d)?$/;
                 var is_price = re.test(input.val());
@@ -59,8 +62,8 @@
     </script>    
     
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>                 
+    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>  --%>               
     <div id="ShoppingCartTitle" runat="server" class="ContentHead"><h3>Shopping Cart</h3></div>
 
     <asp:GridView ID="CartList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
@@ -137,7 +140,7 @@
     </tr>
     </table>
             
-     </ContentTemplate>
+     <%--</ContentTemplate>
     </asp:UpdatePanel> 
 
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
@@ -147,7 +150,7 @@
                 Please Wait...
             </div>
         </ProgressTemplate>   
-    </asp:UpdateProgress>    
+    </asp:UpdateProgress> --%>   
 </asp:Content>
 
 
