@@ -79,8 +79,10 @@ namespace FrontierAg.Admin.Raws
                 item.Manufacturer = TXTBXManufacturer.Text;
                 item.ManLotNumber = TXTBXManufacturerLot.Text;
                 item.ManPartNumber = TXTBXManufacturerPart.Text;
+                item.Vendor = VendorTextBox.Text;
 
-
+                if (VendorPartTextBox.Text != "")
+                item.VendorPartNumber = VendorPartTextBox.Text;
 
                 item.DateRecived = DateTime.ParseExact(TXTBXDateReceived.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                  

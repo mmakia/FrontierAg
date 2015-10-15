@@ -34,7 +34,15 @@
                     <asp:TextBox ID="TXTBXManufacturer" runat="server" CssClass="form-control ExtendedWidth"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Text="* Manufacturer name required." ControlToValidate="TXTBXManufacturer" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
                 </td>
-
+            </tr>            
+            <tr>
+                <td>
+                    <asp:Label ID="LBLManufacturerPart" runat="server" Text="Manufacturer Part#"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="TXTBXManufacturerPart" runat="server" CssClass="form-control ExtendedWidth"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" Text="* Manufacturer Part # is required." ControlToValidate="TXTBXManufacturerPart" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -45,13 +53,22 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Text="* Manufacturer Lot# is required." ControlToValidate="TXTBXManufacturerLot" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
                 </td>
             </tr>
+
             <tr>
                 <td>
-                    <asp:Label ID="LBLManufacturerPart" runat="server" Text="Manufacturer Part#"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Vendor"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="TXTBXManufacturerPart" runat="server" CssClass="form-control ExtendedWidth"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" Text="* Manufacturer Part # is required." ControlToValidate="TXTBXManufacturerPart" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="VendorTextBox" runat="server" CssClass="form-control ExtendedWidth"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" Text="* Vendor is required." ControlToValidate="VendorTextBox" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="Label2" runat="server" Text="Vendor Part#"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="VendorPartTextBox" runat="server" CssClass="form-control ExtendedWidth"></asp:TextBox>                    
                 </td>
             </tr>
             <tr>

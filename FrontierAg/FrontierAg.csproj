@@ -1447,6 +1447,14 @@
     <Compile Include="Migrations\201509181924193_RequiredMan2.Designer.cs">
       <DependentUpon>201509181924193_RequiredMan2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510131313296_AddingVendorFields.cs" />
+    <Compile Include="Migrations\201510131313296_AddingVendorFields.Designer.cs">
+      <DependentUpon>201510131313296_AddingVendorFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510141240503_VendorOptional.cs" />
+    <Compile Include="Migrations\201510141240503_VendorOptional.Designer.cs">
+      <DependentUpon>201510141240503_VendorOptional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Emailer.cs" />
@@ -1834,6 +1842,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509181924193_RequiredMan2.resx">
       <DependentUpon>201509181924193_RequiredMan2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510131313296_AddingVendorFields.resx">
+      <DependentUpon>201510131313296_AddingVendorFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510141240503_VendorOptional.resx">
+      <DependentUpon>201510141240503_VendorOptional.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

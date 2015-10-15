@@ -18,12 +18,20 @@ namespace FrontierAg.Models
         [Required]
         public string Manufacturer { get; set; }
 
-        [Display(Name = "Manufacturer Lot#")]
-        public string ManLotNumber { get; set; }
-
         [Required]
         [Display(Name = "Manufacturer Part#")]
         public string ManPartNumber { get; set; }
+
+        [Display(Name = "Manufacturer Lot#")]
+        public string ManLotNumber { get; set; }
+
+        [DisplayFormat(NullDisplayText = "N/A")]
+        [Display(Name = "Vendor")]
+        public string Vendor { get; set; }
+
+        [DisplayFormat(NullDisplayText = "N/A")]
+        [Display(Name = "Vendor Part#")]
+        public string VendorPartNumber { get; set; }
 
         [Display(Name = "Date Received")]
         [DataType(DataType.Date)]

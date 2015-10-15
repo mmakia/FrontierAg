@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="FrontierAg.ShoppingCart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         function pageLoad(sender, args) { 
         //$(function () {
             validate();             
@@ -59,7 +59,7 @@
                 button.click();
             });
         }        
-    </script>    
+    </script>    --%>
     
 
     <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -101,7 +101,7 @@
             </ItemTemplate>
         </asp:TemplateField>          
 
-        <%--<asp:BoundField DataField="Charge" HeaderText="Packaging" />--%>
+       
 
         <asp:TemplateField HeaderText="Item Total">            
                 <ItemTemplate>                    
@@ -117,6 +117,8 @@
             
         </Columns>        
     </asp:GridView>
+
+
     <div>
         <p>&nbsp;</p>
         <strong>

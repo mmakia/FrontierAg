@@ -24,6 +24,7 @@ namespace FrontierAg.Admin.Raws
         public IQueryable<FrontierAg.Models.Raw> GetData3([FriendlyUrlSegmentsAttribute(0)]String searchString)
         {            
             IQueryable<Raw> Result = null;
+
             if (searchString != null)
             {
                 var myRaws = _db.Raws.AsQueryable();
@@ -40,6 +41,7 @@ namespace FrontierAg.Admin.Raws
                         Result = myRaws;
                     }
                 }
+
                 return Result;
             }
             return _db.Raws;           

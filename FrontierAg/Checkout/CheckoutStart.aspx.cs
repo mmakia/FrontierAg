@@ -34,103 +34,98 @@ namespace FrontierAg.Checkout
 
         public IQueryable<FrontierAg.Models.Contact> GetContacts([FriendlyUrlSegmentsAttribute(3)]String searchString)
         {
+            IQueryable<Contact> Result = null;
+            IQueryable<Contact> ResultFromContact = null;
+            IQueryable<Contact> ResultFromShipping = null;
+
             if (searchString != null)
-            {
-                string[] mySearchStrings = GeneralUtilities.LineToStrings(searchString, " ");
-
-                //Creating ArrayList to save the remaining search strings to search the Shippings
-                ArrayList myAL = new ArrayList();
-
-                //Initially it contains all search string being entered in searchbox
-                myAL.AddRange(mySearchStrings);
-
-                var ResultFShippingsBefore = _db.Shippings.AsQueryable();                              
-                var ResultFShippingsAfter = Enumerable.Empty<Shipping>().AsQueryable();
-
-                foreach (string qs in mySearchStrings)
+            {                          
+                foreach (string ss in searchString.Split(' '))
                 {
-                    ResultFShippingsAfter = ResultFShippingsBefore.Where(em => em.FName.Contains(qs) || em.LName.Contains(qs) || em.Address1.Contains(qs) || em.Address2.Contains(qs)).Distinct();
-                    
-                    if (ResultFShippingsAfter.Any())
+                    ResultFromContact = _db.Contacts.Where(en => en.Company.Contains(ss) || en.Address1.Contains(ss) || en.Address2.Contains(ss));
+                    ResultFromShipping = _db.Shippings.Where(em => em.FName.Contains(ss) || em.LName.Contains(ss) || em.Address1.Contains(ss) || em.Address2.Contains(ss)).Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();
+
+                    if (Result == null)
                     {
-                        ResultFShippingsBefore = ResultFShippingsAfter;
-                        ResultFShippingsAfter = Enumerable.Empty<Shipping>().AsQueryable();
-                        myAL.Remove(qs);
+                        Result = ResultFromContact.Concat(ResultFromShipping);
+                    }
+                    else
+                    {
+                        Result = Result.Intersect(ResultFromContact.Concat(ResultFromShipping));
                     }
                 }
 
-                //if no more strings to search for, then return
-                if (myAL.Count < 1)
-                {
-                    return ResultFShippingsBefore.Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();
-                }
-                                
-                //Initially it copies all strings left over from searching Shippings
-                mySearchStrings = myAL.ToArray(typeof(string)) as string[];
-                
-                var ResultFContactsBefore = ResultFShippingsBefore.Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();
-                var ResultFContactsAfter = Enumerable.Empty<Contact>().AsQueryable();            
-
-                foreach (string qw in mySearchStrings)
-                {
-                    ResultFContactsAfter = ResultFContactsBefore.Where(en => en.Company.Contains(qw) || en.Address1.Contains(qw) || en.Address2.Contains(qw)).Distinct();
-
-                    if (ResultFContactsAfter.Any())
-                    {
-                        ResultFContactsBefore = ResultFContactsAfter;
-                        ResultFContactsAfter = Enumerable.Empty<Contact>().AsQueryable();
-                        myAL.Remove(qw);
-                    }
-                }
-
-                if (myAL.Count < 1)
-                {
-                    return ResultFContactsBefore;
-                }
-
-                else
-                {
-                    return null;
-                }
+                return Result;
             }
+            return _db.Contacts;           
 
-            else
-            {
-                return _db.Contacts.Where(en => en.Type == CType.Customer);
-            }
 
-            //C
-            //Implementing revised search
+            //////////////////////////Old
             //if (searchString != null)
             //{
             //    string[] mySearchStrings = GeneralUtilities.LineToStrings(searchString, " ");
 
-            //    var ResultFromContacts = _db.Contacts.AsQueryable();
-            //    var ResultFromShippings = _db.Contacts.AsQueryable();
-            //    IQueryable<Contact> Result = null;
+            //    //Creating ArrayList to save the remaining search strings to search the Shippings
+            //    ArrayList myAL = new ArrayList();
 
-            //    for (int i = 0; i < mySearchStrings.Length; i++ )
+            //    //Initially it contains all search string being entered in searchbox
+            //    myAL.AddRange(mySearchStrings);
+
+            //    var ResultFShippingsBefore = _db.Shippings.AsQueryable();
+            //    var ResultFShippingsAfter = Enumerable.Empty<Shipping>().AsQueryable();
+
+            //    foreach (string qs in mySearchStrings)
             //    {
-            //        ResultFromShippings = _db.Shippings.Where(em => em.FName.Contains(mySearchStrings[i]) || em.LName.Contains(mySearchStrings[i]) || em.Address1.Contains(mySearchStrings[i]) || em.Address2.Contains(mySearchStrings[i])).Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();//.Where(x => x..Contains(qs));
-            //        ResultFromContacts = _db.Contacts.Where(en => en.Type == CType.Customer && en.Company.Contains(mySearchStrings[i]) || en.Address1.Contains(mySearchStrings[i]) || en.Address2.Contains(mySearchStrings[i]));//qContacts.Where(en => en.Company.Contains(qs)) ||
-            //        if (Result != null)
+            //        ResultFShippingsAfter = ResultFShippingsBefore.Where(em => em.FName.Contains(qs) || em.LName.Contains(qs) || em.Address1.Contains(qs) || em.Address2.Contains(qs)).Distinct();
+
+            //        if (ResultFShippingsAfter.Any())
             //        {
-            //            Result = Result.Union(ResultFromContacts.Concat(ResultFromShippings));
-            //        }
-            //        else
-            //        {
-            //            Result = ResultFromContacts.Concat(ResultFromShippings);
+            //            ResultFShippingsBefore = ResultFShippingsAfter;
+            //            ResultFShippingsAfter = Enumerable.Empty<Shipping>().AsQueryable();
+            //            myAL.Remove(qs);
             //        }
             //    }
 
-            //    return Result;
-            //    //return _db.Contacts.Where(en => en.Type == CType.Customer && (en.Company..Contains(searchString)));  ///////////              
+            //    //if no more strings to search for, then return
+            //    if (myAL.Count < 1)
+            //    {
+            //        return ResultFShippingsBefore.Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();
+            //    }
+
+            //    //Initially it copies all strings left over from searching Shippings
+            //    mySearchStrings = myAL.ToArray(typeof(string)) as string[];
+
+            //    var ResultFContactsBefore = ResultFShippingsBefore.Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();
+            //    var ResultFContactsAfter = Enumerable.Empty<Contact>().AsQueryable();
+
+            //    foreach (string qw in mySearchStrings)
+            //    {
+            //        ResultFContactsAfter = ResultFContactsBefore.Where(en => en.Company.Contains(qw) || en.Address1.Contains(qw) || en.Address2.Contains(qw)).Distinct();
+
+            //        if (ResultFContactsAfter.Any())
+            //        {
+            //            ResultFContactsBefore = ResultFContactsAfter;
+            //            ResultFContactsAfter = Enumerable.Empty<Contact>().AsQueryable();
+            //            myAL.Remove(qw);
+            //        }
+            //    }
+
+            //    if (myAL.Count < 1)
+            //    {
+            //        return ResultFContactsBefore;
+            //    }
+
+            //    else
+            //    {
+            //        return null;
+            //    }
             //}
 
             //else
             //{
             //    return _db.Contacts.Where(en => en.Type == CType.Customer);
             //}
+                                
         }
 
 
@@ -146,6 +141,7 @@ namespace FrontierAg.Checkout
             return _db.Shippings.Where(n => n.ContactId == ContactId && n.isHistory == false);//_db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Shipping && n.isHistory == false);
         }
 
+
         public IQueryable<FrontierAg.Models.Shipping> GetData2([FriendlyUrlSegmentsAttribute(0)] int? ContactId, [FriendlyUrlSegmentsAttribute(1)] int? OrderingId)
         {
             //if (Session["myContactId"] == null)
@@ -156,6 +152,7 @@ namespace FrontierAg.Checkout
             //int x = Convert.ToInt32(Session["myContactId"]);
             return _db.Shippings.Where(n => n.ContactId == ContactId && n.isHistory == false);//_db.Shippings.Where(n => n.ContactId == ContactId && n.SType == SType.Shipping && n.isHistory == false);
         }
+
 
         public IQueryable<FrontierAg.Models.Shipping> GetData3([FriendlyUrlSegmentsAttribute(0)] int? ContactId, [FriendlyUrlSegmentsAttribute(1)] int? OrderingId, [FriendlyUrlSegmentsAttribute(2)] int? ShippingId)
         {
@@ -168,10 +165,12 @@ namespace FrontierAg.Checkout
             return _db.Shippings.Where(n => n.ContactId == ContactId && n.isHistory == false);
         }
 
+
         protected void backButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Checkout/ShoppingCart");
         }
+
 
         protected void Unnamed_Click1(object sender, EventArgs e)///1
         {
@@ -183,6 +182,7 @@ namespace FrontierAg.Checkout
 
             Response.Redirect(FriendlyUrl.Href("~/Checkout/CheckoutStart/", int.Parse(segments[0]), yourValue1));
         }
+
 
         protected void Unnamed_Click2(object sender, EventArgs e)///2
         {

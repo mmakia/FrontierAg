@@ -34,6 +34,8 @@
                 <asp:DynamicField DataField="Manufacturer" />
                 <asp:DynamicField DataField="ManPartNumber" />
                 <asp:DynamicField DataField="ManLotNumber" />
+                <asp:DynamicField DataField="Vendor" />
+                <asp:DynamicField DataField="VendorPartNumber" />
                 <asp:TemplateField HeaderText="Frontier Product#">
                     <ItemTemplate>
                         <asp:Label Text="<%#:Item.Product.ProductNo %>"

@@ -3,14 +3,16 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <script type="text/javascript">
         $(function () {
-            $('p:contains("AG_")').html($('p:contains("AG_")').html().replace("AG_", ""))
+            if ($('p:contains("AG_")').length) {
+            $('p:contains("AG_")').html($('p:contains("AG_")').html().replace("AG_", ""))}        
+
             if ($('p:contains("12:00:00 AM")').length) {
                 $('p:contains("12:00:00 AM")').html($('p:contains("12:00:00 AM")').html().replace("12:00:00 AM", ""))
             }
-            //window.print();
-            //setTimeout("window.history.back(1)", 100);            
+            window.print()
+            setTimeout("window.history.back(1)", 100);
         });
-    </script>
+    </script>    
     <asp:FormView runat="server"
         ItemType="FrontierAg.Models.Raw" DataKeyNames="RawId"
         SelectMethod="GetItem"
