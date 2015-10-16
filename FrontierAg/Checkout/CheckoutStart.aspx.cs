@@ -58,74 +58,7 @@ namespace FrontierAg.Checkout
                 return Result;
             }
             return _db.Contacts;           
-
-
-            //////////////////////////Old
-            //if (searchString != null)
-            //{
-            //    string[] mySearchStrings = GeneralUtilities.LineToStrings(searchString, " ");
-
-            //    //Creating ArrayList to save the remaining search strings to search the Shippings
-            //    ArrayList myAL = new ArrayList();
-
-            //    //Initially it contains all search string being entered in searchbox
-            //    myAL.AddRange(mySearchStrings);
-
-            //    var ResultFShippingsBefore = _db.Shippings.AsQueryable();
-            //    var ResultFShippingsAfter = Enumerable.Empty<Shipping>().AsQueryable();
-
-            //    foreach (string qs in mySearchStrings)
-            //    {
-            //        ResultFShippingsAfter = ResultFShippingsBefore.Where(em => em.FName.Contains(qs) || em.LName.Contains(qs) || em.Address1.Contains(qs) || em.Address2.Contains(qs)).Distinct();
-
-            //        if (ResultFShippingsAfter.Any())
-            //        {
-            //            ResultFShippingsBefore = ResultFShippingsAfter;
-            //            ResultFShippingsAfter = Enumerable.Empty<Shipping>().AsQueryable();
-            //            myAL.Remove(qs);
-            //        }
-            //    }
-
-            //    //if no more strings to search for, then return
-            //    if (myAL.Count < 1)
-            //    {
-            //        return ResultFShippingsBefore.Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();
-            //    }
-
-            //    //Initially it copies all strings left over from searching Shippings
-            //    mySearchStrings = myAL.ToArray(typeof(string)) as string[];
-
-            //    var ResultFContactsBefore = ResultFShippingsBefore.Select(em => em.Contact).Where(em => em.Type == CType.Customer).Distinct();
-            //    var ResultFContactsAfter = Enumerable.Empty<Contact>().AsQueryable();
-
-            //    foreach (string qw in mySearchStrings)
-            //    {
-            //        ResultFContactsAfter = ResultFContactsBefore.Where(en => en.Company.Contains(qw) || en.Address1.Contains(qw) || en.Address2.Contains(qw)).Distinct();
-
-            //        if (ResultFContactsAfter.Any())
-            //        {
-            //            ResultFContactsBefore = ResultFContactsAfter;
-            //            ResultFContactsAfter = Enumerable.Empty<Contact>().AsQueryable();
-            //            myAL.Remove(qw);
-            //        }
-            //    }
-
-            //    if (myAL.Count < 1)
-            //    {
-            //        return ResultFContactsBefore;
-            //    }
-
-            //    else
-            //    {
-            //        return null;
-            //    }
-            //}
-
-            //else
-            //{
-            //    return _db.Contacts.Where(en => en.Type == CType.Customer);
-            //}
-                                
+                       
         }
 
 

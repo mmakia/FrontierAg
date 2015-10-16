@@ -666,3 +666,93 @@ Exception Type: System.Exception
 Exception: The error was unhandled by application code.
 Source: customErrors section - Web.config
 Stack Trace: 
+********** 10/15/2015 2:56:22 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: The assembly 'System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' does not contain a Web resource that has the name 'respond'. Make sure that the resource name is spelled correctly.
+Inner Source: System.Web.Extensions
+Inner Stack Trace: 
+   at System.Web.UI.WebResourceUtil.VerifyAssemblyContainsReleaseWebResource(Assembly assembly, String releaseResourceName, Assembly currentAjaxAssembly)
+   at System.Web.UI.ScriptReference.ShouldUseDebugScript(String releaseName, Assembly assembly, Boolean isDebuggingEnabled, Assembly currentAjaxAssembly)
+   at System.Web.UI.ScriptReference.DetermineResourceNameAndAssembly(ScriptManager scriptManager, Boolean isDebuggingEnabled, String& resourceName, Assembly& assembly)
+   at System.Web.UI.ScriptReference.GetUrlFromName(ScriptManager scriptManager, IControl scriptManagerControl, Boolean zip, Boolean useCdnPath)
+   at System.Web.UI.ScriptReference.GetUrlInternal(ScriptManager scriptManager, Boolean zip, Boolean useCdnPath)
+   at System.Web.UI.ScriptReference.GetUrl(ScriptManager scriptManager, Boolean zip)
+   at System.Web.UI.ScriptManager.RegisterUniqueScripts(List`1 uniqueScripts)
+   at System.Web.UI.ScriptManager.RegisterScripts()
+   at System.Web.UI.ScriptManager.OnPagePreRenderComplete(Object sender, EventArgs e)
+   at System.Web.UI.Page.OnPreRenderComplete(EventArgs e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.productlist_aspx.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 10/15/2015 2:57:13 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: The assembly 'System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' does not contain a Web resource that has the name 'respond'. Make sure that the resource name is spelled correctly.
+Inner Source: System.Web.Extensions
+Inner Stack Trace: 
+   at System.Web.UI.WebResourceUtil.VerifyAssemblyContainsReleaseWebResource(Assembly assembly, String releaseResourceName, Assembly currentAjaxAssembly)
+   at System.Web.UI.ScriptReference.ShouldUseDebugScript(String releaseName, Assembly assembly, Boolean isDebuggingEnabled, Assembly currentAjaxAssembly)
+   at System.Web.UI.ScriptReference.DetermineResourceNameAndAssembly(ScriptManager scriptManager, Boolean isDebuggingEnabled, String& resourceName, Assembly& assembly)
+   at System.Web.UI.ScriptReference.GetUrlFromName(ScriptManager scriptManager, IControl scriptManagerControl, Boolean zip, Boolean useCdnPath)
+   at System.Web.UI.ScriptReference.GetUrlInternal(ScriptManager scriptManager, Boolean zip, Boolean useCdnPath)
+   at System.Web.UI.ScriptReference.GetUrl(ScriptManager scriptManager, Boolean zip)
+   at System.Web.UI.ScriptManager.RegisterUniqueScripts(List`1 uniqueScripts)
+   at System.Web.UI.ScriptManager.RegisterScripts()
+   at System.Web.UI.ScriptManager.OnPagePreRenderComplete(Object sender, EventArgs e)
+   at System.Web.UI.Page.OnPreRenderComplete(EventArgs e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.productlist_aspx.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 10/15/2015 3:00:35 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: The assembly 'System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' does not contain a Web resource that has the name 'respond'. Make sure that the resource name is spelled correctly.
+Inner Source: System.Web.Extensions
+Inner Stack Trace: 
+   at System.Web.UI.WebResourceUtil.VerifyAssemblyContainsReleaseWebResource(Assembly assembly, String releaseResourceName, Assembly currentAjaxAssembly)
+   at System.Web.UI.ScriptReference.ShouldUseDebugScript(String releaseName, Assembly assembly, Boolean isDebuggingEnabled, Assembly currentAjaxAssembly)
+   at System.Web.UI.ScriptReference.DetermineResourceNameAndAssembly(ScriptManager scriptManager, Boolean isDebuggingEnabled, String& resourceName, Assembly& assembly)
+   at System.Web.UI.ScriptReference.GetUrlFromName(ScriptManager scriptManager, IControl scriptManagerControl, Boolean zip, Boolean useCdnPath)
+   at System.Web.UI.ScriptReference.GetUrlInternal(ScriptManager scriptManager, Boolean zip, Boolean useCdnPath)
+   at System.Web.UI.ScriptReference.GetUrl(ScriptManager scriptManager, Boolean zip)
+   at System.Web.UI.ScriptManager.RegisterUniqueScripts(List`1 uniqueScripts)
+   at System.Web.UI.ScriptManager.RegisterScripts()
+   at System.Web.UI.ScriptManager.OnPagePreRenderComplete(Object sender, EventArgs e)
+   at System.Web.UI.Page.OnPreRenderComplete(EventArgs e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.productlist_aspx.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+

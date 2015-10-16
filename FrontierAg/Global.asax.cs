@@ -1,5 +1,4 @@
 ﻿using FrontierAg.Models;
-using Juice.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -36,11 +35,11 @@ namespace FrontierAg
             // Add Routes.
             RegisterCustomRoutes(RouteTable.Routes);
 
-            CssManager.CssResourceMapping.AddDefinition("juice-ui", new CssResourceDefinition
-            {
-                Path = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css",
-                DebugPath = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css"
-            });
+            //CssManager.CssResourceMapping.AddDefinition("juice-ui", new CssResourceDefinition
+            //{
+            //    Path = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css",
+            //    DebugPath = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css"
+            //});
 
             MetaModel DefaultModel = new MetaModel();
             DefaultModel.RegisterContext(new Microsoft.AspNet.DynamicData.ModelProviders.EFDataModelProvider(
